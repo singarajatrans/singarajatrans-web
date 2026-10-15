@@ -263,3 +263,22 @@ dialog{border-radius:12px}
  .service-card{grid-template-columns:88px 1fr auto}.service-card>img{width:88px}
  .result-card{grid-template-columns:92px 1fr}.result-card>img{width:92px}
 }
+
+
+/* 320px overflow guard for mockup layout */
+.footer-grid>*{min-width:0}
+.footer-brand>img{max-width:100%;height:auto}
+.service-card>*{min-width:0}
+.route-frame,.route-carousel{min-width:0;max-width:100%}
+@media(max-width:767px){
+ .route-carousel{margin-right:0;padding-right:0}
+ .footer-brand>img{width:100px}
+}
+@media(max-width:360px){
+ .route-carousel{grid-auto-columns:88%}
+ .footer-grid{gap:10px}
+ .footer-brand>img{width:88px}
+ .service-card{grid-template-columns:78px minmax(0,1fr) auto}
+ .service-card>img{width:78px}
+ .service-card .button{padding-inline:7px}
+}
