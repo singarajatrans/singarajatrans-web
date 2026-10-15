@@ -28,6 +28,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    await page.locator('[name=pickup]').fill('Hotel Singaraja');await page.locator('[name=dropoff]').fill('Denpasar');await page.locator('#booking-form button[type=submit]').click();
    assert.equal(await page.locator('#booking-review img').count(),0,'Unsafe user HTML');
    assert.equal(await page.locator('#booking-review a').getAttribute('href').then(x=>x.startsWith('https://wa.me/6281339392525?text=')),true);
+   const modalBox=await page.locator('#booking-dialog').boundingBox();assert.ok(modalBox.y>=0&&modalBox.y+modalBox.height<=900,'Modal clipped at '+width);
    await page.screenshot({path:`qa-output/review-${width}.png`});
    await page.keyboard.press('Escape');assert.equal(await page.locator('#booking-dialog').isVisible(),false);
    await page.locator('#edit-search').click();await page.locator('#tab-airport').click();
