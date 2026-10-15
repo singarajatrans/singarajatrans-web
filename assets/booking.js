@@ -58,6 +58,15 @@ function renderRoutes(){
  $('#route-cards').innerHTML=popular.map(([from,to])=>{const r=C.routes.find(r=>r.from===from&&r.to===to);return `<article class="route-card"><span class="route-icon">${icon(to==='Bandara Ngurah Rai'?'plane':'bus')}</span><h3 class="route-path">${escape(from)} ${icon('arrow')} ${escape(to==='Bandara Ngurah Rai'?t('Bandara Ngurah Rai','Ngurah Rai Airport'):to)}</h3><p class="route-note">Travel Shuttle · ${t('Sekali jalan','One way')}</p><div class="route-price"><div><small>${t('Mulai dari','From')}</small><strong>${money(r.price)}</strong><small>/ ${t('orang','person')}</small></div><button type="button" class="text-button" data-route="${escape(from)}|${escape(to)}" aria-label="${escape(t('Pilih rute','Select route')+' '+from+' '+to)}">${t('Pilih rute','Select route')}${icon('arrow')}</button></div></article>`;}).join('');
 }
 function searchState(){return {service,from:$('#origin').value,to:$('#destination').value,date:$('#date').value,time:service==='shuttle'?$('#time').value:$('#private-time').value,passengers:Number($('#passengers').value)};}
+function searchParams(s,results=false){const p=new URLSearchParams({service:s.service,from:s.from,to:s.to,date:s.date,time:s.time,passengers:String(s.passengers)});if(results)p.set('hasil','1');return p;}
+function openSearchResult(s){location.assign(location.pathname+'?'+searchParams(s,true).toString());}
+function restoreSearchState(){
+ const p=new URLSearchParams(location.search);if(!p.has('service'))return;
+ const s={service:p.get('service'),from:p.get('from')||'',to:p.get('to')||'',date:p.get('date')||'',time:p.get('time')||'',passengers:Number(p.get('passengers'))||1};
+ if(!['shuttle','airport','charter'].includes(s.service)||!s.from||!s.to||!s.date)return;
+ setService(s.service);$('#origin').value=s.from;$('#destination').value=s.to;$('#date').value=s.date;$('#passengers').value=String(s.passengers);$(s.service==='shuttle'?'#time':'#private-time').value=s.time;
+ if(p.get('hasil')==='1'){lastSearch=s;document.body.classList.add('results-page');renderResults(false);}
+}
 function renderResults(scroll=true){
  const s=lastSearch,results=C.getOptions(s);$('#results').hidden=false;
  $('#results-summary').textContent=`${s.from} → ${s.to} · ${formatDate(s.date)} · ${s.passengers} ${t('penumpang','passengers')} · ${serviceName(s.service)}`;
@@ -86,7 +95,7 @@ $('#search-form').addEventListener('submit',e=>{
  else if(s.service==='airport'&&s.from!=='Bandara Ngurah Rai'&&s.to!=='Bandara Ngurah Rai')msg=t('Airport Transfer harus memiliki bandara sebagai asal atau tujuan.','Airport Transfer must start or end at the airport.');
  else if(s.service!=='shuttle'&&!C.validFuture(s.date,s.time))msg=t('Pilih waktu penjemputan yang belum lewat (WITA).','Choose a future pickup time (Bali time).');
  if(msg){error.textContent=msg;error.hidden=false;return;}
- lastSearch=s;renderResults();
+ openSearchResult(s);
 });
 $('#booking-form').addEventListener('submit',e=>{
  e.preventDefault();const data=Object.fromEntries(new FormData(e.target));
@@ -106,9 +115,8 @@ $('#check-form').addEventListener('input',()=>$('#check-link')?.remove());
 $('#route-cards').addEventListener('click',e=>{const b=e.target.closest('[data-route]');if(!b)return;setService('shuttle');const [from,to]=b.dataset.route.split('|');$('#origin').value=from;$('#destination').value=to;$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#date').focus({preventScroll:true});});
 $('#result-list').addEventListener('click',e=>{const b=e.target.closest('[data-select-trip]');if(b)openTrip(Number(b.dataset.selectTrip));});
 $('#booking-review').addEventListener('click',e=>{if(e.target.id==='back-details'){$('#booking-review').hidden=true;$('#booking-form').hidden=false;$('#step-one').classList.add('current');$('#step-two').classList.remove('current');$('#booking-form input').focus();}});
-$$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
-$('[data-swap-locations]').addEventListener('click',()=>{const from=$('#origin'),to=$('#destination'),value=from.value;from.value=to.value;to.value=value;$('#search-error').hidden=true;});
-$$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.pickService,{focus:true})));
+$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
+$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.pickService,{focus:true})));
 $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
 $$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
@@ -119,12 +127,12 @@ $('#navigation').addEventListener('click',()=>{$('#navigation').classList.remove
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}if(e.target.matches('[role=tab]')&&['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=$$('[role=tab]'),i=tabs.indexOf(e.target),next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;setService(tabs[next].dataset.service);tabs[next].focus();}});
 $('.previous').addEventListener('click',()=>$('#route-cards').scrollBy({left:-$('#route-cards').clientWidth*.8,behavior:'smooth'}));
 $('.next').addEventListener('click',()=>$('#route-cards').scrollBy({left:$('#route-cards').clientWidth*.8,behavior:'smooth'}));
-$('#edit-search').addEventListener('click',()=>{setService(lastSearch.service);$('#origin').value=lastSearch.from;$('#destination').value=lastSearch.to;$('#date').value=lastSearch.date;$('#passengers').value=String(lastSearch.passengers);$(lastSearch.service==='shuttle'?'#time':'#private-time').value=lastSearch.time;$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#origin').focus({preventScroll:true});});
+$('#edit-search').addEventListener('click',()=>{const p=searchParams(lastSearch);location.assign(location.pathname+'?'+p.toString()+'#pesan');});
 $('#terms-button').addEventListener('click',()=>{const first=$('#faq details');first.open=true;$('#faq').scrollIntoView({behavior:'smooth'});first.querySelector('summary').focus({preventScroll:true});});
 const bookingVisibility=new IntersectionObserver(entries=>{$('.floating-chat').classList.toggle('is-over-booking',entries.some(e=>e.isIntersecting));});bookingVisibility.observe($('.search-button'));
 let lastScroll=window.scrollY,ticking=false;
 window.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=Math.max(0,window.scrollY),focused=$('#header').contains(document.activeElement),menuOpen=$('.mobile-menu').getAttribute('aria-expanded')==='true';if(y<=100||y<lastScroll||focused||menuOpen)$('#header').classList.remove('is-hidden');else if(y>lastScroll+2)$('#header').classList.add('is-hidden');lastScroll=y;ticking=false;});},{passive:true});
 $('#header').addEventListener('focusin',()=>$('#header').classList.remove('is-hidden'));
 const mobile=window.matchMedia('(max-width:767px)');function updateFooter(){if(!mobile.matches){$$('.footer-group').forEach(d=>d.open=true);$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}else $$('.footer-group').forEach(d=>d.open=false);}mobile.addEventListener('change',updateFooter);updateFooter();
-$('#year').textContent=new Date().getFullYear();$('#date').min=C.baliDate();$('#date').value=C.baliDate(new Date(Date.now()+86400000));setService('shuttle');translate();
+$('#year').textContent=new Date().getFullYear();$('#date').min=C.baliDate();$('#date').value=C.baliDate(new Date(Date.now()+86400000));setService('shuttle');translate();restoreSearchState();
 })();
