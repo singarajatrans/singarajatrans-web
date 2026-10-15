@@ -106,7 +106,7 @@ $('#check-form').addEventListener('input',()=>$('#check-link')?.remove());
 $('#route-cards').addEventListener('click',e=>{const b=e.target.closest('[data-route]');if(!b)return;setService('shuttle');const [from,to]=b.dataset.route.split('|');$('#origin').value=from;$('#destination').value=to;$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#date').focus({preventScroll:true});});
 $('#result-list').addEventListener('click',e=>{const b=e.target.closest('[data-select-trip]');if(b)openTrip(Number(b.dataset.selectTrip));});
 $('#booking-review').addEventListener('click',e=>{if(e.target.id==='back-details'){$('#booking-review').hidden=true;$('#booking-form').hidden=false;$('#step-one').classList.add('current');$('#step-two').classList.remove('current');$('#booking-form input').focus();}});
-$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
+$$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
 $('[data-swap-locations]').addEventListener('click',()=>{const from=$('#origin'),to=$('#destination'),value=from.value;from.value=to.value;to.value=value;$('#search-error').hidden=true;});
 $$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.pickService,{focus:true})));
 $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
