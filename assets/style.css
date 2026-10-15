@@ -304,6 +304,7 @@ dialog{border-radius:12px}
 /* === Booking widget mobile refinement · 16 Oct 2026 === */
 .field-stack{display:contents}
 .quick-date-actions{display:none}
+.swap-fields{display:none}
 
 @media(max-width:767px){
  .booking-container{margin-top:-48px}
@@ -355,5 +356,18 @@ dialog{border-radius:12px}
  body[data-service="airport"] .hero-service-shuttle,body[data-service="charter"] .hero-service-shuttle{opacity:0;transform:scale(1.018)}
  body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{opacity:1;transform:scale(1)}
  body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{object-position:center}
- .hero:after{background:linear-gradient(90deg,rgba(9,27,42,.72) 0%,rgba(9,27,42,.38) 48%,rgba(9,27,42,.04) 82%),linear-gradient(0deg,rgba(9,27,42,.18),transparent 58%)}
+ .hero h1{font-size:25px;line-height:1.16;max-width:310px}
+ .hero-accent{color:var(--mock-red)}
+ .hero:after{background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.92) 8%,rgba(255,255,255,0) 31%),linear-gradient(90deg,rgba(9,27,42,.72) 0%,rgba(9,27,42,.38) 48%,rgba(9,27,42,.04) 82%)}
+ .origin-field,.destination-field{padding-right:56px}
+ .swap-fields{position:absolute;right:10px;top:64px;z-index:4;transform:translateY(-50%);width:38px;height:38px;display:grid;place-items:center;border:1px solid #dfe2e8;border-radius:50%;background:#fff;color:var(--mock-red);box-shadow:0 2px 8px rgba(24,33,45,.1)}
+ .swap-fields svg{width:19px;height:19px}
+ .field>span{position:relative}
+ .field-label{font-size:11px;transition:font-size .18s,transform .18s,color .18s,margin .18s}
+ .field:not(.has-value):not(:focus-within) .field-label{font-size:15px;transform:translateY(10px);margin-bottom:0;color:#707887}
+ .field:not(.has-value):not(:focus-within) input,.field:not(.has-value):not(:focus-within) select{opacity:0}
+ .field select{appearance:none;-webkit-appearance:none;background-image:none}
+ .field input[type="date"]{appearance:none;-webkit-appearance:none}
+ .field input[type="date"]::-webkit-calendar-picker-indicator{opacity:0;width:0;margin:0;padding:0}
 }
+@media(max-width:360px){.hero h1{font-size:24px}}

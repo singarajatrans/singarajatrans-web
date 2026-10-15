@@ -14,7 +14,7 @@ function translate(){
  $$('[data-en]').forEach(el=>{if(!el.dataset.id)el.dataset.id=el.innerHTML;el.innerHTML=language==='en'?el.dataset.en:el.dataset.id;});
  document.documentElement.lang=language;
  document.title=t('SINGARAJA TRANS — Travel Shuttle & Transportasi Bali','SINGARAJA TRANS — Bali Shuttle & Private Transport');
- const labels={'#origin':['Asal','Origin'],'#destination':['Tujuan','Destination'],'#date':['Tanggal berangkat','Departure date'],'#time':['Waktu','Departure time'],'#private-time':['Jam penjemputan','Pickup time'],'#passengers':['Penumpang','Passengers'],'.mobile-menu':['Buka menu','Open menu'],'.previous':['Rute sebelumnya','Previous routes'],'.next':['Rute berikutnya','Next routes'],'.floating-chat':['Hubungi SINGARAJA TRANS melalui WhatsApp','Contact SINGARAJA TRANS on WhatsApp']};
+ const labels={'#origin':['Asal','Origin'],'#destination':['Tujuan','Destination'],'#date':['Tanggal berangkat','Departure date'],'#time':['Waktu','Departure time'],'#private-time':['Jam penjemputan','Pickup time'],'#passengers':['Penumpang','Passengers'],'.mobile-menu':['Buka menu','Open menu'],'.swap-fields':['Tukar asal dan tujuan','Swap origin and destination'],'.previous':['Rute sebelumnya','Previous routes'],'.next':['Rute berikutnya','Next routes'],'.floating-chat':['Hubungi SINGARAJA TRANS melalui WhatsApp','Contact SINGARAJA TRANS on WhatsApp']};
  Object.entries(labels).forEach(([sel,vals])=>$(sel).setAttribute('aria-label',vals[language==='en'?1:0]));
  $$('[data-close-dialog]').forEach(b=>b.setAttribute('aria-label',t('Tutup','Close')));
  $$('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
@@ -37,6 +37,10 @@ function updateSelects(){
  const max=service==='charter'?6:12;
  $('#passengers').innerHTML=Array.from({length:max},(_,i)=>`<option value="${i+1}">${i+1} ${t('orang',i?'people':'person')}</option>`).join('');
  $('#passengers').value=Number(oldPassengers)>0&&Number(oldPassengers)<=max?oldPassengers:'1';
+ syncFloatingFields();
+}
+function syncFloatingFields(){
+ $$('.field').forEach(field=>{const control=field.querySelector('select:not([hidden]),input:not([hidden])');field.classList.toggle('has-value',Boolean(control&&control.value));});
 }
 function updateServiceCopy(){
  const desktopHero={
@@ -45,9 +49,9 @@ function updateServiceCopy(){
   charter:[t('Charter Drop Bali<br>lebih mudah','Charter Drop Bali<br>made easier'),t('Mobil privat sekali jalan untuk perjalanan Anda di Bali.','Private one-way transport for your journey across Bali.')]
  };
  const mobileHero={
-  shuttle:[t('Travel Shuttle Bali<br>lebih mudah','Travel Shuttle Bali<br>made easier'),t('Travel shuttle antarkota.','Intercity travel shuttle.')],
-  airport:[t('Airport Transfer Bali<br>lebih mudah','Airport Transfer Bali<br>made easier'),t('Antar jemput privat Bandara Ngurah Rai.','Private Ngurah Rai Airport transfers.')],
-  charter:[t('Charter Drop Bali<br>lebih mudah','Charter Drop Bali<br>made easier'),t('Mobil privat langsung ke tujuan.','Private cars direct to your destination.')]
+  shuttle:[t('Travel Shuttle Bali<br><span class="hero-accent">lebih mudah</span>','Travel Shuttle Bali<br><span class="hero-accent">made easier</span>'),t('Travel shuttle antarkota.','Intercity travel shuttle.')],
+  airport:[t('Airport Transfer Bali<br><span class="hero-accent">lebih mudah</span>','Airport Transfer Bali<br><span class="hero-accent">made easier</span>'),t('Antar jemput privat Bandara Ngurah Rai.','Private Ngurah Rai Airport transfers.')],
+  charter:[t('Charter Drop Bali<br><span class="hero-accent">lebih mudah</span>','Charter Drop Bali<br><span class="hero-accent">made easier</span>'),t('Mobil privat langsung ke tujuan.','Private cars direct to your destination.')]
  };
  const hero=(window.matchMedia('(max-width:767px)').matches?mobileHero:desktopHero)[service];
  $('#hero-title').innerHTML=hero[0];$('#hero-subtitle').textContent=hero[1];
@@ -98,7 +102,7 @@ function restoreSearchState(){
  const p=new URLSearchParams(location.search);if(!p.has('service'))return;
  const s={service:p.get('service'),from:p.get('from')||'',to:p.get('to')||'',date:p.get('date')||'',time:p.get('time')||'',passengers:Number(p.get('passengers'))||1};
  if(!['shuttle','airport','charter'].includes(s.service)||!s.from||!s.to||!s.date)return;
- setService(s.service);$('#origin').value=s.from;$('#destination').value=s.to;$('#date').value=s.date;$('#passengers').value=String(s.passengers);$(s.service==='shuttle'?'#time':'#private-time').value=s.time;
+ setService(s.service);$('#origin').value=s.from;$('#destination').value=s.to;$('#date').value=s.date;$('#passengers').value=String(s.passengers);$(s.service==='shuttle'?'#time':'#private-time').value=s.time;syncFloatingFields();
  if(p.get('hasil')==='1'){lastSearch=s;document.body.classList.add('results-page');setResultsSemanticMode();renderResults(false);}
 }
 function renderResults(scroll=true){
@@ -168,6 +172,8 @@ $$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b
 $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
 $$('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').value=quickDate(Number(b.dataset.quickDate));syncQuickDates();$('#date').dispatchEvent(new Event('change',{bubbles:true}));}));
 $('#date').addEventListener('change',syncQuickDates);
+$('#search-form').addEventListener('input',syncFloatingFields);$('#search-form').addEventListener('change',syncFloatingFields);
+$('.swap-fields').addEventListener('click',()=>{const from=$('#origin').value,to=$('#destination').value;if(!from||!to)return;$('#origin').value=to;updateSelects();$('#destination').value=from;syncFloatingFields();$('#origin').dispatchEvent(new Event('change',{bubbles:true}));$('#destination').dispatchEvent(new Event('change',{bubbles:true}));});
 $$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
 window.matchMedia('(max-width:767px)').addEventListener('change',updateServiceCopy);
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
