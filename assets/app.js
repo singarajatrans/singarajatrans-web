@@ -24,9 +24,16 @@ function updateSelects(){
  const list=service==='airport'?['Bandara Ngurah Rai',...Object.keys(C.airportFares)]:C.cities;
  const oldOrigin=$('#origin').value,oldDestination=$('#destination').value,oldPassengers=$('#passengers').value;
  ['origin','destination'].forEach(id=>{$('#'+id).innerHTML=`<option value="">${t('Pilih lokasi','Choose location')}</option>`+list.map(city=>`<option value="${escape(city)}">${escape(city)}</option>`).join('');});
- $('#origin').value=list.includes(oldOrigin)?oldOrigin:service==='airport'?'Bandara Ngurah Rai':'Singaraja';
- $('#destination').value=list.includes(oldDestination)?oldDestination:service==='airport'?'Singaraja':'Denpasar';
- if($('#origin').value===$('#destination').value)$('#destination').value=service==='airport'?'Singaraja':'Denpasar';
+ if(service==='airport'){
+  const airport='Bandara Ngurah Rai',hasAirport=oldOrigin===airport||oldDestination===airport;
+  $('#origin').value=hasAirport?oldOrigin:airport;
+  $('#destination').value=hasAirport?oldDestination:(oldOrigin&&oldOrigin!==airport?oldOrigin:'Singaraja');
+  if($('#origin').value===$('#destination').value)$('#destination').value=$('#origin').value===airport?'Singaraja':airport;
+ }else{
+  $('#origin').value=list.includes(oldOrigin)?oldOrigin:'Singaraja';
+  $('#destination').value=list.includes(oldDestination)?oldDestination:'Denpasar';
+  if($('#origin').value===$('#destination').value)$('#destination').value='Denpasar';
+ }
  const max=service==='charter'?6:12;
  $('#passengers').innerHTML=Array.from({length:max},(_,i)=>`<option value="${i+1}">${i+1} ${t('orang',i?'people':'person')}</option>`).join('');
  $('#passengers').value=Number(oldPassengers)>0&&Number(oldPassengers)<=max?oldPassengers:'1';
@@ -35,12 +42,14 @@ function updateServiceCopy(){
  $('#service-description').textContent=service==='shuttle'?t('Perjalanan sekali jalan, tarif per penumpang','One-way trips, priced per passenger'):service==='airport'?t('Antar jemput bandara privat, tarif per mobil','Private airport transfers, priced per vehicle'):t('Perjalanan privat sekali jalan, tarif per mobil','Private one-way trips, priced per vehicle');
  $('#time').hidden=service!=='shuttle';$('#time').disabled=service!=='shuttle';
  $('#private-time').hidden=service==='shuttle';$('#private-time').disabled=service==='shuttle';$('#private-time').required=service!=='shuttle';
+ $('#search-button-label').textContent=service==='shuttle'?t('Cari Perjalanan','Find a trip'):t('Cari Mobil','Find a car');
 }
 function setService(next,{focus=false}={}){
  if(!['shuttle','airport','charter'].includes(next))return;
  service=next;
  $$('[role=tab]').forEach(tab=>{const active=tab.dataset.service===service;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;});
  $('#search-panel').setAttribute('aria-labelledby','tab-'+service);$('#search-error').hidden=true;
+ if(lastSearch&&lastSearch.service!==service)$('#results').hidden=true;
  updateSelects();updateServiceCopy();
  if(focus){$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#origin').focus({preventScroll:true});}
 }
@@ -52,7 +61,7 @@ function searchState(){return {service,from:$('#origin').value,to:$('#destinatio
 function renderResults(scroll=true){
  const s=lastSearch,results=C.getOptions(s);$('#results').hidden=false;
  $('#results-summary').textContent=`${s.from} → ${s.to} · ${formatDate(s.date)} · ${s.passengers} ${t('penumpang','passengers')} · ${serviceName(s.service)}`;
- $('#result-list').innerHTML=results.length?results.map((r,i)=>`<article class="result-card">${r.kind!=='shuttle'?`<img src="assets/images/${r.kind==='minibus'?'fleet':'mpv'}.webp" alt="${escape(t('Ilustrasi pilihan armada','Illustrative fleet photo'))}" width="600" height="400">`:''}<div class="result-details"><h3>${escape(tripName(r.kind))}</h3><div class="result-schedule">${escape(r.time)} <small>WITA</small></div><p>${r.capacity?t('Kapasitas hingga '+r.capacity+' orang','Up to '+r.capacity+' passengers'):r.kind==='charter'?t('Jenis mobil & kapasitas dikonfirmasi admin','Vehicle type & capacity confirmed by our team'):t('Jadwal publikasi · sekali jalan','Published departure · one way')}</p><p>${r.kind==='shuttle'?t('Ketersediaan kursi dikonfirmasi admin','Seat availability confirmed by our team'):t('Foto ilustrasi armada · mobil + sopir + BBM','Illustrative fleet photo · vehicle + driver + fuel')}</p></div><div class="result-price"><div><strong>${money(r.kind==='shuttle'?r.total:r.price)}</strong><small>${r.kind==='shuttle'?`${s.passengers} × ${money(r.price)} / ${t('orang','person')}`:t('per mobil · tarif acuan','per vehicle · reference fare')}</small></div><button class="button primary" type="button" data-select-trip="${i}">${r.kind==='shuttle'?t('Pilih Perjalanan','Select Trip'):t('Pilih Mobil','Select Car')}</button></div></article>`).join(''):`<div class="empty-results"><h3>${t('Belum ada pilihan untuk pencarian ini','No matching trips for this search')}</h3><p>${t('Coba tanggal atau waktu lain. Tim kami juga dapat membantu mengecek alternatif rute dan armada.','Try another date or time. Our team can help you find alternative routes or vehicles.')}</p><a class="button outline" target="_blank" rel="noopener" href="${wa(t('Halo SINGARAJA TRANS, mohon bantu cek perjalanan: ','Hello SINGARAJA TRANS, please help me find a trip: ')+s.from+' → '+s.to+', '+s.date)}">${t('Tanyakan alternatif via WhatsApp','Ask about alternatives on WhatsApp')}</a></div>`;
+ $('#result-list').innerHTML=results.length?results.map((r,i)=>`<article class="result-card">${r.kind!=='shuttle'?`<img src="assets/images/${r.kind==='minibus'?'fleet':'mpv'}.webp" alt="${escape(t('Ilustrasi pilihan armada','Illustrative fleet photo'))}" width="600" height="400">`:''}<div class="result-details"><span class="result-status">${r.kind==='shuttle'?t('Jadwal publikasi','Published schedule'):t('Pilihan privat','Private option')}</span><h3>${escape(tripName(r.kind))}</h3><div class="result-schedule">${escape(r.time)} <small>WITA</small></div><p>${r.capacity?t('Kapasitas hingga '+r.capacity+' orang','Up to '+r.capacity+' passengers'):r.kind==='charter'?t('Jenis mobil & kapasitas dikonfirmasi admin','Vehicle type & capacity confirmed by our team'):t('Jadwal publikasi · sekali jalan','Published departure · one way')}</p><p>${r.kind==='shuttle'?t('Ketersediaan kursi dikonfirmasi admin','Seat availability confirmed by our team'):t('Foto ilustrasi armada · mobil + sopir + BBM','Illustrative fleet photo · vehicle + driver + fuel')}</p></div><div class="result-price"><div><strong>${money(r.kind==='shuttle'?r.total:r.price)}</strong><small>${r.kind==='shuttle'?`${s.passengers} × ${money(r.price)} / ${t('orang','person')}`:t('per mobil · tarif acuan','per vehicle · reference fare')}</small></div><button class="button primary" type="button" data-select-trip="${i}">${r.kind==='shuttle'?t('Pilih Perjalanan','Select Trip'):t('Pilih Mobil','Select Car')}</button></div></article>`).join(''):`<div class="empty-results"><h3>${t('Belum ada pilihan untuk pencarian ini','No matching trips for this search')}</h3><p>${t('Coba tanggal atau waktu lain. Tim kami juga dapat membantu mengecek alternatif rute dan armada.','Try another date or time. Our team can help you find alternative routes or vehicles.')}</p><a class="button outline" target="_blank" rel="noopener" href="${wa(t('Halo SINGARAJA TRANS, mohon bantu cek perjalanan: ','Hello SINGARAJA TRANS, please help me find a trip: ')+s.from+' → '+s.to+', '+s.date)}">${t('Tanyakan alternatif via WhatsApp','Ask about alternatives on WhatsApp')}</a></div>`;
  if(scroll)$('#results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function showDialog(id){lastFocused=document.activeElement;$(id).showModal();document.body.classList.add('modal-open');}
@@ -97,7 +106,8 @@ $('#check-form').addEventListener('input',()=>$('#check-link')?.remove());
 $('#route-cards').addEventListener('click',e=>{const b=e.target.closest('[data-route]');if(!b)return;setService('shuttle');const [from,to]=b.dataset.route.split('|');$('#origin').value=from;$('#destination').value=to;$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#date').focus({preventScroll:true});});
 $('#result-list').addEventListener('click',e=>{const b=e.target.closest('[data-select-trip]');if(b)openTrip(Number(b.dataset.selectTrip));});
 $('#booking-review').addEventListener('click',e=>{if(e.target.id==='back-details'){$('#booking-review').hidden=true;$('#booking-form').hidden=false;$('#step-one').classList.add('current');$('#step-two').classList.remove('current');$('#booking-form input').focus();}});
-$$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
+$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
+$('[data-swap-locations]').addEventListener('click',()=>{const from=$('#origin'),to=$('#destination'),value=from.value;from.value=to.value;to.value=value;$('#search-error').hidden=true;});
 $$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.pickService,{focus:true})));
 $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
 $$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
