@@ -274,7 +274,127 @@ Ketentuan:
 
 Tidak boleh ada horizontal overflow, teks terpotong, kartu saling menimpa, atau CTA yang tertutup sticky element.
 
-## 11. Aksesibilitas
+## 11. Spesifikasi Detail Mobile
+
+### 11.1 Acuan komposisi mobile
+
+Komposisi wajib mengikuti mockup awal yang disepakati, dengan urutan:
+
+**Header → hero ringkas + widget pencarian floating → rute populer foto → Airport Transfer → layanan → keunggulan/trust → armada/fasilitas → cara booking → akses penumpang → informasi tentang → CTA WhatsApp → footer bahasa/legal.**
+
+Konten marketing berada setelah pencarian. Pengguna harus dapat memulai pencarian tanpa perlu melewati section promosi panjang.
+
+### 11.2 Viewport dan shell halaman
+
+- Target utama: lebar 375px, 390px, dan 430px.
+- Seluruh halaman memakai lebar konten `100%` dengan padding horizontal 16px; dapat menjadi 20px pada layar 390px ke atas.
+- Tidak ada elemen yang memakai lebar tetap melebihi viewport.
+- Tidak ada scroll horizontal pada body, widget, kartu hasil, kalender, maupun drawer.
+- Safe-area perangkat harus diperhitungkan untuk header sticky, bottom sheet, dan CTA yang menempel di bawah.
+
+### 11.3 Header dan navigasi mobile
+
+- Header ringkas dengan tinggi visual 56–64px, tidak termasuk safe-area.
+- Logo berada di kiri dan tidak boleh terpotong atau melebar tidak proporsional.
+- Kontrol bahasa `ID / EN` tetap terlihat di header; tidak memakai menu `Masuk`.
+- Tombol menu, kembali, atau WhatsApp memiliki area sentuh minimal 44 × 44px.
+- Menu terbuka sebagai drawer/panel yang berada di atas konten dengan overlay; panel tidak boleh bertabrakan dengan dropdown form.
+- Header boleh sticky, tetapi tidak boleh menutupi fokus field, kalender, hasil filter, atau CTA.
+
+### 11.4 Hero mobile
+
+- Hero tidak memakai tagline tambahan. Area pencarian digeser lebih atas dan tampil floating dengan jarak bawah yang seimbang terhadap section berikutnya.
+- Hero tidak lebih tinggi dari yang diperlukan untuk memperkenalkan layanan dan menampilkan awal widget.
+- H1 memakai 28–32px, line-height 1.15–1.25, maksimal tiga baris pada layar 320px.
+- Deskripsi memakai 16px dan maksimal tiga baris; hindari paragraf panjang.
+- Gambar hero adalah elemen pendukung. Jika ruang sempit, prioritas tetap pada judul dan widget pencarian.
+- Jarak dari hero ke widget harus konsisten; widget tidak boleh tertutup gambar atau overlap dengan section berikutnya.
+
+### 11.5 Tab dan widget pencarian
+
+- Tiga tab memenuhi lebar wadah dan tetap terbaca pada viewport 375px.
+- Tinggi target tab minimal 44px; label dapat 12–14px tetapi tidak boleh terpotong.
+- Setiap tab memakai ikon di atas teks: Travel Shuttle, Airport Transfer, dan Charter Drop.
+- Indikator tab aktif memakai merah utama dan tidak menyebabkan perubahan tinggi atau pergeseran layout.
+- Field disusun satu kolom dengan jarak 12px.
+- Setiap field memiliki tinggi minimum 52px dan area tekan minimum 44px.
+- Label: 14px; nilai, placeholder, dan hasil pilihan: minimum 16px.
+- Ikon field memiliki ruang tetap agar teks tidak bertabrakan.
+- CTA `Cari Tiket`/`Cari Mobil` lebar penuh, tinggi minimum 48px, dan diberi jarak 16px dari field terakhir.
+- Tidak ada tombol tukar asal–tujuan.
+
+### 11.6 Dropdown, combobox, kalender, dan pemilih waktu
+
+- Popover dibuka di atas layer konten tetapi di bawah modal/drawer global.
+- Lebar popover mengikuti field, dengan margin aman 16px dari tepi layar.
+- Dropdown panjang memakai area scroll internal; tidak membuat body berpindah atau melebar.
+- Opsi pilihan minimal 44px tinggi dan memiliki state hover/focus/selected yang jelas.
+- Kalender satu bulan per layar pada mobile.
+- Tombol bulan sebelumnya/berikutnya minimal 36–40px dan memiliki label aksesibel.
+- Sel tanggal berbentuk persegi, minimum 36px; jarak antarsel konsisten.
+- Tanggal hari ini, tanggal dipilih, disabled, dan rentang tanggal harus dapat dibedakan tanpa saling bertumpuk.
+- Kalender tidak boleh menutupi field yang sedang aktif secara membingungkan dan tidak boleh tertutup oleh header.
+- Pemilih waktu mengikuti pola popover/bottom sheet yang sama dan dapat ditutup melalui tombol kembali, pilihan, atau area overlay.
+
+### 11.7 Rute populer dan section Beranda
+
+- Rute populer tetap berupa kartu foto, bukan kartu hasil pencarian.
+- Pada mobile, kartu rute menggunakan grid dua kolom dengan foto dominan, nama rute, label `Mulai dari`, harga/tarif, dan tombol panah/pilih rute.
+- Kartu memiliki tinggi konsisten, dekorasi minimal, dan shadow halus.
+- Section Airport Transfer, layanan, armada, trust, cara booking, akses penumpang, tentang, CTA WhatsApp, serta footer ditampilkan berurutan mengikuti mockup awal.
+- CTA WhatsApp berperan sebagai bantuan, bukan pengganti CTA pencarian/pemesanan utama.
+
+### 11.8 Hasil pencarian mobile
+
+- Hasil pencarian tetap berada pada halaman/rute terpisah dari Beranda.
+- Ringkasan pencarian berada di atas daftar dengan tombol `Ubah Pencarian` yang mudah dijangkau.
+- Filter, jika ada, ditampilkan sebagai tombol ringkas lalu dibuka dalam bottom sheet atau panel penuh.
+- Daftar hasil satu kolom dengan gap 12–16px.
+- Kartu hasil tidak menggunakan layout absolut untuk harga atau CTA.
+- Kartu hasil memakai foto di kiri dan detail di kanan: nama layanan, rute/jadwal, fasilitas ringkas, harga, dan CTA.
+- Pada layar sangat sempit, kartu dapat berubah menjadi foto di atas lalu detail di bawah; harga dan CTA tetap pada blok tersendiri.
+- Foto rasio konsisten, memiliki tinggi tetap, dan tidak mendorong teks keluar layar.
+- Harga harus terlihat tanpa harus membuka detail kartu.
+- CTA lebar penuh pada kartu atau ditempatkan pada baris khusus; tidak boleh bertumpuk dengan harga.
+- Saat tidak ada hasil, tampilkan empty state dan CTA `Ubah Pencarian` tanpa memunculkan konten Home.
+
+### 11.9 Detail layanan dan pemesanan mobile
+
+- Informasi dipisahkan dalam section pendek: ringkasan, fasilitas, titik jemput, ketentuan, harga.
+- Accordion hanya digunakan untuk informasi sekunder; ringkasan harga dan CTA tidak boleh tersembunyi.
+- Form satu kolom dengan label tetap terlihat, pesan bantuan singkat, dan error tepat di bawah field.
+- Ringkasan pesanan dapat menjadi sticky bottom bar hanya bila tidak menutup field aktif atau tombol sistem.
+- CTA lanjutan selalu memuat konteks tindakan, misalnya `Lanjut Isi Data` atau `Lanjut Pembayaran`.
+
+### 11.10 Bottom sheet, modal, dan feedback
+
+- Bottom sheet memiliki radius atas 16–20px, handle yang terlihat, dan ruang aman di bawah.
+- Tinggi awal tidak melebihi 85% viewport; konten panjang dapat di-scroll di dalam sheet.
+- Modal memiliki tombol tutup yang jelas dan fokus keyboard terkunci di dalam modal saat terbuka.
+- Toast atau pesan sukses/error muncul tanpa menutup CTA atau field penting.
+- Loading tidak menghapus konteks pencarian; gunakan skeleton/indikator ringan dan cegah klik ganda pada CTA.
+
+### 11.11 Gesture dan state mobile
+
+- Tidak ada interaksi penting yang hanya mengandalkan hover.
+- Scroll horizontal hanya diperbolehkan pada carousel yang jelas indikatornya; tidak digunakan untuk form atau hasil pencarian.
+- Swipe tidak boleh menjadi satu-satunya cara menutup atau melanjutkan proses.
+- Setelah keyboard perangkat muncul, field aktif dan pesan error tetap terlihat; CTA tidak boleh menutupi field.
+- Setelah refresh, resize, rotasi layar, atau berpindah tab layanan, layout harus kembali stabil tanpa overlap.
+
+### 11.12 Checklist QA mobile
+
+Pengujian wajib dilakukan pada lebar 375px, 390px, dan 430px untuk:
+
+1. Beranda, seluruh tab layanan, dan semua field.
+2. Dropdown asal/tujuan, lokasi, penumpang, waktu, serta kalender.
+3. State default, focus, validasi error, loading, dan disabled.
+4. Hasil pencarian Travel, Airport Transfer, dan Charter.
+5. Kartu hasil panjang, empty state, dan CTA.
+6. Scroll, keyboard virtual, refresh, rotasi, serta kembali dari halaman hasil.
+7. Header, drawer, bottom sheet, modal, footer, clipping, z-index, dan overflow.
+
+## 12. Aksesibilitas
 
 - Kontras teks dan tombol harus terbaca jelas.
 - Semua input memiliki label nyata.
@@ -283,7 +403,7 @@ Tidak boleh ada horizontal overflow, teks terpotong, kartu saling menimpa, atau 
 - Ikon selalu memiliki label/aria-label bila berdiri sendiri.
 - Informasi penting tidak hanya dibedakan dengan warna.
 
-## 12. Larangan Desain
+## 13. Larangan Desain
 
 - Tidak menampilkan tombol swap asal–tujuan.
 - Tidak mencampur hasil pencarian ke halaman Beranda.
@@ -293,7 +413,7 @@ Tidak boleh ada horizontal overflow, teks terpotong, kartu saling menimpa, atau 
 - Tidak menambahkan badge, rating, stok, atau promo yang tidak didukung data nyata.
 - Tidak menambah efek visual berat yang memperlambat halaman.
 
-## 13. Acceptance Criteria Desain
+## 14. Acceptance Criteria Desain
 
 Desain dinyatakan siap diimplementasikan bila:
 
@@ -307,9 +427,10 @@ Desain dinyatakan siap diimplementasikan bila:
 8. Ukuran teks mobile memenuhi spesifikasi di atas.
 9. State focus, error, loading, dan empty state tersedia dan rapi.
 10. Tidak ada overflow horizontal atau clipping pada viewport utama.
+11. Seluruh checklist QA mobile pada bagian 11.12 lolos tanpa overlap, clipping, atau CTA tertutup.
 
 ---
 
-## 14. Catatan Implementasi
+## 15. Catatan Implementasi
 
 Dokumen ini mengatur desain dan pengalaman UI. Perubahan backend, API, pembayaran riil, ketersediaan real-time, autentikasi, serta database memerlukan keputusan teknis terpisah.
