@@ -17,7 +17,7 @@ function translate(){
  const labels={'#origin':['Asal','Origin'],'#destination':['Tujuan','Destination'],'#date':['Tanggal berangkat','Departure date'],'#time':['Waktu','Departure time'],'#private-time':['Jam penjemputan','Pickup time'],'#passengers':['Penumpang','Passengers'],'.mobile-menu':['Buka menu','Open menu'],'.previous':['Rute sebelumnya','Previous routes'],'.next':['Rute berikutnya','Next routes'],'.floating-chat':['Hubungi SINGARAJA TRANS melalui WhatsApp','Contact SINGARAJA TRANS on WhatsApp']};
  Object.entries(labels).forEach(([sel,vals])=>$(sel).setAttribute('aria-label',vals[language==='en'?1:0]));
  $$('[data-close-dialog]').forEach(b=>b.setAttribute('aria-label',t('Tutup','Close')));
- $$('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
+ $$$('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
  updateSelects();updateServiceCopy();renderRoutes();if(lastSearch)renderResults(false);
 }
 function updateSelects(){
@@ -53,7 +53,7 @@ function updateServiceCopy(){
 }
 function quickDate(offset){return C.baliDate(new Date(Date.now()+offset*86400000));}
 function syncQuickDates(){
- $('[data-quick-date]').forEach(b=>b.setAttribute('aria-pressed',String($('#date').value===quickDate(Number(b.dataset.quickDate)))));
+ $$('[data-quick-date]').forEach(b=>b.setAttribute('aria-pressed',String($('#date').value===quickDate(Number(b.dataset.quickDate)))));
 }
 function setService(next,{focus=false}={}){
  if(!['shuttle','airport','charter'].includes(next))return;
@@ -160,9 +160,9 @@ $('#booking-review').addEventListener('click',e=>{if(e.target.id==='back-details
 $$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
 $$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.pickService,{focus:true})));
 $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
-$('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').value=quickDate(Number(b.dataset.quickDate));syncQuickDates();$('#date').dispatchEvent(new Event('change',{bubbles:true}));}));
+$$('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').value=quickDate(Number(b.dataset.quickDate));syncQuickDates();$('#date').dispatchEvent(new Event('change',{bubbles:true}));}));
 $('#date').addEventListener('change',syncQuickDates);
-$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
+$$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
 $$('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.closest('dialog'))));
 $$('dialog').forEach(d=>{d.addEventListener('cancel',e=>{e.preventDefault();closeDialog(d);});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog(d);}});});
