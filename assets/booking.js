@@ -18,7 +18,7 @@ function translate(){
  Object.entries(labels).forEach(([sel,vals])=>$(sel).setAttribute('aria-label',vals[language==='en'?1:0]));
  $$('[data-close-dialog]').forEach(b=>b.setAttribute('aria-label',t('Tutup','Close')));
  $$('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
- updateSelects();updateServiceCopy();renderRoutes();if(lastSearch)renderResults(false);
+ updateSelects();updateServiceCopy();syncFloatingFields();renderRoutes();if(lastSearch)renderResults(false);
 }
 function updateSelects(){
  const list=service==='airport'?['Bandara Ngurah Rai',...Object.keys(C.airportFares)]:C.cities;
@@ -30,9 +30,10 @@ function updateSelects(){
   $('#destination').value=hasAirport?oldDestination:(oldOrigin&&oldOrigin!==airport?oldOrigin:'Singaraja');
   if($('#origin').value===$('#destination').value)$('#destination').value=$('#origin').value===airport?'Singaraja':airport;
  }else{
-  $('#origin').value=list.includes(oldOrigin)?oldOrigin:'Singaraja';
-  $('#destination').value=list.includes(oldDestination)?oldDestination:'Denpasar';
-  if($('#origin').value===$('#destination').value)$('#destination').value='Denpasar';
+  const mobilePlaceholder=window.matchMedia('(max-width:767px)').matches;
+  $('#origin').value=list.includes(oldOrigin)?oldOrigin:(mobilePlaceholder?'':'Singaraja');
+  $('#destination').value=list.includes(oldDestination)?oldDestination:(mobilePlaceholder?'':'Denpasar');
+  if($('#origin').value&&$('#origin').value===$('#destination').value)$('#destination').value='Denpasar';
  }
  const max=service==='charter'?6:12;
  $('#passengers').innerHTML=Array.from({length:max},(_,i)=>`<option value="${i+1}">${i+1} ${t('orang',i?'people':'person')}</option>`).join('');
@@ -41,6 +42,8 @@ function updateSelects(){
 }
 function syncFloatingFields(){
  $$('.field').forEach(field=>{const control=field.querySelector('select:not([hidden]),input:not([hidden])');field.classList.toggle('has-value',Boolean(control&&control.value));});
+ const value=$('#date').value,months=language==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+ $('.date-display').textContent=value?`${Number(value.slice(8,10))} ${months[Number(value.slice(5,7))-1]}, ${value.slice(0,4)}`:'';
 }
 function updateServiceCopy(){
  const desktopHero={
@@ -140,7 +143,9 @@ $('#search-form').addEventListener('submit',e=>{
  e.preventDefault();const s=searchState(),error=$('#search-error');error.hidden=true;
  $('#date').min=C.baliDate();
  let msg='';
- if(s.from===s.to)msg=t('Asal dan tujuan harus berbeda.','Origin and destination must be different.');
+ if(!s.from||!s.to)msg=t('Pilih asal dan tujuan.','Choose an origin and destination.');
+ else if(s.from===s.to)msg=t('Asal dan tujuan harus berbeda.','Origin and destination must be different.');
+ else if(!s.date)msg=t('Pilih tanggal perjalanan.','Choose a travel date.');
  else if(s.date<C.baliDate())msg=t('Pilih tanggal hari ini atau setelahnya.','Please choose today or a later date.');
  else if(s.service==='airport'&&s.from!=='Bandara Ngurah Rai'&&s.to!=='Bandara Ngurah Rai')msg=t('Airport Transfer harus memiliki bandara sebagai asal atau tujuan.','Airport Transfer must start or end at the airport.');
  else if(s.service!=='shuttle'&&!C.validFuture(s.date,s.time))msg=t('Pilih waktu penjemputan yang belum lewat (WITA).','Choose a future pickup time (Bali time).');
@@ -174,7 +179,7 @@ $$('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').va
 $('#date').addEventListener('change',syncQuickDates);
 $('#search-form').addEventListener('input',syncFloatingFields);$('#search-form').addEventListener('change',syncFloatingFields);
 $('.swap-fields').addEventListener('click',()=>{const from=$('#origin').value,to=$('#destination').value;if(!from||!to)return;$('#origin').value=to;updateSelects();$('#destination').value=from;syncFloatingFields();$('#origin').dispatchEvent(new Event('change',{bubbles:true}));$('#destination').dispatchEvent(new Event('change',{bubbles:true}));});
-$$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
+$$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=window.matchMedia('(max-width:767px)').matches&&b.dataset.language===language?(language==='id'?'en':'id'):b.dataset.language;translate();}));
 window.matchMedia('(max-width:767px)').addEventListener('change',updateServiceCopy);
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
 $$('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.closest('dialog'))));
@@ -191,5 +196,5 @@ let lastScroll=window.scrollY,ticking=false;
 window.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=Math.max(0,window.scrollY),focused=$('#header').contains(document.activeElement),menuOpen=$('.mobile-menu').getAttribute('aria-expanded')==='true';if(y<=100||y<lastScroll||focused||menuOpen)$('#header').classList.remove('is-hidden');else if(y>lastScroll+2)$('#header').classList.add('is-hidden');lastScroll=y;ticking=false;});},{passive:true});
 $('#header').addEventListener('focusin',()=>$('#header').classList.remove('is-hidden'));
 const mobile=window.matchMedia('(max-width:767px)');function updateFooter(){$$('.footer-group').forEach(d=>d.open=true);if(!mobile.matches){$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}}mobile.addEventListener('change',updateFooter);updateFooter();
-$('#year').textContent=new Date().getFullYear();$('#date').min=C.baliDate();$('#date').value=C.baliDate(new Date(Date.now()+86400000));setService('shuttle');translate();restoreSearchState();
+$('#year').textContent=new Date().getFullYear();$('#date').min=C.baliDate();$('#date').value=window.matchMedia('(max-width:767px)').matches?'':C.baliDate(new Date(Date.now()+86400000));setService('shuttle');translate();restoreSearchState();
 })();

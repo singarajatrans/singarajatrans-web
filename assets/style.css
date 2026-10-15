@@ -307,10 +307,19 @@ dialog{border-radius:12px}
 .swap-fields{display:none}
 
 @media(max-width:767px){
+ .languages{width:84px;height:44px;padding:4px;border-radius:999px;background:#edf1f6;overflow:hidden}
+ .languages>span,.languages button[aria-pressed=false]{display:none}
+ .languages button[aria-pressed=true]{display:flex;width:100%;min-height:36px;padding:0 9px 0 0;justify-content:space-between;gap:8px;color:#163f72;font-size:12px;font-weight:750}
+ .languages button[aria-pressed=true]>span{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#fff;font-size:18px;box-shadow:0 1px 4px rgba(15,23,42,.1)}
+ .mobile-menu{width:44px;height:44px;border-radius:9px}
  .booking-container{margin-top:-48px}
  .booking-widget{border-radius:16px;overflow:hidden}
- .service-tabs button{min-height:64px;padding:9px 3px;font-size:11px}
- .service-tabs button:not([aria-selected=true]){background:#fff8f8}
+ .service-tabs{background:#fff;border-bottom:1px solid #e8eaee}
+ .service-tabs button{min-height:68px;padding:9px 3px;font-size:12px;line-height:1.2;background:#fff;color:#30343d;border:0;border-right:1px solid #eef0f3;border-bottom:3px solid transparent}
+ .service-tabs button:last-child{border-right:0}
+ .service-tabs button:not([aria-selected=true]){background:#fff}
+ .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red);border-bottom:3px solid var(--mock-red)}
+ .service-tabs button[aria-selected=true] svg{color:var(--mock-red)}
  #search-panel{padding:12px 12px 14px}
  .trip-mode{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:4px;margin-bottom:10px;border:1px solid #e1e4ea;border-radius:999px;background:#fff}
  .trip-mode label{justify-content:center;min-height:38px;border-radius:999px;font-size:11px;transition:background .2s,color .2s}
@@ -334,7 +343,7 @@ dialog{border-radius:12px}
  .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:6px;margin-right:10px;z-index:2}
  .quick-date-actions button{min-width:62px;min-height:38px;padding:6px 10px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
  .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
- .search-button{display:flex;width:100%;min-height:50px;margin-top:12px;border-radius:12px;font-size:15px}
+ .search-button{display:flex;width:100%;min-height:50px;margin-top:12px;border-radius:999px;font-size:15px}
  .booking-footnote{margin-top:12px}
  .booking-footnote>div{grid-template-columns:32px 1fr;padding:10px 7px;gap:7px}
  .booking-footnote strong{font-size:10px;line-height:1.25}
@@ -369,5 +378,8 @@ dialog{border-radius:12px}
  .field select{appearance:none;-webkit-appearance:none;background-image:none}
  .field input[type="date"]{appearance:none;-webkit-appearance:none}
  .field input[type="date"]::-webkit-calendar-picker-indicator{opacity:0;width:0;margin:0;padding:0}
+ .date-field>span{min-height:38px}
+ .date-field input[type="date"]{position:absolute;inset:0;width:100%;height:100%;opacity:0;z-index:2}
+ .date-display{display:block;font-size:16px;line-height:24px;font-weight:600;color:#1f2430}
 }
 @media(max-width:360px){.hero h1{font-size:24px}}
