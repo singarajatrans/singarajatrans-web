@@ -7,9 +7,9 @@
   <meta name="description" content="Rencanakan perjalanan Bali bersama SINGARAJA TRANS. Travel shuttle, airport transfer, dan charter drop dengan informasi rute dan tarif yang jelas.">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="preload" href="assets/images/hero.webp" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="assets/style.css?v=reference-red-1"><script src="assets/core.js" defer></script><script src="assets/booking.js?v=mockup-align-3" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=hero-dynamic-1"><script src="assets/core.js" defer></script><script src="assets/booking.js?v=mockup-align-3" defer></script>
 </head>
-<body>
+<body data-service="shuttle">
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
 <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
 <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 12h16M8 3v9m8-9v9M7 19v2m10-2v2M8 16h.01M16 16h.01"/></symbol>
@@ -47,6 +47,11 @@
 <main id="main">
  <section class="hero" aria-labelledby="hero-title">
   <img class="hero-image" src="assets/images/hero.webp" width="1920" height="1080" alt="Pura Ulun Danu Beratan di tepi danau Bali" fetchpriority="high">
+  <div class="hero-service-visual" aria-hidden="true">
+    <img class="hero-service-image hero-service-shuttle" src="assets/images/fleet.webp" alt="" width="600" height="400" decoding="async">
+    <img class="hero-service-image hero-service-airport" src="assets/images/mpv.webp" alt="" width="600" height="400" decoding="async">
+    <img class="hero-service-image hero-service-charter" src="assets/images/jatiluwih.webp" alt="" width="600" height="400" decoding="async">
+  </div>
   <div class="container hero-content">
     <h1 id="hero-title" data-en="Bali journeys,<br>made easier.">Pesan perjalanan Bali<br>lebih mudah</h1>
     <p data-en="Travel shuttle and private cars for your journey.">Travel shuttle dan mobil privat untuk perjalanan Anda.</p>

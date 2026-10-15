@@ -92,6 +92,8 @@ Urutan berikut menjadi usulan pertama untuk mockup desktop.
 
 Hero tidak boleh membuat form pencarian sulit ditemukan. Foto, logo, dan kontak resmi belum dipilih ulang di dokumen ini; gunakan hanya aset yang sudah disetujui atau tandai sebagai placeholder saat mockup.
 
+**Keputusan implementasi hero dinamis:** visual hero mengikuti tab layanan aktif pada desktop dan mobile. Travel Shuttle, Airport Transfer, dan Charter Drop masing-masing memiliki visual kontekstual dengan transisi cross-fade ringan. Pergantian visual tidak boleh mengubah tinggi hero, posisi widget, heading semantik, atau flow booking. Pada desktop visual layanan menyatu di sisi kanan; pada mobile visual menjadi layer pendukung beropacity terkontrol agar keterbacaan H1 dan akses ke widget tetap prioritas.
+
 ## 6. Pencarian perjalanan
 
 ### 6.1 Susunan layanan

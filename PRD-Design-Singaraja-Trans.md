@@ -123,6 +123,10 @@ Susunan mobile:
 - Deskripsi singkat.
 - Widget langsung terlihat tanpa perlu scroll jauh.
 - Hindari tinggi hero berlebihan dan gambar yang mempersempit form.
+- **Hero kontekstual wajib mengikuti tab layanan aktif** pada desktop dan mobile: Travel Shuttle menampilkan visual armada shuttle, Airport Transfer menampilkan visual kendaraan privat/airport, dan Charter Drop menampilkan visual perjalanan privat/destinasi.
+- Perpindahan visual hero memakai transisi cross-fade ringan; tidak boleh menambah layout shift, mengubah tinggi hero, atau mengganggu fokus/klik pada widget.
+- Desktop menempatkan visual layanan sebagai layer yang menyatu di sisi kanan hero dengan area teks tetap aman di kiri. Mobile memakai layer full-bleed beropacity terkontrol agar H1, deskripsi, dan widget tetap menjadi fokus utama.
+- Visual layanan bersifat dekoratif dengan aria-hidden atau alt kosong bila berupa layer tambahan dan tidak menduplikasi informasi semantik tab.
 
 Konten yang direkomendasikan:
 
