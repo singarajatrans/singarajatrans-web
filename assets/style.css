@@ -308,13 +308,16 @@ dialog{border-radius:12px}
 .swap-fields{display:none}
 
 @media(max-width:767px){
- .languages{width:72px;height:32px;padding:2px;border:1px solid #e2e7ee;border-radius:999px;background:#edf1f6;overflow:hidden}
+ .languages{width:58px;height:26px;padding:2px;border:1px solid #e2e7ee;border-radius:999px;background:#edf1f6;overflow:hidden}
  .languages>span,.languages button[aria-pressed=false]{display:none}
- .languages button[aria-pressed=true]{display:flex;width:100%;min-height:26px;padding:0 6px 0 0;justify-content:flex-start;gap:6px;color:#163f72;font-size:11px;font-weight:750;animation:language-slide-in .24s cubic-bezier(.2,.75,.25,1)}
- .languages .language-flag{width:26px;height:26px;display:block;flex:0 0 26px;border:2px solid #fff;border-radius:50%;overflow:hidden;font-size:0;line-height:0;box-shadow:0 1px 3px rgba(15,23,42,.14)}
+ .languages button[aria-pressed=true]{display:flex;width:100%;min-height:20px;padding:0 4px 0 0;justify-content:flex-start;gap:4px;color:#163f72;font-size:10px;font-weight:750}
+ .languages [data-language=en][aria-pressed=true]{flex-direction:row-reverse;padding:0 0 0 4px}
+ .languages .language-flag{width:22px;height:22px;display:block;flex:0 0 22px;border:2px solid #fff;border-radius:50%;overflow:hidden;font-size:0;line-height:0;box-shadow:0 0 0 0 rgba(200,87,89,.28)}
+ .languages [data-language=id][aria-pressed=true] .language-flag{animation:flag-slide-left .3s cubic-bezier(.2,.75,.25,1),flag-pulse 1.8s .32s ease-out infinite}
+ .languages [data-language=en][aria-pressed=true] .language-flag{animation:flag-slide-right .3s cubic-bezier(.2,.75,.25,1),flag-pulse 1.8s .32s ease-out infinite}
  .languages [data-language=id] .language-flag{background:linear-gradient(#e70011 0 50%,#fff 50%)}
  .languages [data-language=en] .language-flag{background:linear-gradient(90deg,transparent 42%,#fff 42% 58%,transparent 58%),linear-gradient(transparent 38%,#fff 38% 62%,transparent 62%),linear-gradient(90deg,transparent 46%,#cf142b 46% 54%,transparent 54%),linear-gradient(transparent 43%,#cf142b 43% 57%,transparent 57%),linear-gradient(34deg,transparent 44%,#fff 44% 56%,transparent 56%),linear-gradient(-34deg,transparent 44%,#fff 44% 56%,transparent 56%),#012169}
- .languages .language-code{display:block;min-width:18px;text-align:center;line-height:1}
+ .languages .language-code{display:block;min-width:14px;text-align:center;line-height:1}
  .mobile-menu{width:44px;height:44px;border-radius:9px}
  .booking-container{margin-top:-48px}
  .booking-widget{border-radius:16px;overflow:hidden}
@@ -326,9 +329,12 @@ dialog{border-radius:12px}
  .service-tabs button[aria-selected=true] svg{color:var(--mock-red)}
  .service-tabs svg{width:29px;height:29px;stroke-width:1.9}
  #search-panel{padding:12px 12px 14px}
- .trip-mode{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:4px;margin-bottom:10px;border:1px solid #e1e4ea;border-radius:999px;background:#fff}
- .trip-mode label{justify-content:center;min-height:38px;border-radius:999px;font-size:11px;transition:background .2s,color .2s}
- .trip-mode label:has(input:checked){background:#f9e2e3;color:var(--mock-red-dark)}
+ .trip-mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0;margin-bottom:10px;border:0;border-radius:0;background:transparent}
+ .trip-mode label{justify-content:center;gap:7px;min-height:40px;padding:7px 10px;border:1px solid #cfd3da;border-radius:10px;background:#fff;color:#343944;font-size:12px;font-weight:650;transition:background .2s,color .2s,border-color .2s,box-shadow .2s}
+ .trip-mode label::before{content:"";width:17px;height:17px;display:grid;place-items:center;flex:0 0 17px;border:1.5px solid currentColor;border-radius:50%;font-size:12px;line-height:1}
+ .trip-mode label:has(input:checked){border-color:var(--mock-red);background:var(--mock-red);color:#fff;box-shadow:0 2px 7px rgba(200,87,89,.18)}
+ .trip-mode label:has(input:checked)::before{content:"✓";font-weight:800}
+ .trip-mode label.is-disabled{opacity:1;color:#8a9099;background:#f6f7f9;cursor:not-allowed}
  .trip-mode input{position:absolute;opacity:0;pointer-events:none}
  .search-fields,body[data-service="shuttle"] .search-fields,body[data-service="airport"] .search-fields,body[data-service="charter"] .search-fields{display:block}
  .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date" "time" "passenger";position:relative;border:1px solid #d8dce3;border-radius:14px;overflow:hidden;background:#fff}
@@ -344,9 +350,10 @@ dialog{border-radius:12px}
  .destination-field{grid-area:destination}
  .date-field{grid-area:date;padding-right:150px}
  .time-field{grid-area:time}
- .passenger-field{grid-area:passenger;border-bottom:0}
+ .passenger-field{display:none}
  body[data-service="shuttle"] .time-field{display:none}
  body:not([data-service="shuttle"]) .time-field{display:flex}
+ body[data-service="shuttle"] .date-field,body:not([data-service="shuttle"]) .time-field{border-bottom:0}
  .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:6px;margin-right:10px;z-index:2}
  .quick-date-actions button{min-width:62px;min-height:38px;padding:6px 10px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
  .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
@@ -392,9 +399,11 @@ dialog{border-radius:12px}
  .date-field input[type="date"]{position:absolute;inset:0;width:100%;height:100%;opacity:0;z-index:2}
  .date-display{display:block;font-size:16px;line-height:24px;font-weight:600;color:#1f2430;white-space:nowrap}
 }
-@keyframes language-slide-in{from{opacity:.45;transform:translateX(9px)}to{opacity:1;transform:translateX(0)}}
+@keyframes flag-slide-left{from{transform:translateX(28px)}to{transform:translateX(0)}}
+@keyframes flag-slide-right{from{transform:translateX(-28px)}to{transform:translateX(0)}}
+@keyframes flag-pulse{0%,55%,100%{box-shadow:0 0 0 0 rgba(200,87,89,.28)}75%{box-shadow:0 0 0 4px rgba(200,87,89,0)}}
 @keyframes swap-rotate{to{transform:rotate(180deg)}}
 @keyframes swap-origin{50%{opacity:.25;transform:translateY(8px)}}
 @keyframes swap-destination{50%{opacity:.25;transform:translateY(-8px)}}
 @media(max-width:360px){.hero h1{font-size:24px}.date-display{font-size:14px}}
-@media(prefers-reduced-motion:reduce){.languages button[aria-pressed=true],.swap-fields.is-swapping svg,.field-stack.is-swapping .origin-field>span,.field-stack.is-swapping .destination-field>span{animation:none}}
+@media(prefers-reduced-motion:reduce){.languages button[aria-pressed=true] .language-flag,.swap-fields.is-swapping svg,.field-stack.is-swapping .origin-field>span,.field-stack.is-swapping .destination-field>span{animation:none}}
