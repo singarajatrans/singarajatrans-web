@@ -86,7 +86,7 @@ function restoreSearchState(){
 }
 function renderResults(scroll=true){
  const s=lastSearch,results=C.getOptions(s);$('#results').hidden=false;
- $('#results-summary').textContent=`${s.from} → ${s.to} · ${formatDate(s.date)} · ${s.passengers} ${t('penumpang','passengers')}`;
+ $('#results-heading').textContent=`${s.from} → ${s.to}`;$('#results-summary').textContent=`${formatDate(s.date)} · ${s.passengers} ${t('penumpang','passengers')}`;
  const cards=results.map((r,i)=>{
   const image=r.kind==='mpv'||r.kind==='charter'?'assets/images/mpv.webp':'assets/images/fleet.webp';
   const price=r.kind==='shuttle'?r.total:r.price;
@@ -164,6 +164,6 @@ const bookingVisibility=new IntersectionObserver(entries=>{$('.floating-chat').c
 let lastScroll=window.scrollY,ticking=false;
 window.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=Math.max(0,window.scrollY),focused=$('#header').contains(document.activeElement),menuOpen=$('.mobile-menu').getAttribute('aria-expanded')==='true';if(y<=100||y<lastScroll||focused||menuOpen)$('#header').classList.remove('is-hidden');else if(y>lastScroll+2)$('#header').classList.add('is-hidden');lastScroll=y;ticking=false;});},{passive:true});
 $('#header').addEventListener('focusin',()=>$('#header').classList.remove('is-hidden'));
-const mobile=window.matchMedia('(max-width:767px)');function updateFooter(){if(!mobile.matches){$$('.footer-group').forEach(d=>d.open=true);$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}else $$('.footer-group').forEach(d=>d.open=false);}mobile.addEventListener('change',updateFooter);updateFooter();
+const mobile=window.matchMedia('(max-width:767px)');function updateFooter(){$('.footer-group').forEach(d=>d.open=true);if(!mobile.matches){$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}}mobile.addEventListener('change',updateFooter);updateFooter();
 $('#year').textContent=new Date().getFullYear();$('#date').min=C.baliDate();$('#date').value=C.baliDate(new Date(Date.now()+86400000));setService('shuttle');translate();restoreSearchState();
 })();

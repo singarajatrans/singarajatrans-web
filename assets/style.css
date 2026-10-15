@@ -282,3 +282,19 @@ dialog{border-radius:12px}
  .service-card>img{width:78px}
  .service-card .button{padding-inline:7px}
 }
+
+/* Final mockup visual refinements */
+.footer-group summary:after{display:none!important}
+@media(max-width:767px){
+ .hero{height:225px;min-height:225px}
+ .hero-content{padding:34px 0 76px}
+ .hero h1{font-size:28px;max-width:345px;white-space:normal}
+ .hero p{max-width:330px}
+ .footer-language{display:flex;grid-column:1/-1;flex-direction:row;flex-wrap:wrap;gap:5px 14px;border-top:1px solid #45484d;padding-top:10px}
+ .footer-language strong{width:100%;margin:0}
+ .destination-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr}
+ .destination-card:last-child>img{height:115px}
+}
+@media(max-width:360px){
+ .hero h1{font-size:26px;max-width:300px}
+}
