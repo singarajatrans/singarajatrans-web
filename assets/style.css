@@ -307,10 +307,11 @@ dialog{border-radius:12px}
 .swap-fields{display:none}
 
 @media(max-width:767px){
- .languages{width:84px;height:44px;padding:4px;border-radius:999px;background:#edf1f6;overflow:hidden}
+ .languages{width:82px;height:42px;padding:3px;border:1px solid #e2e7ee;border-radius:999px;background:#edf1f6;overflow:hidden}
  .languages>span,.languages button[aria-pressed=false]{display:none}
- .languages button[aria-pressed=true]{display:flex;width:100%;min-height:36px;padding:0 9px 0 0;justify-content:space-between;gap:8px;color:#163f72;font-size:12px;font-weight:750}
- .languages button[aria-pressed=true]>span{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#fff;font-size:18px;box-shadow:0 1px 4px rgba(15,23,42,.1)}
+ .languages button[aria-pressed=true]{display:flex;width:100%;min-height:34px;padding:0 7px 0 0;justify-content:flex-start;gap:7px;color:#163f72;font-size:12px;font-weight:750}
+ .languages .language-flag{width:34px;height:34px;display:grid;place-items:center;flex:0 0 34px;border-radius:50%;overflow:hidden;background:#fff;font-size:22px;line-height:1;clip-path:circle(48%);box-shadow:0 1px 4px rgba(15,23,42,.12)}
+ .languages .language-code{display:block;min-width:18px;text-align:center;line-height:1}
  .mobile-menu{width:44px;height:44px;border-radius:9px}
  .booking-container{margin-top:-48px}
  .booking-widget{border-radius:16px;overflow:hidden}
@@ -330,7 +331,7 @@ dialog{border-radius:12px}
  .field{min-height:64px;padding:9px 12px;border:0;border-bottom:1px solid #e8eaee;border-radius:0;background:#fff;box-shadow:none}
  .field:hover{border-color:#e8eaee}
  .field:focus-within{border-color:#e8eaee;box-shadow:inset 2px 0 0 var(--mock-red)}
- .field>svg{width:20px;height:20px;color:#5f6672;stroke-width:1.8}
+ .field>svg{width:24px;height:24px;color:#292d34;stroke-width:2}
  .field-label{font-size:12px;margin-bottom:2px;color:#737b87}
  .field input,.field select{font-size:16px;font-weight:600;color:#1f2430}
  .origin-field{grid-area:origin}
@@ -373,8 +374,8 @@ dialog{border-radius:12px}
  .swap-fields svg{width:19px;height:19px}
  .field>span{position:relative}
  .field-label{font-size:11px;transition:font-size .18s,transform .18s,color .18s,margin .18s}
- .field:not(.has-value):not(:focus-within) .field-label{font-size:15px;transform:translateY(10px);margin-bottom:0;color:#737b87}
- .field:not(.has-value):not(:focus-within) input,.field:not(.has-value):not(:focus-within) select{opacity:0}
+ .field:not(.has-value) .field-label{font-size:15px;transform:translateY(10px);margin-bottom:0;color:#737b87}
+ .field:not(.has-value) input,.field:not(.has-value) select{opacity:0}
  .field select{appearance:none;-webkit-appearance:none;background-image:none}
  .field input[type="date"]{appearance:none;-webkit-appearance:none}
  .field input[type="date"]::-webkit-calendar-picker-indicator{opacity:0;width:0;margin:0;padding:0}

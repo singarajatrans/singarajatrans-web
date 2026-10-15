@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="preload" href="assets/images/hero.webp" as="image" media="(min-width:768px)" fetchpriority="high">
   <link rel="preload" href="assets/images/hero-mobile-shuttle.webp" as="image" media="(max-width:767px)" fetchpriority="high">
-  <link rel="stylesheet" href="assets/style.css?v=mobile-ui-3"><script src="assets/core.js" defer></script><script src="assets/booking.js?v=mobile-ui-2" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=mobile-ui-4"><script src="assets/core.js" defer></script><script src="assets/booking.js?v=mobile-ui-2" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
@@ -40,7 +40,7 @@
       <a href="#faq" data-en="Help">Bantuan</a>
     </nav>
     <div class="nav-actions">
-      <div class="languages" aria-label="Bahasa"><button type="button" data-language="id" aria-pressed="true"><span aria-hidden="true">🇮🇩</span> ID</button><span>|</span><button type="button" data-language="en" aria-pressed="false"><span aria-hidden="true">🇬🇧</span> EN</button></div>
+      <div class="languages" aria-label="Bahasa"><button type="button" data-language="id" aria-pressed="true"><span class="language-flag" aria-hidden="true">🇮🇩</span><span class="language-code">ID</span></button><span>|</span><button type="button" data-language="en" aria-pressed="false"><span class="language-flag" aria-hidden="true">🇬🇧</span><span class="language-code">EN</span></button></div>
       <button class="button outline booking-check" type="button" data-check-booking data-en="Check Booking">Cek Booking</button>
       <button class="icon-button mobile-menu" type="button" aria-label="Buka menu" aria-controls="navigation" aria-expanded="false"><svg><use href="#menu"/></svg></button>
     </div>
@@ -70,8 +70,8 @@
  <div class="form-top"><span id="service-description" data-en="One-way trips, priced per passenger">Perjalanan sekali jalan, tarif per penumpang</span><span class="small-note" data-en="All times in Bali (WITA)">Waktu setempat Bali (WITA)</span></div>
  <div class="search-fields">
  <div class="field-stack">
-  <label class="field origin-field"><svg><use href="#pin"/></svg><span><span class="field-label" data-en="From">Asal</span><select id="origin" name="origin" required aria-label="Asal"></select></span></label>
-  <label class="field destination-field"><svg><use href="#pin"/></svg><span><span class="field-label" data-en="To">Tujuan</span><select id="destination" name="destination" required aria-label="Tujuan"></select></span></label>
+  <label class="field origin-field"><svg><use href="#bus"/></svg><span><span class="field-label" data-en="From">Asal</span><select id="origin" name="origin" required aria-label="Asal"></select></span></label>
+  <label class="field destination-field"><svg><use href="#bus"/></svg><span><span class="field-label" data-en="To">Tujuan</span><select id="destination" name="destination" required aria-label="Tujuan"></select></span></label>
   <button class="swap-fields" type="button" aria-label="Tukar asal dan tujuan"><svg><use href="#swap"/></svg></button>
   <label class="field date-field"><svg><use href="#calendar"/></svg><span><span class="field-label" data-en="Departure date">Tanggal berangkat</span><input type="date" id="date" name="date" required aria-label="Tanggal berangkat"><span class="date-display" aria-hidden="true"></span></span></label>
   <div class="quick-date-actions" aria-label="Pilihan tanggal cepat"><button type="button" data-quick-date="0" aria-pressed="false" data-en="Today">Hari ini</button><button type="button" data-quick-date="1" aria-pressed="false" data-en="Tomorrow">Besok</button></div>
