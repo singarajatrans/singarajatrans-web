@@ -6,8 +6,9 @@
   <title>SINGARAJA TRANS — Travel Shuttle & Transportasi Bali</title>
   <meta name="description" content="Rencanakan perjalanan Bali bersama SINGARAJA TRANS. Travel shuttle, airport transfer, dan charter drop dengan informasi rute dan tarif yang jelas.">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
-  <link rel="preload" href="assets/images/hero.webp" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="assets/style.css?v=widget-mobile-2"><script src="assets/core.js" defer></script><script src="assets/booking.js?v=widget-mobile-2" defer></script>
+  <link rel="preload" href="assets/images/hero.webp" as="image" media="(min-width:768px)" fetchpriority="high">
+  <link rel="preload" href="assets/images/hero-mobile-shuttle.webp" as="image" media="(max-width:767px)" fetchpriority="high">
+  <link rel="stylesheet" href="assets/style.css?v=hero-mobile-1"><script src="assets/core.js" defer></script><script src="assets/booking.js?v=hero-mobile-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
@@ -48,9 +49,9 @@
  <section class="hero" aria-labelledby="hero-title">
   <img class="hero-image" src="assets/images/hero.webp" width="1920" height="1080" alt="Pura Ulun Danu Beratan di tepi danau Bali" fetchpriority="high">
   <div class="hero-service-visual" aria-hidden="true">
-    <img class="hero-service-image hero-service-shuttle" src="assets/images/fleet.webp" alt="" width="600" height="400" decoding="async">
-    <img class="hero-service-image hero-service-airport" src="assets/images/mpv.webp" alt="" width="600" height="400" decoding="async">
-    <img class="hero-service-image hero-service-charter" src="assets/images/jatiluwih.webp" alt="" width="600" height="400" decoding="async">
+    <picture><source media="(max-width:767px)" srcset="assets/images/hero-mobile-shuttle.webp"><img class="hero-service-image hero-service-shuttle" src="assets/images/fleet.webp" alt="" width="600" height="400" decoding="async"></picture>
+    <picture><source media="(max-width:767px)" srcset="assets/images/hero-mobile-airport.webp"><img class="hero-service-image hero-service-airport" src="assets/images/mpv.webp" alt="" width="600" height="400" decoding="async"></picture>
+    <picture><source media="(max-width:767px)" srcset="assets/images/hero-mobile-charter.webp"><img class="hero-service-image hero-service-charter" src="assets/images/jatiluwih.webp" alt="" width="600" height="400" decoding="async"></picture>
   </div>
   <div class="container hero-content">
     <h1 id="hero-title" data-en="Bali journeys,<br>made easier.">Pesan perjalanan Bali<br>lebih mudah</h1>

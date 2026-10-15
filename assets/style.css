@@ -344,3 +344,16 @@ dialog{border-radius:12px}
  .quick-date-actions{gap:4px;margin-right:7px}
  .quick-date-actions button{min-width:56px;padding-inline:7px;font-size:10px}
 }
+
+/* Mobile service hero: three supplied visuals share one seamless frame. */
+@media(max-width:767px){
+ .hero-image{opacity:0}
+ .hero-service-visual{z-index:-3}
+ .hero-service-visual picture{position:absolute;inset:0}
+ .hero-service-image{object-position:center;opacity:0;transform:scale(1.018);transition:opacity .55s ease,transform 1s ease}
+ .hero-service-shuttle{opacity:1;transform:scale(1)}
+ body[data-service="airport"] .hero-service-shuttle,body[data-service="charter"] .hero-service-shuttle{opacity:0;transform:scale(1.018)}
+ body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{opacity:1;transform:scale(1)}
+ body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{object-position:center}
+ .hero:after{background:linear-gradient(90deg,rgba(9,27,42,.72) 0%,rgba(9,27,42,.38) 48%,rgba(9,27,42,.04) 82%),linear-gradient(0deg,rgba(9,27,42,.18),transparent 58%)}
+}

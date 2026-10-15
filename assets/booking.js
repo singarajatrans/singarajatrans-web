@@ -39,11 +39,17 @@ function updateSelects(){
  $('#passengers').value=Number(oldPassengers)>0&&Number(oldPassengers)<=max?oldPassengers:'1';
 }
 function updateServiceCopy(){
- const hero={
+ const desktopHero={
   shuttle:[t('Travel Shuttle Bali<br>lebih mudah','Travel Shuttle Bali<br>made easier'),t('Perjalanan shuttle antarkota di Bali dengan jadwal teratur.','Scheduled shuttle journeys between Bali destinations.')],
   airport:[t('Airport Transfer Bali<br>lebih mudah','Airport Transfer Bali<br>made easier'),t('Antar jemput Bandara Ngurah Rai dengan mobil privat sesuai jadwal Anda.','Private Ngurah Rai Airport transfers arranged around your schedule.')],
   charter:[t('Charter Drop Bali<br>lebih mudah','Charter Drop Bali<br>made easier'),t('Mobil privat sekali jalan untuk perjalanan Anda di Bali.','Private one-way transport for your journey across Bali.')]
- }[service];
+ };
+ const mobileHero={
+  shuttle:[t('Travel Shuttle Bali<br>lebih mudah','Travel Shuttle Bali<br>made easier'),t('Travel shuttle antarkota.','Intercity travel shuttle.')],
+  airport:[t('Airport Transfer Bali<br>lebih mudah','Airport Transfer Bali<br>made easier'),t('Antar jemput privat Bandara Ngurah Rai.','Private Ngurah Rai Airport transfers.')],
+  charter:[t('Charter Drop Bali<br>lebih mudah','Charter Drop Bali<br>made easier'),t('Mobil privat langsung ke tujuan.','Private cars direct to your destination.')]
+ };
+ const hero=(window.matchMedia('(max-width:767px)').matches?mobileHero:desktopHero)[service];
  $('#hero-title').innerHTML=hero[0];$('#hero-subtitle').textContent=hero[1];
  $('#service-description').textContent=service==='shuttle'?t('Perjalanan sekali jalan, tarif per penumpang','One-way trips, priced per passenger'):service==='airport'?t('Antar jemput bandara privat, tarif per mobil','Private airport transfers, priced per vehicle'):t('Perjalanan privat sekali jalan, tarif per mobil','Private one-way trips, priced per vehicle');
  $('#time').hidden=service!=='shuttle';$('#time').disabled=service!=='shuttle';
@@ -163,6 +169,7 @@ $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService
 $$('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').value=quickDate(Number(b.dataset.quickDate));syncQuickDates();$('#date').dispatchEvent(new Event('change',{bubbles:true}));}));
 $('#date').addEventListener('change',syncQuickDates);
 $$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
+window.matchMedia('(max-width:767px)').addEventListener('change',updateServiceCopy);
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
 $$('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.closest('dialog'))));
 $$('dialog').forEach(d=>{d.addEventListener('cancel',e=>{e.preventDefault();closeDialog(d);});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog(d);}});});
