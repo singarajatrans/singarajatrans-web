@@ -26,16 +26,31 @@ Desain tidak boleh terasa seperti template, dashboard, atau prototipe. Fokusnya 
 
 ### 3.1 Warna
 
+Warna merah utama mengikuti gambar referensi visual yang disepakati. Nilai canonical untuk implementasi adalah **`#C85759`**. Nilai ini diambil dari area merah dominan pada referensi dan menjadi sumber tunggal untuk token merah utama; jangan melakukan sampling ulang dari screenshot pada setiap implementasi karena hasil dapat berbeda akibat layar, kompresi, atau color management.
+
 | Peran | Warna | Penggunaan |
 |---|---:|---|
-| Merah utama | `#D84E55` | CTA utama, tab aktif, harga penting, aksen |
-| Merah gelap | `#B8323B` | Hover/pressed CTA |
-| Merah sangat muda | `#FFF1F2` | Latar aksen, status ringan |
+| Merah utama / Reference Red | `#C85759` | CTA utama, tab aktif, harga penting, ikon aktif, aksen utama |
+| Merah hover | `#AE494B` | Hover CTA, hover elemen interaktif merah |
+| Merah pressed | `#963D40` | Pressed/active CTA |
+| Merah sangat muda | `#F9EAEA` | Latar aksen, chip/status ringan, lingkaran ikon |
+| Ring merah | `rgba(200, 87, 89, 0.18)` | Focus ring halus pada field dan kontrol |
 | Teks utama | `#1F2937` | Judul dan informasi utama |
 | Teks sekunder | `#6B7280` | Label, deskripsi, metadata |
 | Border | `#E5E7EB` | Field, kartu, divider |
 | Latar halaman | `#F7F7F7` | Section dan halaman hasil |
 | Putih | `#FFFFFF` | Kartu, form, header |
+
+Aturan konsistensi merah:
+
+- `#C85759` adalah satu-satunya **primary red** untuk desain ini.
+- Warna merah lama seperti `#D84E55`, `#E21F2F`, atau variasi lain tidak digunakan sebagai primary pada implementasi baru.
+- CTA utama, tab aktif, harga utama, indikator aktif, ikon aksen, dan elemen brand-interaction menggunakan token yang sama, bukan nilai merah berbeda per komponen.
+- Teks putih di atas merah utama harus dipakai bila kontras memenuhi kebutuhan keterbacaan; jangan mengurangi opacity teks CTA.
+- State hover dan pressed hanya memakai token turunan di atas agar identitas warna tetap sama.
+- Focus tidak mengubah komponen menjadi warna lain; gunakan border merah utama + ring merah halus.
+- Merah tidak dipakai sebagai latar area besar selain elemen brand/CTA yang memang membutuhkan penekanan.
+- Pada foto atau hero, warna merah tidak boleh menimpa warna asli gambar dengan overlay berat.
 
 Tidak menggunakan biru atau emas sebagai warna aktif pada versi desain ini.
 
