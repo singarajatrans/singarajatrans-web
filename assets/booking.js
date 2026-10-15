@@ -39,10 +39,21 @@ function updateSelects(){
  $('#passengers').value=Number(oldPassengers)>0&&Number(oldPassengers)<=max?oldPassengers:'1';
 }
 function updateServiceCopy(){
+ const hero={
+  shuttle:[t('Travel Shuttle Bali<br>lebih mudah','Travel Shuttle Bali<br>made easier'),t('Perjalanan shuttle antarkota di Bali dengan jadwal teratur.','Scheduled shuttle journeys between Bali destinations.')],
+  airport:[t('Airport Transfer Bali<br>lebih mudah','Airport Transfer Bali<br>made easier'),t('Antar jemput Bandara Ngurah Rai dengan mobil privat sesuai jadwal Anda.','Private Ngurah Rai Airport transfers arranged around your schedule.')],
+  charter:[t('Charter Drop Bali<br>lebih mudah','Charter Drop Bali<br>made easier'),t('Mobil privat sekali jalan untuk perjalanan Anda di Bali.','Private one-way transport for your journey across Bali.')]
+ }[service];
+ $('#hero-title').innerHTML=hero[0];$('#hero-subtitle').textContent=hero[1];
  $('#service-description').textContent=service==='shuttle'?t('Perjalanan sekali jalan, tarif per penumpang','One-way trips, priced per passenger'):service==='airport'?t('Antar jemput bandara privat, tarif per mobil','Private airport transfers, priced per vehicle'):t('Perjalanan privat sekali jalan, tarif per mobil','Private one-way trips, priced per vehicle');
  $('#time').hidden=service!=='shuttle';$('#time').disabled=service!=='shuttle';
  $('#private-time').hidden=service==='shuttle';$('#private-time').disabled=service==='shuttle';$('#private-time').required=service!=='shuttle';
  $('#search-button-label').textContent=service==='shuttle'?t('Cari Perjalanan','Find a trip'):t('Cari Mobil','Find a car');
+ syncQuickDates();
+}
+function quickDate(offset){return C.baliDate(new Date(Date.now()+offset*86400000));}
+function syncQuickDates(){
+ $('[data-quick-date]').forEach(b=>b.setAttribute('aria-pressed',String($('#date').value===quickDate(Number(b.dataset.quickDate)))));
 }
 function setService(next,{focus=false}={}){
  if(!['shuttle','airport','charter'].includes(next))return;

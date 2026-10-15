@@ -299,3 +299,48 @@ dialog{border-radius:12px}
  .hero h1{font-size:26px;max-width:300px}
 }
 @media(prefers-reduced-motion:reduce){.hero-service-image{transition:none}}
+
+
+/* === Booking widget mobile refinement · 16 Oct 2026 === */
+.field-stack{display:contents}
+.quick-date-actions{display:none}
+
+@media(max-width:767px){
+ .booking-container{margin-top:-48px}
+ .booking-widget{border-radius:16px;overflow:hidden}
+ .service-tabs button{min-height:64px;padding:9px 3px;font-size:11px}
+ .service-tabs button:not([aria-selected=true]){background:#fff8f8}
+ #search-panel{padding:12px 12px 14px}
+ .trip-mode{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:4px;margin-bottom:10px;border:1px solid #e1e4ea;border-radius:999px;background:#fff}
+ .trip-mode label{justify-content:center;min-height:38px;border-radius:999px;font-size:11px;transition:background .2s,color .2s}
+ .trip-mode label:has(input:checked){background:#f9e2e3;color:var(--mock-red-dark)}
+ .trip-mode input{position:absolute;opacity:0;pointer-events:none}
+ .search-fields,body[data-service="shuttle"] .search-fields,body[data-service="airport"] .search-fields,body[data-service="charter"] .search-fields{display:block}
+ .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date" "time" "passenger";position:relative;border:1px solid #dfe2e8;border-radius:14px;overflow:hidden;background:#fff}
+ .field{min-height:64px;padding:9px 12px;border:0;border-bottom:1px solid #e4e7ec;border-radius:0;background:#fff;box-shadow:none}
+ .field:hover{border-color:#e4e7ec}
+ .field:focus-within{border-color:#e4e7ec;box-shadow:inset 3px 0 0 var(--mock-red)}
+ .field>svg{width:20px;height:20px}
+ .field-label{font-size:12px;margin-bottom:2px}
+ .field input,.field select{font-size:16px;font-weight:600}
+ .origin-field{grid-area:origin}
+ .destination-field{grid-area:destination}
+ .date-field{grid-area:date;padding-right:150px}
+ .time-field{grid-area:time}
+ .passenger-field{grid-area:passenger;border-bottom:0}
+ body[data-service="shuttle"] .time-field{display:none}
+ body:not([data-service="shuttle"]) .time-field{display:flex}
+ .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:6px;margin-right:10px;z-index:2}
+ .quick-date-actions button{min-width:62px;min-height:38px;padding:6px 10px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
+ .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
+ .search-button{display:flex;width:100%;min-height:50px;margin-top:12px;border-radius:11px;font-size:15px}
+ .booking-footnote{margin-top:12px}
+ .booking-footnote>div{grid-template-columns:32px 1fr;padding:10px 7px;gap:7px}
+ .booking-footnote strong{font-size:10px;line-height:1.25}
+ .booking-footnote small{display:none}
+}
+@media(max-width:360px){
+ .date-field{padding-right:132px}
+ .quick-date-actions{gap:4px;margin-right:7px}
+ .quick-date-actions button{min-width:56px;padding-inline:7px;font-size:10px}
+}
