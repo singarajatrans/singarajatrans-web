@@ -317,13 +317,13 @@ dialog{border-radius:12px}
  .trip-mode label:has(input:checked){background:#f9e2e3;color:var(--mock-red-dark)}
  .trip-mode input{position:absolute;opacity:0;pointer-events:none}
  .search-fields,body[data-service="shuttle"] .search-fields,body[data-service="airport"] .search-fields,body[data-service="charter"] .search-fields{display:block}
- .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date" "time" "passenger";position:relative;border:1px solid #dfe2e8;border-radius:14px;overflow:hidden;background:#fff}
- .field{min-height:64px;padding:9px 12px;border:0;border-bottom:1px solid #e4e7ec;border-radius:0;background:#fff;box-shadow:none}
- .field:hover{border-color:#e4e7ec}
- .field:focus-within{border-color:#e4e7ec;box-shadow:inset 3px 0 0 var(--mock-red)}
- .field>svg{width:20px;height:20px}
- .field-label{font-size:12px;margin-bottom:2px}
- .field input,.field select{font-size:16px;font-weight:600}
+ .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date" "time" "passenger";position:relative;border:1px solid #d8dce3;border-radius:14px;overflow:hidden;background:#fff}
+ .field{min-height:64px;padding:9px 12px;border:0;border-bottom:1px solid #e8eaee;border-radius:0;background:#fff;box-shadow:none}
+ .field:hover{border-color:#e8eaee}
+ .field:focus-within{border-color:#e8eaee;box-shadow:inset 2px 0 0 var(--mock-red)}
+ .field>svg{width:20px;height:20px;color:#5f6672;stroke-width:1.8}
+ .field-label{font-size:12px;margin-bottom:2px;color:#737b87}
+ .field input,.field select{font-size:16px;font-weight:600;color:#1f2430}
  .origin-field{grid-area:origin}
  .destination-field{grid-area:destination}
  .date-field{grid-area:date;padding-right:150px}
@@ -334,7 +334,7 @@ dialog{border-radius:12px}
  .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:6px;margin-right:10px;z-index:2}
  .quick-date-actions button{min-width:62px;min-height:38px;padding:6px 10px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
  .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
- .search-button{display:flex;width:100%;min-height:50px;margin-top:12px;border-radius:11px;font-size:15px}
+ .search-button{display:flex;width:100%;min-height:50px;margin-top:12px;border-radius:12px;font-size:15px}
  .booking-footnote{margin-top:12px}
  .booking-footnote>div{grid-template-columns:32px 1fr;padding:10px 7px;gap:7px}
  .booking-footnote strong{font-size:10px;line-height:1.25}
@@ -360,11 +360,11 @@ dialog{border-radius:12px}
  .hero-accent{color:var(--mock-red)}
  .hero:after{background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.92) 8%,rgba(255,255,255,0) 31%),linear-gradient(90deg,rgba(9,27,42,.72) 0%,rgba(9,27,42,.38) 48%,rgba(9,27,42,.04) 82%)}
  .origin-field,.destination-field{padding-right:56px}
- .swap-fields{position:absolute;right:10px;top:64px;z-index:4;transform:translateY(-50%);width:38px;height:38px;display:grid;place-items:center;border:1px solid #dfe2e8;border-radius:50%;background:#fff;color:var(--mock-red);box-shadow:0 2px 8px rgba(24,33,45,.1)}
+ .swap-fields{position:absolute;right:10px;top:64px;z-index:4;transform:translateY(-50%);width:38px;height:38px;display:grid;place-items:center;border:1px solid #d8dce3;border-radius:50%;background:#fff;color:var(--mock-red);box-shadow:0 2px 6px rgba(24,33,45,.07)}
  .swap-fields svg{width:19px;height:19px}
  .field>span{position:relative}
  .field-label{font-size:11px;transition:font-size .18s,transform .18s,color .18s,margin .18s}
- .field:not(.has-value):not(:focus-within) .field-label{font-size:15px;transform:translateY(10px);margin-bottom:0;color:#707887}
+ .field:not(.has-value):not(:focus-within) .field-label{font-size:15px;transform:translateY(10px);margin-bottom:0;color:#737b87}
  .field:not(.has-value):not(:focus-within) input,.field:not(.has-value):not(:focus-within) select{opacity:0}
  .field select{appearance:none;-webkit-appearance:none;background-image:none}
  .field input[type="date"]{appearance:none;-webkit-appearance:none}
