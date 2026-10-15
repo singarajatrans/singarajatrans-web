@@ -45,7 +45,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    await page.locator('#faq details').first().locator('summary').click();assert.equal(await page.locator('#faq details').first().getAttribute('open')!==null,true);
    await page.locator('.footer-group').last().evaluate(d=>d.open=true);await page.locator('[data-check-booking]').last().click();await page.locator('[name=code]').fill('ST-12345');await page.locator('#check-form [name=phone]').fill('081234567890');await page.locator('#check-form button').click();assert.equal(await page.locator('#check-link').isVisible(),true);await page.keyboard.press('Escape');
    await page.setViewportSize({width:width===390?1440:390,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow on resize');
-   await page.reload();await page.waitForLoadState('networkidle');assert.equal(await page.locator('#tab-shuttle').getAttribute('aria-selected'),'true');assert.deepEqual(errors,[]);
+   await page.reload();await page.waitForLoadState('networkidle');assert.equal(await page.locator('#tab-charter').getAttribute('aria-selected'),'true');assert.deepEqual(errors,[]);
    await page.close();console.log('PASS: responsive, booking, tabs, language, validation, resize and refresh at '+width+'px');
   }
  }finally{if(browser)await browser.close();server.kill();}
