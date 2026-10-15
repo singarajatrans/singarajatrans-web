@@ -16,7 +16,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    assert.equal(await page.evaluate(()=>Number(getComputedStyle(document.querySelector('.hero-service-shuttle')).opacity)>.4),true,'Shuttle hero inactive at '+width);
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow at '+width);
-   if(width<768){await page.locator('[data-quick-date="0"]').click();assert.equal(await page.locator('#date').inputValue(),await page.evaluate(()=>window.Singaraja.baliDate()));await page.locator('[data-quick-date="1"]').click();}\n   await page.locator('img').evaluateAll(imgs=>imgs.forEach(i=>i.loading='eager'));
+   if(width<768){await page.locator('[data-quick-date="0"]').click();assert.equal(await page.locator('#date').inputValue(),await page.evaluate(()=>window.Singaraja.baliDate()));await page.locator('[data-quick-date="1"]').click();}
+   await page.locator('img').evaluateAll(imgs=>imgs.forEach(i=>i.loading='eager'));
    await page.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
    assert.equal(await page.evaluate(()=>new Set([...document.querySelectorAll('[id]')].map(e=>e.id)).size===document.querySelectorAll('[id]').length),true,'Duplicate IDs');
    await page.screenshot({path:`qa-output/home-${width}.png`,fullPage:true});
