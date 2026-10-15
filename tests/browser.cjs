@@ -16,7 +16,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    assert.equal(await page.evaluate(()=>Number(getComputedStyle(document.querySelector('.hero-service-shuttle')).opacity)>.4),true,'Shuttle hero inactive at '+width);
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow at '+width);
-   if(width<768){await page.locator('[data-quick-date="0"]').click();assert.equal(await page.locator('#date').inputValue(),await page.evaluate(()=>window.Singaraja.baliDate()));await page.locator('[data-quick-date="1"]').click();}
+   if(width<768){await page.locator('[data-quick-date="0"]').click();assert.equal(await page.locator('#date').inputValue(),await page.evaluate(()=>window.Singaraja.baliDate()));await page.locator('[data-quick-date="1"]').click();assert.equal(await page.locator('#date').inputValue(),await page.evaluate(()=>window.Singaraja.baliDate(new Date(Date.now()+86400000))));}
    await page.locator('img').evaluateAll(imgs=>imgs.forEach(i=>i.loading='eager'));
    await page.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
    assert.equal(await page.evaluate(()=>new Set([...document.querySelectorAll('[id]')].map(e=>e.id)).size===document.querySelectorAll('[id]').length),true,'Duplicate IDs');
@@ -24,7 +24,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    await page.locator('#origin').selectOption('Singaraja');await page.locator('#destination').selectOption('Singaraja');
    await page.locator('.search-button').click();assert.equal(await page.locator('#search-error').isVisible(),true);
    await page.locator('#destination').selectOption('Denpasar');await page.locator('#passengers').selectOption('2');
-   await page.locator('.search-button').click();assert.equal(await page.locator('.result-card').count(),2);
+   await Promise.all([page.waitForURL(/hasil=1/),page.locator('.search-button').click()]);await page.waitForLoadState('networkidle');assert.equal(await page.locator('.result-card').count(),2);
    assert.match(await page.locator('.result-price strong').first().innerText(),/240\.000/);
    await page.locator('[data-select-trip]').first().click();assert.equal(await page.locator('#booking-dialog').isVisible(),true);
    await page.locator('[name=name]').fill('<img src=x onerror=alert(1)>');await page.locator('#booking-form [name=phone]').fill('081234567890');
