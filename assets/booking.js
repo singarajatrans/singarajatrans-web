@@ -159,7 +159,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#navigation').cl
 $('.previous').addEventListener('click',()=>$('#route-cards').scrollBy({left:-$('#route-cards').clientWidth*.8,behavior:'smooth'}));
 $('.next').addEventListener('click',()=>$('#route-cards').scrollBy({left:$('#route-cards').clientWidth*.8,behavior:'smooth'}));
 $('#edit-search').addEventListener('click',()=>{const p=searchParams(lastSearch);location.assign(location.pathname+'?'+p.toString()+'#pesan');});
-$('#terms-button').addEventListener('click',()=>{const first=$('#faq details');first.open=true;$('#faq').scrollIntoView({behavior:'smooth'});first.querySelector('summary').focus({preventScroll:true});});
+$('#terms-button')?.addEventListener('click',()=>{const first=$('#faq details');first.open=true;$('#faq').scrollIntoView({behavior:'smooth'});first.querySelector('summary').focus({preventScroll:true});});
 const bookingVisibility=new IntersectionObserver(entries=>{$('.floating-chat').classList.toggle('is-over-booking',entries.some(e=>e.isIntersecting));});bookingVisibility.observe($('.search-button'));
 let lastScroll=window.scrollY,ticking=false;
 window.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=Math.max(0,window.scrollY),focused=$('#header').contains(document.activeElement),menuOpen=$('.mobile-menu').getAttribute('aria-expanded')==='true';if(y<=100||y<lastScroll||focused||menuOpen)$('#header').classList.remove('is-hidden');else if(y>lastScroll+2)$('#header').classList.add('is-hidden');lastScroll=y;ticking=false;});},{passive:true});
