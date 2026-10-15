@@ -17,7 +17,7 @@ function translate(){
  const labels={'#origin':['Asal','Origin'],'#destination':['Tujuan','Destination'],'#date':['Tanggal berangkat','Departure date'],'#time':['Waktu','Departure time'],'#private-time':['Jam penjemputan','Pickup time'],'#passengers':['Penumpang','Passengers'],'.mobile-menu':['Buka menu','Open menu'],'.previous':['Rute sebelumnya','Previous routes'],'.next':['Rute berikutnya','Next routes'],'.floating-chat':['Hubungi SINGARAJA TRANS melalui WhatsApp','Contact SINGARAJA TRANS on WhatsApp']};
  Object.entries(labels).forEach(([sel,vals])=>$(sel).setAttribute('aria-label',vals[language==='en'?1:0]));
  $$('[data-close-dialog]').forEach(b=>b.setAttribute('aria-label',t('Tutup','Close')));
- $('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
+ $$('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
  updateSelects();updateServiceCopy();renderRoutes();if(lastSearch)renderResults(false);
 }
 function updateSelects(){
