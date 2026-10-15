@@ -303,6 +303,7 @@ dialog{border-radius:12px}
 
 /* === Booking widget mobile refinement · 16 Oct 2026 === */
 .field-stack{display:contents}
+.field-icon-mobile{display:none}
 .quick-date-actions{display:none}
 .swap-fields{display:none}
 
@@ -335,6 +336,8 @@ dialog{border-radius:12px}
  .field:hover{border-color:#e8eaee}
  .field:focus-within{border-color:#e8eaee;box-shadow:inset 2px 0 0 var(--mock-red)}
  .field>svg{width:24px;height:24px;color:#292d34;stroke-width:2}
+ .field-icon-default{display:none}
+ .field>svg.field-icon-mobile{display:block}
  .field-label{font-size:12px;margin-bottom:2px;color:#737b87}
  .field input,.field select{font-size:16px;font-weight:600;color:#1f2430}
  .origin-field{grid-area:origin}
