@@ -434,3 +434,25 @@ dialog{border-radius:12px}
 
 /* Mobile trip tabs: restore red bottom indicator on selected option. */
 @media(max-width:767px){#trip-mode label{position:relative!important}#trip-mode label:has(input:checked)::after{content:""!important;display:block!important;visibility:visible!important;position:absolute;left:9px;right:9px;bottom:-3px;height:1px;background:var(--red-dark);border-radius:2px;pointer-events:none}}
+
+
+/* Mobile active service tab indicator: true rounded pill ends */
+@media(max-width:767px){
+  .service-tabs button[aria-selected=true]{
+    background-image:none!important;
+    border-bottom-color:transparent!important;
+  }
+  .service-tabs button[aria-selected=true]::after{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    left:18%!important;
+    right:18%!important;
+    bottom:-1px!important;
+    height:3px!important;
+    border-radius:999px!important;
+    background:var(--mock-red)!important;
+    visibility:visible!important;
+    pointer-events:none!important;
+  }
+}
