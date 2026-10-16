@@ -40,7 +40,7 @@ jobs:
       - name: Package website
         run: |
           mkdir _site
-          cp index.html robots.txt _site/
+          cp index.html robots.txt manifest.webmanifest _site/
           cp -r assets _site/
       - uses: actions/upload-pages-artifact@v3
         with:
