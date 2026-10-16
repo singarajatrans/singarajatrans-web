@@ -621,18 +621,18 @@ dialog{border-radius:12px}
 }
 
 /* Search validation shake */
-.booking-widget.widget-invalid-shake{
-  animation:widget-invalid-shake .28s cubic-bezier(.36,.07,.19,.97);
+.field.field-invalid-shake{
+  animation:field-invalid-shake .28s cubic-bezier(.36,.07,.19,.97);
   transform-origin:center;
 }
-@keyframes widget-invalid-shake{
+@keyframes field-invalid-shake{
   0%,100%{transform:translateX(0)}
   25%{transform:translateX(-1px)}
   50%{transform:translateX(1px)}
   75%{transform:translateX(-1px)}
 }
 @media(prefers-reduced-motion:reduce){
-  .booking-widget.widget-invalid-shake{animation:none}
+  .field.field-invalid-shake{animation:none}
 }
 
 
