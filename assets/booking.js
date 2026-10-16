@@ -139,17 +139,27 @@ function buildRequest(d){
  const s=selectedTrip;
  return [t('Halo SINGARAJA TRANS, saya ingin mengajukan pemesanan:','Hello SINGARAJA TRANS, I would like to request a booking:'),serviceName(s.service),`${s.from} → ${s.to}`,`${formatDate(s.date)} · ${s.time} WITA`,`${t('Armada/layanan','Vehicle/service')}: ${tripName(s.kind)}`,`${t('Penumpang','Passengers')}: ${s.passengers}`,`${t('Tarif acuan total','Reference total')}: ${money(s.total)}`,`${t('Nama','Name')}: ${d.name}`,`WhatsApp: ${d.phone}`,`${t('Alamat jemput','Pickup address')}: ${d.pickup}`,`${t('Alamat tujuan','Drop-off address')}: ${d.dropoff}`,`${t('Catatan','Notes')}: ${d.notes||'-'}`,t('Mohon konfirmasi ketersediaan, harga akhir, dan metode pembayaran yang tersedia.','Please confirm availability, the final fare, and available payment methods.')].join('\n');
 }
+function animateInvalidSearchFields(ids){
+ ids.forEach(id=>{
+  const control=$('#'+id);if(!control)return;
+  const field=control.closest('.field');if(!field)return;
+  field.classList.remove('field-invalid-shake');
+  void field.offsetWidth;
+  field.classList.add('field-invalid-shake');
+  window.setTimeout(()=>field.classList.remove('field-invalid-shake'),520);
+ });
+}
 $('#search-form').addEventListener('submit',e=>{
  e.preventDefault();const s=searchState(),error=$('#search-error');error.hidden=true;
  $('#date').min=C.baliDate();
- let msg='';
- if(!s.from||!s.to)msg=t('Pilih asal dan tujuan.','Choose an origin and destination.');
- else if(s.from===s.to)msg=t('Asal dan tujuan harus berbeda.','Origin and destination must be different.');
- else if(!s.date)msg=t('Pilih tanggal perjalanan.','Choose a travel date.');
- else if(s.date<C.baliDate())msg=t('Pilih tanggal hari ini atau setelahnya.','Please choose today or a later date.');
- else if(s.service==='airport'&&s.from!=='Bandara Ngurah Rai'&&s.to!=='Bandara Ngurah Rai')msg=t('Airport Transfer harus memiliki bandara sebagai asal atau tujuan.','Airport Transfer must start or end at the airport.');
- else if(s.service!=='shuttle'&&!C.validFuture(s.date,s.time))msg=t('Pilih waktu penjemputan yang belum lewat (WITA).','Choose a future pickup time (Bali time).');
- if(msg){error.textContent=msg;error.hidden=false;return;}
+ let msg='',invalidIds=[];
+ if(!s.from||!s.to){msg=t('Pilih asal dan tujuan.','Choose an origin and destination.');if(!s.from)invalidIds.push('origin');if(!s.to)invalidIds.push('destination');}
+ else if(s.from===s.to){msg=t('Asal dan tujuan harus berbeda.','Origin and destination must be different.');invalidIds=['origin','destination'];}
+ else if(!s.date){msg=t('Pilih tanggal perjalanan.','Choose a travel date.');invalidIds=['date'];}
+ else if(s.date<C.baliDate()){msg=t('Pilih tanggal hari ini atau setelahnya.','Please choose today or a later date.');invalidIds=['date'];}
+ else if(s.service==='airport'&&s.from!=='Bandara Ngurah Rai'&&s.to!=='Bandara Ngurah Rai'){msg=t('Airport Transfer harus memiliki bandara sebagai asal atau tujuan.','Airport Transfer must start or end at the airport.');invalidIds=['origin','destination'];}
+ else if(s.service!=='shuttle'&&!C.validFuture(s.date,s.time)){msg=t('Pilih waktu penjemputan yang belum lewat (WITA).','Choose a future pickup time (Bali time).');invalidIds=['private-time'];}
+ if(msg){animateInvalidSearchFields(invalidIds);error.textContent=msg;error.hidden=false;return;}
  openSearchResult(s);
 });
 $('#booking-form').addEventListener('submit',e=>{
