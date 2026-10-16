@@ -140,14 +140,12 @@ function buildRequest(d){
  return [t('Halo SINGARAJA TRANS, saya ingin mengajukan pemesanan:','Hello SINGARAJA TRANS, I would like to request a booking:'),serviceName(s.service),`${s.from} → ${s.to}`,`${formatDate(s.date)} · ${s.time} WITA`,`${t('Armada/layanan','Vehicle/service')}: ${tripName(s.kind)}`,`${t('Penumpang','Passengers')}: ${s.passengers}`,`${t('Tarif acuan total','Reference total')}: ${money(s.total)}`,`${t('Nama','Name')}: ${d.name}`,`WhatsApp: ${d.phone}`,`${t('Alamat jemput','Pickup address')}: ${d.pickup}`,`${t('Alamat tujuan','Drop-off address')}: ${d.dropoff}`,`${t('Catatan','Notes')}: ${d.notes||'-'}`,t('Mohon konfirmasi ketersediaan, harga akhir, dan metode pembayaran yang tersedia.','Please confirm availability, the final fare, and available payment methods.')].join('\n');
 }
 function animateInvalidSearchFields(ids){
- ids.forEach(id=>{
-  const control=$('#'+id);if(!control)return;
-  const field=control.closest('.field');if(!field)return;
-  field.classList.remove('field-invalid-shake');
-  void field.offsetWidth;
-  field.classList.add('field-invalid-shake');
-  window.setTimeout(()=>field.classList.remove('field-invalid-shake'),520);
- });
+ if(!ids.length)return;
+ const widget=$('.booking-widget');if(!widget)return;
+ widget.classList.remove('widget-invalid-shake');
+ void widget.offsetWidth;
+ widget.classList.add('widget-invalid-shake');
+ window.setTimeout(()=>widget.classList.remove('widget-invalid-shake'),520);
 }
 $('#search-form').addEventListener('submit',e=>{
  e.preventDefault();const s=searchState(),error=$('#search-error');error.hidden=true;
