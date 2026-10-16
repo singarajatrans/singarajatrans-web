@@ -1,7 +1,7 @@
 # PRD SINGARAJA TRANS — Website Desktop
 
-**Versi:** 1.1 · 15 Oktober 2026  
-**Status:** Draf kebutuhan dan konsep desain, untuk ditinjau.  
+**Versi:** 1.2 · 17 Oktober 2026  
+**Status:** Draf kebutuhan dan konsep desain · SEO/PWA constraint LOCKED.  
 **Cakupan:** Website publik untuk pelanggan; konsep desktop dan kesesuaian mobile.  
 **Bahasa utama:** Indonesia; pilihan Inggris disediakan dalam rancangan.
 
@@ -326,3 +326,27 @@ Ukuran akhir perlu diperiksa pada render nyata. Spacing mengikuti skala konsiste
 6. [Material Design — Spacing Methods](https://m2.material.io/design/layout/spacing-methods.html): referensi sistem spacing 4/8; bukan persyaratan Google Search.
 
 Seluruh sumber diperiksa pada 15 Oktober 2026. Dokumen membedakan standar aksesibilitas, panduan Search, dan keputusan desain internal.
+
+
+---
+
+## SEO & PWA — LOCKED CONSTRAINT (17 Oktober 2026)
+
+**Status: LOCKED.** Target produk bukan hanya kualitas visual, tetapi juga menjaga dan meningkatkan kemampuan website untuk ditemukan melalui Google Search. Tidak ada redesign UI/UX, termasuk perubahan mobile app-like/PWA, yang boleh mengorbankan crawlability, indexability, semantic content, internal navigation, atau performa pencarian organik.
+
+### Keputusan produk
+
+- Website tetap satu basis responsif untuk desktop, tablet, dan mobile; tidak membuat situs mobile terpisah.
+- UI mobile boleh dirancang app-like/PWA-style sejak browser biasa. Saat PWA diaktifkan/install, UI mobile yang sama menjadi basis pengalaman standalone; tidak diperlukan desain kedua khusus PWA.
+- PWA adalah lapisan capability/installability, bukan pengganti website responsif dan bukan alasan mengubah arsitektur SEO.
+- Konten utama, intent halaman, heading semantik, internal link penting, metadata SEO, canonical, structured data yang relevan, dan URL yang dapat dirayapi harus tetap tersedia/valid pada mobile.
+- Menghilangkan hamburger/menu tradisional diperbolehkan hanya jika seluruh navigasi penting tetap mudah ditemukan pengguna dan dapat diakses/crawl melalui link HTML yang sesuai.
+- Jangan menyembunyikan atau menghapus konten SEO penting pada mobile hanya untuk membuat UI terasa seperti aplikasi.
+- Mobile dan desktop tidak boleh memiliki perbedaan konten utama yang mengubah intent halaman atau menghilangkan informasi yang diperlukan untuk pencarian organik.
+- Service worker/caching PWA tidak boleh menyebabkan Googlebot menerima konten usang, shell kosong, error offline, atau konten yang berbeda secara tidak disengaja dari pengalaman web utama.
+- Core Web Vitals dan performa mobile menjadi acceptance gate: fitur PWA, animasi, font, gambar, dan JavaScript tidak boleh menambah beban yang secara material merusak LCP, INP, CLS, atau usability.
+- Setiap perubahan besar mobile/PWA wajib melalui regression SEO: crawl/index accessibility, title/meta, canonical, robots directives, sitemap bila relevan, heading hierarchy, internal links, structured data bila ada, responsive rendering, Core Web Vitals/performance, dan tidak ada horizontal overflow.
+- PWA tidak boleh diklaim sebagai faktor ranking langsung. Sasaran proyek adalah pengalaman mobile yang lebih baik tanpa merusak fondasi SEO, sambil meningkatkan kualitas konten, performa, dan kemudahan penggunaan yang mendukung pertumbuhan organic search.
+- Target "halaman satu Google" adalah sasaran bisnis, bukan jaminan hasil. Tidak boleh ada klaim ranking pasti.
+
+**LOCK RULE:** Jika perubahan desain, navigasi, PWA, atau implementasi teknis berpotensi menurunkan crawlability/indexability atau menghapus konten/link penting, perubahan tersebut **BLOCKED** sampai tersedia solusi yang menjaga SEO. SEO preservation memiliki prioritas lebih tinggi daripada kosmetik visual.
