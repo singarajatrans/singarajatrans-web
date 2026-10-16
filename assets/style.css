@@ -476,7 +476,7 @@ dialog{border-radius:12px}
 @media(max-width:767px){
   .languages{
     position:relative;
-    width:52px;
+    width:50px;
     height:22px;
     padding:0;
     border:1px solid #d8dee7;
@@ -525,7 +525,7 @@ dialog{border-radius:12px}
 
   .languages .language-flag{
     position:absolute;
-    top:-1px;
+    top:-2px;
     left:-1px;
     width:24px;
     height:24px;
