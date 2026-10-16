@@ -41,7 +41,14 @@ function updateSelects(){
  syncFloatingFields();
 }
 function syncFloatingFields(){
- $$('.field').forEach(field=>{const control=field.querySelector('select:not([hidden]),input:not([hidden])');field.classList.toggle('has-value',Boolean(control&&control.value));});
+ $('.field').forEach(field=>{
+  const control=field.querySelector('select:not([hidden]),input:not([hidden])');
+  const hasValue=Boolean(control&&control.value);
+  field.classList.toggle('has-value',hasValue);
+  if(hasValue){
+   field.classList.remove('field-invalid','field-invalid-shake');
+  }
+ });
  const value=$('#date').value,months=language==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
  $('.date-display').textContent=value?`${Number(value.slice(8,10))} ${months[Number(value.slice(5,7))-1]}, ${value.slice(0,4)}`:'';
 }
