@@ -418,4 +418,4 @@ dialog{border-radius:12px}
 .trip-mode label.is-disabled::before{opacity:.55}
 .trip-mode input{position:absolute;opacity:0;pointer-events:none}
 .trip-mode label:focus-within{outline:2px solid var(--red-dark);outline-offset:2px}
-@media(max-width:767px){.trip-mode{display:flex;grid-template-columns:none;justify-content:flex-start;gap:6px;padding:0;margin-bottom:9px}.trip-mode label{width:auto;min-height:32px;padding:5px 9px;gap:6px;font-size:11px;line-height:1.2;border-radius:8px;transition:none}.trip-mode label::before{width:14px;height:14px;flex-basis:14px;font-size:10px}}
+@media(max-width:767px){.trip-mode{display:flex;grid-template-columns:none;justify-content:flex-start;gap:6px;padding:0;margin-bottom:9px}.trip-mode label{width:auto;min-height:32px;padding:5px 9px;gap:6px;font-size:11px;line-height:1.2;border-radius:8px;transition:none}.trip-mode label::before{width:14px;height:14px;flex-basis:14px;font-size:10px}.trip-mode label::before,.trip-mode label:has(input:checked)::before{content:none;display:none}}
