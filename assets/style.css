@@ -322,7 +322,7 @@ dialog{border-radius:12px}
  .booking-container{margin-top:-48px}
  .booking-widget{border-radius:16px;overflow:hidden}
  .service-tabs{background:#fff;border-bottom:1px solid #e8eaee}
- .service-tabs button{min-height:68px;padding:9px 3px;font-size:12px;line-height:1.2;background:#fff;color:#30343d;border:0;border-right:1px solid #eef0f3;border-bottom:3px solid transparent}
+ .service-tabs button{min-height:68px;padding:9px 3px;font-size:12px;line-height:1.2;background:#fff;color:#30343d;border:0;border-right:0;border-bottom:3px solid transparent}
  .service-tabs button:last-child{border-right:0}
  .service-tabs button:not([aria-selected=true]){background:#fff}
  .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red);border-bottom:3px solid var(--mock-red)}
