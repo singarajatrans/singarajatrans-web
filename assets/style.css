@@ -622,15 +622,14 @@ dialog{border-radius:12px}
 
 /* Search validation shake */
 .booking-widget.widget-invalid-shake{
-  animation:widget-invalid-shake .42s cubic-bezier(.36,.07,.19,.97);
+  animation:widget-invalid-shake .28s cubic-bezier(.36,.07,.19,.97);
   transform-origin:center;
 }
 @keyframes widget-invalid-shake{
   0%,100%{transform:translateX(0)}
-  20%{transform:translateX(-3px)}
-  40%{transform:translateX(3px)}
-  60%{transform:translateX(-2px)}
-  80%{transform:translateX(2px)}
+  25%{transform:translateX(-1px)}
+  50%{transform:translateX(1px)}
+  75%{transform:translateX(-1px)}
 }
 @media(prefers-reduced-motion:reduce){
   .booking-widget.widget-invalid-shake{animation:none}
