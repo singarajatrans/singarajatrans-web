@@ -61,7 +61,7 @@ function updateServiceCopy(){
  $('#service-description').textContent=service==='shuttle'?t('Perjalanan sekali jalan, tarif per penumpang','One-way trips, priced per passenger'):service==='airport'?t('Antar jemput bandara privat, tarif per mobil','Private airport transfers, priced per vehicle'):t('Perjalanan privat sekali jalan, tarif per mobil','Private one-way trips, priced per vehicle');
  $('#time').hidden=service!=='shuttle';$('#time').disabled=service!=='shuttle';
  $('#private-time').hidden=service==='shuttle';$('#private-time').disabled=service==='shuttle';$('#private-time').required=service!=='shuttle';
- $('#search-button-label').textContent=service==='shuttle'?t('Cari Perjalanan','Find a trip'):t('Cari Mobil','Find a car');
+ $('#search-button-label').textContent=service==='shuttle'?t('Cari Tiket','Find tickets'):t('Cari Mobil','Find a car');
  syncQuickDates();
 }
 function quickDate(offset){return C.baliDate(new Date(Date.now()+offset*86400000));}
