@@ -1,5 +1,5 @@
 (function(){'use strict';
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],C=window.Singaraja;
+const U=window.SingarajaUI,$=U.one,$=U.all,C=window.Singaraja;
 let language='id',service='shuttle',lastSearch=null,selectedTrip=null,lastFocused=null;
 const t=(id,en)=>language==='en'?en:id;
 const escape=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
@@ -41,14 +41,7 @@ function updateSelects(){
  syncFloatingFields();
 }
 function syncFloatingFields(){
- $('.field').forEach(field=>{
-  const control=field.querySelector('select:not([hidden]),input:not([hidden])');
-  const hasValue=Boolean(control&&control.value);
-  field.classList.toggle('has-value',hasValue);
-  if(hasValue){
-   field.classList.remove('field-invalid','field-invalid-shake');
-  }
- });
+ U.syncFields($('#search-form'));
  const value=$('#date').value,months=language==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
  $('.date-display').textContent=value?`${Number(value.slice(8,10))} ${months[Number(value.slice(5,7))-1]}, ${value.slice(0,4)}`:'';
 }
@@ -147,21 +140,7 @@ function buildRequest(d){
  return [t('Halo SINGARAJA TRANS, saya ingin mengajukan pemesanan:','Hello SINGARAJA TRANS, I would like to request a booking:'),serviceName(s.service),`${s.from} → ${s.to}`,`${formatDate(s.date)} · ${s.time} WITA`,`${t('Armada/layanan','Vehicle/service')}: ${tripName(s.kind)}`,`${t('Penumpang','Passengers')}: ${s.passengers}`,`${t('Tarif acuan total','Reference total')}: ${money(s.total)}`,`${t('Nama','Name')}: ${d.name}`,`WhatsApp: ${d.phone}`,`${t('Alamat jemput','Pickup address')}: ${d.pickup}`,`${t('Alamat tujuan','Drop-off address')}: ${d.dropoff}`,`${t('Catatan','Notes')}: ${d.notes||'-'}`,t('Mohon konfirmasi ketersediaan, harga akhir, dan metode pembayaran yang tersedia.','Please confirm availability, the final fare, and available payment methods.')].join('\n');
 }
 function animateInvalidSearchFields(ids){
- document.querySelectorAll('.field.field-invalid').forEach(field=>field.classList.remove('field-invalid'));
- const invalidFields=[];
- ids.forEach(id=>{
-  const control=$('#'+id);
-  const field=control?.closest('.field');
-  if(!field)return;
-  field.classList.add('field-invalid');
-  field.classList.remove('field-invalid-shake');
-  void field.offsetWidth;
-  field.classList.add('field-invalid-shake');
-  invalidFields.push(field);
- });
- if(!invalidFields.length)return;
- C.softHaptic?.();
- window.setTimeout(()=>invalidFields.forEach(field=>field.classList.remove('field-invalid-shake')),360);
+ U.feedbackInvalidFields(ids,{scope:$('#search-form')});
 }
 $('#search-form').addEventListener('submit',e=>{
  e.preventDefault();const s=searchState(),error=$('#search-error');error.hidden=true;
@@ -202,7 +181,7 @@ $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService
 $$('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').value=quickDate(Number(b.dataset.quickDate));syncQuickDates();$('#date').dispatchEvent(new Event('change',{bubbles:true}));}));
 $('#date').addEventListener('change',syncQuickDates);
 $('#search-form').addEventListener('input',syncFloatingFields);$('#search-form').addEventListener('change',syncFloatingFields);
-$('.swap-fields').addEventListener('click',()=>{const from=$('#origin').value,to=$('#destination').value;if(!from||!to)return;const button=$('.swap-fields'),stack=$('.field-stack');button.classList.remove('is-swapping');stack.classList.remove('is-swapping');void button.offsetWidth;button.classList.add('is-swapping');stack.classList.add('is-swapping');$('#origin').value=to;updateSelects();$('#destination').value=from;syncFloatingFields();$('#origin').dispatchEvent(new Event('change',{bubbles:true}));$('#destination').dispatchEvent(new Event('change',{bubbles:true}));setTimeout(()=>{button.classList.remove('is-swapping');stack.classList.remove('is-swapping');},360);});
+$('.swap-fields').addEventListener('click',()=>{const from=$('#origin').value,to=$('#destination').value;if(!from||!to)return;const button=$('.swap-fields'),stack=$('.field-stack');U.restartClass(button,'is-swapping',360);U.restartClass(stack,'is-swapping',360);$('#origin').value=to;updateSelects();$('#destination').value=from;syncFloatingFields();$('#origin').dispatchEvent(new Event('change',{bubbles:true}));$('#destination').dispatchEvent(new Event('change',{bubbles:true}));});
 $$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=window.matchMedia('(max-width:767px)').matches&&b.dataset.language===language?(language==='id'?'en':'id'):b.dataset.language;translate();}));
 window.matchMedia('(max-width:767px)').addEventListener('change',updateServiceCopy);
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
