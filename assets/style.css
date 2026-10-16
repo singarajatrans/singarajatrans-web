@@ -652,8 +652,11 @@ dialog{border-radius:12px}
 
 /* Mobile invalid field: remove left focus accent */
 @media(max-width:767px){
+  .field.field-invalid,
   .field.field-invalid:focus-within{
-    box-shadow:none;
+    box-shadow:none!important;
+    border-left:0!important;
+    outline:0!important;
     border-color:#e8eaee;
     border-bottom-color:#edc9c9;
   }
