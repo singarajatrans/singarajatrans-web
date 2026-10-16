@@ -477,8 +477,8 @@ dialog{border-radius:12px}
   .languages{
     position:relative;
     width:60px;
-    height:28px;
-    padding:1px;
+    height:26px;
+    padding:0;
     border:1px solid #dfe4ea;
     border-radius:999px;
     background:#e8eef5;
@@ -500,8 +500,8 @@ dialog{border-radius:12px}
     display:none!important;
     align-items:center;
     gap:5px;
-    min-height:28px;
-    padding:1px 6px 1px 1px;
+    min-height:26px;
+    padding:0 6px 0 1px;
     border-radius:999px;
     background:transparent!important;
     color:#163f72;
@@ -521,7 +521,7 @@ dialog{border-radius:12px}
   .languages [data-language=en][aria-pressed=true]{
     flex-direction:row-reverse;
     justify-content:flex-start;
-    padding:1px 1px 1px 6px;
+    padding:0 1px 0 6px;
   }
 
   .languages .language-flag{
