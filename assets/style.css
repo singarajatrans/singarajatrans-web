@@ -621,11 +621,11 @@ dialog{border-radius:12px}
 }
 
 /* Search validation shake */
-.field.field-invalid-shake{
-  animation:field-invalid-shake .42s cubic-bezier(.36,.07,.19,.97);
+.booking-widget.widget-invalid-shake{
+  animation:widget-invalid-shake .42s cubic-bezier(.36,.07,.19,.97);
   transform-origin:center;
 }
-@keyframes field-invalid-shake{
+@keyframes widget-invalid-shake{
   0%,100%{transform:translateX(0)}
   18%{transform:translateX(-5px)}
   36%{transform:translateX(4px)}
@@ -633,5 +633,5 @@ dialog{border-radius:12px}
   72%{transform:translateX(2px)}
 }
 @media(prefers-reduced-motion:reduce){
-  .field.field-invalid-shake{animation:none}
+  .booking-widget.widget-invalid-shake{animation:none}
 }
