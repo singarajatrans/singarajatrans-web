@@ -448,7 +448,7 @@ dialog{border-radius:12px}
     position:absolute!important;
     left:18%!important;
     right:18%!important;
-    bottom:-1px!important;
+    bottom:-3px!important;
     height:3px!important;
     border-radius:999px!important;
     background:var(--mock-red)!important;
