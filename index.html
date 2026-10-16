@@ -13,6 +13,7 @@
 <body>
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
 <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="bus-clean" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="17" rx="3"/><path d="M5 11h14M8 15h2m4 0h2M8 20v2m8-2v2M8 6h8"/></symbol>
 <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 12h16M8 3v9m8-9v9M7 19v2m10-2v2M8 16h.01M16 16h.01"/></symbol>
 <symbol id="field-bus" viewBox="0 0 32 32"><path d="M8 21V9c0-3.3 2.7-5 6-5h4c3.3 0 6 1.7 6 5v12c0 2.2-1.8 4-4 4h-8c-2.2 0-4-1.8-4-4Z"/><path d="M10 8h12M10 10h12v7H10zM11 21h.01M21 21h.01M11 25v3m10-3v3M5 13h3m-4 4h4m19-4h-3m4 4h-4"/></symbol>
 <symbol id="plane-up" viewBox="0 0 24 24"><path d="M12 2 9 10 3 13v3l7-2v5l-2 2v1l4-1 4 1v-1l-2-2v-5l7 2v-3l-6-3-3-8Z"/></symbol>
@@ -65,7 +66,7 @@
 </section>
  <div class="container booking-container" id="pesan">
  <section class="booking-widget" aria-label="Pencarian perjalanan">
- <div class="service-tabs" role="tablist" aria-label="Layanan perjalanan"><button role="tab" id="tab-shuttle" aria-controls="search-panel" aria-selected="true" tabindex="0" data-service="shuttle"><svg><use href="#field-bus"/></svg><span>Travel Shuttle</span></button><button role="tab" id="tab-airport" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="airport"><svg><use href="#plane-up"/></svg><span>Airport Transfer</span></button><button role="tab" id="tab-charter" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="charter"><svg><use href="#sedan-front"/></svg><span>Charter Drop</span></button></div>
+ <div class="service-tabs" role="tablist" aria-label="Layanan perjalanan"><button role="tab" id="tab-shuttle" aria-controls="search-panel" aria-selected="true" tabindex="0" data-service="shuttle"><svg><use href="#bus-clean"/></svg><span>Travel Shuttle</span></button><button role="tab" id="tab-airport" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="airport"><svg><use href="#plane-up"/></svg><span>Airport Transfer</span></button><button role="tab" id="tab-charter" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="charter"><svg><use href="#sedan-front"/></svg><span>Charter Drop</span></button></div>
  <div id="search-panel" role="tabpanel" aria-labelledby="tab-shuttle"><form id="search-form">
  <div class="trip-mode" id="trip-mode" aria-label="Jenis perjalanan" style="display:flex;justify-content:flex-start;gap:6px">
    <label style="list-style:none"><input type="radio" name="tripMode" value="oneway" checked><span data-en="One Way">Sekali Jalan</span></label>
