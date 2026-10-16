@@ -340,7 +340,7 @@ dialog{border-radius:12px}
  .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date" "time" "passenger";position:relative;border:1px solid #d8dce3;border-radius:14px;overflow:hidden;background:#fff}
  .field{min-height:64px;padding:9px 12px;border:0;border-bottom:1px solid #e8eaee;border-radius:0;background:#fff;box-shadow:none}
  .field:hover{border-color:#e8eaee}
- .field:focus-within{border-color:#e8eaee;box-shadow:inset 2px 0 0 var(--mock-red)}
+ .field:focus-within{border-color:#e8eaee;box-shadow:none}
  .field>svg{width:24px;height:24px;color:#292d34;stroke-width:2}
  .field-icon-default{display:none}
  .field>svg.field-icon-mobile{display:block}
