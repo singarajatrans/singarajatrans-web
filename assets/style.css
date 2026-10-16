@@ -436,23 +436,21 @@ dialog{border-radius:12px}
 @media(max-width:767px){#trip-mode label{position:relative!important}#trip-mode label:has(input:checked)::after{content:""!important;display:block!important;visibility:visible!important;position:absolute;left:9px;right:9px;bottom:-3px;height:1px;background:var(--red-dark);border-radius:2px;pointer-events:none}}
 
 
-/* Mobile active service tab indicator: true rounded pill ends */
+/* Mobile active service tab: keep approved orange consistent. */
 @media(max-width:767px){
   .service-tabs button[aria-selected=true]{
+    background:var(--mock-red)!important;
     background-image:none!important;
+    color:#fff!important;
     border-bottom-color:transparent!important;
   }
+  .service-tabs button[aria-selected=true] svg{
+    color:#fff!important;
+  }
   .service-tabs button[aria-selected=true]::after{
-    content:""!important;
-    display:block!important;
-    position:absolute!important;
-    left:18%!important;
-    right:18%!important;
-    bottom:-3px!important;
-    height:3px!important;
-    border-radius:999px!important;
-    background:var(--mock-red)!important;
-    visibility:visible!important;
+    content:none!important;
+    display:none!important;
+    visibility:hidden!important;
     pointer-events:none!important;
   }
 }
