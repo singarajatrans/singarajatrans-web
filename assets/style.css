@@ -572,3 +572,10 @@ dialog{border-radius:12px}
     right:24px;
   }
 }
+
+/* Mobile field label-value spacing */
+@media(max-width:767px){
+  .field.has-value .field-label{
+    margin-bottom:0;
+  }
+}
