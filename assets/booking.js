@@ -151,7 +151,7 @@ function animateInvalidSearchFields(ids){
  widget.classList.remove('widget-invalid-shake');
  void widget.offsetWidth;
  widget.classList.add('widget-invalid-shake');
- if('vibrate' in navigator)navigator.vibrate(10);
+ C.softHaptic?.();
  window.setTimeout(()=>widget.classList.remove('widget-invalid-shake'),560);
 }
 $('#search-form').addEventListener('submit',e=>{
