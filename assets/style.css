@@ -525,11 +525,11 @@ dialog{border-radius:12px}
   }
 
   .languages .language-flag{
-    width:24px;
-    height:24px;
-    flex:0 0 24px;
+    width:26px;
+    height:26px;
+    flex:0 0 26px;
     display:block;
-    border:3px solid #fff;
+    border:1px solid #fff;
     border-radius:50%;
     overflow:hidden;
     background-repeat:no-repeat!important;
