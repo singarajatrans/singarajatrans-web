@@ -428,3 +428,6 @@ dialog{border-radius:12px}
 
 /* Compact vertical padding for mobile trip chips */
 @media(max-width:767px){#trip-mode label{min-height:26px!important;padding-top:3px!important;padding-bottom:3px!important;line-height:18px!important}}
+
+/* Mobile trip chips: no visible focus border */
+@media(max-width:767px){#trip-mode label:focus,#trip-mode label:focus-visible,#trip-mode label:focus-within{outline:none!important;outline-offset:0!important;box-shadow:none!important}#trip-mode input:focus,#trip-mode input:focus-visible{outline:none!important;box-shadow:none!important}}
