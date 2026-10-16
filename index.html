@@ -70,7 +70,7 @@
  <div class="container booking-container" id="pesan">
  <section class="booking-widget" aria-label="Pencarian perjalanan">
  <div class="service-tabs" role="tablist" aria-label="Layanan perjalanan"><button role="tab" id="tab-shuttle" aria-controls="search-panel" aria-selected="true" tabindex="0" data-service="shuttle"><svg><use href="#transport-bus-v2"/></svg><span>Travel Shuttle</span></button><button role="tab" id="tab-airport" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="airport"><svg><use href="#transport-plane-v2"/></svg><span>Airport Transfer</span></button><button role="tab" id="tab-charter" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="charter"><svg><use href="#transport-sedan-v2"/></svg><span>Charter Drop</span></button></div>
- <div id="search-panel" role="tabpanel" aria-labelledby="tab-shuttle"><form id="search-form">
+ <div id="search-panel" role="tabpanel" aria-labelledby="tab-shuttle"><form id="search-form" novalidate>
  <div class="trip-mode" id="trip-mode" aria-label="Jenis perjalanan" style="display:flex;justify-content:flex-start;gap:6px">
    <label style="list-style:none"><input type="radio" name="tripMode" value="oneway" checked><span data-en="One Way">Sekali Jalan</span></label>
    <label class="is-disabled" title="Belum tersedia"><input type="radio" name="tripMode" value="roundtrip" disabled><span data-en="Round Trip">Pulang Pergi</span></label>
