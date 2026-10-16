@@ -145,7 +145,8 @@ function animateInvalidSearchFields(ids){
  widget.classList.remove('widget-invalid-shake');
  void widget.offsetWidth;
  widget.classList.add('widget-invalid-shake');
- window.setTimeout(()=>widget.classList.remove('widget-invalid-shake'),520);
+ if('vibrate' in navigator)navigator.vibrate([70,35,70]);
+ window.setTimeout(()=>widget.classList.remove('widget-invalid-shake'),560);
 }
 $('#search-form').addEventListener('submit',e=>{
  e.preventDefault();const s=searchState(),error=$('#search-error');error.hidden=true;
