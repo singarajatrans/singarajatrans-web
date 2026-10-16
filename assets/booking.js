@@ -140,7 +140,7 @@ function buildRequest(d){
  return [t('Halo SINGARAJA TRANS, saya ingin mengajukan pemesanan:','Hello SINGARAJA TRANS, I would like to request a booking:'),serviceName(s.service),`${s.from} → ${s.to}`,`${formatDate(s.date)} · ${s.time} WITA`,`${t('Armada/layanan','Vehicle/service')}: ${tripName(s.kind)}`,`${t('Penumpang','Passengers')}: ${s.passengers}`,`${t('Tarif acuan total','Reference total')}: ${money(s.total)}`,`${t('Nama','Name')}: ${d.name}`,`WhatsApp: ${d.phone}`,`${t('Alamat jemput','Pickup address')}: ${d.pickup}`,`${t('Alamat tujuan','Drop-off address')}: ${d.dropoff}`,`${t('Catatan','Notes')}: ${d.notes||'-'}`,t('Mohon konfirmasi ketersediaan, harga akhir, dan metode pembayaran yang tersedia.','Please confirm availability, the final fare, and available payment methods.')].join('\n');
 }
 function animateInvalidSearchFields(ids){
- $('.field.field-invalid').forEach(field=>field.classList.remove('field-invalid'));
+ document.querySelectorAll('.field.field-invalid').forEach(field=>field.classList.remove('field-invalid'));
  ids.forEach(id=>{
   const control=$('#'+id);
   const field=control?.closest('.field');
