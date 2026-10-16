@@ -407,3 +407,15 @@ dialog{border-radius:12px}
 @keyframes swap-destination{50%{opacity:.25;transform:translateY(-8px)}}
 @media(max-width:360px){.hero h1{font-size:24px}.date-display{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.languages button[aria-pressed=true] .language-flag,.swap-fields.is-swapping svg,.field-stack.is-swapping .origin-field>span,.field-stack.is-swapping .destination-field>span{animation:none}}
+
+/* Trip mode filter chips: compact, left-aligned, shared brand red; no transitions. */
+.trip-mode{display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:8px;padding:0 0 12px;margin:0}
+.trip-mode label{display:inline-flex;flex:0 0 auto;justify-content:center;align-items:center;gap:8px;width:auto;min-height:38px;padding:7px 12px;border:1px solid #cfd3da;border-radius:9px;background:#fff;color:var(--text);font-size:13px;font-weight:650;line-height:1.3;box-shadow:none;transition:none;cursor:pointer}
+.trip-mode label::before{content:"";width:17px;height:17px;display:grid;place-items:center;flex:0 0 17px;border:1.5px solid currentColor;border-radius:50%;font-size:12px;line-height:1}
+.trip-mode label:has(input:checked){background:var(--red-dark);border-color:var(--red-dark);color:#fff;box-shadow:none}
+.trip-mode label:has(input:checked)::before{content:"✓";font-weight:800}
+.trip-mode label.is-disabled{opacity:1;background:#fff;color:var(--text);cursor:not-allowed}
+.trip-mode label.is-disabled::before{opacity:.55}
+.trip-mode input{position:absolute;opacity:0;pointer-events:none}
+.trip-mode label:focus-within{outline:2px solid var(--red-dark);outline-offset:2px}
+@media(max-width:767px){.trip-mode{display:flex;grid-template-columns:none;justify-content:flex-start;gap:8px;padding:0;margin-bottom:10px}.trip-mode label{width:auto;min-height:38px;padding:7px 10px;font-size:12px;border-radius:9px;transition:none}}
