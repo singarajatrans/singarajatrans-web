@@ -1,0 +1,3 @@
+Singaraja Trans Cloudflare Pages preview deployment check.
+Branch: preview
+Production branch main is unchanged.
