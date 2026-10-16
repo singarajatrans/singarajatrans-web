@@ -619,3 +619,19 @@ dialog{border-radius:12px}
       inset 1px 0 1px rgba(10,28,48,.04);
   }
 }
+
+/* Search validation shake */
+.field.field-invalid-shake{
+  animation:field-invalid-shake .42s cubic-bezier(.36,.07,.19,.97);
+  transform-origin:center;
+}
+@keyframes field-invalid-shake{
+  0%,100%{transform:translateX(0)}
+  18%{transform:translateX(-5px)}
+  36%{transform:translateX(4px)}
+  54%{transform:translateX(-3px)}
+  72%{transform:translateX(2px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .field.field-invalid-shake{animation:none}
+}
