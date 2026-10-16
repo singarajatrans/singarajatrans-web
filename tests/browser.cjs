@@ -45,6 +45,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.match(await page.locator('#motor-entry').innerText(),/belum tersedia/);
     assert.match(await page.locator('#motor-entry a').getAttribute('href'),/^https:\/\/wa\.me\/6281339392525/);
     await page.setViewportSize({width:1024,height:900});
+    await page.waitForFunction(()=>document.querySelector('#tab-shuttle').getAttribute('aria-selected')==='true');
     assert.equal(await page.locator('#tab-motor').isVisible(),false);
     assert.equal(await page.locator('#tab-shuttle').getAttribute('aria-selected'),'true');
     await page.setViewportSize({width,height:900});
