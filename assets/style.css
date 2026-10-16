@@ -501,7 +501,7 @@ dialog{border-radius:12px}
     align-items:center;
     gap:4px;
     min-height:22px;
-    padding:0 4px 0 23px;
+    padding:0;
     border-radius:999px;
     background:transparent!important;
     color:#163f72;
@@ -520,7 +520,7 @@ dialog{border-radius:12px}
 
   .languages [data-language=en][aria-pressed=true]{
     flex-direction:row;
-    padding:0 23px 0 4px;
+    padding:0;
   }
 
   .languages .language-flag{
@@ -557,10 +557,18 @@ dialog{border-radius:12px}
   }
 
   .languages .language-code{
+    position:absolute;
+    left:24px;
+    right:0;
     display:block;
-    min-width:12px;
+    min-width:0;
     text-align:center;
     line-height:1;
     letter-spacing:.1px;
+  }
+
+  .languages [data-language=en][aria-pressed=true] .language-code{
+    left:0;
+    right:24px;
   }
 }
