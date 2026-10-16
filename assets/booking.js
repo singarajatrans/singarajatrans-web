@@ -14,7 +14,7 @@ function translate(){
  all('[data-en]').forEach(el=>{if(!el.dataset.id)el.dataset.id=el.innerHTML;el.innerHTML=language==='en'?el.dataset.en:el.dataset.id;});
  document.documentElement.lang=language;
  document.title=t('SINGARAJA TRANS — Travel Shuttle & Transportasi Bali','SINGARAJA TRANS — Bali Shuttle & Private Transport');
- const labels={'#origin':['Asal','Origin'],'#destination':['Tujuan','Destination'],'#date':['Tanggal Perjalanan','Travel date'],'#time':['Waktu','Departure time'],'#private-time':['Jam penjemputan','Pickup time'],'#passengers':['Penumpang','Passengers'],'.mobile-menu':['Buka menu','Open menu'],'.swap-fields':['Tukar asal dan tujuan','Swap origin and destination'],'.previous':['Rute sebelumnya','Previous routes'],'.next':['Rute berikutnya','Next routes'],'.floating-chat':['Hubungi SINGARAJA TRANS melalui WhatsApp','Contact SINGARAJA TRANS on WhatsApp']};
+ const labels={'#origin':['Asal','Origin'],'#destination':['Tujuan','Destination'],'#date':['Tanggal Perjalanan','Travel date'],'#time':['Waktu','Departure time'],'#private-time':['Jam penjemputan','Pickup time'],'#passengers':['Penumpang','Passengers'],'.mobile-menu':['Buka menu','Open menu'],'.previous':['Rute sebelumnya','Previous routes'],'.next':['Rute berikutnya','Next routes'],'.floating-chat':['Hubungi SINGARAJA TRANS melalui WhatsApp','Contact SINGARAJA TRANS on WhatsApp']};
  Object.entries(labels).forEach(([sel,vals])=>$(sel).setAttribute('aria-label',vals[language==='en'?1:0]));
  all('[data-close-dialog]').forEach(b=>b.setAttribute('aria-label',t('Tutup','Close')));
  all('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
@@ -54,27 +54,35 @@ function updateServiceCopy(){
  const mobileHero={
   shuttle:[t('Travel Shuttle Bali','Travel Shuttle Bali'),t('Travel shuttle antarkota.','Intercity travel shuttle.')],
   airport:[t('Airport Transfer Bali','Airport Transfer Bali'),t('Antar jemput privat Bandara Ngurah Rai.','Private Ngurah Rai Airport transfers.')],
-  charter:[t('Charter Drop Bali','Charter Drop Bali'),t('Mobil privat langsung ke tujuan.','Private cars direct to your destination.')]
+  charter:[t('Sewa Mobil Bali','Bali Car Rental'),t('Mobil privat langsung ke tujuan.','Private cars direct to your destination.')],
+  motor:[t('Sewa Motor Bali','Bali Motorbike Rental'),t('Informasi layanan rental motor.','Motorbike rental service information.')]
  };
- const hero=(window.matchMedia('(max-width:767px)').matches?mobileHero:desktopHero)[service];
+ const isMobile=window.matchMedia('(max-width:767px)').matches;
+ const hero=(isMobile?mobileHero:desktopHero)[service];
  $('#hero-title').innerHTML=hero[0];$('#hero-subtitle').textContent=hero[1];
+ $('#trip-mode').hidden=isMobile&&service!=='shuttle';
  $('#service-description').textContent=service==='shuttle'?t('Perjalanan sekali jalan, tarif per penumpang','One-way trips, priced per passenger'):service==='airport'?t('Antar jemput bandara privat, tarif per mobil','Private airport transfers, priced per vehicle'):t('Perjalanan privat sekali jalan, tarif per mobil','Private one-way trips, priced per vehicle');
  $('#time').hidden=service!=='shuttle';$('#time').disabled=service!=='shuttle';
  $('#private-time').hidden=service==='shuttle';$('#private-time').disabled=service==='shuttle';$('#private-time').required=service!=='shuttle';
  $('#search-button-label').textContent=service==='shuttle'?t('Cari Tiket','Find tickets'):t('Cari Mobil','Find a car');
- syncQuickDates();
+ syncQuickDates();if(isMobile)syncFloatingFields();
 }
 function quickDate(offset){return C.baliDate(new Date(Date.now()+offset*86400000));}
 function syncQuickDates(){
  all('[data-quick-date]').forEach(b=>b.setAttribute('aria-pressed',String($('#date').value===quickDate(Number(b.dataset.quickDate)))));
 }
 function setService(next,{focus=false}={}){
- if(!['shuttle','airport','charter'].includes(next))return;
+ if(!['shuttle','airport','charter'].includes(next)&&!(next==='motor'&&window.matchMedia('(max-width:767px)').matches))return;
  service=next;document.body.dataset.service=service;
+ $('#search-form').hidden=service==='motor';$('#motor-entry').hidden=service!=='motor';
  all('[role=tab]').forEach(tab=>{const active=tab.dataset.service===service;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;});
  $('#search-panel').setAttribute('aria-labelledby','tab-'+service);$('#search-error').hidden=true;
  if(lastSearch&&lastSearch.service!==service)$('#results').hidden=true;
- updateSelects();updateServiceCopy();
+ if(service!=='motor')updateSelects();updateServiceCopy();
+ if(window.matchMedia('(max-width:767px)').matches){
+  const tabs=$('.service-tabs'),active=$('#tab-'+service);
+  tabs.scrollTo({left:active.offsetLeft-(tabs.clientWidth-active.offsetWidth)/2,behavior:'instant'});
+ }
  if(focus){$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#origin').focus({preventScroll:true});}
 }
 let routeFilter='all';
@@ -180,16 +188,16 @@ all('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(
 all('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
 all('[data-quick-date]').forEach(b=>b.addEventListener('click',()=>{$('#date').value=quickDate(Number(b.dataset.quickDate));syncQuickDates();$('#date').dispatchEvent(new Event('change',{bubbles:true}));}));
 $('#date').addEventListener('change',syncQuickDates);
+$('#date').addEventListener('click',()=>{if(!window.matchMedia('(max-width:767px)').matches||!$('#date').showPicker)return;try{$('#date').showPicker();}catch{/* Keep the native date control available if the picker cannot open. */}});
 $('#search-form').addEventListener('input',syncFloatingFields);$('#search-form').addEventListener('change',syncFloatingFields);
-$('.swap-fields').addEventListener('click',()=>{const from=$('#origin').value,to=$('#destination').value;if(!from||!to)return;const button=$('.swap-fields'),stack=$('.field-stack');U.restartClass(button,'is-swapping',360);U.restartClass(stack,'is-swapping',360);$('#origin').value=to;updateSelects();$('#destination').value=from;syncFloatingFields();$('#origin').dispatchEvent(new Event('change',{bubbles:true}));$('#destination').dispatchEvent(new Event('change',{bubbles:true}));});
 all('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=window.matchMedia('(max-width:767px)').matches&&b.dataset.language===language?(language==='id'?'en':'id'):b.dataset.language;translate();}));
-window.matchMedia('(max-width:767px)').addEventListener('change',updateServiceCopy);
+window.matchMedia('(max-width:767px)').addEventListener('change',()=>{if(service==='motor')setService('shuttle');else updateServiceCopy();});
 all('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
 all('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.closest('dialog'))));
 all('dialog').forEach(d=>{d.addEventListener('cancel',e=>{e.preventDefault();closeDialog(d);});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog(d);}});});
 $('.mobile-menu').addEventListener('click',()=>{const open=$('.mobile-menu').getAttribute('aria-expanded')!=='true';$('.mobile-menu').setAttribute('aria-expanded',String(open));$('#navigation').classList.toggle('is-open',open);$('#header').classList.remove('is-hidden');});
 $('#navigation').addEventListener('click',()=>{$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}if(e.target.matches('[role=tab]')&&['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=all('[role=tab]'),i=tabs.indexOf(e.target),next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;setService(tabs[next].dataset.service);tabs[next].focus();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#navigation').classList.remove('is-open');$('.mobile-menu').setAttribute('aria-expanded','false');}if(e.target.matches('[role=tab]')&&['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=all('[role=tab]').filter(tab=>tab.getClientRects().length),i=tabs.indexOf(e.target),next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;setService(tabs[next].dataset.service);tabs[next].focus();}});
 $('.previous').addEventListener('click',()=>$('#route-cards').scrollBy({left:-$('#route-cards').clientWidth*.8,behavior:'smooth'}));
 $('.next').addEventListener('click',()=>$('#route-cards').scrollBy({left:$('#route-cards').clientWidth*.8,behavior:'smooth'}));
 $('#edit-search').addEventListener('click',()=>{const p=searchParams(lastSearch);location.assign(location.pathname+'?'+p.toString()+'#pesan');});

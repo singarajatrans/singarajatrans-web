@@ -9,7 +9,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="preload" href="assets/images/hero.webp" as="image" media="(min-width:768px)" fetchpriority="high">
   <link rel="preload" href="assets/images/hero-mobile-shuttle.webp" as="image" media="(max-width:767px)" fetchpriority="high">
-  <link rel="stylesheet" href="assets/style.css?v=restore-previous-mobile-tabs-1"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=ui-core-1" defer></script><script src="assets/booking.js?v=mobile-ui-17" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=mobile-services-1"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=ui-core-1" defer></script><script src="assets/booking.js?v=mobile-services-1" defer></script>
 <style media="(max-width:767px)">#trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important}#trip-mode label{gap:0!important}</style></head>
 <body>
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
@@ -23,6 +23,7 @@
 <symbol id="plane-up" viewBox="0 0 24 24"><path d="M12 2 9 10 3 13v3l7-2v5l-2 2v1l4-1 4 1v-1l-2-2v-5l7 2v-3l-6-3-3-8Z"/></symbol>
 <symbol id="plane" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4L22 2ZM11 13l6-6"/></symbol>
 <symbol id="sedan-front" viewBox="0 0 24 24"><path d="M5 11 7 5.5C7.4 4.5 8.3 4 9.4 4h5.2c1.1 0 2 .5 2.4 1.5L19 11l1 2v6H4v-6l1-2Z"/><path d="M6.5 11h11M7 15h2m6 0h2M6 19v2m12-2v2M4 13h2m12 0h2"/></symbol>
+<symbol id="motorcycle" viewBox="0 0 24 24"><circle cx="5" cy="17" r="4"/><circle cx="19" cy="17" r="4"/><path d="m5 17 5-8 5 8H5Zm5-8H7m8-5h3l1 13M10 9h8M9 6h3"/></symbol>
 <symbol id="car" viewBox="0 0 24 24"><path d="m5 7 2-4h10l2 4 2 3v9H3v-9l2-3Zm-2 5h18M6 19v2m12-2v2M7 15h.01M17 15h.01M5 7h14"/></symbol>
 <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
 <symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-13 4h.01m4 0h.01m4 0h.01"/></symbol>
@@ -70,7 +71,7 @@
 </section>
  <div class="container booking-container" id="pesan">
  <section class="booking-widget" aria-label="Pencarian perjalanan">
- <div class="service-tabs" role="tablist" aria-label="Layanan perjalanan"><button role="tab" id="tab-shuttle" aria-controls="search-panel" aria-selected="true" tabindex="0" data-service="shuttle"><svg><use href="#transport-bus-v2"/></svg><span>Travel Shuttle</span></button><button role="tab" id="tab-airport" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="airport"><svg><use href="#transport-plane-v2"/></svg><span>Airport Transfer</span></button><button role="tab" id="tab-charter" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="charter"><svg><use href="#transport-sedan-v2"/></svg><span>Charter Drop</span></button></div>
+ <div class="service-tabs" role="tablist" aria-label="Layanan perjalanan"><button role="tab" id="tab-shuttle" aria-controls="search-panel" aria-selected="true" tabindex="0" data-service="shuttle"><svg><use href="#transport-bus-v2"/></svg><span>Travel Shuttle</span></button><button role="tab" id="tab-airport" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="airport"><svg><use href="#transport-plane-v2"/></svg><span>Airport Transfer</span></button><button role="tab" id="tab-charter" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="charter"><svg><use href="#transport-sedan-v2"/></svg><span class="desktop-service-label">Charter Drop</span><span class="mobile-service-label" data-en="Car Rental">Sewa Mobil</span></button><button class="mobile-service" role="tab" id="tab-motor" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="motor"><svg aria-hidden="true"><use href="#motorcycle"/></svg><span data-en="Motorbike Rental">Sewa Motor</span></button></div>
  <div id="search-panel" role="tabpanel" aria-labelledby="tab-shuttle"><form id="search-form" novalidate>
  <div class="trip-mode" id="trip-mode" aria-label="Jenis perjalanan" style="display:flex;justify-content:flex-start;gap:6px">
    <label style="list-style:none"><input type="radio" name="tripMode" value="oneway" checked><span data-en="One Way">Sekali Jalan</span></label>
@@ -81,7 +82,6 @@
  <div class="field-stack">
   <label class="field origin-field"><svg class="field-icon-default"><use href="#bus"/></svg><svg class="field-icon-mobile"><use href="#pin"/></svg><span><span class="field-label" data-en="From">Asal</span><select id="origin" name="origin" required aria-label="Asal"></select></span></label>
   <label class="field destination-field"><svg class="field-icon-default"><use href="#bus"/></svg><svg class="field-icon-mobile"><use href="#pin"/></svg><span><span class="field-label" data-en="To">Tujuan</span><select id="destination" name="destination" required aria-label="Tujuan"></select></span></label>
-  <button class="swap-fields" type="button" aria-label="Tukar asal dan tujuan"><svg><use href="#swap"/></svg></button>
   <label class="field date-field"><svg class="field-icon-default"><use href="#calendar"/></svg><svg class="field-icon-mobile"><use href="#field-calendar"/></svg><span><span class="field-label" data-en="Travel date">Tanggal Perjalanan</span><input type="date" id="date" name="date" required aria-label="Tanggal Perjalanan"><span class="date-display" aria-hidden="true"></span></span></label>
   <div class="quick-date-actions" aria-label="Pilihan tanggal cepat"><button type="button" data-quick-date="0" aria-pressed="false" data-en="Today">Hari ini</button><button type="button" data-quick-date="1" aria-pressed="false" data-en="Tomorrow">Besok</button></div>
   <label class="field time-field"><svg><use href="#clock"/></svg><span><span class="field-label" data-en="Time">Waktu</span><select id="time" name="time" aria-label="Waktu"><option value="" data-en="Any time">Semua</option><option value="morning" data-en="Morning">Pagi</option><option value="afternoon" data-en="Afternoon">Siang / Sore</option><option value="evening" data-en="Evening">Malam</option></select><input type="time" id="private-time" name="privateTime" value="09:00" hidden disabled aria-label="Jam penjemputan"></span></label>
@@ -89,7 +89,13 @@
  </div>
  <button class="button primary search-button" type="submit"><svg><use href="#search"/></svg><span id="search-button-label">Cari Perjalanan</span></button>
  </div><p class="form-error" id="search-error" role="alert" hidden></p>
- </form></div>
+ </form>
+ <div id="motor-entry" class="mobile-service" hidden>
+   <span class="rental-icon" aria-hidden="true"><svg><use href="#motorcycle"/></svg></span>
+   <p class="rental-title" data-en="Motorbike Rental">Sewa Motor</p>
+   <p data-en="Online motorbike booking is not available yet. Contact our team for service information.">Pemesanan online Sewa Motor belum tersedia. Hubungi tim kami untuk informasi layanan.</p>
+   <a class="button primary" href="https://wa.me/6281339392525?text=Halo%20SINGARAJA%20TRANS%2C%20saya%20ingin%20informasi%20Sewa%20Motor." target="_blank" rel="noopener" data-en="Ask about Motorbike Rental">Tanyakan Sewa Motor</a>
+ </div></div>
  </section>
  <div class="booking-footnote" aria-label="Keunggulan singkat">
    <div><span class="benefit-icon"><svg><use href="#users"/></svg></span><span><strong data-en="Service options">Pilihan layanan</strong><small data-en="Choose what fits your journey.">Sesuai kebutuhan perjalanan Anda.</small></span></div>

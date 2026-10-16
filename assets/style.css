@@ -2,7 +2,7 @@
 @media(min-width:768px){.footer-group:not([open])>div{display:flex}}
 @media(max-width:1100px){.nav-inner{gap:20px}.brand{width:180px}.nav-inner nav{gap:16px}.nav-actions{gap:10px}.container{width:calc(100% - 48px)}.search-fields{grid-template-columns:1fr 1fr 1fr}.search-button{min-height:64px}.hero h1{font-size:45px}.hero-location{bottom:100px}.route-carousel{grid-auto-columns:calc((100% - 32px)/3)}.route-card{padding:18px}.about-section{gap:40px}.footer-grid{gap:24px}.nav-inner nav a{font-size:12px}.service-card{padding:22px}.reviews-section{gap:30px}.reviews-section h2{font-size:28px}}
 @media(max-width:850px) and (min-width:768px){.booking-check{display:none}.nav-inner{gap:14px}.destination-grid{gap:16px}.destination-card>div{padding:16px}.destination-card h3{font-size:16px}.faq-section{gap:40px}.help-banner{padding:28px}.help-banner h2{font-size:22px}}
-@media(max-width:767px){html{scroll-padding-top:86px}.container{width:calc(100% - 32px)}h2{font-size:23px;letter-spacing:-.7px}.section{padding-block:42px}.section-heading{margin-bottom:22px;gap:12px;align-items:center}.section-heading p{font-size:12px;margin-top:8px}.eyebrow{font-size:9px;letter-spacing:1.5px;margin-bottom:8px}.topbar{display:none}.nav-inner{height:66px;gap:10px;justify-content:space-between}.brand{width:165px}.nav-actions{gap:8px}.languages{gap:0}.languages button{font-size:10px;gap:3px;padding-inline:3px}.languages>span{font-size:9px}.booking-check{display:none}.mobile-menu{display:flex;width:36px;height:40px;border:0;border-radius:7px}.mobile-menu svg{width:24px}.nav-inner nav{display:none;position:absolute;top:66px;left:0;right:0;margin:0;background:white;border-bottom:1px solid var(--line);box-shadow:0 10px 20px #0001;padding:12px 24px;flex-direction:column;gap:0}.nav-inner nav.is-open{display:flex}.nav-inner nav a{font-size:14px;min-height:46px}.hero{min-height:365px}.hero-image{object-position:62% center}.hero-service-visual{inset:0;width:100%;-webkit-mask-image:none;mask-image:none}.hero-service-image{object-position:center 54%;transform:scale(1.05)}.hero-service-shuttle{opacity:.48;transform:scale(1)}body[data-service="airport"] .hero-service-shuttle,body[data-service="charter"] .hero-service-shuttle{opacity:0;transform:scale(1.05)}body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{opacity:.48;transform:scale(1)}body[data-service="airport"] .hero-service-airport{object-position:center 48%}body[data-service="charter"] .hero-service-charter{object-position:center 52%}.hero:after{background:linear-gradient(90deg,#10242bce,#10242b50),linear-gradient(0deg,#10242b60,transparent 60%)}.hero-content{padding-block:40px 112px}.hero-eyebrow{font-size:9px;letter-spacing:1.5px}.hero h1{font-size:32px;line-height:1.17;letter-spacing:-1.2px;margin-bottom:14px}.hero p{font-size:14px;line-height:1.7;max-width:310px}.hero-benefits{gap:14px;justify-content:start;font-size:11px;margin-top:24px;flex-wrap:wrap;row-gap:9px}.hero-benefits>span{gap:5px}.hero-benefits svg{width:14px;height:14px}.hero-location{display:none}.booking-container{margin-top:-63px}.booking-widget{border-radius:16px}.service-tabs{padding:0 8px;gap:0;border-radius:16px 16px 0 0}.service-tabs button{flex:1;min-width:0;flex-direction:column;gap:7px;padding:14px 3px 12px;font-size:12px;min-height:77px;line-height:1.4;border-bottom-width:2px}.service-tabs svg{width:23px;height:23px}#search-panel{padding:17px 16px 20px}.form-top{margin-bottom:14px;font-size:12px;line-height:1.5;display:block}.small-note{display:none}.search-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.field{min-height:72px;padding:11px 12px;gap:8px}.field:nth-child(1),.field:nth-child(2){grid-column:1/-1}.field:nth-child(5){grid-column:1/-1}.field>svg{width:19px;height:19px}.field input,.field select{font-size:16px;height:25px}.field input[type=date]{font-size:15px}.field-label{font-size:14px;margin-bottom:5px}.search-button{grid-column:1/-1;min-height:48px;font-size:15px;margin-top:2px}.booking-footnote{margin:14px 0 0;gap:14px;flex-wrap:wrap;font-size:9px;justify-content:center}.booking-footnote a{margin-left:0;width:100%;text-align:center;min-height:32px;padding-top:2px}.booking-footnote svg{width:12px;height:12px}.carousel-controls{display:none}.route-carousel{grid-auto-columns:78%;gap:13px;margin-right:-16px;padding-right:16px;scroll-padding-left:2px}.route-card{padding:21px}.route-path{font-size:15px}.route-icon{margin-bottom:16px}.route-price strong{font-size:22px}.route-price .text-button{font-size:12px}.caption{font-size:10px;line-height:1.6;margin-top:12px}.service-grid{grid-template-columns:1fr;gap:13px}.service-card{position:relative;padding:22px 22px 20px 83px;min-height:150px}.service-icon{position:absolute;left:20px;top:23px;width:43px;height:43px}.service-icon svg{width:23px;height:23px}.service-card h3{font-size:17px}.service-card p{font-size:12px;margin-top:7px;margin-bottom:7px;max-width:none}.service-card .text-button{font-size:12px;min-height:38px}.about-section{grid-template-columns:1fr;gap:28px}.fleet-photo{max-width:500px}.photo-label{left:12px;bottom:12px;font-size:9px}.about-copy>p{font-size:13px;margin:13px 0 18px}.about-point{margin-top:17px}.about-point h3{font-size:13px}.about-point p{font-size:12px}.destination-grid{grid-template-columns:1fr 1fr;gap:12px}.destination-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:stretch}.destination-card>img{height:145px}.destination-card:last-child>img{height:100%;min-height:162px}.destination-card>div{padding:14px}.place-label{font-size:8px;letter-spacing:.7px;line-height:1.5;display:block}.destination-card h3{font-size:15px;line-height:1.35;margin-top:7px;gap:5px}.destination-card p{font-size:11px;line-height:1.65;margin-top:8px}.reviews-section{display:block}.reviews-section h2{font-size:25px}.reviews-section p{font-size:13px;margin-top:10px}.reviews-section .button{margin-top:22px;font-size:12px}#results{margin-top:18px;padding-top:28px;scroll-margin-top:78px}.results-page #results{padding-top:32px;margin-top:0}.faq-section{grid-template-columns:1fr;gap:22px}.faq-intro h2 br{display:none}.faq-intro>p{max-width:none;font-size:12px}.faq-intro>.text-button{margin-top:10px}.faq-list summary{font-size:13px;padding-block:18px;min-height:58px}.faq-list details p{font-size:12px}.help-banner{display:block;padding:26px;margin-top:0;margin-bottom:65px;border-radius:12px}.help-banner h2{font-size:23px;line-height:1.3}.help-banner p{font-size:12px;margin-top:9px}.help-banner .button{margin-top:21px;font-size:12px}.footer-grid{grid-template-columns:1fr;gap:0;padding-bottom:23px}.footer-brand{padding-bottom:25px}.footer-brand>img{width:210px;margin-bottom:16px}.footer-brand p{font-size:12px}.footer-brand address{font-size:12px}.footer-brand>a{min-height:36px;font-size:12px}.footer-group{border-top:1px solid #ddd}.footer-group summary{pointer-events:auto;font-size:13px;padding:16px 25px 16px 0;position:relative;min-height:54px}.footer-group summary:after{content:"+";position:absolute;right:5px;font-size:20px;top:10px;color:#777;font-weight:400}.footer-group[open] summary:after{content:"−"}.footer-group>div{padding-bottom:15px;gap:0}.footer-group a,.footer-link{min-height:40px;font-size:12px}.footer-bottom{padding-bottom:27px;display:block;font-size:10px}.footer-bottom>span{display:block;margin-top:3px}.floating-chat{width:46px;height:46px;right:16px;bottom:16px}.floating-chat svg{width:23px;height:23px}dialog{inset-block-start:10px;width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:14px}.dialog-header{padding:18px;gap:12px}.dialog-header h2{font-size:21px}.dialog-header .eyebrow{font-size:8px}.dialog-body{padding:20px 18px}.detail-fields input,.detail-fields textarea{font-size:16px}.result-card{padding:17px;gap:14px;flex-wrap:wrap;align-items:start}.result-card>img{width:105px}.result-details{flex:1}.result-details h3{font-size:15px}.result-details p{font-size:11px}.result-schedule{font-size:20px}.result-price{border-top:1px solid #eee;padding-top:14px;width:100%;display:flex;text-align:left;align-items:center;justify-content:space-between;gap:15px}.result-price strong{font-size:23px}.result-price small{margin-bottom:0}.result-price .button{font-size:12px;padding:11px 17px}.review-list>div{grid-template-columns:1fr 1.8fr;gap:12px}.empty-results{padding:25px 20px}.empty-results p{font-size:12px}}
+@media(max-width:767px){html{scroll-padding-top:86px}.container{width:calc(100% - 32px)}h2{font-size:23px;letter-spacing:-.7px}.section{padding-block:42px}.section-heading{margin-bottom:22px;gap:12px;align-items:center}.section-heading p{font-size:12px;margin-top:8px}.eyebrow{font-size:9px;letter-spacing:1.5px;margin-bottom:8px}.topbar{display:none}.nav-inner{height:66px;gap:10px;justify-content:space-between}.brand{width:165px}.nav-actions{gap:8px}.languages{gap:0}.languages button{font-size:10px;gap:3px;padding-inline:3px}.languages>span{font-size:9px}.booking-check{display:none}.mobile-menu{display:flex;width:36px;height:40px;border:0;border-radius:7px}.mobile-menu svg{width:24px}.nav-inner nav{display:none;position:absolute;top:66px;left:0;right:0;margin:0;background:white;border-bottom:1px solid var(--line);box-shadow:0 10px 20px #0001;padding:12px 24px;flex-direction:column;gap:0}.nav-inner nav.is-open{display:flex}.nav-inner nav a{font-size:14px;min-height:46px}.hero{min-height:365px}.hero-image{object-position:62% center}.hero-service-visual{inset:0;width:100%;-webkit-mask-image:none;mask-image:none}.hero-service-image{object-position:center 54%;transform:scale(1.05)}.hero-service-shuttle{opacity:.48;transform:scale(1)}body[data-service="airport"] .hero-service-shuttle,body[data-service="charter"] .hero-service-shuttle{opacity:0;transform:scale(1.05)}body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{opacity:.48;transform:scale(1)}body[data-service="airport"] .hero-service-airport{object-position:center 48%}body[data-service="charter"] .hero-service-charter{object-position:center 52%}.hero:after{background:linear-gradient(90deg,#10242bce,#10242b50),linear-gradient(0deg,#10242b60,transparent 60%)}.hero-content{padding-block:40px 112px}.hero-eyebrow{font-size:9px;letter-spacing:1.5px}.hero h1{font-size:32px;line-height:1.17;letter-spacing:-1.2px;margin-bottom:14px}.hero p{font-size:14px;line-height:1.7;max-width:310px}.hero-benefits{gap:14px;justify-content:start;font-size:11px;margin-top:24px;flex-wrap:wrap;row-gap:9px}.hero-benefits>span{gap:5px}.hero-benefits svg{width:14px;height:14px}.hero-location{display:none}.booking-container{margin-top:-63px}.booking-widget{border-radius:16px}#search-panel{padding:17px 16px 20px}.form-top{margin-bottom:14px;font-size:12px;line-height:1.5;display:block}.small-note{display:none}.search-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.field{min-height:72px;padding:11px 12px;gap:8px}.field:nth-child(1),.field:nth-child(2){grid-column:1/-1}.field:nth-child(5){grid-column:1/-1}.field>svg{width:19px;height:19px}.field input,.field select{font-size:16px;height:25px}.field input[type=date]{font-size:15px}.field-label{font-size:14px;margin-bottom:5px}.search-button{grid-column:1/-1;min-height:48px;font-size:15px;margin-top:2px}.booking-footnote{margin:14px 0 0;gap:14px;flex-wrap:wrap;font-size:9px;justify-content:center}.booking-footnote a{margin-left:0;width:100%;text-align:center;min-height:32px;padding-top:2px}.booking-footnote svg{width:12px;height:12px}.carousel-controls{display:none}.route-carousel{grid-auto-columns:78%;gap:13px;margin-right:-16px;padding-right:16px;scroll-padding-left:2px}.route-card{padding:21px}.route-path{font-size:15px}.route-icon{margin-bottom:16px}.route-price strong{font-size:22px}.route-price .text-button{font-size:12px}.caption{font-size:10px;line-height:1.6;margin-top:12px}.service-grid{grid-template-columns:1fr;gap:13px}.service-card{position:relative;padding:22px 22px 20px 83px;min-height:150px}.service-icon{position:absolute;left:20px;top:23px;width:43px;height:43px}.service-icon svg{width:23px;height:23px}.service-card h3{font-size:17px}.service-card p{font-size:12px;margin-top:7px;margin-bottom:7px;max-width:none}.service-card .text-button{font-size:12px;min-height:38px}.about-section{grid-template-columns:1fr;gap:28px}.fleet-photo{max-width:500px}.photo-label{left:12px;bottom:12px;font-size:9px}.about-copy>p{font-size:13px;margin:13px 0 18px}.about-point{margin-top:17px}.about-point h3{font-size:13px}.about-point p{font-size:12px}.destination-grid{grid-template-columns:1fr 1fr;gap:12px}.destination-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:stretch}.destination-card>img{height:145px}.destination-card:last-child>img{height:100%;min-height:162px}.destination-card>div{padding:14px}.place-label{font-size:8px;letter-spacing:.7px;line-height:1.5;display:block}.destination-card h3{font-size:15px;line-height:1.35;margin-top:7px;gap:5px}.destination-card p{font-size:11px;line-height:1.65;margin-top:8px}.reviews-section{display:block}.reviews-section h2{font-size:25px}.reviews-section p{font-size:13px;margin-top:10px}.reviews-section .button{margin-top:22px;font-size:12px}#results{margin-top:18px;padding-top:28px;scroll-margin-top:78px}.results-page #results{padding-top:32px;margin-top:0}.faq-section{grid-template-columns:1fr;gap:22px}.faq-intro h2 br{display:none}.faq-intro>p{max-width:none;font-size:12px}.faq-intro>.text-button{margin-top:10px}.faq-list summary{font-size:13px;padding-block:18px;min-height:58px}.faq-list details p{font-size:12px}.help-banner{display:block;padding:26px;margin-top:0;margin-bottom:65px;border-radius:12px}.help-banner h2{font-size:23px;line-height:1.3}.help-banner p{font-size:12px;margin-top:9px}.help-banner .button{margin-top:21px;font-size:12px}.footer-grid{grid-template-columns:1fr;gap:0;padding-bottom:23px}.footer-brand{padding-bottom:25px}.footer-brand>img{width:210px;margin-bottom:16px}.footer-brand p{font-size:12px}.footer-brand address{font-size:12px}.footer-brand>a{min-height:36px;font-size:12px}.footer-group{border-top:1px solid #ddd}.footer-group summary{pointer-events:auto;font-size:13px;padding:16px 25px 16px 0;position:relative;min-height:54px}.footer-group summary:after{content:"+";position:absolute;right:5px;font-size:20px;top:10px;color:#777;font-weight:400}.footer-group[open] summary:after{content:"−"}.footer-group>div{padding-bottom:15px;gap:0}.footer-group a,.footer-link{min-height:40px;font-size:12px}.footer-bottom{padding-bottom:27px;display:block;font-size:10px}.footer-bottom>span{display:block;margin-top:3px}.floating-chat{width:46px;height:46px;right:16px;bottom:16px}.floating-chat svg{width:23px;height:23px}dialog{inset-block-start:10px;width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:14px}.dialog-header{padding:18px;gap:12px}.dialog-header h2{font-size:21px}.dialog-header .eyebrow{font-size:8px}.dialog-body{padding:20px 18px}.detail-fields input,.detail-fields textarea{font-size:16px}.result-card{padding:17px;gap:14px;flex-wrap:wrap;align-items:start}.result-card>img{width:105px}.result-details{flex:1}.result-details h3{font-size:15px}.result-details p{font-size:11px}.result-schedule{font-size:20px}.result-price{border-top:1px solid #eee;padding-top:14px;width:100%;display:flex;text-align:left;align-items:center;justify-content:space-between;gap:15px}.result-price strong{font-size:23px}.result-price small{margin-bottom:0}.result-price .button{font-size:12px;padding:11px 17px}.review-list>div{grid-template-columns:1fr 1.8fr;gap:12px}.empty-results{padding:25px 20px}.empty-results p{font-size:12px}}
 @media(max-width:360px){.search-fields>.field:nth-child(3),.search-fields>.field:nth-child(4){grid-column:1/-1}.brand{width:143px}.nav-actions{gap:2px}.hero h1{font-size:31px}.hero-benefits{gap:10px;font-size:8px}.service-tabs button{font-size:9px}.destination-card>div{padding:11px}.destination-card h3{font-size:14px}.field{gap:5px;padding-inline:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
@@ -184,9 +184,9 @@ dialog{border-radius:12px}
  .hero p{font-size:14px;line-height:1.35;max-width:270px}
  .booking-container{margin-top:-55px}
  .booking-widget{border-radius:15px}
- .service-tabs{grid-template-columns:repeat(3,1fr)}
- .service-tabs button{min-height:66px;flex-direction:column;gap:4px;padding:9px 4px;font-size:11px;line-height:1.2}
- .service-tabs svg{width:24px;height:24px}
+
+
+
  #search-panel{padding:12px 12px 14px}
  .trip-mode{padding:0 2px 10px;gap:20px;font-size:11px}
  .search-fields,body[data-service="shuttle"] .search-fields{grid-template-columns:1fr 1fr;gap:9px}
@@ -302,6 +302,8 @@ dialog{border-radius:12px}
 
 
 /* === Booking widget mobile refinement · 16 Oct 2026 === */
+.mobile-service-label,.service-tabs .mobile-service,#motor-entry{display:none}
+@media(min-width:768px){.service-tabs #tab-charter{border-right:0}}
 .field-stack{display:contents}
 .field-icon-mobile{display:none}
 .quick-date-actions{display:none}
@@ -319,16 +321,27 @@ dialog{border-radius:12px}
  .languages [data-language=en] .language-flag{background:linear-gradient(90deg,transparent 42%,#fff 42% 58%,transparent 58%),linear-gradient(transparent 38%,#fff 38% 62%,transparent 62%),linear-gradient(90deg,transparent 46%,#cf142b 46% 54%,transparent 54%),linear-gradient(transparent 43%,#cf142b 43% 57%,transparent 57%),linear-gradient(34deg,transparent 44%,#fff 44% 56%,transparent 56%),linear-gradient(-34deg,transparent 44%,#fff 44% 56%,transparent 56%),#012169}
  .languages .language-code{display:block;min-width:14px;text-align:center;line-height:1}
  .mobile-menu{width:44px;height:44px;border-radius:9px}
- .booking-container{margin-top:-48px}
- .booking-widget{border-radius:16px;overflow:hidden}
- .service-tabs{background:#fff;border-bottom:1px solid #e3e5e9}
- .service-tabs button{min-height:68px;padding:9px 3px;font-size:12px;line-height:1.2;background:#fff;color:#30343d;border:0;border-inline:0;box-shadow:none;outline:0;border-bottom:3px solid transparent}.service-tabs button::before,.service-tabs button::after{content:none!important;display:none!important}
- .service-tabs button:last-child{border-right:0}
- .service-tabs button:not([aria-selected=true]){background:#fff}
- .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red);border-bottom:3px solid transparent;background-image:radial-gradient(circle at left center,var(--mock-red) 0 1.5px,transparent 1.6px),linear-gradient(var(--mock-red),var(--mock-red)),radial-gradient(circle at right center,var(--mock-red) 0 1.5px,transparent 1.6px);background-repeat:no-repeat;background-position:18% bottom,center bottom,82% bottom;background-size:3px 3px,calc(64% - 3px) 3px,3px 3px;background-origin:border-box}
+ .booking-container{margin-top:-112px}
+ .booking-container::before{content:"";position:absolute;z-index:-1;inset:0 calc((100% - 100vw)/2) 0;background:linear-gradient(transparent 0,#777b80 104px,#f7f7f7 300px,#fff 100%);pointer-events:none}
+ .booking-widget{border:0;border-radius:0;box-shadow:none;overflow:visible;background:transparent}
+ .service-tabs{display:grid;grid-auto-flow:column;grid-auto-columns:28.3%;grid-template-columns:none;gap:8px;margin-right:calc((100% - 100vw)/2);padding:4px calc((100vw - 100%)/2) 12px 0;border:0;border-radius:0;background:transparent;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
+ .service-tabs::-webkit-scrollbar{display:none}
+ .service-tabs button,.service-tabs .mobile-service{display:flex;position:relative;min-height:90px;height:90px;margin:0;padding:12px 6px;flex-direction:column;justify-content:center;gap:8px;border:0;border-radius:16px;background:#64686e;color:#fff;font-size:12px;line-height:1.2;font-weight:650;scroll-snap-align:center;box-shadow:none;transition:background .18s,color .18s}
+ .service-tabs button span{min-height:28px;display:flex;align-items:center;justify-content:center;text-align:center}
+ .service-tabs button .desktop-service-label{display:none}
+ .service-tabs button:not([aria-selected=true]){background:#64686e;color:#fff}
+ .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red-dark);border:0}
  .service-tabs button[aria-selected=true] svg{color:var(--mock-red)}
- .service-tabs svg{width:29px;height:29px;stroke-width:1.9}
- #search-panel{padding:12px 12px 14px}
+ .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-6px;left:calc(50% - 8px);width:16px;height:12px;background:#fff;clip-path:polygon(0 0,100% 0,63% 88%,50% 100%,37% 88%);pointer-events:none}
+ .service-tabs button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+ .service-tabs svg{width:27px;height:27px;stroke-width:1.9}
+ #search-panel{margin-top:2px;padding:16px;border-radius:16px;background:#fff;box-shadow:0 4px 18px #18212d08;min-height:292px}
+ #motor-entry{display:grid;align-content:center;justify-items:start;gap:12px;min-height:260px}
+ #motor-entry .rental-icon{display:grid;place-items:center;width:48px;height:48px;background:var(--red-soft);color:var(--mock-red-dark);border-radius:12px}
+ #motor-entry .rental-icon svg{width:30px;height:30px}
+ #motor-entry .rental-title{font-size:18px;font-weight:700;color:var(--text)}
+ #motor-entry p{font-size:14px;line-height:1.5}
+ #motor-entry .button{width:100%;min-height:48px;margin-top:4px}
  .trip-mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0;margin-bottom:10px;border:0;border-radius:0;background:transparent}
  .trip-mode label{justify-content:center;gap:7px;min-height:40px;padding:7px 10px;border:1px solid #cfd3da;border-radius:10px;background:#fff;color:#343944;font-size:12px;font-weight:650;transition:background .2s,color .2s,border-color .2s,box-shadow .2s}
  .trip-mode label::before{content:"";width:17px;height:17px;display:grid;place-items:center;flex:0 0 17px;border:1.5px solid currentColor;border-radius:50%;font-size:12px;line-height:1}
@@ -337,27 +350,28 @@ dialog{border-radius:12px}
  .trip-mode label.is-disabled{opacity:1;color:#8a9099;background:#f6f7f9;cursor:not-allowed}
  .trip-mode input{position:absolute;opacity:0;pointer-events:none}
  .search-fields,body[data-service="shuttle"] .search-fields,body[data-service="airport"] .search-fields,body[data-service="charter"] .search-fields{display:block}
- .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date" "time" "passenger";position:relative;border:1px solid #d8dce3;border-radius:14px;overflow:hidden;background:#fff}
- .field{min-height:64px;padding:9px 12px;border:0;border-bottom:1px solid #e8eaee;border-radius:0;background:#fff;box-shadow:none}
+ .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date";gap:12px;position:relative;border:0;border-radius:0;overflow:visible;background:transparent}
+ .field{min-height:64px;padding:9px 12px;border:1px solid transparent;border-radius:10px;background:#f5f5f5;box-shadow:none}
  .field:hover{border-color:#e8eaee}
- .field:focus-within{border-color:#e8eaee;box-shadow:none}
+ .field:focus-within{border-color:var(--mock-red);box-shadow:0 0 0 2px rgba(200,87,89,.18)}
  .field>svg{width:24px;height:24px;color:#292d34;stroke-width:2}
  .field-icon-default{display:none}
  .field>svg.field-icon-mobile{display:block}
- .field-label{font-size:12px;margin-bottom:2px;color:#737b87}
+ .field-label{font-size:14px;margin-bottom:2px;color:#6b7280}
  .field input,.field select{font-size:16px;font-weight:600;color:#1f2430}
  .origin-field{grid-area:origin}
  .destination-field{grid-area:destination}
- .date-field{grid-area:date;padding-right:150px}
+ .date-field{grid-area:date;padding-right:120px}
  .time-field{grid-area:time}
  .passenger-field{display:none}
  body[data-service="shuttle"] .time-field{display:none}
  body:not([data-service="shuttle"]) .time-field{display:flex}
+ body:not([data-service="shuttle"]) .field-stack{grid-template-areas:"origin" "destination" "date" "time"}
  body[data-service="shuttle"] .date-field,body:not([data-service="shuttle"]) .time-field{border-bottom:0}
- .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:6px;margin-right:10px;z-index:2}
- .quick-date-actions button{min-width:62px;min-height:38px;padding:6px 10px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
+ .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:4px;margin-right:6px;z-index:2}
+ .quick-date-actions button{min-width:52px;min-height:44px;padding:6px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
  .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
- .search-button{display:flex;width:100%;min-height:50px;margin-top:12px;border-radius:999px;font-size:15px}
+ .search-button{display:flex;width:100%;min-height:50px;margin-top:16px;border-radius:10px;font-size:16px}
  .booking-footnote{margin-top:12px}
  .booking-footnote>div{grid-template-columns:32px 1fr;padding:10px 7px;gap:7px}
  .booking-footnote strong{font-size:10px;line-height:1.25}
@@ -376,21 +390,15 @@ dialog{border-radius:12px}
  .hero-service-visual picture{position:absolute;inset:0}
  .hero-service-image{object-position:center;opacity:0;transform:scale(1.018);transition:opacity .55s ease,transform 1s ease}
  .hero-service-shuttle{opacity:1;transform:scale(1)}
- body[data-service="airport"] .hero-service-shuttle,body[data-service="charter"] .hero-service-shuttle{opacity:0;transform:scale(1.018)}
- body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{opacity:1;transform:scale(1)}
+ body[data-service="airport"] .hero-service-shuttle,body[data-service="charter"] .hero-service-shuttle,body[data-service="motor"] .hero-service-shuttle{opacity:0;transform:scale(1.018)}
+ body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter,body[data-service="motor"] .hero-service-charter{opacity:1;transform:scale(1)}
  body[data-service="airport"] .hero-service-airport,body[data-service="charter"] .hero-service-charter{object-position:center}
- .hero h1{font-size:25px;line-height:1.16;max-width:310px}
+ .hero h1{font-size:28px;line-height:1.16;max-width:340px}
  .hero-accent{color:var(--mock-red)}
- .hero:after{background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.92) 8%,rgba(255,255,255,0) 31%),linear-gradient(90deg,rgba(9,27,42,.72) 0%,rgba(9,27,42,.38) 48%,rgba(9,27,42,.04) 82%)}
- .origin-field,.destination-field{padding-right:56px}
- .swap-fields{position:absolute;right:10px;top:64px;z-index:4;transform:translateY(-50%);width:38px;height:38px;display:grid;place-items:center;border:1px solid #d8dce3;border-radius:50%;background:#fff;color:var(--mock-red);box-shadow:0 2px 6px rgba(24,33,45,.07)}
- .swap-fields svg{width:24px;height:24px;transform-origin:center}
- .swap-fields.is-swapping svg{animation:swap-rotate .34s cubic-bezier(.2,.75,.25,1)}
- .field-stack.is-swapping .origin-field>span{animation:swap-origin .3s ease}
- .field-stack.is-swapping .destination-field>span{animation:swap-destination .3s ease}
+ .hero:after{background:linear-gradient(0deg,#777b80 0%,rgba(119,123,128,.6) 20%,transparent 60%),linear-gradient(90deg,rgba(9,27,42,.72) 0%,rgba(9,27,42,.38) 48%,rgba(9,27,42,.04) 82%)}
  .field>span{position:relative}
- .field-label{font-size:11px;transition:font-size .18s,transform .18s,color .18s,margin .18s}
- .field:not(.has-value) .field-label{font-size:15px;transform:translateY(10px);margin-bottom:0;color:#737b87}
+ .field-label{font-size:14px;transition:color .18s}
+ .field:not(.has-value) .field-label{font-size:16px;transform:translateY(10px);margin-bottom:0;color:#737b87}
  .field:not(.has-value) input,.field:not(.has-value) select{opacity:0}
  .field select{appearance:none;-webkit-appearance:none;background-image:none}
  .field input[type="date"]{appearance:none;-webkit-appearance:none}
@@ -426,8 +434,8 @@ dialog{border-radius:12px}
 /* Mobile trip chip spacing refinement */
 @media(max-width:767px){#trip-mode{gap:12px!important;margin:6px 0 16px!important;padding-bottom:0!important}#trip-mode label{min-height:30px!important;padding:5px 10px!important;line-height:18px!important;border-radius:8px!important}#trip-mode label::before,#trip-mode label::after{display:none!important;content:none!important}}
 
-/* Compact vertical padding for mobile trip chips */
-@media(max-width:767px){#trip-mode label{min-height:26px!important;padding-top:3px!important;padding-bottom:3px!important;line-height:18px!important}}
+/* Mobile trip choices retain a 44px touch target. */
+@media(max-width:767px){#trip-mode label{min-height:44px!important;padding-top:10px!important;padding-bottom:10px!important;line-height:18px!important}}
 
 /* Mobile trip chips: no visible focus border */
 @media(max-width:767px){#trip-mode label:focus,#trip-mode label:focus-visible,#trip-mode label:focus-within{outline:none!important;outline-offset:0!important;box-shadow:none!important}#trip-mode input:focus,#trip-mode input:focus-visible{outline:none!important;box-shadow:none!important}}
@@ -435,27 +443,6 @@ dialog{border-radius:12px}
 /* Mobile trip tabs: restore red bottom indicator on selected option. */
 @media(max-width:767px){#trip-mode label{position:relative!important}#trip-mode label:has(input:checked)::after{content:""!important;display:block!important;visibility:visible!important;position:absolute;left:9px;right:9px;bottom:-3px;height:1px;background:var(--red-dark);border-radius:2px;pointer-events:none}}
 
-
-/* Mobile active service tab indicator: true rounded pill ends */
-@media(max-width:767px){
-  .service-tabs button[aria-selected=true]{
-    background-image:none!important;
-    border-bottom-color:transparent!important;
-  }
-  .service-tabs button[aria-selected=true]::after{
-    content:""!important;
-    display:block!important;
-    position:absolute!important;
-    left:18%!important;
-    right:18%!important;
-    bottom:-3px!important;
-    height:3px!important;
-    border-radius:999px!important;
-    background:var(--mock-red)!important;
-    visibility:visible!important;
-    pointer-events:none!important;
-  }
-}
 
 /* Mobile empty field labels: lighter and vertically centered */
 @media(max-width:767px){
@@ -670,16 +657,6 @@ dialog{border-radius:12px}
     height:22px;
   }
 
-  #search-error{
-    position:absolute!important;
-    width:1px!important;
-    height:1px!important;
-    padding:0!important;
-    margin:-1px!important;
-    overflow:hidden!important;
-    clip:rect(0,0,0,0)!important;
-    white-space:nowrap!important;
-    border:0!important;
-  }
+  #search-error{font-size:14px;line-height:1.4;margin-top:12px}
 }
 
