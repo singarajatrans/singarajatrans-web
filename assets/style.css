@@ -629,3 +629,29 @@ dialog{border-radius:12px}
     line-height:1;
   }
 }
+
+/* Mobile language switch: round flag assets */
+@media(max-width:767px){
+  .languages .language-flag{
+    width:18px;
+    height:18px;
+    flex:0 0 18px;
+    display:block;
+    border-radius:50%;
+    overflow:hidden;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:cover!important;
+    box-shadow:none!important;
+    font-size:0!important;
+    line-height:0!important;
+  }
+
+  .languages [data-language=id] .language-flag{
+    background-image:url("images/flag-id-round.svg")!important;
+  }
+
+  .languages [data-language=en] .language-flag{
+    background-image:url("images/flag-en-round.svg")!important;
+  }
+}
