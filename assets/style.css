@@ -683,16 +683,3 @@ dialog{border-radius:12px}
   }
 }
 
-/* Desktop brand header theme */
-@media(min-width:768px){
-  header{background:#c85759}
-  .nav-wrap{background:#c85759;border-bottom-color:#b74d50}
-  .nav-inner nav a{color:#fff}
-  .nav-inner nav a:hover{color:#fff;opacity:.82}
-  .languages>span{color:rgba(255,255,255,.65)}
-  .languages button{color:#fff}
-  .languages button[aria-pressed=true],.languages button:hover{color:#fff}
-  .booking-check{background:transparent;border-color:rgba(255,255,255,.78);color:#fff}
-  .booking-check:hover{background:rgba(255,255,255,.12);border-color:#fff}
-  .brand{background:#fff;border-radius:10px;padding:7px 10px}
-}
