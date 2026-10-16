@@ -634,3 +634,17 @@ dialog{border-radius:12px}
 @media(prefers-reduced-motion:reduce){
   .booking-widget.widget-invalid-shake{animation:none}
 }
+
+
+/* Search validation field fill */
+.field.field-invalid{
+  background:#fff5f5;
+  border-bottom-color:#edc9c9;
+  transition:background .16s ease,border-color .16s ease;
+}
+.field.field-invalid>svg{
+  color:var(--mock-red);
+}
+.field.field-invalid .field-label{
+  color:var(--mock-red-dark);
+}
