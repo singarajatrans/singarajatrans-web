@@ -434,4 +434,4 @@ dialog{border-radius:12px}
 
 /* Active service tab: single hairline, no stacked border */
 .service-tabs button[aria-selected="true"]{border-bottom:0!important}
-.service-tabs button[aria-selected="true"]::after{content:""!important;position:absolute!important;left:20px!important;right:20px!important;bottom:0!important;height:2px!important;max-height:2px!important;background:var(--mock-red)!important;border-radius:999px!important;box-shadow:none!important;pointer-events:none!important}
+.service-tabs button[aria-selected="true"]::after{content:""!important;position:absolute!important;left:20px!important;right:20px!important;bottom:0!important;height:3px!important;max-height:3px!important;background:var(--mock-red)!important;border-radius:999px!important;box-shadow:none!important;pointer-events:none!important}
