@@ -627,10 +627,11 @@ dialog{border-radius:12px}
 }
 @keyframes widget-invalid-shake{
   0%,100%{transform:translateX(0)}
-  18%{transform:translateX(-5px)}
-  36%{transform:translateX(4px)}
-  54%{transform:translateX(-3px)}
-  72%{transform:translateX(2px)}
+  16%{transform:translateX(-8px)}
+  32%{transform:translateX(7px)}
+  48%{transform:translateX(-6px)}
+  64%{transform:translateX(5px)}
+  80%{transform:translateX(-3px)}
 }
 @media(prefers-reduced-motion:reduce){
   .booking-widget.widget-invalid-shake{animation:none}
