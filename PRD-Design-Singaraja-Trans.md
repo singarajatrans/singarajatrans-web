@@ -1,6 +1,6 @@
 # PRD Desain — SINGARAJA TRANS
 
-**Versi:** 1.1 · 17 Oktober 2026  
+**Versi:** 1.2 · 17 Oktober 2026  
 **Status:** Acuan desain dan implementasi UI · SEO/PWA constraint LOCKED  
 **Platform:** Website publik, desktop dan mobile  
 **Arah visual:** redBus-inspired, merah–putih–abu, modern dan tepercaya
@@ -477,3 +477,31 @@ Dokumen ini mengatur desain dan pengalaman UI. Perubahan backend, API, pembayara
 - Target "halaman satu Google" adalah sasaran bisnis, bukan jaminan hasil. Tidak boleh ada klaim ranking pasti.
 
 **LOCK RULE:** Jika perubahan desain, navigasi, PWA, atau implementasi teknis berpotensi menurunkan crawlability/indexability atau menghapus konten/link penting, perubahan tersebut **BLOCKED** sampai tersedia solusi yang menjaga SEO. SEO preservation memiliki prioritas lebih tinggi daripada kosmetik visual.
+
+
+## Mobile Service Selector — LOCKED (17 Oktober 2026)
+
+**Status: LOCKED untuk responsive mobile. Desktop tidak diubah oleh keputusan ini.**
+
+### Struktur layanan
+
+Urutan layanan mobile ditetapkan menjadi:
+
+1. **Travel Shuttle**
+2. **Airport Transfer**
+3. **Sewa Mobil** — menggantikan nama/layanan UI **Charter Drop**.
+4. **Sewa Motor** — layanan baru pada selector utama.
+
+### Arah visual selector mobile
+
+- Selector layanan mobile mengikuti **pola layout referensi Klook yang telah disetujui**: deretan kartu layanan besar dengan ikon di atas dan label di bawah, lalu panel/form pencarian berada langsung di bawah selector.
+- Target kesesuaian visual mencakup komposisi, proporsi, spacing, ukuran kartu, posisi ikon dan label, active/inactive state, serta hubungan visual kartu aktif dengan panel form di bawahnya.
+- Kartu aktif menggunakan treatment putih/menonjol dan indikator/notch bawah seperti pola referensi; kartu nonaktif dibuat lebih redup namun tetap jelas dan memiliki target sentuh yang memadai.
+- Empat layanan tetap dapat diakses pada viewport mobile; bila ruang tidak cukup, selector boleh menggunakan horizontal scrolling yang jelas tanpa menyebabkan overflow halaman.
+- Branding, logo, ikon, copy, warna, foto, dan aset tetap milik **SINGARAJA TRANS**; referensi Klook dipakai untuk pola UI/layout, bukan untuk menyalin aset merek.
+- Pemilihan layanan mengganti form/konteks pencarian di panel bawah tanpa mencampurkan hasil pencarian ke Beranda.
+- **Sewa Motor** disiapkan sebagai entry point layanan rental; integrasi engine/backend ditentukan pada spesifikasi teknis terpisah.
+
+### SEO guardrail
+
+Selector adalah kontrol UI dan **bukan heading SEO**. Implementasi tidak boleh mengubah hierarchy semantik halaman yang telah ditetapkan, menghapus konten/link penting dari mobile, atau melanggar **SEO & PWA — LOCKED CONSTRAINT**. Bila implementasi visual bertentangan dengan crawlability, indexability, semantic content, internal navigation, atau performa, SEO preservation tetap memiliki prioritas lebih tinggi.
