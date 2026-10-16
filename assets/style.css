@@ -476,9 +476,9 @@ dialog{border-radius:12px}
 @media(max-width:767px){
   .languages{
     position:relative;
-    width:66px;
-    height:30px;
-    padding:2px;
+    width:60px;
+    height:28px;
+    padding:1px;
     border:1px solid #dfe4ea;
     border-radius:999px;
     background:#e8eef5;
@@ -499,9 +499,9 @@ dialog{border-radius:12px}
     z-index:1;
     display:none!important;
     align-items:center;
-    gap:6px;
-    min-height:30px;
-    padding:2px 8px 2px 2px;
+    gap:5px;
+    min-height:28px;
+    padding:1px 6px 1px 1px;
     border-radius:999px;
     background:transparent!important;
     color:#163f72;
@@ -521,13 +521,13 @@ dialog{border-radius:12px}
   .languages [data-language=en][aria-pressed=true]{
     flex-direction:row-reverse;
     justify-content:flex-start;
-    padding:2px 2px 2px 8px;
+    padding:1px 1px 1px 6px;
   }
 
   .languages .language-flag{
-    width:26px;
-    height:26px;
-    flex:0 0 26px;
+    width:24px;
+    height:24px;
+    flex:0 0 24px;
     display:block;
     border:1px solid #fff;
     border-radius:50%;
