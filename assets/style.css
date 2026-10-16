@@ -422,3 +422,6 @@ dialog{border-radius:12px}
 
 /* Mobile trip choice: remove every decorative check marker, including older rules. */
 @media(max-width:767px){#trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important;visibility:hidden!important}#trip-mode label{gap:0!important}}
+
+/* Mobile trip chip spacing refinement */
+@media(max-width:767px){#trip-mode{gap:7px!important;margin-bottom:12px!important;padding-bottom:0!important}#trip-mode label{min-height:30px!important;padding:5px 10px!important;line-height:18px!important;border-radius:8px!important}#trip-mode label::before,#trip-mode label::after{display:none!important;content:none!important}}
