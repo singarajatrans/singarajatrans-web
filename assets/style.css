@@ -456,3 +456,18 @@ dialog{border-radius:12px}
     pointer-events:none!important;
   }
 }
+
+/* Mobile empty field labels: lighter and vertically centered */
+@media(max-width:767px){
+  .field:not(.has-value)>span{
+    display:flex;
+    align-items:center;
+    min-height:38px;
+  }
+  .field:not(.has-value) .field-label{
+    margin:0;
+    transform:none;
+    font-weight:400;
+    line-height:1.3;
+  }
+}
