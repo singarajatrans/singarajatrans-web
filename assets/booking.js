@@ -141,18 +141,20 @@ function buildRequest(d){
 }
 function animateInvalidSearchFields(ids){
  document.querySelectorAll('.field.field-invalid').forEach(field=>field.classList.remove('field-invalid'));
+ const invalidFields=[];
  ids.forEach(id=>{
   const control=$('#'+id);
   const field=control?.closest('.field');
-  if(field)field.classList.add('field-invalid');
+  if(!field)return;
+  field.classList.add('field-invalid');
+  field.classList.remove('field-invalid-shake');
+  void field.offsetWidth;
+  field.classList.add('field-invalid-shake');
+  invalidFields.push(field);
  });
- if(!ids.length)return;
- const widget=$('.booking-widget');if(!widget)return;
- widget.classList.remove('widget-invalid-shake');
- void widget.offsetWidth;
- widget.classList.add('widget-invalid-shake');
+ if(!invalidFields.length)return;
  C.softHaptic?.();
- window.setTimeout(()=>widget.classList.remove('widget-invalid-shake'),560);
+ window.setTimeout(()=>invalidFields.forEach(field=>field.classList.remove('field-invalid-shake')),360);
 }
 $('#search-form').addEventListener('submit',e=>{
  e.preventDefault();const s=searchState(),error=$('#search-error');error.hidden=true;
