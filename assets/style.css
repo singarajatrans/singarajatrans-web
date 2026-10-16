@@ -476,8 +476,8 @@ dialog{border-radius:12px}
 @media(max-width:767px){
   .languages{
     position:relative;
-    width:50px;
-    height:22px;
+    width:48px;
+    height:20px;
     padding:0;
     border:1px solid #d8dee7;
     border-radius:999px;
@@ -500,7 +500,7 @@ dialog{border-radius:12px}
     display:none!important;
     align-items:center;
     gap:4px;
-    min-height:22px;
+    min-height:20px;
     padding:0;
     border-radius:999px;
     background:transparent!important;
@@ -525,7 +525,7 @@ dialog{border-radius:12px}
 
   .languages .language-flag{
     position:absolute;
-    top:-2px;
+    top:-3px;
     left:-1px;
     width:24px;
     height:24px;
@@ -539,7 +539,7 @@ dialog{border-radius:12px}
     box-shadow:none!important;
     font-size:0!important;
     line-height:0!important;
-    animation:none!important;
+    animation:language-pulse .32s ease-out;
     transform:none!important;
   }
 
@@ -578,4 +578,10 @@ dialog{border-radius:12px}
   .field.has-value .field-label{
     margin-bottom:0;
   }
+}
+
+@keyframes language-pulse{
+  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(22,63,114,.18)}
+  50%{transform:scale(1.08);box-shadow:0 0 0 3px rgba(22,63,114,.08)}
+  100%{transform:scale(1);box-shadow:0 0 0 0 rgba(22,63,114,0)}
 }
