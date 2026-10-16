@@ -558,8 +558,8 @@ dialog{border-radius:12px}
 
   .languages .language-code{
     position:absolute;
-    left:24px;
-    right:0;
+    left:23px;
+    right:1px;
     display:block;
     min-width:0;
     text-align:center;
@@ -568,8 +568,8 @@ dialog{border-radius:12px}
   }
 
   .languages [data-language=en][aria-pressed=true] .language-code{
-    left:0;
-    right:24px;
+    left:1px;
+    right:23px;
   }
 }
 
