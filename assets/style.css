@@ -431,3 +431,7 @@ dialog{border-radius:12px}
 
 /* Mobile trip chips: no visible focus border */
 @media(max-width:767px){#trip-mode label:focus,#trip-mode label:focus-visible,#trip-mode label:focus-within{outline:none!important;outline-offset:0!important;box-shadow:none!important}#trip-mode input:focus,#trip-mode input:focus-visible{outline:none!important;box-shadow:none!important}}
+
+/* Active service tab: single hairline, no stacked border */
+.service-tabs button[aria-selected="true"]{border-bottom:0!important}
+.service-tabs button[aria-selected="true"]::after{content:""!important;position:absolute!important;left:8px!important;right:8px!important;bottom:0!important;height:1px!important;max-height:1px!important;background:var(--mock-red)!important;border-radius:999px!important;box-shadow:none!important;pointer-events:none!important}
