@@ -424,7 +424,7 @@ dialog{border-radius:12px}
 @media(max-width:767px){#trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important;visibility:hidden!important}#trip-mode label{gap:0!important}}
 
 /* Mobile trip chip spacing refinement */
-@media(max-width:767px){#trip-mode{gap:7px!important;margin-bottom:12px!important;padding-bottom:0!important}#trip-mode label{min-height:30px!important;padding:5px 10px!important;line-height:18px!important;border-radius:8px!important}#trip-mode label::before,#trip-mode label::after{display:none!important;content:none!important}}
+@media(max-width:767px){#trip-mode{gap:7px!important;margin:6px 0 16px!important;padding-bottom:0!important}#trip-mode label{min-height:30px!important;padding:5px 10px!important;line-height:18px!important;border-radius:8px!important}#trip-mode label::before,#trip-mode label::after{display:none!important;content:none!important}}
 
 /* Compact vertical padding for mobile trip chips */
 @media(max-width:767px){#trip-mode label{min-height:26px!important;padding-top:3px!important;padding-bottom:3px!important;line-height:18px!important}}
