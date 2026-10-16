@@ -431,3 +431,6 @@ dialog{border-radius:12px}
 
 /* Mobile trip chips: no visible focus border */
 @media(max-width:767px){#trip-mode label:focus,#trip-mode label:focus-visible,#trip-mode label:focus-within{outline:none!important;outline-offset:0!important;box-shadow:none!important}#trip-mode input:focus,#trip-mode input:focus-visible{outline:none!important;box-shadow:none!important}}
+
+/* Mobile trip tabs: restore red bottom indicator on selected option. */
+@media(max-width:767px){#trip-mode label{position:relative!important}#trip-mode label:has(input:checked)::after{content:""!important;display:block!important;visibility:visible!important;position:absolute;left:9px;right:9px;bottom:-3px;height:2px;background:var(--red-dark);border-radius:2px;pointer-events:none}}
