@@ -472,17 +472,17 @@ dialog{border-radius:12px}
   }
 }
 
-/* Mobile language toggle: polished compact UI */
+/* Mobile language toggle: precision UI */
 @media(max-width:767px){
   .languages{
     position:relative;
-    width:58px;
-    height:26px;
+    width:56px;
+    height:24px;
     padding:0;
-    border:1px solid #dfe4ea;
+    border:1px solid #d8dee7;
     border-radius:999px;
     background:#eef2f6;
-    overflow:hidden;
+    overflow:visible;
     display:flex;
     align-items:center;
   }
@@ -500,8 +500,8 @@ dialog{border-radius:12px}
     display:none!important;
     align-items:center;
     gap:4px;
-    min-height:26px;
-    padding:1px 5px 1px 1px;
+    min-height:24px;
+    padding:0 5px 0 23px;
     border-radius:999px;
     background:transparent!important;
     color:#163f72;
@@ -515,31 +515,37 @@ dialog{border-radius:12px}
 
   .languages button[aria-pressed=true]{
     display:flex!important;
-    justify-content:flex-start;
+    justify-content:center;
   }
 
   .languages [data-language=en][aria-pressed=true]{
-    flex-direction:row-reverse;
-    justify-content:flex-start;
-    padding:1px 1px 1px 5px;
+    flex-direction:row;
+    padding:0 23px 0 5px;
   }
 
   .languages .language-flag{
+    position:absolute;
+    top:-1px;
+    left:-1px;
     width:24px;
     height:24px;
-    flex:0 0 24px;
     display:block;
-    border:1px solid #fff;
+    border:1px solid #d8dee7;
     border-radius:50%;
     overflow:hidden;
     background-repeat:no-repeat!important;
     background-position:center!important;
     background-size:cover!important;
-    box-shadow:0 0 0 1px #d6dce4!important;
+    box-shadow:none!important;
     font-size:0!important;
     line-height:0!important;
     animation:none!important;
     transform:none!important;
+  }
+
+  .languages [data-language=en][aria-pressed=true] .language-flag{
+    left:auto;
+    right:-1px;
   }
 
   .languages [data-language=id] .language-flag{
