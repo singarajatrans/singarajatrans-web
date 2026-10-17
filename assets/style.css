@@ -541,11 +541,11 @@ dialog{border-radius:12px}
  .languages{position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:40px;padding:0;border:1px solid #eceef2;border-radius:50%;background:#fff;overflow:hidden}
  .languages>span,.languages button[aria-pressed=false],.languages .language-code,.languages .language-chevron{display:none!important}
  .languages button[aria-pressed=true]{display:flex;align-items:center;justify-content:center;width:40px;height:40px;min-height:40px;padding:0;gap:0;border-radius:50%}
- .languages .language-flag{position:static;display:block;width:24px;height:24px;flex:0 0 24px;border:0;border-radius:50%;overflow:hidden;font-size:0;line-height:0;background-size:cover;background-position:center}
+ .languages .language-flag{position:static;display:block;width:20px;height:20px;flex:0 0 20px;border:0;border-radius:50%;overflow:hidden;font-size:0;line-height:0;background-size:cover;background-position:center}
  .languages [data-language=id] .language-flag{background-image:url("images/flag-id-round.svg")}
  .languages [data-language=en] .language-flag{background-image:url("images/flag-en-round.svg")}
  .mobile-header-action{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;padding:0;border:1px solid #eceef2;border-radius:50%;background:#fff;color:var(--mock-ink)}
- .mobile-header-action svg{width:20px;height:20px;stroke-width:1.8}
+ .mobile-header-action svg{width:24px;height:24px;stroke-width:1.8}
  .mobile-header-placeholder:disabled{opacity:1;cursor:default;color:#667085}
  .mobile-header-share:active{background:var(--red-soft)}
  .mobile-header-search:focus-visible,.languages button:focus-visible,.mobile-header-action:focus-visible{outline:2px solid var(--mock-ink);outline-offset:2px}
