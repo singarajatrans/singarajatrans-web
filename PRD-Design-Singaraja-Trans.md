@@ -1,6 +1,6 @@
 # PRD Desain — SINGARAJA TRANS
 
-**Versi:** 1.2 · 17 Oktober 2026  
+**Versi:** 1.3 · 18 Oktober 2026
 **Status:** Acuan desain dan implementasi UI · SEO/PWA constraint LOCKED  
 **Platform:** Website publik, desktop dan mobile  
 **Arah visual:** redBus-inspired, merah–putih–abu, modern dan tepercaya
@@ -101,10 +101,11 @@ Nilai field dan isi utama tidak boleh kurang dari 16px pada mobile.
 
 ### Mobile
 
-- Logo tetap jelas dan proporsional.
-- Navigasi ringkas melalui menu hamburger atau menu terkontrol.
-- Tombol/ikon harus memiliki target sentuh minimum 44px.
-- Header tidak boleh menutupi dropdown, kalender, atau popover.
+- Susunan final: animated search → flag aktif → ikon grid sementara → share.
+- Logo resmi dan teks SINGARAJA TRANS hanya berada di dalam search saat opening; tidak ada logo/nama tambahan di luar search dan tidak ada hamburger.
+- Header setinggi 60px, search setinggi 40px dengan radius 20px, tiga kontrol kanan masing-masing 40 × 40px. Ukuran kontrol header ini mengikuti keputusan eksplisit 18 Oktober 2026; sasaran 44px untuk kontrol lain tetap berlaku.
+- Flag langsung mengganti ID/EN melalui state bahasa existing tanpa dropdown atau routing baru.
+- Header tidak boleh menutupi dropdown, kalender, atau popover. Spesifikasi rinci berada pada bagian LOCKED / FINAL — Mobile Header & Service Selector.
 
 ## 6. Beranda
 
@@ -313,12 +314,12 @@ Konten marketing berada setelah pencarian. Pengguna harus dapat memulai pencaria
 
 ### 11.3 Header dan navigasi mobile
 
-- Header ringkas dengan tinggi visual 56–64px, tidak termasuk safe-area.
-- Logo berada di kiri dan tidak boleh terpotong atau melebar tidak proporsional.
-- Kontrol bahasa `ID / EN` tetap terlihat di header; tidak memakai menu `Masuk`.
-- Tombol menu, kembali, atau WhatsApp memiliki area sentuh minimal 44 × 44px.
-- Menu terbuka sebagai drawer/panel yang berada di atas konten dengan overlay; panel tidak boleh bertabrakan dengan dropdown form.
-- Header boleh sticky, tetapi tidak boleh menutupi fokus field, kalender, hasil filter, atau CTA.
+- Header final setinggi 60px dengan padding horizontal 16px dan gap kontrol 6px.
+- Search memperoleh ruang terbesar; logo resmi hanya tampil di dalam search saat opening, dengan proporsi asli aset.
+- Flag aktif saja yang terlihat; tidak ada teks ID/EN, chevron, dropdown, hamburger, atau branding tambahan di header.
+- Kontrol kanan berbentuk lingkaran 40 × 40px: bahasa, grid sementara nonaktif dengan label belum tersedia, lalu share.
+- Sticky auto-hide/show dan radius surface 24px saat tersembunyi tetap berlaku. Fokus field, kalender, hasil filter, dan CTA tetap dapat diakses.
+- Gunakan bagian LOCKED / FINAL — Mobile Header & Service Selector sebagai acuan implementasi dan QA scope ini.
 
 ### 11.4 Hero mobile
 
@@ -331,10 +332,10 @@ Konten marketing berada setelah pencarian. Pengguna harus dapat memulai pencaria
 
 ### 11.5 Tab dan widget pencarian
 
-- Tiga tab memenuhi lebar wadah dan tetap terbaca pada viewport 375px.
-- Tinggi target tab minimal 44px; label dapat 12–14px tetapi tidak boleh terpotong.
-- Setiap tab memakai ikon di atas teks: Travel Shuttle, Airport Transfer, dan Charter Drop.
-- Indikator tab aktif memakai merah utama dan tidak menyebabkan perubahan tinggi atau pergeseran layout.
+- Empat tab utama mobile: Travel Shuttle, Airport Transfer, Sewa Mobil, dan Sewa Motor.
+- Keempat kartu memakai geometri identik: tinggi 88px, radius 16px, padding 10px 6px 9px, gap ikon–label 4px, dan area label minimum 28px. Label 11,5px dengan line-height 1,2, tetap terbaca tanpa terpotong.
+- Ikon berada di atas label, dengan area layout 24 × 24px dan normalisasi optik per bentuk. Carousel menampilkan tiga kartu utuh pada viewport QA; layanan keempat tetap dapat diakses melalui swipe, klik/shortcut, dan keyboard.
+- Indikator aktif berupa garis di dalam kartu; active/inactive tidak mengubah ukuran, padding, posisi ikon/label, atau skala kartu. Geometri carousel dan perilaku final mengikuti bagian LOCKED / FINAL.
 - Field disusun satu kolom dengan jarak 12px.
 - Setiap field memiliki tinggi minimum 52px dan area tekan minimum 44px.
 - Label: 14px; nilai, placeholder, dan hasil pilihan: minimum 16px.
@@ -496,7 +497,7 @@ Urutan layanan mobile ditetapkan menjadi:
 
 - Selector layanan mobile mengikuti **pola layout referensi Klook yang telah disetujui**: deretan kartu layanan besar dengan ikon di atas dan label di bawah, lalu panel/form pencarian berada langsung di bawah selector.
 - Target kesesuaian visual mencakup komposisi, proporsi, spacing, ukuran kartu, posisi ikon dan label, active/inactive state, serta hubungan visual kartu aktif dengan panel form di bawahnya.
-- Kartu aktif menggunakan treatment putih/menonjol dan indikator/notch bawah seperti pola referensi; kartu nonaktif dibuat lebih redup namun tetap jelas dan memiliki target sentuh yang memadai.
+- Kartu aktif berwarna putih dengan border merah 1px dan indikator 18 × 3px di dalam bagian bawah kartu. Kartu nonaktif memakai putih beropacity 0,86, teks gelap, dan border transparan 1px. Tidak ada notch di luar kartu atau perubahan ukuran active/inactive; spesifikasi terbaru mengikuti bagian LOCKED / FINAL — Mobile Header & Service Selector.
 - Empat layanan tetap dapat diakses pada viewport mobile; bila ruang tidak cukup, selector boleh menggunakan horizontal scrolling yang jelas tanpa menyebabkan overflow halaman.
 - Branding, logo, ikon, copy, warna, foto, dan aset tetap milik **SINGARAJA TRANS**; referensi Klook dipakai untuk pola UI/layout, bukan untuk menyalin aset merek.
 - Pemilihan layanan mengganti form/konteks pencarian di panel bawah tanpa mencampurkan hasil pencarian ke Beranda.
@@ -544,3 +545,71 @@ Baseline yang disetujui: commit `d51ddcc01865fbfc920858d03db2366793d0dbe8` pada 
 7. Setelah perubahan implementasi: commit ke `main`, tunggu deployment sukses, verifikasi render dan interaksi pada live, lalu laporkan status, file/perubahan, verification/regression, commit SHA, deploy status/duration, dan finish time. Source/CI PASS saja tidak cukup.
 
 **Catatan bukti:** baseline implementasi diverifikasi live pada 17 Oktober 2026; pengguna menyatakan hasil sempurna dan menyetujui pencatatannya pada 18 Oktober 2026. Persetujuan ini hanya mengunci treatment mobile di atas, bukan menyatakan seluruh produk telah diaudit ulang melalui perubahan dokumen ini.
+
+
+---
+
+## LOCKED / FINAL — Mobile Header & Service Selector
+
+**Tanggal:** 18 Oktober 2026 (WITA). **Status: implementasi, deployment, pengujian live, audit visual, dan regression PASS.** Baseline final: commit `25f69d823ea648de588e29ec6b24e2b1d338f9f6`, repository resmi `singarajatrans/singarajatrans-web`, branch `main`; versi asset `mobile-header-selector-7`.
+
+Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggantikan detail header/selector mobile lama yang berbeda. Tidak mengubah scope atau aturan desktop/tablet, booking business logic, backend/API/database, routing, SEO/PWA, hero, footer, FAQ, kartu rute, atau area LOCKED lain. Penggantian konteks hero melalui state layanan existing tetap bekerja; tidak ada redesign hero.
+
+### 1. Header dan ukuran final
+
+| Elemen | Implementasi final |
+|---|---|
+| Urutan | Animated search → flag aktif → grid sementara → share |
+| Header | Tinggi 60px, padding vertikal 10px, sisi 16px, gap 6px; brand merah `#C85759` |
+| Search | Tinggi 40px, radius 20px, flex mengisi ruang terbesar, padding sisi 10px; ikon cari 17px |
+| Kontrol kanan | Container lingkaran identik 40 × 40px, gap 6px |
+| Optik ikon kanan | Flag bulat 20px; grid/share dalam SVG 24px dengan area gambar sekitar 20px; pusat dan alignment sama |
+| Ikon sementara | Grid netral, disabled dan berlabel belum tersedia; tidak ditetapkan menjadi Wishlist/Tiket atau fitur permanen |
+| Konten lain | Tidak ada logo/nama tambahan di luar search, hamburger, dropdown bahasa, atau tombol WhatsApp tambahan di header mobile |
+
+### 2. Opening dan animated search
+
+- Setiap pembukaan Home Mobile menampilkan simbol logo resmi dari `assets/images/logo.png` dan teks **SINGARAJA TRANS** di dalam search. Logo mempertahankan proporsi asli; tidak diganti dengan ikon mobil atau aset merek lain. Simbol ditampilkan melalui viewport crop aset resmi tanpa mengubah file logo.
+- Branding ditahan **3.000ms**, lalu mobil kecil yang terpisah bergerak **kanan → kiri selama 1.500ms** dengan easing lembut tanpa bounce.
+- Posisi mobil dan batas `clip-path` branding dihitung dari progress yang sama: bagian di belakang mobil terhapus **secara progresif**, bukan disembunyikan sekaligus. Mobil terpotong di area copy search dan opacity masuk/keluarnya halus; tidak melintas menutupi ikon cari.
+- Setelah wipe, prompt berganti setiap **2.800ms**: Cari Travel Shuttle → Cari Airport Transfer → Cari Sewa Mobil → Cari Sewa Motor → Cari rute, kota, atau tujuan…; lalu loop prompt saja. Pergantian prompt memakai fade/translate vertikal 3px selama 0,24 detik.
+- Klik, sentuhan/pointer, keyboard, fokus search, atau wheel menghentikan autoplay. Pergantian bahasa menerjemahkan prompt tanpa memulai opening lagi. Halaman tersembunyi atau perpindahan ke desktop membatalkan timer/RAF; resize kembali tidak menduplikasi listener atau mengulang opening.
+- `prefers-reduced-motion:reduce` langsung menampilkan prompt umum tanpa opening/wipe/loop/fade; carousel berpindah instan. Tidak memakai library animasi tambahan.
+- Search tetap berupa link semantik dengan nama aksesibel yang sesuai konteks; visual animasi tidak diumumkan terus-menerus oleh screen reader.
+
+### 3. Shortcut, bahasa, dan share
+
+- Klik empat prompt layanan memicu kontrol tab existing, lalu scroll/fokus widget layanan yang sama. Travel/Airport/Sewa Mobil memfokuskan field asal; Sewa Motor memfokuskan CTA informasi existing, tanpa mengarang engine atau ketersediaan.
+- Klik prompt umum/branding mengarah ke kontrol pencarian yang relevan untuk layanan aktif. Tidak membuat state booking atau hasil pencarian kedua di Home.
+- Bahasa memakai dua tombol/state `data-language` existing dan fungsi translate existing: hanya flag aktif yang terlihat, klik langsung ID ↔ EN. Aset flag Indonesia/UK berasal dari repository. Tidak menambah `/en`, redirect, atau sistem routing baru. Aktivasi melalui keyboard mempertahankan fokus pada flag yang baru aktif; Tab melewati ikon sementara nonaktif menuju Share.
+- Share menggunakan `navigator.share` dalam interaksi pengguna. Jika tidak tersedia/gagal selain pembatalan pengguna, gunakan Clipboard API; sukses menampilkan centang sementara selama 2,4 detik dan status aksesibel. Jika clipboard tidak tersedia/ditolak, dialog ringan menampilkan URL readonly yang dapat dipilih/disalin manual.
+- Pembatalan native share tidak memaksa fallback. Dialog dapat ditutup melalui tombol, Escape, atau backdrop; fokus kembali ke tombol Share, termasuk setelah dialog existing lain pernah dibuka. Pointer/touch di konten melepas fokus kontrol header agar auto-hide tetap berjalan, sementara perlindungan fokus keyboard dipertahankan. Judul dialog adalah label UI, bukan heading SEO tambahan.
+
+### 4. Empat kartu dan geometri carousel
+
+- Urutan tetap **Travel Shuttle → Airport Transfer → Sewa Mobil → Sewa Motor**. Semua merupakan tab kontrol UI, bukan heading SEO.
+- Keempat kartu selalu sama width, height, radius, border-box, padding, area ikon/label, gap dan alignment. Panjang label tidak mengubah geometri. Tidak ada scale pada kartu aktif.
+- Tinggi **88px**, radius **16px**, padding **10px 6px 9px**, gap **4px**, border **1px**, area label minimum **28px**. Active: putih, teks merah gelap, border merah utama, bayangan ringan dan indikator **18 × 3px** pada 6px dari bawah; inactive: putih opacity 0,86, teks gelap dan border transparan. Tidak ada notch di luar kartu.
+- Ikon layanan menggunakan simbol repository: bus, pesawat, sedan, motor. Area layout dasar **24 × 24px**, stroke 2, posisi pusat sama. Koreksi optik konstan per bentuk: bus scaleX 1,08; sedan 1,12 × 1,04; motor scaleX 0,9; pesawat default. Koreksi ini berlaku untuk active/inactive dan tidak mengubah ukuran kartu/area label.
+- Rail memakai tiga kolom terlihat, gap **10px**, lebar viewport dikurangi **32px**; lebar kartu dibulatkan turun ke pixel utuh agar snap tidak memotong border pada posisi akhir. Sisa ruang dibagi simetris di kedua sisi.
+
+| Viewport QA | Lebar setiap kartu | Tinggi setiap kartu | Tepi visual kiri/kanan pada posisi awal/akhir |
+|---|---:|---:|---:|
+| 360px | 102px | 88px | 17px / 17px |
+| 390px | 112px | 88px | 17px / 17px |
+| 412px | 120px | 88px | 16px / 16px |
+
+- Rail tetap finite: tidak membuat clone/reorder layanan atau infinite loop. Klik memilih layanan langsung dan menjalankan smooth horizontal scroll menuju posisi natural yang dibatasi ujung rail; active tidak dipaksa ke tengah. Posisi yang sudah mencapai ujung tidak digeser paksa lagi.
+- Gunakan scroll snap, scroll-padding, dan padding simetris. Kartu pertama/terakhir dapat terlihat utuh; di posisi snap tidak ada border kartu tepi yang terpotong. Swipe dan keyboard tetap dapat dipakai tanpa horizontal page overflow.
+- `setService` existing tetap menjadi satu sumber state layanan, `aria-selected`, tabIndex, body dataset, label panel dan form. Search shortcut memicu tab existing; tidak menduplikasi business logic. Fokus keyboard tidak memicu scroll browser yang bertentangan dengan scroll rail.
+
+### 5. Perlindungan perilaku dan verifikasi
+
+- Header auto-hide/show existing dipertahankan. Surface konten asli tetap menggunakan radius **24px 24px 0 0** saat header tersembunyi, kembali **0px** saat tampil; transisi surface 0,26 detik tetap berlaku.
+- Tidak ada celah putih di sudut bawah header, topper/white strip, artificial red corner boxes, overlay pemalsu radius, atau bar merah tambahan. Batas tipis toolbar native Chrome tetap merupakan batas browser yang diterima pada spesifikasi sebelumnya.
+- Implementasi mobile berada pada media query mobile dan modul JS ber-guard breakpoint. Desktop/tablet mulai 768px mempertahankan tampilan dan perilaku existing.
+- Bukti live pada `https://singarajatrans-web.pages.dev/`: **360/390/412px** lolos opening ±3 detik, mobil kanan→kiri dan wipe progresif, lima shortcut, ID/EN, jalur native share (stub tanpa mengirim keluar), clipboard asli, fallback manual, empat tab, geometri identik, optical alignment, smooth/snap, first/last card, tepi simetris, sinkronisasi widget, touch scroll sampai bagian bawah, header show/hide, refresh/resize, fokus, reduced motion, overflow, dan console error.
+- Desktop **768/1024/1440px** diperiksa terhadap baseline sebelum pekerjaan: geometri dan style seluruh elemen terlihat sama, ditambah review screenshot. Regression booking, layanan, validasi, bahasa, dialog, tanggal, resize/refresh serta 19 assertion tarif/tanggal/jam/kapasitas lolos.
+- Heading HTML utama tetap sama dengan baseline; metadata, robots, manifest, mesin tarif, routing, konten/tautan penting, pemisahan hasil pencarian dan larangan swap dipertahankan. CSS dan JS live dicocokkan dengan source commit untuk menghindari cache lama.
+
+**LOCK:** Jangan mengubah mobile header atau service selector final ini tanpa instruksi eksplisit. Pekerjaan berikutnya harus membaca bagian ini dan mempertahankan scope lain yang LOCKED. Jika perubahan diotorisasi: audit sumber/cascade → perubahan minimum → pengujian viewport/state terkait → commit/deploy → tunggu sukses → audit live dan regression → update PRD. CI/source PASS saja tidak cukup untuk menyatakan FINAL.

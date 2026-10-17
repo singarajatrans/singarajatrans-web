@@ -383,3 +383,8 @@ Selector adalah kontrol UI dan **bukan heading SEO**. Implementasi tidak boleh m
 ## Acuan Header/Surface Mobile — LOCKED (18 Oktober 2026)
 
 Desain dan perilaku bagian paling atas mobile yang telah disetujui ditetapkan pada [Mobile Header & Permukaan Konten Saat Scroll — LOCKED](PRD-Design-Singaraja-Trans.md#mobile-header--permukaan-konten-saat-scroll--locked-18-oktober-2026). Acuan ini mencakup penghapusan celah putih di belakang menu, radius atas surface **24px** ketika header auto-hide, pengembalian radius saat header tampil, larangan topper/overlay, dan batas kendali garis toolbar browser. Berlaku hanya sampai **767px**; tidak mengubah spesifikasi maupun tampilan desktop/tablet. Gunakan bagian tersebut sebagai sumber rinci untuk pengerjaan dan regression mobile berikutnya.
+
+
+## LOCKED / FINAL — Mobile Header & Service Selector (18 Oktober 2026)
+
+Scope mobile header dan selector telah selesai diimplementasikan dan diverifikasi live pada commit `25f69d823ea648de588e29ec6b24e2b1d338f9f6`. Gunakan [spesifikasi final pada PRD Desain](PRD-Design-Singaraja-Trans.md#locked--final--mobile-header--service-selector) sebagai sumber rinci: header 60px, search/action 40px, opening logo resmi 3 detik + mobil progressive wipe, shortcut, flag ID/EN existing, share, empat kartu identik, carousel smooth dengan tepi simetris, aksesibilitas dan reduced motion. Bagian ini hanya berlaku sampai 767px; tidak mengubah desktop/tablet maupun requirement backend, routing, SEO/PWA, atau area LOCKED lain. Regression desktop 768/1024/1440px dan verifikasi live mobile 360/390/412px telah PASS. Perubahan berikutnya pada scope ini memerlukan instruksi eksplisit.
