@@ -80,11 +80,10 @@ function setService(next,{focus=false,animate=true}={}){
  if(lastSearch&&lastSearch.service!==service)$('#results').hidden=true;
  if(service!=='motor')updateSelects();updateServiceCopy();
  if(window.matchMedia('(max-width:767px)').matches){
-  const tabs=$('.service-tabs'),active=$('#tab-'+service);
-  const left=active.getBoundingClientRect().left-tabs.getBoundingClientRect().left+tabs.scrollLeft;
-  // Keep a glimpse of the previous service; clamp naturally at either end.
-  const context=active.getBoundingClientRect().width*.45;
-  const target=Math.max(0,Math.min(left-16-context,tabs.scrollWidth-tabs.clientWidth));
+  const tabs=$('.service-tabs'),items=all('.service-tabs [role=tab]').filter(tab=>tab.getClientRects().length);
+  // Give each service its own landing point within the finite rail, including reverse selection.
+  const index=items.findIndex(tab=>tab.dataset.service===service);
+  const target=(tabs.scrollWidth-tabs.clientWidth)*index/Math.max(1,items.length-1);
   tabs.scrollTo({left:target,behavior:animate&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches?'smooth':'instant'});
  }
  if(focus){$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#origin').focus({preventScroll:true});}

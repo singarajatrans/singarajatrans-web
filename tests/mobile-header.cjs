@@ -22,8 +22,20 @@ module.exports=async function testMobileHeader(browser,url){
   const row=p.locator('.service-tabs');assert.equal(Math.round((await row.boundingBox()).x),0);const firstEdge=(await p.locator('#tab-shuttle').boundingBox()).x;assert.ok(firstEdge>=16&&firstEdge<=17);
   assert.equal(await row.evaluate(e=>getComputedStyle(e).columnGap),'8px');
   const peek=await p.locator('#tab-motor').boundingBox();assert.ok(peek.x<width&&peek.x+peek.width>width,'Next service must peek into the rail');
-  assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').width),'26px');assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').height),'8px');
+  assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').width),'26px');assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').height),'10px');
   assert.equal((await p.locator('#search-panel').boundingBox()).y-(await p.locator('#tab-shuttle').boundingBox()).y-88,14);
+  // Inspect the rendered junction: white across the seam and red along the pointer curve.
+  const activeBox=await p.locator('#tab-shuttle').boundingBox();
+  const notchPng=await p.screenshot({clip:{x:Math.floor(activeBox.x+activeBox.width/2-16),y:Math.floor(activeBox.y+activeBox.height-4),width:32,height:14}});
+  const junction=await p.evaluate(async data=>{
+   const image=new Image();image.src=data;await image.decode();const canvas=document.createElement('canvas');canvas.width=32;canvas.height=14;const context=canvas.getContext('2d');context.drawImage(image,0,0,32,14);const pixels=context.getImageData(0,0,32,14).data;
+   const pixel=(x,y)=>Array.from(pixels.slice((y*32+x)*4,(y*32+x)*4+3));
+   const seamWhite=[3,4,5].every(y=>[13,14,15,16,17,18,19].every(x=>pixel(x,y).every(c=>c>245)));
+   const borderedCurve=Array.from({length:13},(_,i)=>i+10).every(x=>Array.from({length:8},(_,i)=>i+5).some(y=>{const [r,g,b]=pixel(x,y);return r-g>25&&g<175&&b<185;}));
+   return {seamWhite,borderedCurve};
+  },'data:image/png;base64,'+notchPng.toString('base64'));
+  assert.deepEqual(junction,{seamWhite:true,borderedCurve:true},'Notch must join without a seam and carry the active border');
+
   await p.locator('#tab-airport').click();await p.clock.runFor(500);await new Promise(r=>setTimeout(r,450));
   // Selecting a service uses its existing state and preserves every card's geometry.
   for(const service of ['airport','charter','motor','shuttle']){
@@ -58,10 +70,18 @@ module.exports=async function testMobileHeader(browser,url){
   await p.locator('.mobile-header-share').click();assert.equal(await p.evaluate(()=>window.sharedPage.url),p.url());
   await p.evaluate(()=>{Object.defineProperty(navigator,'share',{configurable:true,value:undefined});Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async value=>{window.copiedLink=value;}}});});
   await p.locator('.mobile-header-share').click();assert.equal(await p.evaluate(()=>window.copiedLink),p.url());assert.equal(await p.locator('.mobile-header-share use').getAttribute('href'),'#check');await p.clock.runFor(2500);assert.equal(await p.locator('.mobile-header-share use').getAttribute('href'),'#share');
-  await search.focus();await p.locator('[data-check-booking]').first().evaluate(e=>e.click());await p.keyboard.press('Escape');await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));await p.locator('.mobile-header-share').click();assert.equal(await p.locator('#mobile-share-dialog').evaluate(e=>e.open),true);assert.equal(await p.locator('#mobile-share-url').inputValue(),p.url());await p.keyboard.press('Escape');await p.clock.runFor(50);await new Promise(r=>setTimeout(r,150));assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true,'Share dialog must restore its own trigger after another dialog');
+  await search.focus();await p.locator('[data-check-booking]').first().evaluate(e=>e.click());await p.keyboard.press('Escape');await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));await p.locator('.mobile-header-share').click();assert.equal(await p.locator('#mobile-share-dialog').evaluate(e=>e.open),true);assert.equal(await p.locator('#mobile-share-url').inputValue(),p.url());await p.keyboard.press('Escape');await p.clock.resume();await p.waitForFunction(()=>!document.querySelector('#mobile-share-dialog').open&&document.activeElement.classList.contains('mobile-header-share'));assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true,'Share dialog must restore its own trigger after another dialog');
   await p.locator('.mobile-header-search').focus();assert.equal(await search.evaluate(e=>getComputedStyle(e).outlineStyle),'solid');
   assert.equal(await p.evaluate(()=>document.body.scrollWidth<=innerWidth&&document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
   await p.emulateMedia({reducedMotion:'reduce'});await p.reload({waitUntil:'networkidle'});assert.equal(await p.locator('.header-search-brand').isVisible(),false);await p.clock.runFor(15000);assert.match(await search.getAttribute('aria-label'),/rute/);assert.equal(await search.evaluate(e=>e.classList.contains('is-wiping')),false);
+  // Reduced motion also keeps distinct landing points, including Motor → Mobil.
+  await p.locator('#tab-motor').evaluate(e=>e.click());
+  let previousScroll=await row.evaluate(e=>e.scrollLeft);
+  for(const service of ['charter','airport','shuttle','airport','charter','motor']){
+   await p.locator('#tab-'+service).evaluate(e=>e.click());
+   const scroll=await row.evaluate(e=>e.scrollLeft);assert.ok(Math.abs(scroll-previousScroll)>5,'Carousel did not move to '+service);previousScroll=scroll;
+   assert.equal(await p.locator('#search-panel').getAttribute('aria-labelledby'),'tab-'+service);
+  }
   await p.close();console.log('PASS mobile header: opening/wipe, shortcuts, geometry, carousel, language, share, focus and reduced motion at '+width);
  }
 };
