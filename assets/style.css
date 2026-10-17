@@ -332,7 +332,7 @@ dialog{border-radius:12px}
  .service-tabs button:not([aria-selected=true]){background:rgba(210,210,210,.42);color:#fff}
  .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red-dark);border:0}
  .service-tabs button[aria-selected=true] svg{color:var(--mock-red)}
- .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-9px;left:calc(50% - 17px);width:34px;height:16px;background:#fff;clip-path:polygon(0 0,100% 0,72% 50%,56% 88%,50% 100%,44% 88%,28% 50%);pointer-events:none}
+ .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-9px;left:calc(50% - 20px);width:40px;height:16px;background:#fff;clip-path:polygon(0 0,100% 0,74% 46%,62% 72%,56% 88%,44% 88%,38% 72%,26% 46%);pointer-events:none}
  .service-tabs button:focus-visible{outline:2px solid #fff;outline-offset:2px}
  .service-tabs svg{width:25px;height:25px;stroke-width:1.9}
  #search-panel{margin-top:6px;padding:14px;border-radius:17px;background:#fff;box-shadow:0 4px 18px #18212d08;min-height:0}
