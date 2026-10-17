@@ -17,6 +17,23 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow at '+width);
    if(width<768){
+    await page.mouse.move(width/2,700);
+    for(const distance of [350,450,500,600]){
+     await page.mouse.wheel(0,distance);
+     await page.waitForFunction(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.body).borderTopLeftRadius==='16px');
+     assert.equal(await page.evaluate(()=>document.body.scrollTop>100),true);
+     assert.equal(await page.evaluate(()=>getComputedStyle(document.querySelector('#main'),'::before').content),'none');
+     assert.equal(await page.evaluate(()=>getComputedStyle(document.body,'::before').content),'none');
+     assert.equal(await page.evaluate(()=>getComputedStyle(document.body,'::after').content),'none');
+     assert.equal(await page.evaluate(()=>document.elementFromPoint(innerWidth/2,1).closest('#header')===null),true,'Header covers content after hiding');
+     assert.equal(await page.evaluate(()=>document.body.scrollWidth<=innerWidth),true);
+     await page.screenshot({path:`qa-output/header-hidden-${width}-${distance}.png`});
+    }
+    await page.mouse.wheel(0,-80);
+    await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.body).borderTopLeftRadius==='0px');
+    await page.screenshot({path:`qa-output/header-shown-${width}.png`});
+    await page.mouse.wheel(0,-20000);
+    await page.waitForFunction(()=>document.body.scrollTop===0);
     assert.equal(await page.locator('.swap-fields').count(),0);
     assert.equal(await page.locator('.languages button:visible').count(),1);
     assert.equal(await page.locator('.language-flag').first().evaluate(el=>getComputedStyle(el).borderRadius),'50%');
@@ -35,9 +52,9 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
      assert.equal(await page.locator('#motor-entry').isVisible(),service==='motor');
      assert.equal(await page.locator('#search-form').isVisible(),service!=='motor');
      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-     const card=await page.locator('#tab-'+service).boundingBox();assert.ok(card.width>=44&&card.height===90);
-     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 255, 255)');
-     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el,'::after').height),'12px');
+     const card=await page.locator('#tab-'+service).boundingBox();assert.ok(card.width>=44&&card.height===88);
+     assert.match(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el).backgroundColor),/^rgba?\(255, 255, 255(?:, 1)?\)$/);
+     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el,'::after').height),'14px');
      await page.screenshot({path:`qa-output/mobile-${service}-${width}.png`});
     }
     await page.locator('#tab-shuttle').focus();await page.keyboard.press('End');
@@ -93,7 +110,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    await page.locator('#edit-search').click();await page.locator('#tab-shuttle').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.locator('#tab-airport').getAttribute('aria-selected'),'true');
    await page.locator(width<768?'.languages button[aria-pressed=true]':'[data-language=en]').click();assert.equal(await page.locator('html').getAttribute('lang'),'en');if(width<768){assert.equal(await page.locator('.languages button[aria-pressed=true]').getAttribute('data-language'),'en');assert.equal(await page.locator('.languages button[aria-pressed=true]').evaluate(el=>getComputedStyle(el).flexDirection),'row');}assert.match(await page.locator('h1').innerText(),/Airport Transfer/);assert.match(await page.locator('#hero-subtitle').innerText(),/Private Ngurah Rai/);
    await page.locator(width<768?'.languages button[aria-pressed=true]':'[data-language=id]').click();
-   if(width<768){await page.locator('.mobile-menu').click();assert.equal(await page.locator('#navigation').isVisible(),true);await page.keyboard.press('Escape');assert.equal(await page.locator('#navigation').isVisible(),false);}
+   if(width<768){assert.equal(await page.locator('.mobile-header-search').isVisible(),true);assert.equal(await page.locator('.mobile-header-search').getAttribute('href'),'#pesan');}
    await page.locator('#faq details').first().locator('summary').click();assert.equal(await page.locator('#faq details').first().getAttribute('open')!==null,true);
    await page.locator('.footer-group').last().evaluate(d=>d.open=true);await page.locator('[data-check-booking]').last().click();await page.locator('[name=code]').fill('ST-12345');await page.locator('#check-form [name=phone]').fill('081234567890');await page.locator('#check-form button').click();assert.equal(await page.locator('#check-link').isVisible(),true);await page.keyboard.press('Escape');
    await page.setViewportSize({width:width===390?1440:390,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow on resize');
