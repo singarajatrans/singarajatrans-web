@@ -668,8 +668,8 @@ dialog{border-radius:12px}
 .mobile-header-search,.mobile-header-whatsapp,.language-chevron{display:none}
 @media(max-width:767px){
  html{scroll-padding-top:72px}
- #header{background:var(--mock-red);border:0!important;border-radius:0 0 14px 14px;box-shadow:none!important;outline:0;overflow:hidden}
- #header>.nav-wrap{background:var(--mock-red);border:0!important;border-bottom:0!important;border-radius:0;box-shadow:none!important;outline:0}
+ #header{background:var(--mock-red)!important;border:0!important;border-radius:0 0 14px 14px;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
+ #header>.nav-wrap,#header>.nav-wrap>.nav-inner{background:var(--mock-red)!important;background-image:none!important;border:0!important;border-top:0!important;border-bottom:0!important;border-radius:0;box-shadow:none!important;outline:0}
  #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important;border:0!important;box-shadow:none!important}
  .nav-inner{height:68px;width:calc(100% - 32px);gap:6px;padding:10px 0 14px}
  .brand,.mobile-menu{display:none!important}
