@@ -64,8 +64,8 @@ async function fallbackShare(){
  const url=location.href;
  try{
   if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable');
-  await navigator.clipboard.writeText(url);status.textContent=text('Tautan berhasil disalin.','Link copied.');
-  share.setAttribute('aria-label',status.textContent);timer=setTimeout(()=>share.setAttribute('aria-label',text('Bagikan halaman','Share page')),2400);
+  await navigator.clipboard.writeText(url);clearTimeout(timer);share.querySelector('use').setAttribute('href','#check');status.textContent=text('Tautan berhasil disalin.','Link copied.');
+  share.setAttribute('aria-label',status.textContent);timer=setTimeout(()=>{share.querySelector('use').setAttribute('href','#share');share.setAttribute('aria-label',text('Bagikan halaman','Share page'));},2400);
  }catch{
   document.querySelector('#mobile-share-url').value=url;dialog.showModal();document.body.classList.add('modal-open');document.querySelector('#mobile-share-url').select();
  }

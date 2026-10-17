@@ -550,6 +550,7 @@ dialog{border-radius:12px}
  .mobile-header-share:active{background:var(--red-soft)}
  .mobile-header-search:focus-visible,.languages button:focus-visible,.mobile-header-action:focus-visible{outline:2px solid var(--mock-ink);outline-offset:2px}
  .booking-check{display:none!important}
+ #mobile-share-title{font-size:20px;font-weight:700;color:var(--mock-ink)}
  #mobile-share-dialog label{display:block;font-size:14px;margin-bottom:8px}
  #mobile-share-url{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:16px}
  #mobile-share-help{font-size:13px;margin:12px 0 0}

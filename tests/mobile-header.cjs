@@ -51,7 +51,7 @@ module.exports=async function testMobileHeader(browser,url){
   await p.evaluate(()=>Object.defineProperty(navigator,'share',{configurable:true,value:async data=>{window.sharedPage=data;}}));
   await p.locator('.mobile-header-share').click();assert.equal(await p.evaluate(()=>window.sharedPage.url),p.url());
   await p.evaluate(()=>{Object.defineProperty(navigator,'share',{configurable:true,value:undefined});Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async value=>{window.copiedLink=value;}}});});
-  await p.locator('.mobile-header-share').click();assert.equal(await p.evaluate(()=>window.copiedLink),p.url());
+  await p.locator('.mobile-header-share').click();assert.equal(await p.evaluate(()=>window.copiedLink),p.url());assert.equal(await p.locator('.mobile-header-share use').getAttribute('href'),'#check');await p.clock.runFor(2500);assert.equal(await p.locator('.mobile-header-share use').getAttribute('href'),'#share');
   await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));await p.locator('.mobile-header-share').click();assert.equal(await p.locator('#mobile-share-dialog').evaluate(e=>e.open),true);assert.equal(await p.locator('#mobile-share-url').inputValue(),p.url());await p.keyboard.press('Escape');
   await p.locator('.mobile-header-search').focus();assert.equal(await search.evaluate(e=>getComputedStyle(e).outlineStyle),'solid');
   assert.equal(await p.evaluate(()=>document.body.scrollWidth<=innerWidth&&document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
