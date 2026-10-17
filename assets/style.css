@@ -332,10 +332,10 @@ dialog{border-radius:12px}
  .service-tabs button:not([aria-selected=true]){background:rgba(210,210,210,.42);color:#fff}
  .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red-dark);border:0}
  .service-tabs button[aria-selected=true] svg{color:var(--mock-red)}
- .service-tabs button[aria-selected=true]::after{content:"";position:absolute;z-index:-1;bottom:-9px;left:50%;width:26px;height:26px;background:#fff;border-radius:5px;transform:translateX(-50%) rotate(45deg);pointer-events:none}
+ .service-tabs button[aria-selected=true]::after{content:"";position:absolute;z-index:-1;bottom:-10px;left:50%;width:28px;height:28px;background:#fff;border-radius:6px;transform:translateX(-50%) rotate(45deg);pointer-events:none}
  .service-tabs button:focus-visible{outline:2px solid #fff;outline-offset:2px}
  .service-tabs svg{width:25px;height:25px;stroke-width:1.9}
- #search-panel{margin-top:6px;padding:14px;border-radius:17px;background:#fff;box-shadow:0 4px 18px #18212d08;min-height:0}
+ #search-panel{margin-top:10px;padding:14px;border-radius:17px;background:#fff;box-shadow:0 4px 18px #18212d08;min-height:0}
  #motor-entry{display:grid;align-content:center;justify-items:start;gap:12px;min-height:260px}
  #motor-entry .rental-icon{display:grid;place-items:center;width:48px;height:48px;background:var(--red-soft);color:var(--mock-red-dark);border-radius:12px}
  #motor-entry .rental-icon svg{width:30px;height:30px}
