@@ -324,18 +324,18 @@ dialog{border-radius:12px}
  .booking-container{margin-top:-112px}
  .booking-container::before{content:"";position:absolute;z-index:-1;inset:0 calc((100% - 100vw)/2) 0;background:linear-gradient(transparent 0,#777b80 104px,#f7f7f7 300px,#fff 100%);pointer-events:none}
  .booking-widget{border:0;border-radius:0;box-shadow:none;overflow:visible;background:transparent}
- .service-tabs{display:grid;grid-auto-flow:column;grid-auto-columns:28.3%;grid-template-columns:none;gap:8px;margin-right:calc((100% - 100vw)/2);padding:4px calc((100vw - 100%)/2) 12px 0;border:0;border-radius:0;background:transparent;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
+ .service-tabs{display:grid;grid-auto-flow:column;grid-auto-columns:27.5%;grid-template-columns:none;gap:10px;margin-right:calc((100% - 100vw)/2);padding:4px calc((100vw - 100%)/2) 10px 0;border:0;border-radius:0;background:transparent;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
  .service-tabs::-webkit-scrollbar{display:none}
- .service-tabs button,.service-tabs .mobile-service{display:flex;position:relative;min-height:90px;height:90px;margin:0;padding:12px 6px;flex-direction:column;justify-content:center;gap:8px;border:0;border-radius:16px;background:#64686e;color:#fff;font-size:12px;line-height:1.2;font-weight:650;scroll-snap-align:center;box-shadow:none;transition:background .18s,color .18s}
+ .service-tabs button,.service-tabs .mobile-service{display:flex;position:relative;min-height:88px;height:88px;margin:0;padding:11px 6px;flex-direction:column;justify-content:center;gap:7px;border:0;border-radius:17px;background:rgba(92,96,101,.58);color:#fff;font-size:11.5px;line-height:1.2;font-weight:650;scroll-snap-align:center;box-shadow:none;transition:background .18s,color .18s}
  .service-tabs button span{min-height:28px;display:flex;align-items:center;justify-content:center;text-align:center}
  .service-tabs button .desktop-service-label{display:none}
- .service-tabs button:not([aria-selected=true]){background:#64686e;color:#fff}
+ .service-tabs button:not([aria-selected=true]){background:rgba(92,96,101,.58);color:#fff}
  .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red-dark);border:0}
  .service-tabs button[aria-selected=true] svg{color:var(--mock-red)}
- .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-6px;left:calc(50% - 8px);width:16px;height:12px;background:#fff;clip-path:polygon(0 0,100% 0,63% 88%,50% 100%,37% 88%);pointer-events:none}
+ .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-8px;left:calc(50% - 13px);width:26px;height:14px;background:#fff;clip-path:polygon(0 0,100% 0,66% 72%,50% 100%,34% 72%);pointer-events:none}
  .service-tabs button:focus-visible{outline:2px solid #fff;outline-offset:2px}
- .service-tabs svg{width:27px;height:27px;stroke-width:1.9}
- #search-panel{margin-top:2px;padding:16px;border-radius:16px;background:#fff;box-shadow:0 4px 18px #18212d08;min-height:292px}
+ .service-tabs svg{width:25px;height:25px;stroke-width:1.9}
+ #search-panel{margin-top:0;padding:14px;border-radius:17px;background:#fff;box-shadow:0 4px 18px #18212d08;min-height:0}
  #motor-entry{display:grid;align-content:center;justify-items:start;gap:12px;min-height:260px}
  #motor-entry .rental-icon{display:grid;place-items:center;width:48px;height:48px;background:var(--red-soft);color:var(--mock-red-dark);border-radius:12px}
  #motor-entry .rental-icon svg{width:30px;height:30px}
@@ -350,15 +350,15 @@ dialog{border-radius:12px}
  .trip-mode label.is-disabled{opacity:1;color:#8a9099;background:#f6f7f9;cursor:not-allowed}
  .trip-mode input{position:absolute;opacity:0;pointer-events:none}
  .search-fields,body[data-service="shuttle"] .search-fields,body[data-service="airport"] .search-fields,body[data-service="charter"] .search-fields{display:block}
- .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date";gap:12px;position:relative;border:0;border-radius:0;overflow:visible;background:transparent}
- .field{min-height:64px;padding:9px 12px;border:1px solid transparent;border-radius:10px;background:#f5f5f5;box-shadow:none}
+ .field-stack{display:grid;grid-template-columns:1fr;grid-template-areas:"origin" "destination" "date";gap:8px;position:relative;border:0;border-radius:0;overflow:visible;background:transparent}
+ .field{min-height:58px;padding:7px 11px;border:1px solid transparent;border-radius:9px;background:#f5f5f5;box-shadow:none}
  .field:hover{border-color:#e8eaee}
  .field:focus-within{border-color:var(--mock-red);box-shadow:0 0 0 2px rgba(200,87,89,.18)}
- .field>svg{width:24px;height:24px;color:#292d34;stroke-width:2}
+ .field>svg{width:21px;height:21px;color:#292d34;stroke-width:2}
  .field-icon-default{display:none}
  .field>svg.field-icon-mobile{display:block}
- .field-label{font-size:14px;margin-bottom:2px;color:#6b7280}
- .field input,.field select{font-size:16px;font-weight:600;color:#1f2430}
+ .field-label{font-size:11px;margin-bottom:1px;color:#8a8f98}
+ .field input,.field select{font-size:15px;font-weight:650;color:#1f2430}
  .origin-field{grid-area:origin}
  .destination-field{grid-area:destination}
  .date-field{grid-area:date;padding-right:120px}
@@ -371,8 +371,8 @@ dialog{border-radius:12px}
  .quick-date-actions{grid-area:date;display:flex;align-self:center;justify-self:end;gap:4px;margin-right:6px;z-index:2}
  .quick-date-actions button{min-width:52px;min-height:44px;padding:6px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700}
  .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
- .search-button{display:flex;width:100%;min-height:50px;margin-top:16px;border-radius:10px;font-size:16px}
- .booking-footnote{margin-top:12px}
+ .search-button{display:flex;width:100%;min-height:46px;margin-top:12px;border-radius:9px;font-size:15px}
+ .booking-footnote{display:none}
  .booking-footnote>div{grid-template-columns:32px 1fr;padding:10px 7px;gap:7px}
  .booking-footnote strong{font-size:10px;line-height:1.25}
  .booking-footnote small{display:none}
