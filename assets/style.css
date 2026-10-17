@@ -168,7 +168,8 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  html{scroll-padding-top:62px}
  .container{width:calc(100% - 32px)}
- #header{position:sticky;top:0}
+ #header{position:sticky;top:0;background:transparent;border-bottom:0;border-radius:0 0 28px 28px}
+ .nav-wrap{border-radius:0 0 28px 28px}
  #main{position:relative;background:#fff}
  .nav-inner{height:58px}
  .brand{width:158px}
