@@ -51,8 +51,15 @@ function start(){
  timer=setTimeout(wipe,3000);
 }
 // These listeners are registered once; desktop handlers return without doing anything.
-['pointerdown','keydown','wheel'].forEach(type=>document.addEventListener(type,stop,{passive:true}));
+['pointerdown','keydown','wheel'].forEach(type=>document.addEventListener(type,event=>{
+ // A touch gesture in the page leaves header controls, so keyboard-focus protection must not pin the header.
+ const header=document.querySelector('#header');
+ if(type==='pointerdown'&&mobile.matches&&!header.contains(event.target)&&header.contains(document.activeElement))document.activeElement.blur();
+ stop();
+},{passive:true}));
 search.addEventListener('focus',stop);
+// Translation swaps the visible language button; retain keyboard focus on that button.
+document.querySelector('.languages').addEventListener('click',event=>{if(mobile.matches&&event.detail===0)document.querySelector('.languages button[aria-pressed=true]').focus({preventScroll:true});});
 search.addEventListener('click',event=>{
  if(!mobile.matches)return;event.preventDefault();stop();
  const service=services[index];if(service)document.querySelector('#tab-'+service).click();

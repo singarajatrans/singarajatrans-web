@@ -34,9 +34,9 @@ module.exports=async function testMobileHeader(browser,url){
   }
   await p.locator('#tab-motor').evaluate(e=>e.click());await p.clock.runFor(500);await new Promise(r=>setTimeout(r,450));const last=await p.locator('#tab-motor').boundingBox();assert.ok(Math.abs(width-firstEdge-last.x-last.width)<1);
   // Existing language buttons toggle directly, without a new route or a dropdown.
-  const originalURL=p.url();await p.locator('.languages button[aria-pressed=true]').click();assert.equal(await p.locator('html').getAttribute('lang'),'en');assert.equal(p.url(),originalURL);
+  const originalURL=p.url();await p.locator('.languages button[aria-pressed=true]').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'en');assert.equal(p.url(),originalURL);assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'en');
   assert.equal(await p.locator('.language-code:visible').count(),0);assert.equal(await p.locator('.language-chevron:visible').count(),0);
-  await p.locator('.languages button[aria-pressed=true]').click();assert.equal(await p.locator('html').getAttribute('lang'),'id');
+  await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'id');assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'id');await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true);
   const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.deepEqual(actions,[[40,40],[40,40],[40,40]]);
   // Each animated prompt is clicked at its real index, then must stop cycling.
   for(let index=0;index<5;index++){
