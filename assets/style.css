@@ -169,7 +169,8 @@ dialog{border-radius:12px}
  html{scroll-padding-top:62px}
  .container{width:calc(100% - 32px)}
  #header{position:sticky;top:0}
- #header.is-hidden{border-radius:0 0 16px 16px;overflow:hidden}
+ #main{position:relative;background:#fff;transition:border-radius .26s ease}
+ body.header-hidden #main{border-radius:16px 16px 0 0;overflow:hidden}
  .nav-inner{height:58px}
  .brand{width:158px}
  .nav-inner nav{top:58px;padding:8px 18px}
