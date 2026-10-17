@@ -19,7 +19,11 @@ module.exports=async function testMobileHeader(browser,url){
   const serviceList=['shuttle','airport','charter','motor'];
   const shape=await p.locator('.service-tabs button').evaluateAll(a=>a.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return [r.width,r.height,s.borderRadius,s.padding,s.gap]}));
   shape.forEach(s=>assert.deepEqual(s,shape[0]));assert.equal(shape[0][1],88);
-  const row=p.locator('.service-tabs');assert.equal(Math.round((await row.boundingBox()).x),16);const firstEdge=(await p.locator('#tab-shuttle').boundingBox()).x;assert.ok(firstEdge>=16&&firstEdge<=17);
+  const row=p.locator('.service-tabs');assert.equal(Math.round((await row.boundingBox()).x),0);const firstEdge=(await p.locator('#tab-shuttle').boundingBox()).x;assert.ok(firstEdge>=16&&firstEdge<=17);
+  assert.equal(await row.evaluate(e=>getComputedStyle(e).columnGap),'8px');
+  const peek=await p.locator('#tab-motor').boundingBox();assert.ok(peek.x<width&&peek.x+peek.width>width,'Next service must peek into the rail');
+  assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').width),'26px');assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').height),'8px');
+  assert.equal((await p.locator('#search-panel').boundingBox()).y-(await p.locator('#tab-shuttle').boundingBox()).y-88,14);
   await p.locator('#tab-airport').click();await p.clock.runFor(500);await new Promise(r=>setTimeout(r,450));
   // Selecting a service uses its existing state and preserves every card's geometry.
   for(const service of ['airport','charter','motor','shuttle']){
@@ -33,6 +37,8 @@ module.exports=async function testMobileHeader(browser,url){
    await p.screenshot({path:`/tmp/header-card-${width}-${service}.png`});
   }
   await p.locator('#tab-motor').evaluate(e=>e.click());await p.clock.runFor(500);await new Promise(r=>setTimeout(r,450));const last=await p.locator('#tab-motor').boundingBox();assert.ok(Math.abs(width-firstEdge-last.x-last.width)<1);
+  const previous=await p.locator('#tab-shuttle').boundingBox();assert.ok(previous.x<0&&previous.x+previous.width>0,'Previous service must peek at the opposite end');assert.ok(last.x+last.width/2>width*.6,'Last service must not be forced to center');
+  assert.equal(Math.round(await row.evaluate(e=>e.scrollLeft)),await row.evaluate(e=>e.scrollWidth-e.clientWidth));
   // Existing language buttons toggle directly, without a new route or a dropdown.
   const originalURL=p.url();await p.locator('.languages button[aria-pressed=true]').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'en');assert.equal(p.url(),originalURL);assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'en');
   assert.equal(await p.locator('.language-code:visible').count(),0);assert.equal(await p.locator('.language-chevron:visible').count(),0);

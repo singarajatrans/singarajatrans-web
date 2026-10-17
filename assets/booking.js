@@ -82,7 +82,10 @@ function setService(next,{focus=false,animate=true}={}){
  if(window.matchMedia('(max-width:767px)').matches){
   const tabs=$('.service-tabs'),active=$('#tab-'+service);
   const left=active.getBoundingClientRect().left-tabs.getBoundingClientRect().left+tabs.scrollLeft;
-  tabs.scrollTo({left:Math.min(left,tabs.scrollWidth-tabs.clientWidth),behavior:animate&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches?'smooth':'instant'});
+  // Keep a glimpse of the previous service; clamp naturally at either end.
+  const context=active.getBoundingClientRect().width*.45;
+  const target=Math.max(0,Math.min(left-16-context,tabs.scrollWidth-tabs.clientWidth));
+  tabs.scrollTo({left:target,behavior:animate&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches?'smooth':'instant'});
  }
  if(focus){$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#origin').focus({preventScroll:true});}
 }

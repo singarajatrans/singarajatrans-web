@@ -62,7 +62,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
      const card=await page.locator('#tab-'+service).boundingBox();assert.ok(card.width>=44&&card.height===88);
      assert.match(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el).backgroundColor),/^rgba?\(255, 255, 255(?:, 1)?\)$/);
-     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el,'::after').height),'3px');
+     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el,'::after').height),'8px');
      await page.screenshot({path:`qa-output/mobile-${service}-${width}.png`});
     }
     await page.locator('#tab-shuttle').focus();await page.keyboard.press('End');
