@@ -669,8 +669,8 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  html{scroll-padding-top:72px}
  #header{background:var(--mock-red);border:0!important;border-radius:0 0 14px 14px;box-shadow:none!important;outline:0}
- .nav-wrap{background:var(--mock-red);border:0!important;border-radius:0 0 14px 14px;box-shadow:none!important;outline:0}
- #header::before,#header::after,.nav-wrap::before,.nav-wrap::after{border:0!important;box-shadow:none!important}
+ #header>.nav-wrap{background:inherit;border:0!important;border-bottom:0!important;border-radius:inherit;box-shadow:none!important;outline:0}
+ #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important;border:0!important;box-shadow:none!important}
  .nav-inner{height:68px;width:calc(100% - 32px);gap:6px;padding:10px 0 14px}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:44px;padding:0 13px;gap:8px;border:1px solid #e2e7ee;border-radius:999px;background:var(--mock-soft);color:#667085}
