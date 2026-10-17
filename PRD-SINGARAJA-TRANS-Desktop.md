@@ -378,3 +378,8 @@ Urutan layanan mobile ditetapkan menjadi:
 ### SEO guardrail
 
 Selector adalah kontrol UI dan **bukan heading SEO**. Implementasi tidak boleh mengubah hierarchy semantik halaman yang telah ditetapkan, menghapus konten/link penting dari mobile, atau melanggar **SEO & PWA — LOCKED CONSTRAINT**. Bila implementasi visual bertentangan dengan crawlability, indexability, semantic content, internal navigation, atau performa, SEO preservation tetap memiliki prioritas lebih tinggi.
+
+
+## Acuan Header/Surface Mobile — LOCKED (18 Oktober 2026)
+
+Desain dan perilaku bagian paling atas mobile yang telah disetujui ditetapkan pada [Mobile Header & Permukaan Konten Saat Scroll — LOCKED](PRD-Design-Singaraja-Trans.md#mobile-header--permukaan-konten-saat-scroll--locked-18-oktober-2026). Acuan ini mencakup penghapusan celah putih di belakang menu, radius atas surface **24px** ketika header auto-hide, pengembalian radius saat header tampil, larangan topper/overlay, dan batas kendali garis toolbar browser. Berlaku hanya sampai **767px**; tidak mengubah spesifikasi maupun tampilan desktop/tablet. Gunakan bagian tersebut sebagai sumber rinci untuk pengerjaan dan regression mobile berikutnya.

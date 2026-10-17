@@ -505,3 +505,42 @@ Urutan layanan mobile ditetapkan menjadi:
 ### SEO guardrail
 
 Selector adalah kontrol UI dan **bukan heading SEO**. Implementasi tidak boleh mengubah hierarchy semantik halaman yang telah ditetapkan, menghapus konten/link penting dari mobile, atau melanggar **SEO & PWA — LOCKED CONSTRAINT**. Bila implementasi visual bertentangan dengan crawlability, indexability, semantic content, internal navigation, atau performa, SEO preservation tetap memiliki prioritas lebih tinggi.
+
+
+---
+
+## Mobile Header & Permukaan Konten Saat Scroll — LOCKED (18 Oktober 2026)
+
+**Status: desain dan perilaku disetujui pengguna.** Bagian ini menjadi acuan desain, implementasi, dan regression berikutnya untuk area paling atas mobile saja (`max-width:767px`). Desktop dan tablet mulai 768px tetap menggunakan implementasi existing. Jika spesifikasi sebelumnya berbeda, ketentuan bagian ini berlaku khusus untuk treatment header/surface mobile ini; radius widget, kartu, dan komponen lain tidak ikut berubah.
+
+### Desain yang ditetapkan
+
+- Header mobile merah menggunakan sudut luar bawah **0px**. Tidak boleh terlihat celah/lapisan putih di belakang sudut bawah kiri dan kanan menu.
+- Warna header, latar akar halaman di belakang surface, dan `theme-color` browser selaras dengan warna implementasi yang disetujui: **#C85759**. Pil putih pencarian dan pilihan bahasa tetap dipertahankan.
+- Saat header auto-hide karena scroll turun, **permukaan konten yang benar-benar sedang di-scroll** memiliki radius **24px pada kiri atas dan kanan atas**, sedangkan kedua sudut bawah **0px** (`24px 24px 0 0`).
+- Radius tetap berada pada tepi atas viewport pada berbagai posisi scroll, termasuk rute populer, layanan, dan bagian bawah halaman; tidak hanya terlihat di hero.
+- Merah terlihat secara alami di luar kedua lengkungan. Konten yang terlihat tetap konten asli tanpa tertutup lapisan tambahan.
+- Saat scroll ke atas menampilkan kembali header, radius surface kembali ke **0px** secara halus. Durasi transisi existing **0,26 detik, ease** dipertahankan.
+- Perilaku auto-hide/show, fokus keyboard, kontrol header, dan scroll existing harus tetap bekerja. Jangan mengubah tinggi/menu header, hero, selector layanan, widget booking, atau konten hanya untuk efek sudut ini.
+
+### Acuan implementasi dan larangan
+
+Baseline yang disetujui: commit `d51ddcc01865fbfc920858d03db2366793d0dbe8` pada repository resmi `singarajatrans/singarajatrans-web`, branch `main`. Implementasi menggunakan `html` sebagai latar merah dan `body` sebagai surface scroll mobile berukuran viewport; `body.header-hidden` mengatur radius. JavaScript menyelaraskan state tersebut dengan `#header.is-hidden`. Implementasi ini dipertahankan kecuali ada instruksi perubahan eksplisit.
+
+- Jangan mengembalikan fixed white topper/strip, termasuk `body.header-hidden #main::before`.
+- Jangan membuat bar merah tambahan, dua kotak merah di sudut, atau overlay/pseudo-element dekoratif untuk memalsukan radius.
+- Jangan menumpuk override di atas eksperimen lama; perbaiki rule sumber yang relevan dan pertahankan satu implementasi final.
+- Header dan pembungkus menu tidak memiliki border/shadow yang membuat garis putih pemisah dari sisi halaman. Pertahankan posisi header tepat di tepi atas viewport saat tampil.
+- Garis tipis milik toolbar **Chrome/browser** berada di luar DOM/CSS situs. Pada baseline yang disetujui, garis tersebut tidak dihapus; ini adalah batas kendali browser yang diterima, bukan pekerjaan CSS yang diklaim selesai. Jangan menutupinya dengan overlay, mengubah branding, atau mengarang dukungan browser. Keselarasan `theme-color` dan warna halaman tetap dipertahankan.
+
+### Acceptance dan regression berikutnya
+
+1. Uji live mobile **375px, 390px, dan 430px** dengan scroll/touch turun dan naik di beberapa kedalaman halaman sampai bagian bawah, bukan hanya hero.
+2. Pastikan header tersembunyi saat turun, kembali saat naik, radius atas 24px saat tersembunyi, dan radius surface 0px saat header kembali tampil.
+3. Pastikan celah putih di belakang menu, white strip/topper, seam dari halaman, artificial corner boxes, dan overlay tambahan tidak muncul. Pisahkan temuan antarmuka browser dari render halaman.
+4. Periksa transisi, clipping, z-index, horizontal overflow, flicker, target sentuh, fokus, refresh, perubahan tinggi viewport, dan resize melintasi breakpoint.
+5. Pertahankan layout/style desktop/tablet pada **768px, 1024px, dan 1440px**; lakukan regression layanan, form, dropdown, kalender, validasi, bahasa, dan dialog bila implementasi terkait berubah.
+6. SEO/PWA, heading semantik, metadata, internal link, konten penting, pemisahan hasil pencarian dari Home, dan larangan tombol swap tetap mengikuti constraint LOCKED sebelumnya. Tidak ada perubahan backend/API/database/routing untuk treatment ini.
+7. Setelah perubahan implementasi: commit ke `main`, tunggu deployment sukses, verifikasi render dan interaksi pada live, lalu laporkan status, file/perubahan, verification/regression, commit SHA, deploy status/duration, dan finish time. Source/CI PASS saja tidak cukup.
+
+**Catatan bukti:** baseline implementasi diverifikasi live pada 17 Oktober 2026; pengguna menyatakan hasil sempurna dan menyetujui pencatatannya pada 18 Oktober 2026. Persetujuan ini hanya mengunci treatment mobile di atas, bukan menyatakan seluruh produk telah diaudit ulang melalui perubahan dokumen ini.
