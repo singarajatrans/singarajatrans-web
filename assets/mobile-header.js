@@ -76,7 +76,7 @@ share.addEventListener('click',async()=>{
  catch(error){if(error.name!=='AbortError')await fallbackShare();}
 });
 dialog.querySelector('[data-share-close]').addEventListener('click',()=>dialog.close());
-dialog.addEventListener('close',()=>document.body.classList.remove('modal-open'));
+dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');if(mobile.matches)share.focus({preventScroll:true});});
 new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 mobile.addEventListener('change',()=>{if(mobile.matches)start();else{cancel();stopped=true;if(started)renderPrompt(4);document.querySelectorAll('[data-language]').forEach(button=>button.removeAttribute('aria-label'));if(dialog.open)dialog.close();}});
 reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
