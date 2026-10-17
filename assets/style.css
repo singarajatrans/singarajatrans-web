@@ -671,10 +671,7 @@ dialog{border-radius:12px}
  #header{background:var(--mock-red)!important;border:0!important;border-radius:0 0 14px 14px;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
  #header>.nav-wrap,#header>.nav-wrap>.nav-inner{background:var(--mock-red)!important;background-image:none!important;border:0!important;border-top:0!important;border-bottom:0!important;border-radius:0;box-shadow:none!important;outline:0}
  #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important;border:0!important;box-shadow:none!important}
- body.header-hidden #main{border-radius:0;overflow:visible}
- body.header-hidden::before,body.header-hidden::after{content:"";position:fixed;z-index:19;top:0;width:16px;height:16px;background:var(--mock-red);pointer-events:none}
- body.header-hidden::before{left:0;border-radius:0 0 16px 0}
- body.header-hidden::after{right:0;border-radius:0 0 0 16px}
+ body.header-hidden #main{border-radius:16px 16px 0 0;overflow:hidden}
  .nav-inner{height:68px;width:calc(100% - 32px);gap:6px;padding:10px 0 14px}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:44px;padding:0 13px;gap:8px;border:1px solid #e2e7ee;border-radius:999px;background:var(--mock-soft);color:#667085}
