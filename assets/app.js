@@ -110,7 +110,9 @@ $$('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.data
 $('[data-swap-locations]').addEventListener('click',()=>{const from=$('#origin'),to=$('#destination'),value=from.value;from.value=to.value;to.value=value;$('#search-error').hidden=true;});
 $$('[data-pick-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.pickService,{focus:true})));
 $$('[data-footer-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.footerService)));
-$$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
+$('[data-language]').forEach(b=>b.addEventListener('click',()=>{language=b.dataset.language;translate();}));
+$('.mobile-header-search')?.addEventListener('click',e=>requestAnimationFrame(()=>e.currentTarget.blur()));
+$('.mobile-header-whatsapp')?.addEventListener('click',e=>requestAnimationFrame(()=>e.currentTarget.blur()));
 $$('[data-check-booking]').forEach(b=>b.addEventListener('click',()=>{ $('#check-form').reset();$('#check-link')?.remove();showDialog('#check-dialog');}));
 $$('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.closest('dialog'))));
 $$('dialog').forEach(d=>{d.addEventListener('cancel',e=>{e.preventDefault();closeDialog(d);});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog(d);}});});
