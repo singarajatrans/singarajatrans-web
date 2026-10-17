@@ -662,3 +662,36 @@ dialog{border-radius:12px}
   #search-error{font-size:14px;line-height:1.4;margin-top:12px}
 }
 
+
+
+/* Mobile header composition inspired by approved visual reference · 17 Oct 2026 */
+.mobile-header-search,.mobile-header-whatsapp,.language-chevron{display:none}
+@media(max-width:767px){
+ #header{background:#fff;border-bottom:0;border-radius:0 0 28px 28px}
+ .nav-wrap{background:#fff;border-bottom:0;border-radius:0 0 28px 28px}
+ .nav-inner{height:82px;width:calc(100% - 32px);gap:8px;padding:12px 0 16px}
+ .brand,.mobile-menu{display:none!important}
+ .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:48px;padding:0 14px;gap:10px;border:1px solid #e2e7ee;border-radius:999px;background:var(--mock-soft);color:#667085}
+ .mobile-header-search svg{width:22px;height:22px;color:#667085;stroke-width:1.8}
+ .mobile-header-search span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:500;line-height:1}
+ .nav-actions{flex:0 0 auto;gap:8px}
+ .languages{width:66px;height:48px;padding:3px;border:1px solid #e2e7ee;border-radius:999px;background:#edf1f6;overflow:hidden}
+ .languages>span,.languages button[aria-pressed=false]{display:none!important}
+ .languages button[aria-pressed=true]{display:flex;width:100%;height:40px;min-height:40px;padding:0 5px;justify-content:center;gap:4px;color:#163f72;font-size:11px;font-weight:750}
+ .languages [data-language=en][aria-pressed=true]{flex-direction:row;padding:0 5px}
+ .languages .language-flag{width:28px;height:28px;flex:0 0 28px;border:2px solid #fff}
+ .languages .language-code{display:block;min-width:14px;text-align:center;line-height:1}
+ .languages .language-chevron{display:block;width:11px;height:11px;transform:rotate(90deg);stroke-width:2.2}
+ .mobile-header-whatsapp{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border:1px solid #dfe4ea;border-radius:50%;background:#246e45;color:#fff;box-shadow:0 2px 8px rgba(18,28,45,.08)}
+ .mobile-header-whatsapp svg{width:24px;height:24px;stroke-width:1.8}
+ .booking-check{display:none!important}
+}
+@media(max-width:360px){
+ .nav-inner{width:calc(100% - 24px);gap:6px}
+ .mobile-header-search{padding-inline:11px;gap:8px}
+ .mobile-header-search span{font-size:12px}
+ .languages{width:60px}
+ .languages button[aria-pressed=true]{padding-inline:3px;gap:2px}
+ .languages .language-flag{width:26px;height:26px;flex-basis:26px}
+ .mobile-header-whatsapp{width:44px;height:44px;flex-basis:44px}
+}
