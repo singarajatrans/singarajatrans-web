@@ -17,11 +17,19 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow at '+width);
    if(width<768){
+    const headerSurface=await page.locator('#header').evaluate(el=>{
+     const s=getComputedStyle(el),root=getComputedStyle(document.documentElement);
+     return {radius:s.borderRadius,border:s.borderTopWidth,shadow:s.boxShadow,top:el.getBoundingClientRect().top,background:s.backgroundColor,rootBackground:root.backgroundColor,theme:document.querySelector('meta[name="theme-color"]').content};
+    });
+    assert.equal(headerSurface.radius,'0px','White gaps at header bottom corners');
+    assert.equal(headerSurface.border,'0px');assert.equal(headerSurface.shadow,'none');assert.equal(headerSurface.top,0);
+    assert.equal(headerSurface.background,headerSurface.rootBackground);assert.equal(headerSurface.theme,'#c85759');
     await page.mouse.move(width/2,700);
     for(const distance of [350,450,500,600]){
      await page.mouse.wheel(0,distance);
-     await page.waitForFunction(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.body).borderTopLeftRadius==='16px');
+     await page.waitForFunction(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.body).borderTopLeftRadius==='24px');
      assert.equal(await page.evaluate(()=>document.body.scrollTop>100),true);
+     assert.deepEqual(await page.locator('body').evaluate(el=>{const s=getComputedStyle(el);return [s.borderTopRightRadius,s.borderBottomLeftRadius,s.borderBottomRightRadius]}),['24px','0px','0px']);
      assert.equal(await page.evaluate(()=>getComputedStyle(document.querySelector('#main'),'::before').content),'none');
      assert.equal(await page.evaluate(()=>getComputedStyle(document.body,'::before').content),'none');
      assert.equal(await page.evaluate(()=>getComputedStyle(document.body,'::after').content),'none');

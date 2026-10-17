@@ -668,13 +668,13 @@ dialog{border-radius:12px}
 .mobile-header-search,.mobile-header-whatsapp,.language-chevron{display:none}
 @media(max-width:767px){
  html{scroll-padding-top:72px}
- #header{background:var(--mock-red)!important;border:0!important;border-radius:0 0 14px 14px;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
+ #header{background:var(--mock-red)!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
  #header>.nav-wrap,#header>.nav-wrap>.nav-inner{background:var(--mock-red)!important;background-image:none!important;border:0!important;border-top:0!important;border-bottom:0!important;border-radius:0;box-shadow:none!important;outline:0}
  #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important;border:0!important;box-shadow:none!important}
  /* The page itself is the viewport-sized scrolling surface; corners reveal the root background. */
  html{height:100%;overflow:hidden;background:var(--mock-red)}
  body{position:fixed;inset:0;overflow-x:hidden;overflow-y:auto;scroll-padding-top:72px;border-radius:0;transition:border-radius .26s ease}
- body.header-hidden{border-radius:16px 16px 0 0}
+ body.header-hidden{border-radius:24px 24px 0 0}
  .nav-inner{height:68px;width:calc(100% - 32px);gap:6px;padding:10px 0 14px}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:44px;padding:0 13px;gap:8px;border:1px solid #e2e7ee;border-radius:999px;background:var(--mock-soft);color:#667085}
