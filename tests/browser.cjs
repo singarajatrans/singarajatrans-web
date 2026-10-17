@@ -7,8 +7,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
  let browser;
  try{
   for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4173/')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
-  browser=await chromium.launch({headless:true});mkdirSync('qa-output',{recursive:true});
-  for(const width of [320,375,390,430,768,1024,1440]){
+  browser=await chromium.launch({headless:true});await require('./mobile-header.cjs')(browser,'http://127.0.0.1:4173/');mkdirSync('qa-output',{recursive:true});
+  for(const width of [320,360,390,412,768,1024,1440]){
    const page=await browser.newPage({viewport:{width,height:900}}),errors=[];
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
@@ -62,7 +62,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
      const card=await page.locator('#tab-'+service).boundingBox();assert.ok(card.width>=44&&card.height===88);
      assert.match(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el).backgroundColor),/^rgba?\(255, 255, 255(?:, 1)?\)$/);
-     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el,'::after').height),'14px');
+     assert.equal(await page.locator('#tab-'+service).evaluate(el=>getComputedStyle(el,'::after').height),'3px');
      await page.screenshot({path:`qa-output/mobile-${service}-${width}.png`});
     }
     await page.locator('#tab-shuttle').focus();await page.keyboard.press('End');

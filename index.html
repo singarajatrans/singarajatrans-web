@@ -9,7 +9,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="preload" href="assets/images/hero.webp" as="image" media="(min-width:768px)" fetchpriority="high">
   <link rel="preload" href="assets/images/hero-mobile-shuttle.webp" as="image" media="(max-width:767px)" fetchpriority="high">
-  <link rel="stylesheet" href="assets/style.css?v=mobile-header-surface-2"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=ui-core-1" defer></script><script src="assets/booking.js?v=mobile-scroll-surface-1" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=mobile-header-selector-3"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=ui-core-1" defer></script><script src="assets/booking.js?v=mobile-header-selector-3" defer></script><script src="assets/mobile-header.js?v=mobile-header-selector-3" defer></script>
 <style media="(max-width:767px)">#trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important}#trip-mode label{gap:0!important}</style></head>
 <body>
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
@@ -38,6 +38,8 @@
 <symbol id="chat" viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9 10 10 0 0 1-4-.8L3 21l1.5-5A9 9 0 1 1 21 11Z"/><path d="M8 8c0 4 4 7 7 7"/></symbol>
 <symbol id="chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
 <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+<symbol id="share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4m-6.8 7 6.8 4"/></symbol>
 <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
 </defs></svg>
 <header id="header">
@@ -49,15 +51,28 @@
       <a href="#rute" data-en="Routes & Schedule">Rute & Jadwal</a>
       <a href="#faq" data-en="Help">Bantuan</a>
     </nav>
-    <a class="mobile-header-search" href="#pesan" aria-label="Buka pencarian perjalanan"><svg aria-hidden="true"><use href="#search"/></svg><span data-en="Search routes, cities, or destinations">Cari rute, kota, atau tujuan perjalanan</span></a>
+    <a class="mobile-header-search" href="#pesan" aria-label="Buka pencarian perjalanan">
+      <svg class="header-search-icon" aria-hidden="true"><use href="#search"/></svg>
+      <span class="header-search-copy" aria-hidden="true">
+        <span class="header-search-brand"><span class="header-search-mark"><img src="assets/images/logo.png" width="848" height="150" alt=""></span><span class="header-search-name">SINGARAJA TRANS</span></span>
+        <svg class="header-search-car" viewBox="0 0 32 24"><path d="m5 13 4-7h12l5 7 3 2v4H3v-4l2-2Z"/><path d="M9 7 6 13h18l-4-6M15 7v6"/><circle cx="9" cy="19" r="3"/><circle cx="24" cy="19" r="3"/></svg>
+        <span class="header-search-prompt" hidden>Cari rute, kota, atau tujuan…</span>
+      </span>
+    </a>
     <div class="nav-actions">
       <div class="languages" aria-label="Bahasa"><button type="button" data-language="id" aria-pressed="true"><span class="language-flag" aria-hidden="true">🇮🇩</span><span class="language-code">ID</span><svg class="language-chevron" aria-hidden="true"><use href="#chevron"/></svg></button><span>|</span><button type="button" data-language="en" aria-pressed="false"><span class="language-flag" aria-hidden="true">🇬🇧</span><span class="language-code">EN</span><svg class="language-chevron" aria-hidden="true"><use href="#chevron"/></svg></button></div>
       <button class="button outline booking-check" type="button" data-check-booking data-en="Check Booking">Cek Booking</button>
-      <a class="mobile-header-whatsapp" href="https://wa.me/6281339392525" target="_blank" rel="noopener" aria-label="Hubungi SINGARAJA TRANS melalui WhatsApp"><svg aria-hidden="true"><use href="#chat"/></svg></a>
+      <button class="mobile-header-action mobile-header-placeholder" type="button" disabled aria-label="Menu tambahan belum tersedia"><svg aria-hidden="true"><use href="#more"/></svg></button>
+      <button class="mobile-header-action mobile-header-share" type="button" aria-label="Bagikan halaman"><svg aria-hidden="true"><use href="#share"/></svg></button>
       <button class="icon-button mobile-menu" type="button" aria-label="Buka menu" aria-controls="navigation" aria-expanded="false"><svg><use href="#menu"/></svg></button>
     </div>
   </div></div>
 </header>
+<span class="mobile-share-status" role="status"></span>
+<dialog id="mobile-share-dialog" aria-labelledby="mobile-share-title">
+ <div class="dialog-header"><h2 id="mobile-share-title">Bagikan halaman</h2><button type="button" class="icon-button" data-share-close aria-label="Tutup"><svg aria-hidden="true"><use href="#close"/></svg></button></div>
+ <div class="dialog-body"><label for="mobile-share-url">Salin tautan halaman</label><input id="mobile-share-url" readonly><p id="mobile-share-help">Pilih tautan lalu salin melalui menu perangkat Anda.</p></div>
+</dialog>
 <main id="main">
  <section class="hero" aria-labelledby="hero-title">
   <img class="hero-image" src="assets/images/hero.webp" width="1920" height="1080" alt="Pura Ulun Danu Beratan di tepi danau Bali" fetchpriority="high">
