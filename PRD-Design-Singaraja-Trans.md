@@ -101,9 +101,9 @@ Nilai field dan isi utama tidak boleh kurang dari 16px pada mobile.
 
 ### Mobile
 
-- Susunan final: animated search → flag aktif → ikon grid sementara → share.
+- Susunan final: animated search → flag aktif → share.
 - Logo resmi dan teks SINGARAJA TRANS hanya berada di dalam search saat opening; tidak ada logo/nama tambahan di luar search dan tidak ada hamburger.
-- Header setinggi 60px, search setinggi 40px dengan radius 20px, tiga kontrol kanan masing-masing 40 × 40px. Ukuran kontrol header ini mengikuti keputusan eksplisit 18 Oktober 2026; sasaran 44px untuk kontrol lain tetap berlaku.
+- Header setinggi 60px, search setinggi 40px dengan radius 20px, dua kontrol kanan masing-masing 40 × 40px. Ukuran kontrol header ini mengikuti keputusan eksplisit 18 Oktober 2026; sasaran 44px untuk kontrol lain tetap berlaku.
 - Flag langsung mengganti ID/EN melalui state bahasa existing tanpa dropdown atau routing baru.
 - Header tidak boleh menutupi dropdown, kalender, atau popover. Spesifikasi rinci berada pada bagian LOCKED / FINAL — Mobile Header & Service Selector.
 
@@ -317,7 +317,7 @@ Konten marketing berada setelah pencarian. Pengguna harus dapat memulai pencaria
 - Header final setinggi 60px dengan padding horizontal 16px dan gap kontrol 6px.
 - Search memperoleh ruang terbesar; logo resmi hanya tampil di dalam search saat opening, dengan proporsi asli aset.
 - Flag aktif saja yang terlihat; tidak ada teks ID/EN, chevron, dropdown, hamburger, atau branding tambahan di header.
-- Kontrol kanan berbentuk lingkaran 40 × 40px: bahasa, grid sementara nonaktif dengan label belum tersedia, lalu share.
+- Kontrol kanan berbentuk lingkaran 40 × 40px: bahasa lalu share.
 - Sticky auto-hide/show dan radius surface 24px saat tersembunyi tetap berlaku. Fokus field, kalender, hasil filter, dan CTA tetap dapat diakses.
 - Gunakan bagian LOCKED / FINAL — Mobile Header & Service Selector sebagai acuan implementasi dan QA scope ini.
 
@@ -559,12 +559,11 @@ Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggant
 
 | Elemen | Implementasi final |
 |---|---|
-| Urutan | Animated search → flag aktif → grid sementara → share |
+| Urutan | Animated search → flag aktif → share |
 | Header | Tinggi 60px, padding vertikal 10px, sisi 16px, gap 6px; brand merah `#C85759` |
 | Search | Tinggi 40px, radius 20px, flex mengisi ruang terbesar, padding sisi 10px; ikon cari 17px |
 | Kontrol kanan | Container lingkaran identik 40 × 40px, gap 6px |
-| Optik ikon kanan | Flag bulat 20px; grid/share dalam SVG 24px dengan area gambar sekitar 20px; pusat dan alignment sama |
-| Ikon sementara | Grid netral, disabled dan berlabel belum tersedia; tidak ditetapkan menjadi Wishlist/Tiket atau fitur permanen |
+| Optik ikon kanan | Flag bulat 20px; share dalam SVG 24px dengan area gambar sekitar 20px; pusat dan alignment sama |
 | Konten lain | Tidak ada logo/nama tambahan di luar search, hamburger, dropdown bahasa, atau tombol WhatsApp tambahan di header mobile |
 
 ### 2. Opening dan animated search
@@ -581,7 +580,7 @@ Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggant
 
 - Klik empat prompt layanan memicu kontrol tab existing, lalu scroll/fokus widget layanan yang sama. Travel/Airport/Sewa Mobil memfokuskan field asal; Sewa Motor memfokuskan CTA informasi existing, tanpa mengarang engine atau ketersediaan.
 - Klik prompt umum/branding mengarah ke kontrol pencarian yang relevan untuk layanan aktif. Tidak membuat state booking atau hasil pencarian kedua di Home.
-- Bahasa memakai dua tombol/state `data-language` existing dan fungsi translate existing: hanya flag aktif yang terlihat, klik langsung ID ↔ EN. Aset flag Indonesia/UK berasal dari repository. Tidak menambah `/en`, redirect, atau sistem routing baru. Aktivasi melalui keyboard mempertahankan fokus pada flag yang baru aktif; Tab melewati ikon sementara nonaktif menuju Share.
+- Bahasa memakai dua tombol/state `data-language` existing dan fungsi translate existing: hanya flag aktif yang terlihat, klik langsung ID ↔ EN. Aset flag Indonesia/UK berasal dari repository. Tidak menambah `/en`, redirect, atau sistem routing baru. Aktivasi melalui keyboard mempertahankan fokus pada flag yang baru aktif; Tab berpindah langsung dari kontrol bahasa menuju Share.
 - Share menggunakan `navigator.share` dalam interaksi pengguna. Jika tidak tersedia/gagal selain pembatalan pengguna, gunakan Clipboard API; sukses menampilkan centang sementara selama 2,4 detik dan status aksesibel. Jika clipboard tidak tersedia/ditolak, dialog ringan menampilkan URL readonly yang dapat dipilih/disalin manual.
 - Pembatalan native share tidak memaksa fallback. Dialog dapat ditutup melalui tombol, Escape, atau backdrop; fokus kembali ke tombol Share, termasuk setelah dialog existing lain pernah dibuka. Pointer/touch di konten melepas fokus kontrol header agar auto-hide tetap berjalan, sementara perlindungan fokus keyboard dipertahankan. Judul dialog adalah label UI, bukan heading SEO tambahan.
 
@@ -614,5 +613,7 @@ Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggant
 - Desktop **768/1024/1440px** diperiksa terhadap baseline sebelum pekerjaan: geometri dan style seluruh elemen terlihat sama, ditambah review screenshot. Regression booking, layanan, validasi, bahasa, dialog, tanggal, resize/refresh serta 19 assertion tarif/tanggal/jam/kapasitas lolos.
 - Revisi carousel `c2bb76d` menggantikan detail notch/landing `dc18238` berdasarkan gambar **233862.jpg** dan video **233863.mp4**. Sebelumnya notch tidak memiliki stroke dan overlap-nya terlalu dangkal; target Sewa Mobil/Motor sama-sama terjepit di ujung rail. Implementasi baru telah deploy sukses dan diverifikasi LIVE di **360/390/412px**: pemeriksaan pixel sambungan putih tanpa seam dan border kurva merah, review screenshot DPR 3, tap nyata Motor → Mobil → Airport → Shuttle dan arah sebaliknya, landing berbeda, geometri identik, peek, swipe native, keyboard, widget sync, scroll/header pada tiga kedalaman, refresh dan reduced motion. Tidak ada page overflow atau console error. Hash CSS/JS/SVG live pada Cloudflare dan GitHub Pages sama dengan source baru. Regression booking/responsive 320/360/390/412/768/1024/1440px dan 19 assertion tarif/tanggal/jam/kapasitas PASS. Desktop LIVE 768/1024/1440px memiliki geometri/style sama dengan baseline `b976611` dan screenshot telah direview. Header, branding, booking business logic dan SEO/PWA tidak diubah.
 - Heading HTML utama tetap sama dengan baseline; metadata, robots, manifest, mesin tarif, routing, konten/tautan penting, pemisahan hasil pencarian dan larangan swap dipertahankan. CSS dan JS live dicocokkan dengan source commit untuk menghindari cache lama.
+
+**Revisi eksplisit 18 Oktober 2026:** tombol aksi sementara/grid setelah flag dihapus dari header mobile atas permintaan pengguna. Header final menjadi **Animated search → flag aktif → Share**; tidak ada placeholder action di antara flag dan Share. Perubahan ini tidak menambah fungsi pengganti dan tidak mengubah desktop, booking logic, SEO/PWA, atau service selector.
 
 **LOCK:** Jangan mengubah mobile header atau service selector final ini tanpa instruksi eksplisit. Pekerjaan berikutnya harus membaca bagian ini dan mempertahankan scope lain yang LOCKED. Jika perubahan diotorisasi: audit sumber/cascade → perubahan minimum → pengujian viewport/state terkait → commit/deploy → tunggu sukses → audit live dan regression → update PRD. CI/source PASS saja tidak cukup untuk menyatakan FINAL.
