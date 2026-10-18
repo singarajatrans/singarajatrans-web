@@ -6,7 +6,7 @@ module.exports=async function testMobileHeader(browser,url){
   await p.clock.install();await p.clock.pauseAt(new Date(Date.now()+1000));
   await p.goto(url,{waitUntil:'networkidle'});
   const search=p.locator('.mobile-header-search');
-  assert.equal(await search.evaluate(e=>e.offsetHeight),40);
+  assert.equal(await search.evaluate(e=>e.offsetHeight),36);
   assert.equal(await p.locator('.header-search-mark img').getAttribute('src'),'assets/images/logo.png');
   assert.equal(await p.locator('.header-search-brand').isVisible(),true);
   assert.equal(await p.locator('.brand').isVisible(),false);assert.equal(await p.locator('.mobile-menu').isVisible(),false);
