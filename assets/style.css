@@ -572,5 +572,12 @@ dialog{border-radius:12px}
 
 /* Final mobile filled-field label typography */
 @media(max-width:767px){
- .field.has-value .field-label{font-size:10px;font-weight:400;line-height:1.15;margin-bottom:0;color:#969ba4}
+ .field.has-value .field-label{font-size:14px;font-weight:400;line-height:1.15;margin-bottom:0;color:#969ba4}
+}
+
+/* Mobile field horizontal alignment: preserve date action space while keeping the leading icon on the shared 11px inset. */
+@media(max-width:767px){
+ .field{padding-left:11px}
+ .field:not(.date-field){padding-right:11px}
+ .date-field{padding-left:11px}
 }
