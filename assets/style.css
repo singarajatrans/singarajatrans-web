@@ -569,3 +569,8 @@ dialog{border-radius:12px}
  .trip-mode label:has(input:checked){background:var(--mock-red);border-color:var(--mock-red);color:#fff}
  .search-button{background:var(--mock-red);border-color:var(--mock-red);color:#fff}
 }
+
+/* Final mobile filled-field label typography */
+@media(max-width:767px){
+ .field.has-value .field-label{font-size:10px;font-weight:400;line-height:1.15;margin-bottom:0;color:#969ba4}
+}
