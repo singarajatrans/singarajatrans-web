@@ -540,7 +540,7 @@ dialog{border-radius:12px}
  .languages{position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:40px;padding:2px;border:0;border-radius:20px;background:transparent;overflow:visible}
  .languages>span,.languages button[aria-pressed=false],.languages .language-code,.languages .language-chevron{display:none!important}
  .languages button[aria-pressed=true]{display:flex;align-items:center;justify-content:center;width:34px;height:34px;min-height:34px;padding:0;gap:0;border:0;border-radius:17px;background:rgba(255,255,255,.92)}
- .languages .language-flag{position:static;display:block;width:28px;height:28px;flex:0 0 28px;border:0;border-radius:50%;overflow:hidden;font-size:0;line-height:0;background-size:cover;background-position:center}
+ .languages .language-flag{position:static;display:block;width:28px;height:28px;flex:0 0 28px;border:0;border-radius:50%;overflow:hidden;font-size:0;line-height:0;background-size:cover;background-position:center} .languages .language-globe{display:block;width:20px;height:20px;fill:none;stroke:var(--mock-red);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
  .languages [data-language=id] .language-flag{background-image:url("images/flag-id-round.svg")}
  .languages [data-language=en] .language-flag{background-image:url("images/flag-en-round.svg")}
  .mobile-header-action{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;padding:2px;border:0;border-radius:20px;background:transparent;color:var(--mock-red)}
