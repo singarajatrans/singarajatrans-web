@@ -517,7 +517,7 @@ dialog{border-radius:12px}
 .mobile-header-search,.mobile-header-action,.language-chevron{display:none}
 .mobile-share-status{position:fixed;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:767px){
- html{height:100%;min-height:100dvh;overflow:hidden;background:var(--mock-red);scroll-padding-top:64px}
+ html{--bottom-nav-height:64px;height:100%;min-height:100dvh;overflow:hidden;background:var(--mock-red);scroll-padding-top:64px}
  #header{background:var(--mock-red)!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
  #header>.nav-wrap,#header>.nav-wrap>.nav-inner{background:var(--mock-red)!important;background-image:none!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0}
  #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important}
