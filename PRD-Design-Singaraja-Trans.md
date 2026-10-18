@@ -683,6 +683,16 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 - Wajib diuji pada iPhone Safari dan Chrome dengan scroll naik/turun, address bar expand/collapse, refresh, rotasi, dan perubahan tinggi viewport.
 - Fix ini mobile-only dan tidak boleh mengubah desktop/tablet, SEO/PWA, booking logic, atau area LOCKED lain.
 
+### Baseline ukuran implementasi bottom navigation — 18 Oktober 2026
+
+- Tinggi visual baseline bottom navigation: **64px**, belum termasuk tambahan `env(safe-area-inset-bottom)`.
+- Lima slot memakai lebar yang sama: **20% per item**.
+- Ikon: **24 × 24px** dengan stroke optik konsisten sekitar **1.8px**.
+- Label: sekitar **10.5px**, weight **600**, ikon berada di atas label dengan gap **3px**.
+- Surface: putih dengan divider/shadow atas sangat halus; active memakai `#C85759`.
+- Floating WhatsApp dan konten paling bawah wajib bergeser di atas area bottom navigation + safe-area.
+- Selama fitur Favorit/Akun belum memiliki backend/state resmi, UI tidak boleh mengarang data atau fungsi palsu. Slot tetap dipertahankan sesuai struktur produk dan diaktifkan penuh saat scope fiturnya tersedia.
+
 ### Acceptance implementasi di masa berikutnya
 
 Saat bottom navigation mulai diimplementasikan, verifikasi minimal wajib mencakup viewport mobile **360/375/390/412/430px**, active/inactive state kelima tab, safe-area, scroll, refresh, back/forward navigation bila relevan, aksesibilitas keyboard/screen reader, deep-link/route existing, overflow/clipping/z-index, serta regression booking dan area LOCKED. Implementasi belum boleh dinyatakan FINAL hanya karena source atau CI PASS.
