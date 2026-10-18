@@ -691,3 +691,15 @@ dialog{border-radius:12px}
 @keyframes mobile-nav-spark-left{0%{opacity:0;transform:translate(-6px,0) scale(.5)}35%{opacity:.9}100%{opacity:0;transform:translate(-21px,-13px) scale(.5)}}
 @keyframes mobile-nav-spark-right{0%{opacity:0;transform:translate(6px,0) scale(.5)}35%{opacity:.9}100%{opacity:0;transform:translate(17px,-16px) scale(.5)}}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating svg,.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}.mobile-bottom-item svg{transition:none!important}}
+
+/* Bottom nav active burst refinement: richer visible particles, mobile only. */
+@media(max-width:767px){
+ .mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{width:6px;height:6px;top:calc(50% - 15px);box-shadow:0 0 0 1px rgba(200,87,89,.12),-10px 5px 0 -1px #ef9b56,9px -6px 0 -1px #e46a6c,-5px -10px 0 -2px #f0ad72;filter:drop-shadow(0 0 2px rgba(200,87,89,.28))}
+ .mobile-bottom-item.is-nav-animating::before{animation:mobile-nav-burst-left .65s cubic-bezier(.16,.75,.25,1) both}
+ .mobile-bottom-item.is-nav-animating::after{animation:mobile-nav-burst-right .65s cubic-bezier(.16,.75,.25,1) both}
+ .mobile-bottom-item.is-nav-animating svg{animation:mobile-nav-pop-strong .5s cubic-bezier(.2,.8,.2,1) both}
+}
+@keyframes mobile-nav-burst-left{0%{opacity:0;transform:translate(-3px,4px) scale(.3)}22%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(-24px,-19px) scale(.75)}}
+@keyframes mobile-nav-burst-right{0%{opacity:0;transform:translate(3px,4px) scale(.3)}22%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(20px,-22px) scale(.75)}}
+@keyframes mobile-nav-pop-strong{0%{transform:translateY(2px) scale(.8)}45%{transform:translateY(-4px) scale(1.2)}75%{transform:translateY(-1px) scale(1.02)}100%{transform:translateY(-2px) scale(1.06)}}
+@media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after,.mobile-bottom-item.is-nav-animating svg{animation:none!important}}
