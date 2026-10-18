@@ -101,10 +101,12 @@ Nilai field dan isi utama tidak boleh kurang dari 16px pada mobile.
 
 ### Mobile
 
-- Susunan final: animated search → flag aktif → share.
+- Susunan final: animated search → globe bahasa → share.
 - Logo resmi dan teks SINGARAJA TRANS hanya berada di dalam search saat opening; tidak ada logo/nama tambahan di luar search dan tidak ada hamburger.
-- Header setinggi 60px, search setinggi 40px dengan radius 20px, dua kontrol kanan masing-masing 40 × 40px. Ukuran kontrol header ini mengikuti keputusan eksplisit 18 Oktober 2026; sasaran 44px untuk kontrol lain tetap berlaku.
-- Flag langsung mengganti ID/EN melalui state bahasa existing tanpa dropdown atau routing baru.
+- Header setinggi 60px. Search setinggi **36px** dengan radius **18px** dan surface putih lembut `rgba(255,255,255,.92)` tanpa border. Globe bahasa dan Share masing-masing memakai surface **36 × 36px**, radius **18px**, dengan surface yang sama.
+- Geometri horizontal final wajib konsisten: **Search — 10px — Globe — 10px — Share**. Spacing berasal dari satu sistem gap tanpa margin/offset tambahan.
+- Ikon globe berukuran **19px** dan ikon Share **18px** untuk keseimbangan optik; keduanya memakai merah brand. Search icon **16px** dan teks search memakai charcoal/abu gelap.
+- Globe menggantikan visual flag pada mobile, tetapi tetap memakai state bahasa `data-language` dan fungsi translate existing untuk mengganti ID/EN tanpa dropdown atau routing baru.
 - Header tidak boleh menutupi dropdown, kalender, atau popover. Spesifikasi rinci berada pada bagian LOCKED / FINAL — Mobile Header & Service Selector.
 
 ## 6. Beranda
@@ -580,7 +582,7 @@ Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggant
 
 - Klik empat prompt layanan memicu kontrol tab existing, lalu scroll/fokus widget layanan yang sama. Travel/Airport/Sewa Mobil memfokuskan field asal; Sewa Motor memfokuskan CTA informasi existing, tanpa mengarang engine atau ketersediaan.
 - Klik prompt umum/branding mengarah ke kontrol pencarian yang relevan untuk layanan aktif. Tidak membuat state booking atau hasil pencarian kedua di Home.
-- Bahasa memakai dua tombol/state `data-language` existing dan fungsi translate existing: hanya flag aktif yang terlihat, klik langsung ID ↔ EN. Aset flag Indonesia/UK berasal dari repository. Tidak menambah `/en`, redirect, atau sistem routing baru. Aktivasi melalui keyboard mempertahankan fokus pada flag yang baru aktif; Tab berpindah langsung dari kontrol bahasa menuju Share.
+- Bahasa tetap memakai dua tombol/state `data-language` existing dan fungsi translate existing. Pada mobile, representasi visual final menggunakan **ikon globe standar** alih-alih flag; klik langsung mengganti ID ↔ EN. Tidak menambah `/en`, redirect, dropdown, atau sistem routing baru. Aktivasi melalui keyboard mempertahankan fokus pada kontrol bahasa; Tab berpindah langsung dari kontrol bahasa menuju Share.
 - Share menggunakan `navigator.share` dalam interaksi pengguna. Jika tidak tersedia/gagal selain pembatalan pengguna, gunakan Clipboard API; sukses menampilkan centang sementara selama 2,4 detik dan status aksesibel. Jika clipboard tidak tersedia/ditolak, dialog ringan menampilkan URL readonly yang dapat dipilih/disalin manual.
 - Pembatalan native share tidak memaksa fallback. Dialog dapat ditutup melalui tombol, Escape, atau backdrop; fokus kembali ke tombol Share, termasuk setelah dialog existing lain pernah dibuka. Pointer/touch di konten melepas fokus kontrol header agar auto-hide tetap berjalan, sementara perlindungan fokus keyboard dipertahankan. Judul dialog adalah label UI, bukan heading SEO tambahan.
 
