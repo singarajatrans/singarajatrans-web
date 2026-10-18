@@ -610,7 +610,7 @@ dialog{border-radius:12px}
  #trip-mode label{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:34px!important;padding:7px 13px!important;border:1px solid #1f2430!important;border-radius:9px!important;background:transparent!important;color:#1f2430!important;font-size:12px!important;font-weight:600!important;line-height:18px!important;gap:9px!important;box-shadow:none!important;transition:none!important}
  #trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important;visibility:hidden!important}
  #trip-mode .trip-mode-icon{display:inline-grid;place-items:center;width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:transparent;color:#1f2430;font-size:10px;font-weight:700;line-height:1}
- #trip-mode .trip-mode-icon svg{width:12px;height:12px;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ #trip-mode .trip-mode-icon svg{width:16px;height:16px;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
  #trip-mode label:has(input:checked){background:var(--mock-red)!important;border-color:var(--mock-red)!important;color:#fff!important}
  #trip-mode label:has(input:checked) .trip-mode-icon{background:transparent;color:#fff}
  #trip-mode label:focus,#trip-mode label:focus-visible,#trip-mode label:focus-within{outline:none!important;box-shadow:none!important}
