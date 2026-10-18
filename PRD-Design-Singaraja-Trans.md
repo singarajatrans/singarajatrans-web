@@ -349,7 +349,7 @@ Konten marketing berada setelah pencarian. Pengguna harus dapat memulai pencaria
 - Baseline visual kartu layanan **nonaktif (OFF)** yang telah diaudit: background `rgba(255,255,255,.72)`; ikon dan teks memakai charcoal/navy `rgba(24,33,45,.84)`. Nilai ini menjaga hero tetap terbaca di balik kartu tanpa menurunkan keterbacaan label. State OFF tidak mengubah geometri, notch, gap, ukuran ikon, tipografi, atau perilaku carousel.
 - Field disusun satu kolom dengan jarak 12px.
 - Setiap field memiliki tinggi minimum 52px dan area tekan minimum 44px.
-- Label: 14px; nilai, placeholder, dan hasil pilihan: minimum 16px.
+- Baseline field mobile yang telah diaudit pada implementasi saat ini: **label field terisi 10px** untuk hierarchy sekunder; nilai terisi **15px / 650** dan ikon **21px** tetap menjadi informasi utama. Jarak label ke nilai tetap 1px dan tinggi/padding field tidak berubah.
 - Ikon field memiliki ruang tetap agar teks tidak bertabrakan.
 - CTA `Cari Tiket`/`Cari Mobil` lebar penuh, tinggi minimum 48px, dan diberi jarak 16px dari field terakhir.
 - Tidak ada tombol tukar asal–tujuan.
