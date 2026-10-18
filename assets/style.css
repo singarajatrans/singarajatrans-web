@@ -676,3 +676,18 @@ dialog{border-radius:12px}
  .mobile-bottom-item,.mobile-bottom-item svg{transition:none!important}
  .mobile-bottom-item[aria-current="page"] svg,.mobile-bottom-item:not([aria-disabled="true"]):active svg{transform:none}
 }
+
+/* Mobile bottom nav: scoped active icon motion and subtle radial accents. */
+@media(max-width:767px){
+ .mobile-bottom-item{position:relative;isolation:isolate;overflow:visible}
+ .mobile-bottom-item svg{position:relative;z-index:1;transition:color .24s ease,transform .26s cubic-bezier(.2,.8,.2,1)}
+ .mobile-bottom-item[aria-current="page"] svg{transform:translateY(-2px) scale(1.06)}
+ .mobile-bottom-item::before,.mobile-bottom-item::after{content:"";position:absolute;left:50%;top:calc(50% - 9px);width:4px;height:4px;border-radius:50%;background:var(--mock-red);opacity:0;pointer-events:none;z-index:0}
+ .mobile-bottom-item.is-nav-animating svg{animation:mobile-nav-pop .38s cubic-bezier(.2,.8,.2,1) both}
+ .mobile-bottom-item.is-nav-animating::before{animation:mobile-nav-spark-left .44s ease-out both}
+ .mobile-bottom-item.is-nav-animating::after{animation:mobile-nav-spark-right .44s ease-out both}
+}
+@keyframes mobile-nav-pop{0%{transform:translateY(1px) scale(.84)}55%{transform:translateY(-3px) scale(1.14)}100%{transform:translateY(-2px) scale(1.06)}}
+@keyframes mobile-nav-spark-left{0%{opacity:0;transform:translate(-6px,0) scale(.5)}35%{opacity:.9}100%{opacity:0;transform:translate(-21px,-13px) scale(.5)}}
+@keyframes mobile-nav-spark-right{0%{opacity:0;transform:translate(6px,0) scale(.5)}35%{opacity:.9}100%{opacity:0;transform:translate(17px,-16px) scale(.5)}}
+@media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating svg,.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}.mobile-bottom-item svg{transition:none!important}}
