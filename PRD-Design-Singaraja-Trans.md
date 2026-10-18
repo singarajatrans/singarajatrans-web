@@ -674,6 +674,15 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 - Untuk halaman yang memang crawlable, navigasi penting tetap menggunakan link/struktur HTML yang dapat diakses; bottom nav tidak boleh menjadi JS-only shell yang menghilangkan internal link, heading, atau konten SEO.
 - Scope ini **mobile only**. Desktop/tablet, backend/API/database/auth/RBAC/routing, booking business logic, dan area LOCKED lain tidak disentuh.
 
+### Dynamic browser bar & viewport mobile — LOCKED
+
+- Pada iPhone/iOS Safari maupun Chrome, perubahan tinggi address/tab bar saat scroll tidak boleh membuka lapisan putih di belakang halaman atau membuat konten terlihat tertarik/terpotong dari bar browser.
+- Root page, viewport background, dan safe-area harus tetap selaras dengan warna brand/header `#C85759` pada area yang terekspos selama perubahan dynamic viewport.
+- Implementasi harus memperhitungkan dynamic viewport unit dan safe-area tanpa memaksa tinggi statis yang menyebabkan jump, clipping, atau layout shift.
+- Jangan menonaktifkan perilaku browser native hanya untuk menyembunyikan gejala. Perbaiki source background/viewport yang terekspos.
+- Wajib diuji pada iPhone Safari dan Chrome dengan scroll naik/turun, address bar expand/collapse, refresh, rotasi, dan perubahan tinggi viewport.
+- Fix ini mobile-only dan tidak boleh mengubah desktop/tablet, SEO/PWA, booking logic, atau area LOCKED lain.
+
 ### Acceptance implementasi di masa berikutnya
 
 Saat bottom navigation mulai diimplementasikan, verifikasi minimal wajib mencakup viewport mobile **360/375/390/412/430px**, active/inactive state kelima tab, safe-area, scroll, refresh, back/forward navigation bila relevan, aksesibilitas keyboard/screen reader, deep-link/route existing, overflow/clipping/z-index, serta regression booking dan area LOCKED. Implementasi belum boleh dinyatakan FINAL hanya karena source atau CI PASS.
