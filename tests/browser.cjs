@@ -38,6 +38,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'trips');
     await p.keyboard.press('Escape');
     await p.waitForFunction(()=>!document.querySelector('#check-dialog').open);
+    await p.waitForFunction(()=>document.querySelector('.mobile-bottom-item[aria-current="page"]')?.dataset.bottomNav==='explore');
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
     await nav.locator('[data-bottom-nav="home"]').click();
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
