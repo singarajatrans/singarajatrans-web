@@ -346,6 +346,7 @@ Konten marketing berada setelah pencarian. Pengguna harus dapat memulai pencaria
 - Keempat kartu memakai geometri identik: tinggi 88px, radius 16px, padding 10px 6px 9px, gap ikon–label 4px, dan area label minimum 28px. Label 11,5px dengan line-height 1,2, tetap terbaca tanpa terpotong.
 - Ikon berada di atas label, dengan area layout 24 × 24px dan normalisasi optik per bentuk. Carousel menampilkan tiga kartu utuh dan sebagian kartu tetangga (peek) pada viewport QA; semua layanan tetap dapat diakses melalui swipe, klik/shortcut, dan keyboard.
 - Indikator aktif berupa notch putih dangkal di bawah kartu; active/inactive tidak mengubah ukuran border-box, padding, posisi ikon/label, atau skala kartu. Geometri carousel dan perilaku final mengikuti bagian LOCKED / FINAL.
+- Baseline visual kartu layanan **nonaktif (OFF)** yang telah diaudit: background `rgba(255,255,255,.72)`; ikon dan teks memakai charcoal/navy `rgba(24,33,45,.84)`. Nilai ini menjaga hero tetap terbaca di balik kartu tanpa menurunkan keterbacaan label. State OFF tidak mengubah geometri, notch, gap, ukuran ikon, tipografi, atau perilaku carousel.
 - Field disusun satu kolom dengan jarak 12px.
 - Setiap field memiliki tinggi minimum 52px dan area tekan minimum 44px.
 - Label: 14px; nilai, placeholder, dan hasil pilihan: minimum 16px.
