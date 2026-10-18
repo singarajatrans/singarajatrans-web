@@ -581,3 +581,14 @@ dialog{border-radius:12px}
  .field:not(.date-field){padding-right:11px}
  .date-field{padding-left:11px}
 }
+
+/* Mobile quick-date pills: compact visual pill with a 44px touch target. */
+@media(max-width:767px){
+ .quick-date-actions{gap:6px}
+ .quick-date-actions button{position:relative;min-width:0;min-height:32px;padding:6px 12px;border-radius:999px;background:#f9e6e7;color:#242936;font-size:11px;font-weight:700;overflow:visible}
+ .quick-date-actions button::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+ .quick-date-actions button[aria-pressed=true]{background:#f5d0d2;color:var(--mock-red-dark)}
+}
+@media(max-width:360px){
+ .quick-date-actions button{min-width:0;min-height:32px;padding:6px 10px;font-size:10px}
+}
