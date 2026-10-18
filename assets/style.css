@@ -598,7 +598,7 @@ dialog{border-radius:12px}
  .quick-date-actions{gap:6px}
  .quick-date-actions button{min-width:0;min-height:28px;padding:5px 11px;border-radius:999px;background:#f7eeee;color:#1f2430;font-size:12px;font-weight:500;line-height:18px}
  .quick-date-actions button::after{height:44px}
- .quick-date-actions button[aria-pressed=true]{background:#f3d9da;color:#1f2430}
+ .quick-date-actions button[aria-pressed=true]{background:#f3d9da;color:var(--mock-red)}
 }
 @media(max-width:360px){
  .quick-date-actions button{min-width:0;min-height:28px;padding:5px 10px;font-size:12px}
