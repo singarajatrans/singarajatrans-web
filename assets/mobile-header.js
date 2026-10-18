@@ -36,7 +36,6 @@ function labels(){
  if(!mobile.matches)return;
  document.querySelectorAll('[data-language]').forEach(button=>button.setAttribute('aria-label',button.dataset.language==='id'?'Switch to English':'Ganti ke Bahasa Indonesia'));
  share.setAttribute('aria-label',text('Bagikan halaman','Share page'));
- document.querySelector('.mobile-header-placeholder').setAttribute('aria-label',text('Menu tambahan belum tersedia','Additional menu not available yet'));
  document.querySelector('#mobile-share-title').textContent=text('Bagikan halaman','Share page');
  dialog.querySelector('label').textContent=text('Salin tautan halaman','Copy page link');
  document.querySelector('#mobile-share-help').textContent=text('Pilih tautan lalu salin melalui menu perangkat Anda.','Select the link and copy it using your device menu.');
