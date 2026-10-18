@@ -1,6 +1,6 @@
 # PRD Desain — SINGARAJA TRANS
 
-**Versi:** 1.5 · 18 Oktober 2026
+**Versi:** 1.6 · 18 Oktober 2026
 **Status:** Acuan desain dan implementasi UI · SEO/PWA constraint LOCKED  
 **Platform:** Website publik, desktop dan mobile  
 **Arah visual:** redBus-inspired, merah–putih–abu, modern dan tepercaya
@@ -628,3 +628,40 @@ Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggant
 **Revisi eksplisit 18 Oktober 2026:** tombol aksi sementara/grid setelah flag dihapus dari header mobile atas permintaan pengguna. Header final menjadi **Animated search → flag aktif → Share**; tidak ada placeholder action di antara flag dan Share. Perubahan ini tidak menambah fungsi pengganti dan tidak mengubah desktop, booking logic, SEO/PWA, atau service selector.
 
 **LOCK:** Jangan mengubah mobile header atau service selector final ini tanpa instruksi eksplisit. Pekerjaan berikutnya harus membaca bagian ini dan mempertahankan scope lain yang LOCKED. Jika perubahan diotorisasi: audit sumber/cascade → perubahan minimum → pengujian viewport/state terkait → commit/deploy → tunggu sukses → audit live dan regression → update PRD. CI/source PASS saja tidak cukup untuk menyatakan FINAL.
+
+---
+
+## Mobile Bottom Navigation — LOCKED Design Decision
+
+**Tanggal:** 18 Oktober 2026 (WITA).  
+**Status:** **LOCKED sebagai keputusan desain produk; BELUM DIIMPLEMENTASIKAN ke UI.** Implementasi wajib dilakukan sebagai scope terpisah, lalu melalui deploy, live verification, audit visual, dan regression sebelum boleh dinyatakan FINAL/LOCKED pada level implementasi.
+
+Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen berikut:
+
+| Posisi | Menu | Ikon | Fungsi utama |
+|---|---|---|---|
+| 1 | **Beranda** | Rumah | Titik awal pelanggan untuk memilih layanan dan memulai booking. |
+| 2 | **Jelajah** | Kompas | Eksplorasi layanan, rute, kendaraan, dan pengembangan konten perjalanan/destinasi Bali. |
+| 3 | **Perjalanan** | Tiket | Pusat seluruh booking pelanggan: akan datang, aktif, selesai, pembayaran, status driver, detail penjemputan, reschedule bila tersedia, dan live tracking saat driver sudah ditugaskan. |
+| 4 | **Favorit** | Hati / love | Wishlist untuk menyimpan rute, layanan, kendaraan, atau destinasi agar dapat dibuka kembali sebelum melakukan booking. |
+| 5 | **Akun** | User/orang | Data pelanggan, bahasa, notifikasi, bantuan umum, kebijakan, dan pengembangan login/profil di kemudian hari. |
+
+### Aturan produk yang dikunci
+
+- Urutan final adalah **Beranda → Jelajah → Perjalanan → Favorit → Akun**.
+- **Perjalanan** menjadi pusat seluruh aktivitas pasca-booking. Live tracking driver **bukan** tab terpisah; fitur tersebut muncul secara kontekstual di Perjalanan Aktif ketika driver telah ditugaskan.
+- **Favorit** menggunakan ikon **hati/love**, bukan bookmark, agar fungsi wishlist langsung terbaca.
+- **Perjalanan** menggunakan ikon **tiket** untuk merepresentasikan My Trips / My Bookings.
+- **Jelajah** menggunakan ikon **kompas** dan tidak menggantikan selector layanan di Beranda.
+- Shuttle, Airport Transfer, Sewa Mobil, Sewa Motor, Charter/private transfer, atau layanan transportasi baru **tidak boleh ditambahkan sebagai tab bottom navigation terpisah**. Layanan tersebut tetap masuk melalui Beranda/Jelajah dan seluruh booking-nya terkonsolidasi di Perjalanan.
+- **Bantuan** tidak memakai slot bottom navigation sendiri. Bantuan terkait booking/driver masuk secara kontekstual di Perjalanan; bantuan umum masuk di Akun.
+- Penambahan pembayaran penuh, voucher, loyalty, promo, tracking real-time, notifikasi, atau layanan baru tidak boleh mengubah lima slot utama tanpa keputusan produk eksplisit.
+- Akun boleh tetap guest-first selama autentikasi penuh belum menjadi scope; keberadaan tab Akun tidak dengan sendirinya mewajibkan backend/auth baru.
+- Ikon mengikuti gaya visual aplikasi yang konsisten dan aset/brand SINGARAJA TRANS. Referensi aplikasi travel hanya digunakan sebagai acuan pola UX, bukan menyalin aset merek.
+- Bottom navigation harus memperhitungkan safe-area perangkat, tidak menutup CTA/konten, tidak menyebabkan horizontal overflow, dan tidak mengganggu header auto-hide, booking widget, modal, dropdown, kalender, atau interaksi existing.
+- Perubahan ini adalah keputusan **mobile customer UX**. Desktop/tablet, backend/API/database/auth/RBAC/routing, booking business logic, SEO/PWA, dan area LOCKED lain tidak berubah oleh dokumentasi ini.
+
+### Acceptance implementasi di masa berikutnya
+
+Saat bottom navigation mulai diimplementasikan, verifikasi minimal wajib mencakup viewport mobile **360/375/390/412/430px**, active/inactive state kelima tab, safe-area, scroll, refresh, back/forward navigation bila relevan, aksesibilitas keyboard/screen reader, deep-link/route existing, overflow/clipping/z-index, serta regression booking dan area LOCKED. Implementasi belum boleh dinyatakan FINAL hanya karena source atau CI PASS.
+
