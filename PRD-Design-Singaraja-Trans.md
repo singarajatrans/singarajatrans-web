@@ -109,6 +109,14 @@ Nilai field dan isi utama tidak boleh kurang dari 16px pada mobile.
 - Globe menggantikan visual flag pada mobile, tetapi tetap memakai state bahasa `data-language` dan fungsi translate existing untuk mengganti ID/EN tanpa dropdown atau routing baru.
 - Header tidak boleh menutupi dropdown, kalender, atau popover. Spesifikasi rinci berada pada bagian LOCKED / FINAL — Mobile Header & Service Selector.
 
+### Mobile — konsistensi warna brand
+
+- Warna merah utama mobile menggunakan satu sumber: `--mock-red: #c85759`, sama dengan merah header.
+- Kartu layanan aktif mempertahankan background putih; **border, ikon, dan teks aktif** memakai `--mock-red`.
+- Tombol mode perjalanan aktif seperti **Sekali Jalan** memakai background `--mock-red` dengan teks putih.
+- CTA utama widget seperti **Cari Tiket** memakai background `--mock-red` dengan ikon dan teks putih.
+- State aktif tersebut tidak boleh kembali memakai `--mock-red-dark` / `--red-dark` sebagai warna visual utama. Warna gelap hanya boleh dipakai untuk state interaksi khusus bila memang diperlukan dan tidak mengubah baseline brand.
+
 ## 6. Beranda
 
 ### 6.1 Hero
