@@ -352,7 +352,7 @@ dialog{border-radius:12px}
  .field>svg{width:21px;height:21px;color:#292d34;stroke-width:2}
  .field-icon-default{display:none}
  .field>svg.field-icon-mobile{display:block}
- .field-label{font-size:10px;font-weight:400;margin-bottom:1px;color:#969ba4}
+ .field-label{font-size:9px;font-weight:400;margin-bottom:1px;color:#969ba4}
  .field input,.field select{font-size:15px;font-weight:650;color:#1f2430}
  .origin-field{grid-area:origin}
  .destination-field{grid-area:destination}
