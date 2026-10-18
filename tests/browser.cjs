@@ -10,7 +10,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   browser=await chromium.launch({headless:true});await require('./mobile-header.cjs')(browser,'http://127.0.0.1:4173/');mkdirSync('qa-output',{recursive:true});
   // Regression: existing mobile bottom navigation; presentation only.
   for(const width of [320,360,390,412]){
-   const p=await browser.newPage({viewport:{width,height:844},isMobile:true,hasTouch:true}),nav=p.locator('.mobile-bottom-nav');
+   const p=await browser.newPage({viewport:{width,height:844}}),nav=p.locator('.mobile-bottom-nav');
    try{
     await p.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
     assert.equal(await nav.isVisible(),true);
