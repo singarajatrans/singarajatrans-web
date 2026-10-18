@@ -662,6 +662,11 @@ dialog{border-radius:12px}
   stroke-width:2.2;
   transition:transform .18s ease-out,opacity .18s ease-out;
  }
+ .mobile-bottom-home-icons{position:relative;width:24px;height:24px;display:block;flex:0 0 24px}
+ .mobile-bottom-home-icons svg{position:absolute;inset:0;width:24px;height:24px}
+ .mobile-bottom-home-solid{display:none}
+ .mobile-bottom-item[data-bottom-nav="home"][aria-current="page"] .mobile-bottom-home-regular{display:none}
+ .mobile-bottom-item[data-bottom-nav="home"][aria-current="page"] .mobile-bottom-home-solid{display:block}
  .mobile-bottom-item[aria-current="page"]{color:var(--mock-red)}
  .mobile-bottom-item[aria-current="page"] svg{transform:translateY(-1px)}
  .mobile-bottom-item[aria-disabled="true"]{opacity:.62}
