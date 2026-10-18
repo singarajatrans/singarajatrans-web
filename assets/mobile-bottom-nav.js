@@ -7,13 +7,24 @@ const items=[...nav.querySelectorAll('[data-bottom-nav]')];
 const status=nav.querySelector('.mobile-bottom-status');
 const checkDialog=document.querySelector('#check-dialog');
 let previous='home';
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+let animationTimer;
 
 function current(){return items.find(item=>item.getAttribute('aria-current')==='page')?.dataset.bottomNav||'home';}
 function setCurrent(name){
+ const prior=current();
  items.forEach(item=>{
   if(item.dataset.bottomNav===name)item.setAttribute('aria-current','page');
   else item.removeAttribute('aria-current');
  });
+ items.forEach(item=>item.classList.remove('is-nav-animating'));
+ clearTimeout(animationTimer);
+ const active=items.find(item=>item.dataset.bottomNav===name);
+ if(active&&prior!==name&&mobile.matches&&!reducedMotion.matches){
+  void active.offsetWidth;
+  active.classList.add('is-nav-animating');
+  animationTimer=setTimeout(()=>active.classList.remove('is-nav-animating'),460);
+ }
 }
 function unavailable(name){
  status.textContent=name==='favorites'?'Favorit belum tersedia.':'Akun belum tersedia.';
