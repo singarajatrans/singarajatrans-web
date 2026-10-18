@@ -741,18 +741,20 @@ dialog{border-radius:12px}
   box-shadow:-11px -5px 0 -1px #f7a064,11px 5px 0 -1px #f28b6b,-6px 10px 0 -1px #e56860,7px -7px 0 -1px #f6a264;
   filter:none;
  }
- .mobile-bottom-item.is-nav-live::before{animation:nav-spark-live-left 1.25s ease-in-out infinite}
- .mobile-bottom-item.is-nav-live::after{animation:nav-spark-live-right 1.25s ease-in-out -.62s infinite}
+ .mobile-bottom-item.is-nav-live::before{animation:nav-spark-live-left 1.9s cubic-bezier(.37,0,.63,1) infinite}
+ .mobile-bottom-item.is-nav-live::after{animation:nav-spark-live-right 2.1s cubic-bezier(.37,0,.63,1) -.95s infinite}
 }
 @keyframes nav-spark-live-left{
- 0%,100%{opacity:.18;transform:translate(-4px,2px) scale(.55)}
- 32%{opacity:1;transform:translate(-15px,-4px) scale(.8)}
- 68%{opacity:.45;transform:translate(-9px,5px) scale(.65)}
+ 0%,100%{opacity:.16;transform:translate(-3px,3px) scale(.52)}
+ 28%{opacity:.9;transform:translate(-13px,-2px) scale(.78)}
+ 58%{opacity:.5;transform:translate(-17px,4px) scale(.68)}
+ 82%{opacity:.28;transform:translate(-9px,-5px) scale(.6)}
 }
 @keyframes nav-spark-live-right{
- 0%,100%{opacity:.18;transform:translate(4px,2px) scale(.55)}
- 32%{opacity:1;transform:translate(14px,4px) scale(.8)}
- 68%{opacity:.45;transform:translate(8px,-4px) scale(.65)}
+ 0%,100%{opacity:.16;transform:translate(3px,3px) scale(.52)}
+ 30%{opacity:.9;transform:translate(12px,3px) scale(.78)}
+ 60%{opacity:.5;transform:translate(16px,-3px) scale(.68)}
+ 84%{opacity:.28;transform:translate(8px,5px) scale(.6)}
 }
 @media(prefers-reduced-motion:reduce){
  .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{animation:none!important;opacity:.55}
