@@ -729,33 +729,34 @@ dialog{border-radius:12px}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating svg,.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}}
 
 
-/* Active bottom-nav item keeps a compact live sparkle while it remains current. */
+/* Active bottom-nav item: compact repeating firework burst around the icon. */
 @media(max-width:767px){
  .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{
-  top:18px;
+  top:19px;
   left:50%;
-  width:5px;
-  height:5px;
+  width:3px;
+  height:3px;
   border-radius:50%;
   background:var(--spark-color,var(--mock-red));
-  box-shadow:-11px -5px 0 -1px #f7a064,11px 5px 0 -1px #f28b6b,-6px 10px 0 -1px #e56860,7px -7px 0 -1px #f6a264;
+  transform-origin:center;
   filter:none;
  }
- .mobile-bottom-item.is-nav-live::before{animation:nav-spark-live-left 1.9s cubic-bezier(.37,0,.63,1) infinite}
- .mobile-bottom-item.is-nav-live::after{animation:nav-spark-live-right 2.1s cubic-bezier(.37,0,.63,1) -.95s infinite}
+ .mobile-bottom-item.is-nav-live::before{
+  box-shadow:-16px 0 0 0 #f7a064,16px 0 0 0 #f28b6b,0 -9px 0 0 #e56860,0 10px 0 0 #f6a264,-11px -7px 0 -1px #f8b37c,11px -7px 0 -1px #e86f67,-10px 8px 0 -1px #f29a6d,10px 8px 0 -1px #dc5f5f;
+  animation:nav-firework-burst 1.55s cubic-bezier(.18,.72,.28,1) infinite;
+ }
+ .mobile-bottom-item.is-nav-live::after{
+  box-shadow:-14px -3px 0 -1px #e56860,14px 3px 0 -1px #f7a064,-5px -9px 0 -1px #f28b6b,5px 10px 0 -1px #f6a264,-12px 7px 0 -1px #f8b37c,12px -7px 0 -1px #dc5f5f;
+  animation:nav-firework-burst 1.55s cubic-bezier(.18,.72,.28,1) -.78s infinite;
+ }
 }
-@keyframes nav-spark-live-left{
- 0%,100%{opacity:.16;transform:translate(-3px,3px) scale(.52)}
- 28%{opacity:.9;transform:translate(-13px,-2px) scale(.78)}
- 58%{opacity:.5;transform:translate(-17px,4px) scale(.68)}
- 82%{opacity:.28;transform:translate(-9px,-5px) scale(.6)}
-}
-@keyframes nav-spark-live-right{
- 0%,100%{opacity:.16;transform:translate(3px,3px) scale(.52)}
- 30%{opacity:.9;transform:translate(12px,3px) scale(.78)}
- 60%{opacity:.5;transform:translate(16px,-3px) scale(.68)}
- 84%{opacity:.28;transform:translate(8px,5px) scale(.6)}
+@keyframes nav-firework-burst{
+ 0%{opacity:0;transform:scale(.12)}
+ 14%{opacity:1;transform:scale(.42)}
+ 52%{opacity:.95;transform:scale(1)}
+ 72%{opacity:.35;transform:scale(1.06)}
+ 100%{opacity:0;transform:scale(1.08)}
 }
 @media(prefers-reduced-motion:reduce){
- .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{animation:none!important;opacity:.55}
+ .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{animation:none!important;opacity:.5;transform:scale(1)}
 }
