@@ -703,3 +703,13 @@ dialog{border-radius:12px}
 @keyframes mobile-nav-burst-right{0%{opacity:0;transform:translate(3px,4px) scale(.3)}22%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(20px,-22px) scale(.75)}}
 @keyframes mobile-nav-pop-strong{0%{transform:translateY(2px) scale(.8)}45%{transform:translateY(-4px) scale(1.2)}75%{transform:translateY(-1px) scale(1.02)}100%{transform:translateY(-2px) scale(1.06)}}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after,.mobile-bottom-item.is-nav-animating svg{animation:none!important}}
+
+/* Keep bottom-nav sparkle within the icon zone, never above the bar. */
+@media(max-width:767px){
+ .mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{top:18px;width:4px;height:4px;box-shadow:-5px 3px 0 -1px #ef9b56,5px -3px 0 -1px #e46a6c;filter:none}
+ .mobile-bottom-item.is-nav-animating::before{animation:mobile-nav-compact-left .48s ease-out both}
+ .mobile-bottom-item.is-nav-animating::after{animation:mobile-nav-compact-right .48s ease-out both}
+}
+@keyframes mobile-nav-compact-left{0%{opacity:0;transform:translate(-3px,2px) scale(.5)}35%{opacity:1}100%{opacity:0;transform:translate(-13px,-6px) scale(.7)}}
+@keyframes mobile-nav-compact-right{0%{opacity:0;transform:translate(3px,2px) scale(.5)}35%{opacity:1}100%{opacity:0;transform:translate(10px,-7px) scale(.7)}}
+@media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}}
