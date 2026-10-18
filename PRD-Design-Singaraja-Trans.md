@@ -661,6 +661,19 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 - Bottom navigation harus memperhitungkan safe-area perangkat, tidak menutup CTA/konten, tidak menyebabkan horizontal overflow, dan tidak mengganggu header auto-hide, booking widget, modal, dropdown, kalender, atau interaksi existing.
 - Perubahan ini adalah keputusan **mobile customer UX**. Desktop/tablet, backend/API/database/auth/RBAC/routing, booking business logic, SEO/PWA, dan area LOCKED lain tidak berubah oleh dokumentasi ini.
 
+### Visual & animasi bottom navigation — LOCKED
+
+- Arah visual mengikuti pola **Klook-style bottom navigation** yang ringan dan bersih, tanpa menyalin aset merek: surface putih, divider/shadow atas sangat halus, lima item sama lebar, ikon di atas label, dan safe-area bawah perangkat wajib dihormati.
+- State **aktif** memakai merah brand `#C85759`; state **nonaktif** memakai charcoal/abu netral. Tidak memakai pil/background tebal pada item aktif kecuali ada instruksi eksplisit berikutnya.
+- Ikon final: **rumah, kompas, tiket, hati/love, user**. Ikon Favorit berupa **heart outline** saat nonaktif dan boleh menjadi **filled heart** saat aktif; Perjalanan tetap memakai ikon tiket.
+- Perpindahan active item memakai motion ringan **160–220ms ease-out** pada warna/opacity dan pergeseran ikon maksimal **1–2px**. Tap feedback boleh memakai scale-down sangat kecil sekitar **0,96** lalu kembali, tanpa bounce dan tanpa mengubah ukuran layout.
+- Transisi konten antar-tab tidak memakai animasi berat. Gunakan fade/translate ringan hanya bila tidak mengubah routing/SEO dan tidak menyebabkan layout shift.
+- Animasi hanya memakai `transform`/`opacity` bila memungkinkan, tanpa dependency animasi baru, tanpa mengubah tinggi bottom bar, dan tanpa menambah CLS/INP secara material.
+- `prefers-reduced-motion: reduce` wajib menonaktifkan motion non-esensial dan menampilkan state akhir secara langsung.
+- Bottom nav tidak boleh menutupi CTA, dialog, kalender, field, atau konten penting; komponen sticky/fixed harus menghormati `env(safe-area-inset-bottom)`.
+- Untuk halaman yang memang crawlable, navigasi penting tetap menggunakan link/struktur HTML yang dapat diakses; bottom nav tidak boleh menjadi JS-only shell yang menghilangkan internal link, heading, atau konten SEO.
+- Scope ini **mobile only**. Desktop/tablet, backend/API/database/auth/RBAC/routing, booking business logic, dan area LOCKED lain tidak disentuh.
+
 ### Acceptance implementasi di masa berikutnya
 
 Saat bottom navigation mulai diimplementasikan, verifikasi minimal wajib mencakup viewport mobile **360/375/390/412/430px**, active/inactive state kelima tab, safe-area, scroll, refresh, back/forward navigation bila relevan, aksesibilitas keyboard/screen reader, deep-link/route existing, overflow/clipping/z-index, serta regression booking dan area LOCKED. Implementasi belum boleh dinyatakan FINAL hanya karena source atau CI PASS.
