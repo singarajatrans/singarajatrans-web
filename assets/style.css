@@ -561,3 +561,11 @@ dialog{border-radius:12px}
  .header-search-car{display:none}
  .service-tabs button{transition:none}
 }
+
+
+/* Mobile brand-red unification · 18 Oct 2026 */
+@media(max-width:767px){
+ .service-tabs button[aria-selected=true]{color:var(--mock-red)}
+ .trip-mode label:has(input:checked){background:var(--mock-red);border-color:var(--mock-red);color:#fff}
+ .search-button{background:var(--mock-red);border-color:var(--mock-red);color:#fff}
+}
