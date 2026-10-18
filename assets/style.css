@@ -656,26 +656,26 @@ dialog{border-radius:12px}
   transition:color .18s ease-out,opacity .18s ease-out;
  }
  .mobile-bottom-item svg{
-  width:24px;
-  height:24px;
+  width:22px;
+  height:22px;
   color:currentColor;
   stroke-width:2.2;
-  transition:transform .18s ease-out,opacity .18s ease-out;
+  transition:width .18s ease-out,height .18s ease-out,transform .18s ease-out,opacity .18s ease-out;
  }
- .mobile-bottom-home-icons{position:relative;width:24px;height:24px;display:block;flex:0 0 24px}
- .mobile-bottom-home-icons svg{position:absolute;inset:0;width:24px;height:24px}
+ .mobile-bottom-home-icons{width:24px;height:24px;display:grid;place-items:center;flex:0 0 24px}
+ .mobile-bottom-home-icons svg{grid-area:1/1;width:22px;height:22px}
  .mobile-bottom-home-solid{display:none}
  .mobile-bottom-item[data-bottom-nav="home"][aria-current="page"] .mobile-bottom-home-regular{display:none}
  .mobile-bottom-item[data-bottom-nav="home"][aria-current="page"] .mobile-bottom-home-solid{display:block}
- .mobile-bottom-favorite-icons{position:relative;width:24px;height:24px;display:block;flex:0 0 24px}
- .mobile-bottom-favorite-icons svg{position:absolute;inset:0;width:24px;height:24px}
+ .mobile-bottom-favorite-icons{width:24px;height:24px;display:grid;place-items:center;flex:0 0 24px}
+ .mobile-bottom-favorite-icons svg{grid-area:1/1;width:22px;height:22px}
  .mobile-bottom-favorite-solid{display:none}
  .mobile-bottom-item[data-bottom-nav="favorites"][aria-current="page"] .mobile-bottom-favorite-regular{display:none}
  .mobile-bottom-item[data-bottom-nav="favorites"][aria-current="page"] .mobile-bottom-favorite-solid{display:block}
  .mobile-bottom-item[aria-current="page"]{color:var(--mock-red)}
- .mobile-bottom-item[aria-current="page"] svg{transform:translateY(-1px)}
+ .mobile-bottom-item[aria-current="page"] svg{width:24px;height:24px;transform:translateY(-1px)}
  .mobile-bottom-item[aria-disabled="true"]{opacity:.62}
- .mobile-bottom-item:not([aria-disabled="true"]):active svg{transform:translateY(1px) scale(.96)}
+ .mobile-bottom-item:not([aria-disabled="true"]):active:not([aria-current="page"]) svg{width:23px;height:23px;transform:translateY(1px)}
  .mobile-bottom-item:focus-visible{outline:2px solid var(--mock-red);outline-offset:-2px}
  .mobile-bottom-status{position:fixed;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
  .floating-chat{bottom:calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 16px)}
@@ -691,13 +691,13 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  .mobile-bottom-item{position:relative;isolation:isolate;overflow:visible}
  .mobile-bottom-item svg{position:relative;z-index:1;transition:color .24s ease,transform .26s cubic-bezier(.2,.8,.2,1)}
- .mobile-bottom-item[aria-current="page"] svg{transform:translateY(-2px) scale(1.06)}
+ .mobile-bottom-item[aria-current="page"] svg{transform:translateY(-2px)}
  .mobile-bottom-item::before,.mobile-bottom-item::after{content:"";position:absolute;left:50%;top:calc(50% - 9px);width:4px;height:4px;border-radius:50%;background:var(--mock-red);opacity:0;pointer-events:none;z-index:0}
  .mobile-bottom-item.is-nav-animating svg{animation:mobile-nav-pop .38s cubic-bezier(.2,.8,.2,1) both}
  .mobile-bottom-item.is-nav-animating::before{animation:mobile-nav-spark-left .44s ease-out both}
  .mobile-bottom-item.is-nav-animating::after{animation:mobile-nav-spark-right .44s ease-out both}
 }
-@keyframes mobile-nav-pop{0%{transform:translateY(1px) scale(.84)}55%{transform:translateY(-3px) scale(1.14)}100%{transform:translateY(-2px) scale(1.06)}}
+@keyframes mobile-nav-pop{0%{transform:translateY(1px) scale(.92)}55%{transform:translateY(-3px) scale(1.06)}100%{transform:translateY(-2px) scale(1)}}
 @keyframes mobile-nav-spark-left{0%{opacity:0;transform:translate(-6px,0) scale(.5)}35%{opacity:.9}100%{opacity:0;transform:translate(-21px,-13px) scale(.5)}}
 @keyframes mobile-nav-spark-right{0%{opacity:0;transform:translate(6px,0) scale(.5)}35%{opacity:.9}100%{opacity:0;transform:translate(17px,-16px) scale(.5)}}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating svg,.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}.mobile-bottom-item svg{transition:none!important}}
@@ -711,7 +711,7 @@ dialog{border-radius:12px}
 }
 @keyframes mobile-nav-burst-left{0%{opacity:0;transform:translate(-3px,4px) scale(.3)}22%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(-24px,-19px) scale(.75)}}
 @keyframes mobile-nav-burst-right{0%{opacity:0;transform:translate(3px,4px) scale(.3)}22%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(20px,-22px) scale(.75)}}
-@keyframes mobile-nav-pop-strong{0%{transform:translateY(2px) scale(.8)}45%{transform:translateY(-4px) scale(1.2)}75%{transform:translateY(-1px) scale(1.02)}100%{transform:translateY(-2px) scale(1.06)}}
+@keyframes mobile-nav-pop-strong{0%{transform:translateY(2px) scale(.92)}45%{transform:translateY(-4px) scale(1.08)}75%{transform:translateY(-1px) scale(1.01)}100%{transform:translateY(-2px) scale(1)}}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after,.mobile-bottom-item.is-nav-animating svg{animation:none!important}}
 
 /* Keep bottom-nav sparkle within the icon zone, never above the bar. */
@@ -735,7 +735,7 @@ dialog{border-radius:12px}
 }
 @keyframes nav-spark-radial-left{0%{opacity:0;transform:translate(-2px,1px) scale(.45)}20%,60%{opacity:1}100%{opacity:0;transform:translate(-16px,-4px) scale(.75)}}
 @keyframes nav-spark-radial-right{0%{opacity:0;transform:translate(2px,1px) scale(.45)}20%,60%{opacity:1}100%{opacity:0;transform:translate(15px,4px) scale(.75)}}
-@keyframes nav-icon-bounce{0%{transform:translateY(2px) scale(.82) rotate(-6deg)}35%{transform:translateY(-3px) scale(1.17) rotate(4deg)}65%{transform:translateY(-2px) scale(1.03) rotate(-2deg)}100%{transform:translateY(-2px) scale(1.06) rotate(0)}}
+@keyframes nav-icon-bounce{0%{transform:translateY(2px) scale(.92) rotate(-6deg)}35%{transform:translateY(-3px) scale(1.08) rotate(4deg)}65%{transform:translateY(-2px) scale(1.01) rotate(-2deg)}100%{transform:translateY(-2px) scale(1) rotate(0)}}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating svg,.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}}
 
 
