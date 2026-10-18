@@ -727,3 +727,33 @@ dialog{border-radius:12px}
 @keyframes nav-spark-radial-right{0%{opacity:0;transform:translate(2px,1px) scale(.45)}20%,60%{opacity:1}100%{opacity:0;transform:translate(15px,4px) scale(.75)}}
 @keyframes nav-icon-bounce{0%{transform:translateY(2px) scale(.82) rotate(-6deg)}35%{transform:translateY(-3px) scale(1.17) rotate(4deg)}65%{transform:translateY(-2px) scale(1.03) rotate(-2deg)}100%{transform:translateY(-2px) scale(1.06) rotate(0)}}
 @media(prefers-reduced-motion:reduce){.mobile-bottom-item.is-nav-animating svg,.mobile-bottom-item.is-nav-animating::before,.mobile-bottom-item.is-nav-animating::after{animation:none!important}}
+
+
+/* Active bottom-nav item keeps a compact live sparkle while it remains current. */
+@media(max-width:767px){
+ .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{
+  top:18px;
+  left:50%;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--spark-color,var(--mock-red));
+  box-shadow:-11px -5px 0 -1px #f7a064,11px 5px 0 -1px #f28b6b,-6px 10px 0 -1px #e56860,7px -7px 0 -1px #f6a264;
+  filter:none;
+ }
+ .mobile-bottom-item.is-nav-live::before{animation:nav-spark-live-left 1.25s ease-in-out infinite}
+ .mobile-bottom-item.is-nav-live::after{animation:nav-spark-live-right 1.25s ease-in-out -.62s infinite}
+}
+@keyframes nav-spark-live-left{
+ 0%,100%{opacity:.18;transform:translate(-4px,2px) scale(.55)}
+ 32%{opacity:1;transform:translate(-15px,-4px) scale(.8)}
+ 68%{opacity:.45;transform:translate(-9px,5px) scale(.65)}
+}
+@keyframes nav-spark-live-right{
+ 0%,100%{opacity:.18;transform:translate(4px,2px) scale(.55)}
+ 32%{opacity:1;transform:translate(14px,4px) scale(.8)}
+ 68%{opacity:.45;transform:translate(8px,-4px) scale(.65)}
+}
+@media(prefers-reduced-motion:reduce){
+ .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{animation:none!important;opacity:.55}
+}
