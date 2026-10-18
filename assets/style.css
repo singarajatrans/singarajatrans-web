@@ -517,12 +517,12 @@ dialog{border-radius:12px}
 .mobile-header-search,.mobile-header-action,.language-chevron{display:none}
 .mobile-share-status{position:fixed;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:767px){
- html{height:100%;overflow:hidden;background:var(--mock-red);scroll-padding-top:64px}
+ html{height:100%;min-height:100dvh;overflow:hidden;background:var(--mock-red);scroll-padding-top:64px}
  #header{background:var(--mock-red)!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
  #header>.nav-wrap,#header>.nav-wrap>.nav-inner{background:var(--mock-red)!important;background-image:none!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0}
  #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important}
  /* Real viewport scroll surface: no decorative topper or corner overlays. */
- body{position:fixed;inset:0;overflow-x:hidden;overflow-y:auto;scroll-padding-top:64px;border-radius:0;transition:border-radius .26s ease}
+ body{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;overflow-x:hidden;overflow-y:auto;scroll-padding-top:64px;border-radius:0;background:var(--mock-red);transition:border-radius .26s ease}
  body.header-hidden{border-radius:24px 24px 0 0}
  .nav-inner{height:60px;width:calc(100% - 32px);gap:10px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}
@@ -614,4 +614,65 @@ dialog{border-radius:12px}
  #trip-mode label:has(input:checked){background:var(--mock-red)!important;border-color:var(--mock-red)!important;color:#fff!important}
  #trip-mode label:has(input:checked) .trip-mode-icon{background:transparent;color:#fff}
  #trip-mode label:focus,#trip-mode label:focus-visible,#trip-mode label:focus-within{outline:none!important;box-shadow:none!important}
+}
+
+
+/* Mobile bottom navigation · 18 Oct 2026 */
+.mobile-bottom-nav{display:none}
+@media(max-width:767px){
+ .mobile-bottom-nav{
+  --bottom-nav-height:64px;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:19;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:stretch;
+  height:calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  padding:4px max(8px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(8px,env(safe-area-inset-left));
+  border-top:1px solid #eceef1;
+  background:#fff;
+  box-shadow:0 -3px 14px rgba(15,23,42,.06);
+ }
+ .mobile-bottom-item{
+  min-width:0;
+  min-height:60px;
+  padding:5px 2px 4px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  color:#69717d;
+  font-size:10.5px;
+  font-weight:600;
+  line-height:1.15;
+  text-align:center;
+  transition:color .18s ease-out,opacity .18s ease-out;
+ }
+ .mobile-bottom-item svg{
+  width:24px;
+  height:24px;
+  color:currentColor;
+  stroke-width:1.8;
+  transition:transform .18s ease-out,opacity .18s ease-out;
+ }
+ .mobile-bottom-item[aria-current="page"]{color:var(--mock-red)}
+ .mobile-bottom-item[aria-current="page"] svg{transform:translateY(-1px)}
+ .mobile-bottom-item[aria-disabled="true"]{opacity:.62}
+ .mobile-bottom-item:not([aria-disabled="true"]):active svg{transform:translateY(1px) scale(.96)}
+ .mobile-bottom-item:focus-visible{outline:2px solid var(--mock-red);outline-offset:-2px}
+ .mobile-bottom-status{position:fixed;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .floating-chat{bottom:calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 16px)}
+ footer{padding-bottom:calc(20px + var(--bottom-nav-height) + env(safe-area-inset-bottom))}
+ .results-page #results{padding-bottom:calc(32px + var(--bottom-nav-height) + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){
+ .mobile-bottom-item,.mobile-bottom-item svg{transition:none!important}
+ .mobile-bottom-item[aria-current="page"] svg,.mobile-bottom-item:not([aria-disabled="true"]):active svg{transform:none}
 }
