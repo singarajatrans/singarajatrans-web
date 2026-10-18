@@ -55,7 +55,7 @@ module.exports=async function testMobileHeader(browser,url){
   const originalURL=p.url();await p.locator('.languages button[aria-pressed=true]').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'en');assert.equal(p.url(),originalURL);assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'en');
   assert.equal(await p.locator('.language-code:visible').count(),0);assert.equal(await p.locator('.language-chevron:visible').count(),0);
   await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'id');assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'id');await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true);
-  const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.deepEqual(actions,[[40,40],[40,40],[40,40]]);
+  const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.deepEqual(actions,[[36,36],[36,36],[36,36]]);
   // Each animated prompt is clicked at its real index, then must stop cycling.
   for(let index=0;index<5;index++){
    await p.reload({waitUntil:'networkidle'});await p.clock.runFor(4600+index*2800);
