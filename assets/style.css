@@ -526,8 +526,8 @@ dialog{border-radius:12px}
  body.header-hidden{border-radius:24px 24px 0 0}
  .nav-inner{height:60px;width:calc(100% - 32px);gap:6px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}
- .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:36px;padding:0 10px;gap:6px;border:1px solid rgba(126,35,39,.42);border-radius:18px;background:rgba(126,35,39,.72);color:#fff;overflow:hidden}
- .header-search-icon{width:16px;height:16px;stroke-width:1.8;color:#fff}
+ .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:36px;padding:0 10px;gap:6px;border:0;border-radius:18px;background:rgba(255,255,255,.92);color:#667085;overflow:hidden}
+ .header-search-icon{width:16px;height:16px;stroke-width:1.8;color:#667085}
  .header-search-copy{position:relative;display:block;flex:1;min-width:0;height:100%;overflow:hidden}
  .header-search-brand{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:4px;clip-path:inset(0 var(--brand-erased,0px) 0 0)}
  .header-search-mark{width:22px;height:22px;overflow:hidden;flex:0 0 22px}
@@ -535,18 +535,18 @@ dialog{border-radius:12px}
  .header-search-name{color:#03479d;font-size:10px;font-weight:800;letter-spacing:-.3px;white-space:nowrap}
  .header-search-car{position:absolute;left:var(--car-x,110%);top:50%;width:28px;height:22px;transform:translate(-50%,-50%);color:var(--mock-red);fill:#fff;stroke-width:1.7;opacity:0}
  .mobile-header-search.is-wiping .header-search-car{opacity:var(--car-opacity,1)}
- .header-search-prompt{height:100%;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11.5px;font-weight:500;line-height:34px;color:#fff;animation:search-prompt-in .24s ease both}
+ .header-search-prompt{height:100%;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11.5px;font-weight:500;line-height:34px;color:#667085;animation:search-prompt-in .24s ease both}
  .nav-actions{flex:0 0 auto;gap:8px}
  .languages{position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:40px;padding:2px;border:0;border-radius:20px;background:transparent;overflow:visible}
  .languages>span,.languages button[aria-pressed=false],.languages .language-code,.languages .language-chevron{display:none!important}
- .languages button[aria-pressed=true]{display:flex;align-items:center;justify-content:center;width:36px;height:36px;min-height:36px;padding:0;gap:0;border:0;border-radius:18px;background:rgba(126,35,39,.72)}
- .languages .language-flag{position:static;display:block;width:32px;height:32px;flex:0 0 32px;border:0;border-radius:50%;overflow:hidden;font-size:0;line-height:0;background-size:cover;background-position:center}
+ .languages button[aria-pressed=true]{display:flex;align-items:center;justify-content:center;width:34px;height:34px;min-height:34px;padding:0;gap:0;border:0;border-radius:17px;background:rgba(255,255,255,.92)}
+ .languages .language-flag{position:static;display:block;width:28px;height:28px;flex:0 0 28px;border:0;border-radius:50%;overflow:hidden;font-size:0;line-height:0;background-size:cover;background-position:center}
  .languages [data-language=id] .language-flag{background-image:url("images/flag-id-round.svg")}
  .languages [data-language=en] .language-flag{background-image:url("images/flag-en-round.svg")}
- .mobile-header-action{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;padding:2px;border:0;border-radius:20px;background:transparent;color:#fff}
+ .mobile-header-action{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;padding:2px;border:0;border-radius:20px;background:transparent;color:var(--mock-red)}
  .mobile-header-action svg{width:23px;height:23px;stroke-width:1.8}
  .mobile-header-placeholder:disabled{opacity:1;cursor:default;color:#667085}
- .mobile-header-share::before{content:"";position:absolute;width:36px;height:36px;border-radius:18px;background:rgba(126,35,39,.72);z-index:0}.mobile-header-share{position:relative}.mobile-header-share svg{position:relative;z-index:1}.mobile-header-share:active{opacity:.72;transform:scale(.94)}
+ .mobile-header-share::before{content:"";position:absolute;width:34px;height:34px;border-radius:17px;background:rgba(255,255,255,.92);z-index:0}.mobile-header-share{position:relative}.mobile-header-share svg{position:relative;z-index:1}.mobile-header-share:active{opacity:.72;transform:scale(.94)}
  .mobile-header-search:focus-visible,.languages button:focus-visible,.mobile-header-action:focus-visible{outline:2px solid var(--mock-ink);outline-offset:2px}
  .booking-check{display:none!important}
  #mobile-share-title{font-size:20px;font-weight:700;color:var(--mock-ink)}
