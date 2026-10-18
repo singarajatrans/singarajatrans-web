@@ -21,6 +21,7 @@ jobs:
           node --check assets/core.js
           node --check assets/app.js
           node --check assets/booking.js
+          node --check assets/mobile-bottom-nav.js
           node tests/core.test.cjs
       - name: Prepare browser checks
         run: |
