@@ -41,7 +41,7 @@ body{background:#fff;color:var(--mock-ink)}
 .service-tabs .service-svg-icon{width:32px;height:32px;background:currentColor;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-size:contain}
 .service-tabs .service-motor-svg{-webkit-mask-image:url("images/scooter.svg?v=vector-2");mask-image:url("images/scooter.svg?v=vector-2")}
 .service-tabs .service-shuttle-svg{-webkit-mask-image:url("images/travel-shuttle.svg");mask-image:url("images/travel-shuttle.svg")}
-.service-tabs .service-airport-svg{-webkit-mask-image:url("images/airport-transfer.svg?v=vector-4");mask-image:url("images/airport-transfer.svg?v=vector-4")}
+.service-tabs .service-airport-svg{-webkit-mask-image:url("images/airport-transfer.svg?v=vector-5");mask-image:url("images/airport-transfer.svg?v=vector-5")}
 .service-tabs .service-car-svg{-webkit-mask-image:url("images/car-rental.svg?v=vector-3");mask-image:url("images/car-rental.svg?v=vector-3")}
 #search-panel{padding:15px 16px 18px;background:#fff}
 .trip-mode{display:flex;gap:30px;align-items:center;padding:0 4px 12px;font-size:13px}
