@@ -662,6 +662,11 @@ dialog{border-radius:12px}
   text-align:center;
   transition:color .18s ease-out,opacity .18s ease-out;
  }
+ .mobile-bottom-pair{width:24px;height:24px;display:grid;place-items:center;flex:0 0 24px}
+ .mobile-bottom-pair svg{grid-area:1/1}
+ .mobile-bottom-pair .bottom-icon-on{display:none}
+ .mobile-bottom-item[aria-current="page"] .mobile-bottom-pair .bottom-icon-off{display:none}
+ .mobile-bottom-item[aria-current="page"] .mobile-bottom-pair .bottom-icon-on{display:block}
  .mobile-bottom-item svg{
   width:23px;
   height:23px;
