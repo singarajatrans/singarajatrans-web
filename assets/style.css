@@ -43,6 +43,7 @@ body{background:#fff;color:var(--mock-ink)}
 .service-tabs .service-svg-icon{width:38px;height:30px;background:currentColor;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-size:contain}
 .service-tabs .service-motor-svg{-webkit-mask-image:url("images/scooter.svg");mask-image:url("images/scooter.svg")}
 .service-tabs .service-shuttle-svg{-webkit-mask-image:url("images/travel-shuttle.svg");mask-image:url("images/travel-shuttle.svg")}
+.service-tabs .service-airport-svg{-webkit-mask-image:url("images/airport-transfer.svg");mask-image:url("images/airport-transfer.svg")}
 .service-tabs .service-icon-on{display:none}
 .service-tabs button[aria-selected=true] .service-icon-off{display:none}
 .service-tabs button[aria-selected=true] .service-icon-on{display:block}
