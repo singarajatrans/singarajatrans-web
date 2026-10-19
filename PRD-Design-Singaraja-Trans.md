@@ -681,6 +681,7 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 - Tipografi konten mobile distandarkan: H2 section sekitar **23px**, judul kartu **16px**, body/description **14px**, meta/support **12–13px**, CTA utama/aksi **15px**, footer heading **14px**, footer link/body **13px**, dan legal footer **12px**. Header, service selector, field, serta area LOCKED lain tetap mengikuti baseline masing-masing.
 - Floating WhatsApp di atas bottom navigation dihapus khusus mobile.
 - Ikon bottom navigation menggunakan **23px nonaktif / 24px aktif**, label **11px**, dan gap ikon–label **5px**.
+- Gaya ikon bottom navigation memakai **Regular/outline** sebagai baseline: stroke optik sekitar **1.7px** saat nonaktif dan sedikit ditegaskan sekitar **1.9px** saat aktif; ukuran dan spacing tetap sama.
 
 ### Dynamic browser bar & viewport mobile — LOCKED
 
