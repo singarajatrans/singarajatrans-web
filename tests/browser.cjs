@@ -95,7 +95,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await page.locator('.date-field .field-label').innerText(),'Tanggal Perjalanan');
     for(const id of ['origin','destination','date'])assert.equal(await page.locator('#'+id).inputValue(),'');
     assert.equal(await page.locator('.service-tabs [role=tab]:visible').count(),4);
-    assert.equal(await page.locator('#tab-charter').innerText(),'Sewa Mobil');
+    assert.equal(await page.locator('#tab-charter').innerText(),'Sewa Mobil & Carter Drop');
     const panelTop=(await page.locator('#search-panel').boundingBox()).y;
     for(const service of ['airport','charter','motor','shuttle']){
      await page.locator('#tab-'+service).click();await page.waitForTimeout(200);
@@ -127,7 +127,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     await page.locator('#date').click();await page.screenshot({path:`qa-output/date-picker-${width}.png`});await page.keyboard.press('Escape');
    }else{
     assert.equal(await page.locator('.service-tabs [role=tab]:visible').count(),3);
-    assert.equal(await page.locator('#tab-charter').innerText(),'Charter Drop');
+    assert.equal(await page.locator('#tab-charter').innerText(),'Sewa Mobil & Carter Drop');
     await page.locator('#tab-charter').focus();await page.keyboard.press('ArrowRight');
     assert.equal(await page.locator('#tab-shuttle').getAttribute('aria-selected'),'true');
    }
