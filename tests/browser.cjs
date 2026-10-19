@@ -9,16 +9,16 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4173/')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   browser=await chromium.launch({headless:true});await require('./mobile-header.cjs')(browser,'http://127.0.0.1:4173/');mkdirSync('qa-output',{recursive:true});
   // Regression: existing mobile bottom navigation; presentation only.
-  for(const width of [320,360,390,412]){
+  for(const width of [320,360,375,390,412,430]){
    const p=await browser.newPage({viewport:{width,height:844}}),nav=p.locator('.mobile-bottom-nav');
    try{
     await p.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
     assert.equal(await nav.isVisible(),true);
     assert.equal(await nav.locator('[data-bottom-nav]').count(),5);
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
-    const geometry=await nav.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {top:r.top,bottom:r.bottom,height:r.height,position:s.position,viewport:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth}});
+    const geometry=await nav.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el),item=getComputedStyle(el.querySelector('.mobile-bottom-item')),icon=getComputedStyle(el.querySelector('.mobile-bottom-item svg'));return {top:r.top,bottom:r.bottom,height:r.height,position:s.position,viewport:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth,gap:item.gap,label:item.fontSize,icon:[icon.width,icon.height],overscroll:getComputedStyle(document.body).overscrollBehaviorY,chat:getComputedStyle(document.querySelector('.floating-chat')).display}});
     assert.equal(geometry.position,'fixed');assert.ok(Math.abs(geometry.bottom-geometry.viewport)<2);
-    assert.equal(geometry.overflow,false);
+    assert.equal(geometry.overflow,false);assert.equal(geometry.gap,'5px');assert.equal(geometry.label,'11px');assert.deepEqual(geometry.icon,['23px','23px']);assert.equal(geometry.overscroll,'none');assert.equal(geometry.chat,'none');
     await p.mouse.move(width/2,400);
     await p.mouse.wheel(0,600);
     await p.waitForFunction(()=>document.body.scrollTop>0);
@@ -42,6 +42,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
     await nav.locator('[data-bottom-nav="home"]').click();
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
+    assert.deepEqual(await nav.locator('[data-bottom-nav="home"] svg').evaluate(el=>{const s=getComputedStyle(el);return [s.width,s.height]}),['24px','24px']);
     await p.evaluate(()=>{location.hash='faq';});
     await p.waitForFunction(()=>document.querySelector('.mobile-bottom-item[aria-current="page"]')?.dataset.bottomNav==='explore');
     assert.equal(await nav.locator('[data-bottom-nav="explore"]').evaluate(el=>el.classList.contains('is-nav-live')),true);

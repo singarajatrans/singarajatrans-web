@@ -18,6 +18,7 @@ const tracked=[
 let previous='home';
 let animationTimer;
 let scrollFrame;
+const pageScrollTop=()=>mobile.matches?document.body.scrollTop:window.scrollY;
 
 function current(){return items.find(item=>item.getAttribute('aria-current')==='page')?.dataset.bottomNav||'home';}
 function setCurrent(name){
@@ -43,10 +44,11 @@ function unavailable(name){
 function syncFromScroll(){
  scrollFrame=0;
  if(!mobile.matches||checkDialog?.open)return;
- const marker=scrollY+(innerHeight*.42);
+ const y=pageScrollTop();
+ const marker=y+(innerHeight*.42);
  let next='home';
  for(const entry of tracked){
-  const top=entry.el.getBoundingClientRect().top+scrollY;
+  const top=entry.el.getBoundingClientRect().top+y;
   if(top<=marker)next=entry.name;
  }
  setCurrent(next);
@@ -86,6 +88,7 @@ topNav?.addEventListener('click',event=>{
 });
 addEventListener('hashchange',()=>syncFromMenuHash(location.hash));
 addEventListener('scroll',queueScrollSync,{passive:true});
+document.body.addEventListener('scroll',queueScrollSync,{passive:true});
 addEventListener('resize',queueScrollSync,{passive:true});
 
 checkDialog?.addEventListener('close',()=>{

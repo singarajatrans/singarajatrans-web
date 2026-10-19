@@ -634,7 +634,7 @@ Bagian ini menjadi sumber final untuk scope **mobile sampai 767px** dan menggant
 ## Mobile Bottom Navigation — LOCKED Design Decision
 
 **Tanggal:** 18 Oktober 2026 (WITA).  
-**Status:** **LOCKED sebagai keputusan desain produk; BELUM DIIMPLEMENTASIKAN ke UI.** Implementasi wajib dilakukan sebagai scope terpisah, lalu melalui deploy, live verification, audit visual, dan regression sebelum boleh dinyatakan FINAL/LOCKED pada level implementasi.
+**Status:** **IMPLEMENTED / DEPLOYED baseline, dengan setiap revisi tetap wajib melalui live verification, audit visual, dan regression sebelum dinyatakan FINAL/LOCKED.**
 
 Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen berikut:
 
@@ -643,14 +643,14 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 | 1 | **Beranda** | Rumah | Titik awal pelanggan untuk memilih layanan dan memulai booking. |
 | 2 | **Jelajah** | Kompas | Eksplorasi layanan, rute, kendaraan, dan pengembangan konten perjalanan/destinasi Bali. |
 | 3 | **Perjalanan** | Tiket | Pusat seluruh booking pelanggan: akan datang, aktif, selesai, pembayaran, status driver, detail penjemputan, reschedule bila tersedia, dan live tracking saat driver sudah ditugaskan. |
-| 4 | **Favorit** | Hati / love | Wishlist untuk menyimpan rute, layanan, kendaraan, atau destinasi agar dapat dibuka kembali sebelum melakukan booking. |
+| 4 | **Favorit** | Bookmark + heart | Wishlist untuk menyimpan rute, layanan, kendaraan, atau destinasi agar dapat dibuka kembali sebelum melakukan booking. |
 | 5 | **Akun** | User/orang | Data pelanggan, bahasa, notifikasi, bantuan umum, kebijakan, dan pengembangan login/profil di kemudian hari. |
 
 ### Aturan produk yang dikunci
 
 - Urutan final adalah **Beranda → Jelajah → Perjalanan → Favorit → Akun**.
 - **Perjalanan** menjadi pusat seluruh aktivitas pasca-booking. Live tracking driver **bukan** tab terpisah; fitur tersebut muncul secara kontekstual di Perjalanan Aktif ketika driver telah ditugaskan.
-- **Favorit** menggunakan ikon **hati/love**, bukan bookmark, agar fungsi wishlist langsung terbaca.
+- **Favorit** menggunakan Google Material Symbols Rounded **`bookmark_heart`** sesuai keputusan visual terbaru pengguna; outline saat nonaktif dan filled saat aktif.
 - **Perjalanan** menggunakan ikon **tiket** untuk merepresentasikan My Trips / My Bookings.
 - **Jelajah** menggunakan ikon **kompas** dan tidak menggantikan selector layanan di Beranda.
 - Shuttle, Airport Transfer, Sewa Mobil, Sewa Motor, Charter/private transfer, atau layanan transportasi baru **tidak boleh ditambahkan sebagai tab bottom navigation terpisah**. Layanan tersebut tetap masuk melalui Beranda/Jelajah dan seluruh booking-nya terkonsolidasi di Perjalanan.
@@ -663,9 +663,9 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 
 ### Visual & animasi bottom navigation — LOCKED
 
-- Arah visual mengikuti pola **Klook-style bottom navigation** yang ringan dan bersih, tanpa menyalin aset merek: surface putih, divider/shadow atas sangat halus, lima item sama lebar, ikon di atas label, dan safe-area bawah perangkat wajib dihormati.
+- Arah visual mengikuti pola **Klook-style bottom navigation** yang ringan dan bersih, tanpa menyalin aset merek: surface `#fbf2f2` agar selaras dengan surface search header mobile, divider/shadow atas sangat halus, lima item sama lebar, ikon di atas label, dan safe-area bawah perangkat wajib dihormati.
 - State **aktif** memakai merah brand `#C85759`; state **nonaktif** memakai charcoal/abu netral. Tidak memakai pil/background tebal pada item aktif kecuali ada instruksi eksplisit berikutnya.
-- Ikon final: **rumah, kompas, tiket, hati/love, user**. Ikon Favorit berupa **heart outline** saat nonaktif dan boleh menjadi **filled heart** saat aktif; Perjalanan tetap memakai ikon tiket.
+- Ikon final: **rumah, kompas, tiket, `bookmark_heart`, user**. Baseline ikon **23px nonaktif** dan **24px aktif**; Perjalanan tetap memakai ikon tiket.
 - Perpindahan active item memakai motion ringan **160–220ms ease-out** pada warna/opacity dan pergeseran ikon maksimal **1–2px**. Tap feedback boleh memakai scale-down sangat kecil sekitar **0,96** lalu kembali, tanpa bounce dan tanpa mengubah ukuran layout.
 - Transisi konten antar-tab tidak memakai animasi berat. Gunakan fade/translate ringan hanya bila tidak mengubah routing/SEO dan tidak menyebabkan layout shift.
 - Animasi hanya memakai `transform`/`opacity` bila memungkinkan, tanpa dependency animasi baru, tanpa mengubah tinggi bottom bar, dan tanpa menambah CLS/INP secara material.
@@ -673,6 +673,14 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 - Bottom nav tidak boleh menutupi CTA, dialog, kalender, field, atau konten penting; komponen sticky/fixed harus menghormati `env(safe-area-inset-bottom)`.
 - Untuk halaman yang memang crawlable, navigasi penting tetap menggunakan link/struktur HTML yang dapat diakses; bottom nav tidak boleh menjadi JS-only shell yang menghilangkan internal link, heading, atau konten SEO.
 - Scope ini **mobile only**. Desktop/tablet, backend/API/database/auth/RBAC/routing, booking business logic, dan area LOCKED lain tidak disentuh.
+
+### Revisi eksplisit — 19 Oktober 2026
+
+- Bottom navigation harus tetap menempel pada viewport saat scroll dan drag/overscroll; tidak boleh ikut bergeser, memantul, atau membuka lapisan putih di belakang halaman pada Android/iOS.
+- Scroll surface mobile memakai `overscroll-behavior-y: none` pada root/body untuk menekan rubber-band/overscroll visual tanpa mengubah routing atau business logic.
+- Tipografi konten mobile distandarkan: H2 section sekitar **23px**, judul kartu **16px**, body/description **14px**, meta/support **12–13px**, CTA utama/aksi **15px**, footer heading **14px**, footer link/body **13px**, dan legal footer **12px**. Header, service selector, field, serta area LOCKED lain tetap mengikuti baseline masing-masing.
+- Floating WhatsApp di atas bottom navigation dihapus khusus mobile.
+- Ikon bottom navigation menggunakan **23px nonaktif / 24px aktif**, label **11px**, dan gap ikon–label **5px**.
 
 ### Dynamic browser bar & viewport mobile — LOCKED
 
@@ -687,10 +695,10 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 
 - Tinggi visual baseline bottom navigation: **64px**, belum termasuk tambahan `env(safe-area-inset-bottom)`.
 - Lima slot memakai lebar yang sama: **20% per item**.
-- Ikon: **24 × 24px** dengan stroke optik konsisten sekitar **1.8px**.
-- Label: sekitar **10.5px**, weight **600**, ikon berada di atas label dengan gap **3px**.
-- Surface: putih dengan divider/shadow atas sangat halus; active memakai `#C85759`.
-- Floating WhatsApp dan konten paling bawah wajib bergeser di atas area bottom navigation + safe-area.
+- Ikon: **23 × 23px** saat nonaktif dan **24 × 24px** saat aktif, dengan stroke optik konsisten.
+- Label: **11px**, weight **600**, ikon berada di atas label dengan gap **5px**.
+- Surface: `#fbf2f2` dengan divider/shadow atas sangat halus; active memakai `#C85759`.
+- Floating WhatsApp **disembunyikan pada mobile** agar tidak bertumpuk dengan bottom navigation; akses WhatsApp tetap tersedia dari konten/footer yang relevan. Konten paling bawah wajib menghormati bottom navigation + safe-area.
 - Selama fitur Favorit/Akun belum memiliki backend/state resmi, UI tidak boleh mengarang data atau fungsi palsu. Slot tetap dipertahankan sesuai struktur produk dan diaktifkan penuh saat scope fiturnya tersedia.
 
 ### Acceptance implementasi di masa berikutnya
