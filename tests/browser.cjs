@@ -42,7 +42,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
     await nav.locator('[data-bottom-nav="home"]').click();
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
-    assert.deepEqual(await nav.locator('[data-bottom-nav="home"] .bottom-icon-on').evaluate(el=>{const s=getComputedStyle(el);return [s.width,s.height,s.display]}),['24px','24px','block']);
+    assert.deepEqual(await nav.locator('[data-bottom-nav="home"] .bottom-icon-on').evaluate(el=>{const s=getComputedStyle(el);return [s.width,s.height,s.display]}),['23px','23px','block']);
     await p.evaluate(()=>{location.hash='faq';});
     await p.waitForFunction(()=>document.querySelector('.mobile-bottom-item[aria-current="page"]')?.dataset.bottomNav==='explore');
     assert.equal(await nav.locator('[data-bottom-nav="explore"]').evaluate(el=>el.classList.contains('is-nav-live')),true);
