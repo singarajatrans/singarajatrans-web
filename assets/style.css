@@ -517,12 +517,12 @@ dialog{border-radius:12px}
 .mobile-header-search,.mobile-header-action,.language-chevron{display:none}
 .mobile-share-status{position:fixed;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:767px){
- html{--bottom-nav-height:64px;height:100%;min-height:100dvh;overflow:hidden;overscroll-behavior-y:none;background:var(--mock-red);scroll-padding-top:64px}
+ html{--bottom-nav-height:64px;height:100%;min-height:100dvh;overflow:hidden;background:var(--mock-red);scroll-padding-top:64px}
  #header{background:var(--mock-red)!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0;overflow:hidden;background-image:none!important}
  #header>.nav-wrap,#header>.nav-wrap>.nav-inner{background:var(--mock-red)!important;background-image:none!important;border:0!important;border-radius:0;box-shadow:none!important;outline:0}
  #header::before,#header::after,#header>.nav-wrap::before,#header>.nav-wrap::after{content:none!important;display:none!important}
  /* Real viewport scroll surface: no decorative topper or corner overlays. */
- body{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:none;-webkit-overflow-scrolling:touch;scroll-padding-top:64px;border-radius:0;background:var(--mock-red);transition:border-radius .26s ease}
+ body{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:auto;-webkit-overflow-scrolling:touch;scroll-padding-top:64px;border-radius:0;background:var(--mock-red);transition:border-radius .26s ease}
  body.header-hidden{border-radius:24px 24px 0 0}
  .nav-inner{height:60px;width:calc(100% - 32px);gap:10px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}

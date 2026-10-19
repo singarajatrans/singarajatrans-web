@@ -18,7 +18,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
     const geometry=await nav.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el),item=getComputedStyle(el.querySelector('.mobile-bottom-item')),icon=getComputedStyle(el.querySelector('[data-bottom-nav="explore"] svg'));return {top:r.top,bottom:r.bottom,height:r.height,position:s.position,viewport:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth,gap:item.gap,label:item.fontSize,icon:[icon.width,icon.height],overscroll:getComputedStyle(document.body).overscrollBehaviorY,chat:getComputedStyle(document.querySelector('.floating-chat')).display}});
     assert.equal(geometry.position,'fixed');assert.ok(Math.abs(geometry.bottom-geometry.viewport)<2);
-    assert.equal(geometry.overflow,false);assert.equal(geometry.gap,'5px');assert.equal(geometry.label,'11px');assert.deepEqual(geometry.icon,['23px','23px']);assert.equal(geometry.overscroll,'none');assert.equal(geometry.chat,'none');
+    assert.equal(geometry.overflow,false);assert.equal(geometry.gap,'5px');assert.equal(geometry.label,'11px');assert.deepEqual(geometry.icon,['23px','23px']);assert.equal(geometry.overscroll,'auto');assert.equal(geometry.chat,'none');
     await p.mouse.move(width/2,400);
     await p.mouse.wheel(0,600);
     await p.waitForFunction(()=>document.body.scrollTop>0);

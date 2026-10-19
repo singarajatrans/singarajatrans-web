@@ -677,7 +677,7 @@ Bottom navigation mobile SINGARAJA TRANS ditetapkan sebagai struktur permanen be
 ### Revisi eksplisit — 19 Oktober 2026
 
 - Bottom navigation harus tetap menempel pada viewport saat scroll dan drag/overscroll; tidak boleh ikut bergeser, memantul, atau membuka lapisan putih di belakang halaman pada Android/iOS.
-- Scroll surface mobile memakai `overscroll-behavior-y: none` pada root/body untuk menekan rubber-band/overscroll visual tanpa mengubah routing atau business logic.
+- Native pull-to-refresh browser mobile wajib tetap tersedia. Scroll surface `body` memakai `overscroll-behavior-y: auto`; stabilitas bottom navigation ditangani pada komponen fixed/compositor, bukan dengan memblokir overscroll halaman.
 - Tipografi konten mobile distandarkan: H2 section sekitar **23px**, judul kartu **16px**, body/description **14px**, meta/support **12–13px**, CTA utama/aksi **15px**, footer heading **14px**, footer link/body **13px**, dan legal footer **12px**. Header, service selector, field, serta area LOCKED lain tetap mengikuti baseline masing-masing.
 - Floating WhatsApp di atas bottom navigation dihapus khusus mobile.
 - Ikon bottom navigation menggunakan **23px nonaktif / 24px aktif**, label **11px**, dan gap ikon–label **5px**.
