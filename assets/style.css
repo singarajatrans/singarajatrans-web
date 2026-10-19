@@ -652,7 +652,7 @@ dialog{border-radius:12px}
   background:transparent;
   color:#69717d;
   font-size:11px;
-  font-weight:500;
+  font-weight:450;
   line-height:1.15;
   text-align:center;
   transition:color .18s ease-out,opacity .18s ease-out;
@@ -674,16 +674,16 @@ dialog{border-radius:12px}
   grid-area:1/1;
   font-size:23px;
   line-height:1;
-  font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+  font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;
  }
  .mobile-bottom-item[data-bottom-nav="favorites"][aria-current="page"] .material-symbols-rounded{
   font-size:24px;
-  font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;
+  font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;
   transform:translateY(-1px);
  }
  .mobile-bottom-item[aria-current="page"]{color:var(--mock-red)}
  .mobile-bottom-item[aria-current="page"] svg{width:24px;height:24px;stroke-width:1.9;transform:translateY(-1px)}
- .mobile-bottom-item[aria-disabled="true"]{opacity:.62}
+ .mobile-bottom-item[aria-disabled="true"]{opacity:1}
  .mobile-bottom-item:not([aria-disabled="true"]):active:not([aria-current="page"]) svg{width:23px;height:23px;transform:translateY(1px)}
  .mobile-bottom-item:focus-visible{outline:2px solid var(--mock-red);outline-offset:-2px}
  .mobile-bottom-status{position:fixed;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
