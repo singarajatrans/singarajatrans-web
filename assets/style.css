@@ -672,12 +672,12 @@ dialog{border-radius:12px}
  .mobile-bottom-favorite-icons{width:24px;height:24px;display:grid;place-items:center;flex:0 0 24px}
  .mobile-bottom-favorite-icons .material-symbols-rounded{
   grid-area:1/1;
-  font-size:22px;
+  font-size:25px;
   line-height:1;
   font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;
  }
  .mobile-bottom-item[data-bottom-nav="favorites"][aria-current="page"] .material-symbols-rounded{
-  font-size:23px;
+  font-size:26px;
   font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;
   transform:translateY(-1px);
  }
