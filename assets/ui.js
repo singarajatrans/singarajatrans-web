@@ -8,6 +8,14 @@ function softHaptic(duration=10){
  try{return Boolean(navigator.vibrate(duration));}catch{return false;}
 }
 
+function bindTapHaptics(){
+ document.addEventListener('click',event=>{
+  const target=event.target.closest('#search-form button[type="submit"],.mobile-bottom-item');
+  if(!target)return;
+  softHaptic();
+ },{passive:true});
+}
+
 function fieldControl(field){
  if(!field)return null;
  return field.querySelector('select:not([hidden]),input:not([hidden]),textarea:not([hidden])');
@@ -68,6 +76,8 @@ root.SingarajaUI={
  clearInvalidField,
  clearInvalidFields,
  restartClass,
- feedbackInvalidFields
+ feedbackInvalidFields,
+ bindTapHaptics
 };
+bindTapHaptics();
 })(typeof window!=='undefined'?window:globalThis);
