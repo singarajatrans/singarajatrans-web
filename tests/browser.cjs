@@ -164,8 +164,16 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    await page.locator(width<768?'.languages button[aria-pressed=true]':'[data-language=en]').click();assert.equal(await page.locator('html').getAttribute('lang'),'en');if(width<768){assert.equal(await page.locator('.languages button[aria-pressed=true]').getAttribute('data-language'),'en');assert.equal(await page.locator('.languages button[aria-pressed=true]').evaluate(el=>getComputedStyle(el).flexDirection),'row');}assert.match(await page.locator('h1').innerText(),/Airport Transfer/);assert.match(await page.locator('#hero-subtitle').innerText(),/Private Ngurah Rai/);
    await page.locator(width<768?'.languages button[aria-pressed=true]':'[data-language=id]').click();
    if(width<768){assert.equal(await page.locator('.mobile-header-search').isVisible(),true);assert.equal(await page.locator('.mobile-header-search').getAttribute('href'),'#pesan');}
-   await page.locator('#faq details').first().locator('summary').click();assert.equal(await page.locator('#faq details').first().getAttribute('open')!==null,true);
-   await page.locator('.footer-group').last().evaluate(d=>d.open=true);await page.locator('[data-check-booking]').last().click();await page.locator('[name=code]').fill('ST-12345');await page.locator('#check-form [name=phone]').fill('081234567890');await page.locator('#check-form button').click();assert.equal(await page.locator('#check-link').isVisible(),true);await page.keyboard.press('Escape');
+   if(width<768){
+    assert.equal(await page.locator('#faq').isVisible(),false,'FAQ should stay out of mobile Home');
+    assert.equal(await page.locator('footer .footer-grid').isVisible(),false,'Full footer navigation should stay out of mobile Home');
+    assert.equal(await page.locator('footer .footer-bottom').isVisible(),true,'Compact mobile footer should remain visible');
+    await page.locator('.mobile-bottom-nav [data-check-booking]').click();
+   }else{
+    await page.locator('#faq details').first().locator('summary').click();assert.equal(await page.locator('#faq details').first().getAttribute('open')!==null,true);
+    await page.locator('.footer-group').last().evaluate(d=>d.open=true);await page.locator('[data-check-booking]').last().click();
+   }
+   await page.locator('[name=code]').fill('ST-12345');await page.locator('#check-form [name=phone]').fill('081234567890');await page.locator('#check-form button').click();assert.equal(await page.locator('#check-link').isVisible(),true);await page.keyboard.press('Escape');
    await page.setViewportSize({width:width===390?1440:390,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'Overflow on resize');
    await page.reload();await page.waitForLoadState('networkidle');assert.equal(await page.locator('#tab-charter').getAttribute('aria-selected'),'true');assert.deepEqual(errors,[]);
    await page.close();console.log('PASS: responsive, booking, tabs, language, validation, resize and refresh at '+width+'px');
