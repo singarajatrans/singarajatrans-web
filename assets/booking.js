@@ -1,4 +1,7 @@
 (function(){'use strict';
+// iOS uses the document scroller; avoid a fixed, dynamically clipped body scroll layer.
+const nativePageScroll=CSS.supports('-webkit-touch-callout','none')||/iP(hone|ad|od)/.test(navigator.userAgent);
+document.documentElement.classList.toggle('native-page-scroll',nativePageScroll);
 const U=window.SingarajaUI,$=U.one,all=U.all,C=window.Singaraja;
 let language='id',service='shuttle',lastSearch=null,selectedTrip=null,lastFocused=null;
 const t=(id,en)=>language==='en'?en:id;
@@ -207,10 +210,11 @@ $('#edit-search').addEventListener('click',()=>{const p=searchParams(lastSearch)
 $('#terms-button')?.addEventListener('click',()=>{const first=$('#faq details');first.open=true;$('#faq').scrollIntoView({behavior:'smooth'});first.querySelector('summary').focus({preventScroll:true});});
 const bookingVisibility=new IntersectionObserver(entries=>{$('.floating-chat').classList.toggle('is-over-booking',entries.some(e=>e.isIntersecting));});bookingVisibility.observe($('.search-button'));
 const mobileHeader=window.matchMedia('(max-width:767px)');
-const pageScrollTop=()=>mobileHeader.matches?document.body.scrollTop:window.scrollY;
+const useBodyScroll=()=>mobileHeader.matches&&!nativePageScroll;
+const pageScrollTop=()=>useBodyScroll()?document.body.scrollTop:window.scrollY;
 let lastScroll=pageScrollTop(),ticking=false;
 function syncHeaderScroll(event){
- if(event.currentTarget!==(mobileHeader.matches?document.body:window)||ticking)return;
+ if(event.currentTarget!==(useBodyScroll()?document.body:window)||ticking)return;
  ticking=true;
  requestAnimationFrame(()=>{
   const y=Math.max(0,pageScrollTop()),focused=$('#header').contains(document.activeElement),menuOpen=$('.mobile-menu').getAttribute('aria-expanded')==='true';
@@ -224,7 +228,7 @@ window.addEventListener('scroll',syncHeaderScroll,{passive:true});
 document.body.addEventListener('scroll',syncHeaderScroll,{passive:true});
 mobileHeader.addEventListener('change',()=>{
  const y=lastScroll;
- if(mobileHeader.matches)document.body.scrollTop=y;
+ if(useBodyScroll())document.body.scrollTop=y;
  else window.scrollTo({top:y,behavior:'instant'});
  lastScroll=pageScrollTop();
  document.body.classList.toggle('header-hidden',mobileHeader.matches&&$('#header').classList.contains('is-hidden'));

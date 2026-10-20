@@ -527,6 +527,10 @@ dialog{border-radius:12px}
  /* Real viewport scroll surface: no decorative topper or corner overlays. */
  body{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:auto;-webkit-overflow-scrolling:touch;scroll-padding-top:64px;border-radius:0;background:var(--mock-red);transition:border-radius .26s ease}
  body.header-hidden{border-radius:24px 24px 0 0}
+ /* Keep iOS momentum on the root scroller, with no resizing/clipping scroll layer. */
+ html.native-page-scroll{height:auto;min-height:100%;overflow-x:clip;overflow-y:visible}
+ html.native-page-scroll body{position:static;height:auto;min-height:100%;overflow:visible;-webkit-overflow-scrolling:auto;border-radius:0;transition:none}
+ html.native-page-scroll:has(body.modal-open){overflow-y:hidden}
  .nav-inner{height:60px;width:calc(100% - 32px);gap:10px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:36px;padding:0 10px;gap:6px;border:0;border-radius:18px;background:rgba(255,255,255,.92);color:#667085;overflow:hidden}

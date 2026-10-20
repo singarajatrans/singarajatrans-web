@@ -18,7 +18,7 @@ const tracked=[
 let previous='home';
 let animationTimer;
 let scrollFrame;
-const pageScrollTop=()=>mobile.matches?document.body.scrollTop:window.scrollY;
+const pageScrollTop=()=>mobile.matches&&!document.documentElement.classList.contains('native-page-scroll')?document.body.scrollTop:window.scrollY;
 
 function current(){return items.find(item=>item.getAttribute('aria-current')==='page')?.dataset.bottomNav||'home';}
 function setCurrent(name){
