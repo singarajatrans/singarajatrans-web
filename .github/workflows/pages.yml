@@ -31,8 +31,8 @@ jobs:
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser-qa/node_modules/playwright
         run: |
-          node tests/browser.cjs
           node tests/ios-scroll.cjs
+          node tests/browser.cjs
       - name: Save visual review screenshots
         if: always()
         uses: actions/upload-artifact@v4

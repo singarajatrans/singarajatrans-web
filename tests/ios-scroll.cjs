@@ -40,7 +40,7 @@ const {webkit,devices}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     const viewport=page.viewportSize();
     await page.setViewportSize({width:viewport.width,height:viewport.height-100});
     await page.evaluate(()=>window.scrollTo({top:900,behavior:'instant'}));
-    await page.waitForFunction(()=>scrollY>800);
+    await page.waitForFunction(()=>scrollY>800&&document.querySelector('#header').classList.contains('is-hidden'));
     await page.setViewportSize(viewport);
     await page.evaluate(()=>window.scrollBy({top:-200,behavior:'instant'}));
     await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden')&&Math.abs(document.querySelector('#header').getBoundingClientRect().top)<1);
