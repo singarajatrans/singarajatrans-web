@@ -27,13 +27,13 @@ const {webkit,devices}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
      assert.equal(await page.evaluate(()=>document.body.scrollTop),0,'Body must not be a second scroller');
      assert.equal(await page.evaluate(()=>getComputedStyle(document.body).borderTopLeftRadius),'0px');
      await page.evaluate(()=>window.scrollBy({top:-180,behavior:'instant'}));
-     await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden'));
+     await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden')&&Math.abs(document.querySelector('#header').getBoundingClientRect().top)<1);
      assert.ok(await page.evaluate(y=>scrollY<y-150,down));
      assert.ok(Math.abs((await page.locator('#header').boundingBox()).y)<1);
      const nav=await page.locator('.mobile-bottom-nav').boundingBox();
      assert.ok(Math.abs(nav.y+nav.height-await page.evaluate(()=>innerHeight))<2);
      await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
-     await page.waitForFunction(()=>scrollY===0);
+     await page.waitForFunction(()=>scrollY===0&&Math.abs(document.querySelector('#header').getBoundingClientRect().top)<1);
      assert.ok(Math.abs((await page.locator('#header').boundingBox()).y)<1);
     }
     // Scrolling after Safari's usable viewport changes must keep the same scroll owner.
@@ -43,7 +43,7 @@ const {webkit,devices}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     await page.waitForFunction(()=>scrollY>800);
     await page.setViewportSize(viewport);
     await page.evaluate(()=>window.scrollBy({top:-200,behavior:'instant'}));
-    await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden'));
+    await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden')&&Math.abs(document.querySelector('#header').getBoundingClientRect().top)<1);
     await page.locator('[data-bottom-nav="explore"]').click();
     await page.waitForFunction(()=>document.querySelector('[data-bottom-nav="explore"]').getAttribute('aria-current')==='page');
     await page.locator('[data-bottom-nav="trips"]').click();
@@ -60,6 +60,9 @@ const {webkit,devices}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.deepEqual(errors,[]);
     await page.screenshot({path:'qa-output/ios-native-scroll-'+width+'.png'});
     console.log('PASS WebKit '+device+': native scroll, reversals, viewport resize, header, navigation and booking tabs');
+   }catch(error){
+    console.error('iOS scroll diagnostic',device,await page.evaluate(()=>({y:scrollY,bodyY:document.body.scrollTop,headerTop:document.querySelector('#header').getBoundingClientRect().top,hidden:document.querySelector('#header').classList.contains('is-hidden'),root:getComputedStyle(document.documentElement).overflowY,body:getComputedStyle(document.body).position})));
+    await page.screenshot({path:'qa-output/ios-scroll-failure-'+device.replaceAll(' ','-')+'.png'});throw error;
    }finally{await context.close();}
   }
  }finally{await browser?.close();server.kill();}
