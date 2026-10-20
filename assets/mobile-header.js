@@ -13,6 +13,16 @@ function renderPrompt(next=index){
  index=next;phase='prompt';search.classList.remove('is-wiping');brand.hidden=true;prompt.hidden=false;
  prompt.textContent=messages[en()?'en':'id'][index];search.setAttribute('aria-label',prompt.textContent);
 }
+function typePrompt(next){
+ if(stopped||!mobile.matches)return;
+ renderPrompt(next);const letters=Array.from(prompt.textContent);prompt.textContent='';let count=0;
+ function type(){
+  if(stopped||!mobile.matches)return;
+  prompt.textContent=letters.slice(0,++count).join('');
+  timer=setTimeout(count<letters.length?type:cycle,count<letters.length?80:2200);
+ }
+ type();
+}
 function cycle(){
  if(stopped||!mobile.matches)return;
  const remaining=Array.from(prompt.textContent);
@@ -20,16 +30,7 @@ function cycle(){
   if(stopped||!mobile.matches)return;
   remaining.pop();prompt.textContent=remaining.join('');
   if(remaining.length){timer=setTimeout(erase,25);return;}
-  timer=setTimeout(()=>{
-   const next=(index+1)%messages.id.length;
-   renderPrompt(next);const letters=Array.from(prompt.textContent);prompt.textContent='';let count=0;
-   function type(){
-    if(stopped||!mobile.matches)return;
-    prompt.textContent=letters.slice(0,++count).join('');
-    timer=setTimeout(count<letters.length?type:cycle,count<letters.length?50:2200);
-   }
-   type();
-  },180);
+  timer=setTimeout(()=>typePrompt((index+1)%messages.id.length),180);
  }
  erase();
 }
@@ -45,7 +46,7 @@ function wipe(){
   const progress=Math.min(1,(now-start)/1500),ease=progress*progress*(3-2*progress),width=copy.clientWidth,x=width+20-(width+40)*ease;
   search.style.setProperty('--car-opacity',Math.min(1,progress*8,(1-progress)*8));search.style.setProperty('--car-x',x+'px');search.style.setProperty('--brand-erased',Math.max(0,width-x)+'px');
   if(progress<1)frame=requestAnimationFrame(tick);
-  else{search.classList.remove('is-wiping');renderPrompt(0);timer=setTimeout(cycle,2200);}
+  else{search.classList.remove('is-wiping');typePrompt(0);}
  }
  frame=requestAnimationFrame(tick);
 }
@@ -107,4 +108,5 @@ reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
 start();
 })();
+
 
