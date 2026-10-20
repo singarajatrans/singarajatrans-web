@@ -10,7 +10,7 @@
   <link rel="preload" href="assets/images/hero.webp" as="image" media="(min-width:768px)" fetchpriority="high">
   <link rel="preload" href="assets/images/hero-mobile-shuttle.webp" as="image" media="(max-width:767px)" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
-  <link rel="stylesheet" href="assets/style.css?v=mobile-trust-strip-1"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=central-haptic-1" defer></script><script src="assets/booking.js?v=ios-native-scroll-1" defer></script><script src="assets/mobile-header.js?v=mobile-exact-parity-11" defer></script><script src="assets/mobile-bottom-nav.js?v=ios-native-scroll-1" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=mobile-home-flow-1"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=central-haptic-1" defer></script><script src="assets/booking.js?v=ios-native-scroll-1" defer></script><script src="assets/mobile-header.js?v=mobile-exact-parity-11" defer></script><script src="assets/mobile-bottom-nav.js?v=ios-native-scroll-1" defer></script>
 <style media="(max-width:767px)">#trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important}#trip-mode label{gap:0!important}</style></head>
 <body>
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
@@ -171,6 +171,7 @@
    <p class="notice result-notice" data-en="Published fares and schedules are references, not live inventory. Our team confirms availability and the final fare before booking.">Tarif dan jadwal adalah acuan publikasi, bukan ketersediaan langsung. Tim kami mengonfirmasi ketersediaan dan tarif akhir sebelum pemesanan.</p>
    <div id="result-list" class="result-list"></div>
  </section>
+ <div class="mobile-home-flow">
  <section id="rute" class="section container route-section" aria-labelledby="routes-heading">
    <div class="section-heading mockup-heading"><div><h2 id="routes-heading" data-en="Popular routes">Rute populer</h2><p data-en="Choose a favorite route, then set your travel date.">Pilih rute favorit, lalu tentukan tanggal perjalanan.</p></div><a class="section-action" href="#pesan" data-en="See all routes →">Lihat semua rute →</a></div>
    <div class="route-filters" aria-label="Filter rute">
@@ -197,7 +198,7 @@
  </section>
  
  <section id="wisata" class="section soft-section destination-section" aria-labelledby="destinations-heading"><div class="container">
-   <div class="section-heading mockup-heading"><div><h2 id="destinations-heading" data-en="Bali travel inspiration">Inspirasi Wisata Bali</h2><p data-en="Find destinations to complement your journey.">Temukan destinasi menarik di Bali untuk melengkapi perjalanan Anda.</p></div><span class="section-action" data-en="Explore destinations →">Lihat destinasi →</span></div>
+   <div class="section-heading mockup-heading"><div><h2 id="destinations-heading"><span class="desktop-copy" data-en="Bali travel inspiration">Inspirasi Wisata Bali</span><span class="mobile-copy" data-en="Explore Bali">Jelajahi Bali</span></h2><p data-en="Find destinations to complement your journey.">Temukan destinasi menarik di Bali untuk melengkapi perjalanan Anda.</p></div><span class="section-action" data-en="See all →">Lihat semua →</span></div>
    <div class="destination-grid">
      <a class="destination-card" href="https://www.indonesia.travel/gb/en/destination/bali-nusa-tenggara/bali/bali---ulun-danu-beratan" target="_blank" rel="noopener"><img src="assets/images/hero.webp" alt="Pura Ulun Danu Beratan" width="600" height="400" loading="lazy"><div><h3>Ulun Danu Bratan</h3><p><svg><use href="#pin"/></svg> Tabanan</p></div></a>
      <a class="destination-card" href="https://www.indonesia.travel/id/en/destination/bali-nusa-tenggara/bali/bali---lovina-beach" target="_blank" rel="noopener"><img src="assets/images/lovina.webp" alt="Pantai Lovina di Bali Utara" width="600" height="400" loading="lazy"><div><h3>Lovina</h3><p><svg><use href="#pin"/></svg> Buleleng</p></div></a>
@@ -205,12 +206,13 @@
    </div>
  </div></section>
  <section id="ulasan" class="section container reviews-section" aria-labelledby="reviews-heading">
-   <div class="section-heading mockup-heading"><div><h2 id="reviews-heading" data-en="Customer reviews">Ulasan pelanggan</h2><p data-en="Real customer experiences will appear here.">Pengalaman nyata dari pelanggan kami.</p></div></div>
+   <div class="section-heading mockup-heading"><div><h2 id="reviews-heading"><span class="desktop-copy" data-en="Customer reviews">Ulasan pelanggan</span><span class="mobile-copy" data-en="What customers say">Apa Kata Pelanggan?</span></h2><p data-en="Real customer experiences will appear here.">Pengalaman nyata dari pelanggan kami.</p></div><a class="section-action mobile-review-action" href="https://www.google.com/maps/search/?api=1&query=SINGARAJA%20TRANS" target="_blank" rel="noopener" data-en="See all reviews →">Lihat semua ulasan →</a></div>
    <div class="review-grid">
      <div class="review-card"><span class="quote-mark">“</span><div><strong data-en="Review preview">Contoh tampilan ulasan</strong><p data-en="Verified reviews will be shown here.">Ulasan terverifikasi akan ditampilkan di sini.</p></div></div>
      <div class="review-card"><span class="quote-mark">“</span><div><strong data-en="Review preview">Contoh tampilan ulasan</strong><p data-en="Verified reviews will be shown here.">Ulasan terverifikasi akan ditampilkan di sini.</p></div></div>
    </div>
  </section>
+ </div>
  <section id="faq" class="section container faq-section" aria-labelledby="faq-heading"><div class="faq-intro"><span class="eyebrow" data-en="BEFORE YOU GO">SEBELUM BERANGKAT</span><h2 id="faq-heading" data-en="A few things<br> you might ask.">Ada yang<br> ingin ditanyakan?</h2><p data-en="Find answers here, or talk directly with our team.">Temukan jawabannya di sini, atau bicarakan langsung dengan tim kami.</p><a class="text-button" href="https://wa.me/6281339392525" target="_blank" rel="noopener"><svg><use href="#chat"/></svg><span data-en="Contact our team">Hubungi tim kami</span></a></div><div class="faq-list">
  <details><summary data-en="How do I book a trip?">Bagaimana cara memesan perjalanan?</summary><p data-en="Select a service, route, date, and number of passengers. Pick a trip and enter your details, then send your request to our WhatsApp team. A booking is confirmed only after our team confirms it.">Pilih layanan, rute, tanggal, dan jumlah penumpang. Pilih perjalanan dan isi detail Anda, lalu kirim permintaan ke tim WhatsApp kami. Pesanan dikonfirmasi setelah mendapat konfirmasi dari admin.</p></details>
  <details><summary data-en="What is the difference between shuttle and charter?">Apa perbedaan shuttle dan charter?</summary><p data-en="Shuttle fares are per passenger with published departure times. Charter Drop is a private one-way trip, charged per vehicle. Our team confirms the vehicle and pickup arrangements.">Shuttle menggunakan tarif per penumpang dan jadwal publikasi. Charter Drop adalah perjalanan privat sekali jalan dengan tarif per mobil. Jenis mobil dan pengaturan jemput dikonfirmasi tim kami.</p></details>

@@ -881,3 +881,215 @@ dialog{border-radius:12px}
  .mobile-trust-item strong{font-size:9.5px}
  .mobile-trust-item small{font-size:8px}
 }
+
+/* Mobile Home app-like flow: Trust → Routes → Reviews → Explore */
+.mobile-copy{display:none}
+.mobile-home-flow{display:contents}
+@media(max-width:767px){
+ .mobile-home-flow{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+ }
+ .mobile-home-flow>.route-section{order:1}
+ .mobile-home-flow>.reviews-section{order:2}
+ .mobile-home-flow>.destination-section{order:3}
+ .mobile-home-flow>.service-section{display:none!important}
+ .mobile-copy{display:inline}
+ .desktop-copy{display:none}
+
+ /* Popular routes: compact app cards, 3-up horizontal row */
+ .route-section{
+  width:calc(100% - 32px);
+  padding-top:24px;
+  padding-bottom:18px;
+ }
+ .route-section .mockup-heading{
+  align-items:center;
+  margin-bottom:12px;
+ }
+ .route-section .mockup-heading p,
+ .route-filters,
+ .route-dots,
+ .route-section>.caption{display:none!important}
+ .route-section .section-action{
+  margin-top:0;
+  font-size:12px;
+ }
+ .route-carousel{
+  grid-auto-columns:calc((100% - 20px)/3);
+  gap:10px;
+  margin:0;
+  padding:0;
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  scroll-padding-left:0;
+ }
+ .route-card{
+  min-width:0;
+  border-radius:10px;
+  box-shadow:0 3px 12px rgba(20,29,44,.07);
+ }
+ .route-photo{height:76px}
+ .route-card-body{
+  position:relative;
+  padding:9px 9px 10px;
+  min-height:140px;
+ }
+ .route-path{
+  display:block;
+  font-size:11.5px;
+  line-height:1.2;
+  min-height:28px;
+ }
+ .route-path span{white-space:normal}
+ .route-path svg{display:none}
+ .route-note{
+  gap:4px;
+  margin:4px 0 8px!important;
+  font-size:9.5px!important;
+  line-height:1.25;
+ }
+ .route-note svg{width:12px;height:12px}
+ .route-fare{padding-right:29px}
+ .route-fare small{font-size:9px}
+ .route-fare>div{
+  display:block;
+  margin:0;
+ }
+ .route-fare strong{
+  display:block;
+  font-size:16px;
+  line-height:1.1;
+ }
+ .route-fare span{
+  display:block;
+  margin-top:2px;
+  font-size:8.5px;
+ }
+ .route-select{
+  position:absolute;
+  right:8px;
+  bottom:10px;
+  width:28px;
+  min-width:28px;
+  height:28px;
+  min-height:28px;
+  padding:0;
+  border-radius:50%;
+  font-size:0;
+  display:grid;
+  place-items:center;
+  background:#f7f7f8;
+  color:#303744;
+  border:0;
+ }
+ .route-select span{
+  display:block;
+  font-size:15px;
+  line-height:1;
+ }
+ .route-arrow{display:none!important}
+
+ /* Customer reviews: one concise preview card */
+ .reviews-section{
+  width:calc(100% - 32px);
+  padding-top:18px;
+  padding-bottom:18px;
+  margin:0 auto;
+ }
+ .reviews-section .mockup-heading{
+  align-items:center;
+  margin-bottom:10px;
+ }
+ .reviews-section .mockup-heading p{display:none}
+ .mobile-review-action{
+  font-size:12px;
+  margin-top:0;
+ }
+ .review-grid{
+  grid-template-columns:1fr;
+  gap:0;
+ }
+ .review-card{
+  grid-template-columns:38px minmax(0,1fr);
+  gap:10px;
+  padding:12px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(20,29,44,.06);
+ }
+ .review-card:nth-child(n+2){display:none}
+ .quote-mark{
+  width:36px;
+  height:36px;
+  font-size:24px;
+ }
+ .review-card strong{font-size:12px}
+ .review-card p{
+  font-size:11px;
+  line-height:1.4;
+  margin-top:2px;
+ }
+
+ /* Explore Bali: compact 2-up destination carousel */
+ .destination-section{
+  padding:18px 0 22px;
+  background:#fff;
+ }
+ .destination-section>.container{
+  width:calc(100% - 32px);
+ }
+ .destination-section .mockup-heading{
+  align-items:center;
+  margin-bottom:10px;
+ }
+ .destination-section .mockup-heading p{display:none}
+ .destination-section .section-action{
+  font-size:12px;
+  margin-top:0;
+ }
+ .destination-grid{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:calc((100% - 10px)/2);
+  grid-template-columns:none;
+  gap:10px;
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  scrollbar-width:none;
+  padding-bottom:2px;
+ }
+ .destination-grid::-webkit-scrollbar{display:none}
+ .destination-card{
+  scroll-snap-align:start;
+  border-radius:10px;
+  box-shadow:0 2px 10px rgba(20,29,44,.06);
+ }
+ .destination-card:last-child{
+  display:block;
+  grid-column:auto;
+ }
+ .destination-card>img{height:92px}
+ .destination-card>div{padding:8px 9px 9px}
+ .destination-card h3{
+  font-size:12px;
+  line-height:1.2;
+  margin:0;
+ }
+ .destination-card p{
+  margin-top:3px!important;
+  font-size:9.5px!important;
+ }
+ .destination-card p svg{width:11px;height:11px}
+}
+@media(max-width:360px){
+ .route-section,
+ .reviews-section,
+ .destination-section>.container{width:calc(100% - 24px)}
+ .route-carousel{grid-auto-columns:calc((100% - 16px)/3);gap:8px}
+ .route-photo{height:70px}
+ .route-card-body{padding:8px;min-height:136px}
+ .route-path{font-size:10.5px}
+ .route-fare strong{font-size:15px}
+ .destination-grid{grid-auto-columns:calc((100% - 8px)/2);gap:8px}
+}
