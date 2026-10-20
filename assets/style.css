@@ -1110,3 +1110,46 @@ dialog{border-radius:12px}
  .route-fare strong{font-size:19px}
  .destination-grid{grid-auto-columns:74%;gap:10px}
 }
+
+/* Mobile Home compact ending: keep non-Home content out of the main feed. */
+@media(max-width:767px){
+ .faq-section{
+  height:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  visibility:hidden;
+  pointer-events:none;
+ }
+ footer{
+  padding:0 0 calc(18px + var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  background:#fff;
+  color:#6f7682;
+  border-top:1px solid #eef0f2;
+ }
+ footer .footer-grid{display:none!important}
+ footer .footer-bottom{
+  width:calc(100% - 32px);
+  min-height:58px;
+  margin:0 auto;
+  padding:14px 0;
+  border-top:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  text-align:center;
+  font-size:10.5px;
+  line-height:1.35;
+  color:#7a818d;
+ }
+ footer .footer-bottom span:first-child{
+  color:#444b57;
+  font-weight:650;
+ }
+}
+@media(max-width:360px){
+ footer .footer-bottom{width:calc(100% - 24px);font-size:10px}
+}
