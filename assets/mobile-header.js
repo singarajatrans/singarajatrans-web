@@ -5,7 +5,7 @@ const search=document.querySelector('.mobile-header-search'),brand=search.queryS
 const share=document.querySelector('.mobile-header-share'),dialog=document.querySelector('#mobile-share-dialog'),status=document.querySelector('.mobile-share-status');
 const services=['shuttle','airport','charter','motor',null];
 const messages={id:['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'],en:['Find Travel Shuttle','Find Airport Transfer','Find Car Rental','Find Motorbike Rental','Search routes, cities, or destinations…']};
-let index=4,started=false,stopped=false,timer=0,frame=0,phase='opening';
+let index=4,started=false,stopped=false,timer=0,frame=0,shareTimer=0,phase='opening';
 const en=()=>document.documentElement.lang==='en';
 const text=(id,english)=>en()?english:id;
 function cancel(){clearTimeout(timer);cancelAnimationFrame(frame);}
@@ -69,17 +69,15 @@ function start(){
  timer=setTimeout(wipe,3000);
 }
 // These listeners are registered once; desktop handlers return without doing anything.
-['pointerdown','keydown'].forEach(type=>document.addEventListener(type,event=>{
+document.addEventListener('pointerdown',event=>{
  // A touch gesture in the page leaves header controls, so keyboard-focus protection must not pin the header.
  const header=document.querySelector('#header');
- if(type==='pointerdown'&&mobile.matches&&!header.contains(event.target)&&header.contains(document.activeElement))document.activeElement.blur();
- if(search.contains(event.target))stop();
-},{passive:true}));
-search.addEventListener('focus',stop);
+ if(mobile.matches&&!header.contains(event.target)&&header.contains(document.activeElement))document.activeElement.blur();
+},{passive:true});
 // Translation swaps the visible language button; retain keyboard focus on that button.
 document.querySelector('.languages').addEventListener('click',event=>{if(mobile.matches&&event.detail===0)document.querySelector('.languages button[aria-pressed=true]').focus({preventScroll:true});});
 search.addEventListener('click',event=>{
- if(!mobile.matches)return;event.preventDefault();stop();
+ if(!mobile.matches)return;event.preventDefault();
  const service=services[index];if(service)document.querySelector('#tab-'+service).click();
  document.querySelector('#pesan').scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
  const target=document.body.dataset.service==='motor'?document.querySelector('#motor-entry a'):document.querySelector('#origin');
@@ -89,14 +87,14 @@ async function fallbackShare(){
  const url=location.href;
  try{
   if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable');
-  await navigator.clipboard.writeText(url);clearTimeout(timer);share.querySelector('use').setAttribute('href','#check');status.textContent=text('Tautan berhasil disalin.','Link copied.');
-  share.setAttribute('aria-label',status.textContent);timer=setTimeout(()=>{share.querySelector('use').setAttribute('href','#share');share.setAttribute('aria-label',text('Bagikan halaman','Share page'));},2400);
+  await navigator.clipboard.writeText(url);clearTimeout(shareTimer);share.querySelector('use').setAttribute('href','#check');status.textContent=text('Tautan berhasil disalin.','Link copied.');
+  share.setAttribute('aria-label',status.textContent);shareTimer=setTimeout(()=>{share.querySelector('use').setAttribute('href','#share');share.setAttribute('aria-label',text('Bagikan halaman','Share page'));},2400);
  }catch{
   document.querySelector('#mobile-share-url').value=url;dialog.showModal();document.body.classList.add('modal-open');document.querySelector('#mobile-share-url').select();
  }
 }
 share.addEventListener('click',async()=>{
- if(!mobile.matches)return;stop();
+ if(!mobile.matches)return;
  try{if(navigator.share)await navigator.share({title:document.title,url:location.href});else await fallbackShare();}
  catch(error){if(error.name!=='AbortError')await fallbackShare();}
 });

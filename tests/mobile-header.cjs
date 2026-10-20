@@ -22,6 +22,7 @@ module.exports=async function testMobileHeader(browser,url){
   await p.clock.runFor(450);const start=await search.evaluate(e=>[parseFloat(e.style.getPropertyValue('--car-x')),parseFloat(e.style.getPropertyValue('--brand-erased'))]);
   await p.screenshot({path:`/tmp/header-opening-${width}.png`});
   assert.equal(await p.locator('.header-search-car').isVisible(),true,'Car must be visible during the wipe');
+  assert.equal(await p.locator('.header-car-chassis>path').first().evaluate(e=>getComputedStyle(e).fill),await p.locator('#header').evaluate(e=>getComputedStyle(e).backgroundColor),'Car body must match the header red');
   await p.clock.runFor(450);const mid=await search.evaluate(e=>[parseFloat(e.style.getPropertyValue('--car-x')),parseFloat(e.style.getPropertyValue('--brand-erased'))]);
   assert.ok(mid[0]<start[0]&&mid[1]>start[1],'Wipe must follow car right to left');await p.screenshot({path:`qa-output/header-car-motion-${width}.png`});
   assert.equal(await p.locator('.header-car-wheel').first().evaluate(e=>getComputedStyle(e).animationName),'header-car-wheel');
@@ -88,7 +89,7 @@ module.exports=async function testMobileHeader(browser,url){
   assert.equal(await p.locator('.language-code:visible').count(),0);assert.equal(await p.locator('.language-chevron:visible').count(),0);
   await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'id');assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'id');await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true);
   const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.equal(actions.length,2,'Language toggle and mobile header action must both exist');assert.deepEqual(actions,[[36,36],[36,36]]);
-  // Each animated prompt is clicked at its real index, then must stop cycling.
+  // Each animated prompt is clicked at its real index, then must keep cycling while booking receives focus.
   const promptLabels=['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'];
   await p.reload({waitUntil:'networkidle'});await p.clock.runFor(5500);
   await p.locator('#tab-shuttle').click();
@@ -110,7 +111,8 @@ module.exports=async function testMobileHeader(browser,url){
    }
    assert.equal(selectedService,serviceList[index]||'shuttle',label);
    assert.equal(await p.evaluate(()=>document.activeElement.id||document.activeElement.closest('#motor-entry')?.id),index===3?'motor-entry':'origin');
-   await p.clock.runFor(6000);assert.equal(await search.getAttribute('aria-label'),label,'Animation continued after interaction');
+   assert.equal(await search.evaluate(e=>e.classList.contains('has-typewriter')),true,'Booking shortcut must keep the typewriter active');
+   await p.clock.runFor(6000);assert.notEqual(await search.getAttribute('aria-label'),label,'Header typing must continue after opening booking');
   }
   // Share native, clipboard fallback, and manual fallback; no external message is sent.
   await p.reload({waitUntil:'networkidle'});
@@ -120,6 +122,8 @@ module.exports=async function testMobileHeader(browser,url){
   await p.locator('.mobile-header-share').click();assert.equal(await p.evaluate(()=>window.copiedLink),p.url());assert.equal(await p.locator('.mobile-header-share use').getAttribute('href'),'#check');await p.clock.runFor(2500);assert.equal(await p.locator('.mobile-header-share use').getAttribute('href'),'#share');
   await search.focus();await p.locator('[data-check-booking]').first().evaluate(e=>e.click());await p.keyboard.press('Escape');await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}));await p.locator('.mobile-header-share').click();assert.equal(await p.locator('#mobile-share-dialog').evaluate(e=>e.open),true);assert.equal(await p.locator('#mobile-share-url').inputValue(),p.url());await p.keyboard.press('Escape');await p.clock.resume();await p.waitForFunction(()=>!document.querySelector('#mobile-share-dialog').open&&document.activeElement.classList.contains('mobile-header-share'));assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true,'Share dialog must restore its own trigger after another dialog');
   await p.locator('.mobile-header-search').focus();assert.equal(await search.evaluate(e=>getComputedStyle(e).outlineStyle),'solid');
+  assert.equal(await search.evaluate(e=>e.classList.contains('has-typewriter')),true,'Sharing and focusing search must preserve typing');
+  const beforeShareTyping=await p.locator('.header-search-prompt').innerText();await p.clock.runFor(6000);assert.notEqual(await p.locator('.header-search-prompt').innerText(),beforeShareTyping,'Share feedback must not cancel the typewriter timer');
   assert.equal(await p.evaluate(()=>document.body.scrollWidth<=innerWidth&&document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
   await p.emulateMedia({reducedMotion:'reduce'});await p.reload({waitUntil:'networkidle'});assert.equal(await p.locator('.header-search-brand').isVisible(),false);await p.clock.runFor(15000);assert.match(await search.getAttribute('aria-label'),/rute/);assert.equal(await search.evaluate(e=>e.classList.contains('is-wiping')),false);
   // Reduced motion also keeps distinct landing points, including Motor → Mobil.
