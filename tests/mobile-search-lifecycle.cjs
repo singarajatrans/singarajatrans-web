@@ -45,7 +45,8 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       // Crossing the mobile breakpoint, as with phone rotation, must not permanently stop typing.
       await p.setViewportSize({width:900,height:430});await p.clock.runFor(300);
       assert.equal(await search.isVisible(),false);
-      await p.setViewportSize({width,height:844});await p.clock.runFor(500);
+      await p.setViewportSize({width,height:844});
+      for(let i=0;i<20;i++){await p.clock.runFor(200);await new Promise(r=>setTimeout(r,50));if(await active())break;}
       assert.equal(await search.isVisible(),true);assert.equal(await active(),true);
       let before=await prompt.innerText();await p.clock.runFor(2500);
       assert.notEqual(await prompt.innerText(),before,'Typing did not restart after rotation');
@@ -71,7 +72,7 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       await p.screenshot({path:prefix+'-typing.png'});
       console.log('PASS search lifecycle '+engine+' '+width+'px '+motion+': car, color, loop, booking, rotation, return, BFCache, preference change and refresh');
      }catch(error){
-      console.error('Search diagnostic',engine,width,motion,await p.evaluate(()=>({width:innerWidth,hidden:document.hidden,reduced:matchMedia('(prefers-reduced-motion:reduce)').matches,classes:document.querySelector('.mobile-header-search').className,prompt:document.querySelector('.header-search-prompt').textContent})));
+      console.error('Search diagnostic',engine,width,motion,await p.evaluate(()=>({width:innerWidth,mobile:matchMedia('(max-width:767px)').matches,headerDisplay:getComputedStyle(document.querySelector('.mobile-header-search')).display,hidden:document.hidden,reduced:matchMedia('(prefers-reduced-motion:reduce)').matches,classes:document.querySelector('.mobile-header-search').className,prompt:document.querySelector('.header-search-prompt').textContent})));
       await p.screenshot({path:prefix+'-failure.png'});throw error;
      }finally{await context.close();}
     }

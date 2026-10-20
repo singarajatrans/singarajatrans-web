@@ -56,8 +56,8 @@ function labels(){
  if(phase==='prompt'){cancel();renderPrompt();if(!stopped)timer=setTimeout(cycle,1800);}
 }
 function start(){
- if(!mobile.matches)return;
- labels();if(started&&!stopped)return;
+ if(!mobile.matches||started&&!stopped)return;
+ labels();
  const returning=started;started=true;stopped=false;cancel();
  search.classList.add('has-typewriter');
  // Search motion is explicitly requested; keep typing and the opening car available in reduced-motion mode.
@@ -99,7 +99,15 @@ share.addEventListener('click',async()=>{
 dialog.querySelector('[data-share-close]').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');if(mobile.matches)share.focus({preventScroll:true});});
 new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-mobile.addEventListener('change',()=>{if(mobile.matches)start();else{cancel();stopped=true;search.classList.remove('has-typewriter');if(started)renderPrompt(4);document.querySelectorAll('[data-language]').forEach(button=>button.removeAttribute('aria-label'));if(dialog.open)dialog.close();}});
+function syncMode(){
+ if(mobile.matches){start();return;}
+ cancel();stopped=true;search.classList.remove('has-typewriter');if(started)renderPrompt(4);
+ document.querySelectorAll('[data-language]').forEach(button=>button.removeAttribute('aria-label'));
+ if(dialog.open)dialog.close();
+}
+mobile.addEventListener('change',syncMode);
+// Safari can deliver viewport resize and media-query changes in separate turns.
+window.addEventListener('resize',syncMode,{passive:true});
 function resume(){
  if(!mobile.matches||!started||document.hidden)return;
  stopped=false;cancel();search.classList.add('has-typewriter');
