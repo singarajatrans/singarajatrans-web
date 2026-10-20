@@ -39,7 +39,7 @@ body{background:#fff;color:var(--mock-ink)}
 .service-tabs button[aria-selected=true]{background:var(--mock-red);color:#fff;border:0}
 .service-tabs .service-tab-icons{min-height:0;display:grid;place-items:center}
 .service-tabs .service-svg-icon{width:32px;height:32px;background:currentColor;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;mask-repeat:no-repeat;mask-position:center;mask-size:contain}
-.service-tabs .service-motor-svg{-webkit-mask-image:url("images/scooter.svg?v=vector-2");mask-image:url("images/scooter.svg?v=vector-2")}
+.service-tabs .service-motor-svg{-webkit-mask-image:url("images/motorbike.png?v=mask-1");mask-image:url("images/motorbike.png?v=mask-1")}
 .service-tabs .service-shuttle-svg{-webkit-mask-image:url("images/travel-shuttle.svg");mask-image:url("images/travel-shuttle.svg")}
 .service-tabs .service-airport-svg{-webkit-mask-image:url("images/airport-transfer.svg?v=vector-5");mask-image:url("images/airport-transfer.svg?v=vector-5")}
 .service-tabs .service-car-svg{-webkit-mask-image:url("images/car-rental.svg?v=vector-3");mask-image:url("images/car-rental.svg?v=vector-3")}
