@@ -125,7 +125,7 @@ module.exports=async function testMobileHeader(browser,url){
   assert.equal(await search.evaluate(e=>e.classList.contains('has-typewriter')),true,'Sharing and focusing search must preserve typing');
   const beforeShareTyping=await p.locator('.header-search-prompt').innerText();await p.clock.runFor(6000);assert.notEqual(await p.locator('.header-search-prompt').innerText(),beforeShareTyping,'Share feedback must not cancel the typewriter timer');
   assert.equal(await p.evaluate(()=>document.body.scrollWidth<=innerWidth&&document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
-  await p.emulateMedia({reducedMotion:'reduce'});await p.reload({waitUntil:'networkidle'});assert.equal(await p.locator('.header-search-brand').isVisible(),false);await p.clock.runFor(15000);assert.match(await search.getAttribute('aria-label'),/rute/);assert.equal(await search.evaluate(e=>e.classList.contains('is-wiping')),false);
+  await p.emulateMedia({reducedMotion:'reduce'});await p.reload({waitUntil:'networkidle'});await p.clock.runFor(3500);assert.equal(await p.locator('.header-search-car').isVisible(),true,'Opening car must still be available with reduced motion');await p.clock.runFor(4000);assert.equal(await p.locator('.header-search-brand').isVisible(),false);assert.equal(await search.evaluate(e=>e.classList.contains('has-typewriter')),true);assert.equal(await prompt.evaluate(e=>getComputedStyle(e,'::after').animationName),'none');
   // Reduced motion also keeps distinct landing points, including Motor → Mobil.
   await p.locator('#tab-motor').evaluate(e=>e.click());
   let previousScroll=await row.evaluate(e=>e.scrollLeft);

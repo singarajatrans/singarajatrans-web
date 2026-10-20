@@ -531,6 +531,12 @@ dialog{border-radius:12px}
  html.native-page-scroll{height:auto;min-height:100%;overflow-x:clip;overflow-y:visible}
  html.native-page-scroll body{position:static;height:auto;min-height:100%;overflow:visible;-webkit-overflow-scrolling:auto;border-radius:0;transition:none}
  html.native-page-scroll:has(body.modal-open){overflow-y:hidden}
+ /* Separate corner paint preserves native iOS scrolling; never clip/resize its scroll surface. */
+ html.native-page-scroll::before,html.native-page-scroll::after{content:"";position:fixed;top:0;width:24px;height:24px;z-index:19;pointer-events:none;opacity:0;transition:opacity .26s ease}
+ html.native-page-scroll::before{left:0;background:radial-gradient(circle at right bottom,transparent 24px,var(--mock-red) 24.5px)}
+ html.native-page-scroll::after{right:0;background:radial-gradient(circle at left bottom,transparent 24px,var(--mock-red) 24.5px)}
+ html.native-page-scroll:has(body.header-hidden)::before,html.native-page-scroll:has(body.header-hidden)::after{opacity:1}
+
  .nav-inner{height:60px;width:calc(100% - 32px);gap:10px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:36px;padding:0 10px;gap:6px;border:0;border-radius:18px;background:rgba(255,255,255,.92);color:#667085;overflow:hidden}
@@ -570,7 +576,8 @@ dialog{border-radius:12px}
 @keyframes header-search-caret{0%,49%{opacity:1}50%,100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){
  .header-search-name,.header-car-wheel,.header-car-chassis,.header-car-smoke,.header-search-prompt{animation:none!important}
- .header-search-car{display:none}
+ .header-search-prompt::after{animation:none!important;opacity:1}
+ html.native-page-scroll::before,html.native-page-scroll::after{transition:none}
  .service-tabs button{transition:none}
 }
 

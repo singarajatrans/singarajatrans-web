@@ -22,15 +22,17 @@ jobs:
           node --check assets/app.js
           node --check assets/booking.js
           node --check assets/mobile-bottom-nav.js
+          node --check assets/mobile-header.js
           node tests/core.test.cjs
       - name: Prepare browser checks
         run: |
           npm install --prefix "$RUNNER_TEMP/browser-qa" --no-audit --no-fund playwright@1.62.1
-          "$RUNNER_TEMP/browser-qa/node_modules/.bin/playwright" install --with-deps chromium webkit
+          "$RUNNER_TEMP/browser-qa/node_modules/.bin/playwright" install --with-deps chromium webkit firefox
       - name: Check responsive booking interface
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser-qa/node_modules/playwright
         run: |
+          node tests/mobile-search-lifecycle.cjs
           node tests/ios-scroll.cjs
           node tests/browser.cjs
       - name: Save visual review screenshots

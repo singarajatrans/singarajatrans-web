@@ -34,11 +34,6 @@ function cycle(){
  }
  erase();
 }
-function stop(){
- if(!mobile.matches||stopped)return;
- stopped=true;cancel();renderPrompt(phase==='prompt'?index:4);
- search.classList.remove('is-wiping','has-typewriter');
-}
 function wipe(){
  phase='wipe';search.classList.add('is-wiping');const start=performance.now();
  function tick(now){
@@ -62,9 +57,12 @@ function labels(){
 }
 function start(){
  if(!mobile.matches)return;
- labels();if(started)return;started=true;
- if(reduced.matches||document.body.classList.contains('results-page')){stopped=true;renderPrompt(4);return;}
+ labels();if(started&&!stopped)return;
+ const returning=started;started=true;stopped=false;cancel();
  search.classList.add('has-typewriter');
+ // Search motion is explicitly requested; keep typing and the opening car available in reduced-motion mode.
+ // CSS still suppresses extra shaking, wheel/smoke effects and caret flashing in that mode.
+ if(returning&&phase==='prompt'){typePrompt(index);return;}
  brand.hidden=false;prompt.hidden=true;search.setAttribute('aria-label',text('SINGARAJA TRANS — buka pencarian','SINGARAJA TRANS — open search'));
  timer=setTimeout(wipe,3000);
 }
@@ -102,16 +100,14 @@ dialog.querySelector('[data-share-close]').addEventListener('click',()=>dialog.c
 dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');if(mobile.matches)share.focus({preventScroll:true});});
 new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 mobile.addEventListener('change',()=>{if(mobile.matches)start();else{cancel();stopped=true;search.classList.remove('has-typewriter');if(started)renderPrompt(4);document.querySelectorAll('[data-language]').forEach(button=>button.removeAttribute('aria-label'));if(dialog.open)dialog.close();}});
-reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
-document.addEventListener('visibilitychange',()=>{
- if(document.hidden){cancel();return;}
- if(!mobile.matches||stopped||!started||reduced.matches)return;
+function resume(){
+ if(!mobile.matches||!started||document.hidden)return;
+ stopped=false;cancel();search.classList.add('has-typewriter');
  if(phase==='prompt')typePrompt(index);
  else if(phase==='wipe')wipe();
  else timer=setTimeout(wipe,800);
-});
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)cancel();else resume();});
+window.addEventListener('pageshow',event=>{if(event.persisted)resume();});
 start();
 })();
-
-
-
