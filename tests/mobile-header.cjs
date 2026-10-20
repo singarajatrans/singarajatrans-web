@@ -8,15 +8,24 @@ module.exports=async function testMobileHeader(browser,url){
   await p.goto(url,{waitUntil:'networkidle'});
   const search=p.locator('.mobile-header-search');
   assert.equal(await search.evaluate(e=>e.offsetHeight),36);
-  assert.equal(await p.locator('.header-search-mark img').getAttribute('src'),'assets/images/logo.png');
+  assert.equal(await p.locator('.header-search-mark').count(),0,'Search header must not contain the old logo');
+  assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).color),await search.evaluate(e=>getComputedStyle(e).getPropertyValue('--mock-red').trim()).then(v=>v==='#c85759'?'rgb(200, 87, 89)':v));
+  assert.equal(await p.locator('.header-search-icon').evaluate(e=>getComputedStyle(e).width),'18px');
+  assert.equal(await p.locator('.header-search-prompt').evaluate(e=>getComputedStyle(e).fontWeight),'500');
   assert.equal(await p.locator('.header-search-brand').isVisible(),true);
   assert.equal(await p.locator('.brand').isVisible(),false);assert.equal(await p.locator('.mobile-menu').isVisible(),false);
-  await p.clock.runFor(2800);assert.equal(await search.evaluate(e=>e.classList.contains('is-wiping')),false);
+  await p.clock.runFor(900);assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).animationName),'header-brand-reveal');
+  assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).animationDuration),'1.8s');
+  await p.screenshot({path:`qa-output/header-brand-reveal-${width}.png`});
+  await p.clock.runFor(1900);
+  assert.equal(await search.evaluate(e=>e.classList.contains('is-wiping')),false);
   await p.clock.runFor(450);const start=await search.evaluate(e=>[parseFloat(e.style.getPropertyValue('--car-x')),parseFloat(e.style.getPropertyValue('--brand-erased'))]);
   await p.screenshot({path:`/tmp/header-opening-${width}.png`});
   assert.equal(await p.locator('.header-search-car').isVisible(),true,'Car must be visible during the wipe');
   await p.clock.runFor(450);const mid=await search.evaluate(e=>[parseFloat(e.style.getPropertyValue('--car-x')),parseFloat(e.style.getPropertyValue('--brand-erased'))]);
-  assert.ok(mid[0]<start[0]&&mid[1]>start[1],'Wipe must follow car right to left');await p.screenshot({path:`/tmp/header-wipe-${width}.png`});
+  assert.ok(mid[0]<start[0]&&mid[1]>start[1],'Wipe must follow car right to left');await p.screenshot({path:`qa-output/header-car-motion-${width}.png`});
+  assert.equal(await p.locator('.header-car-wheel').first().evaluate(e=>getComputedStyle(e).animationName),'header-car-wheel');
+  assert.equal(await p.locator('.header-car-chassis').evaluate(e=>getComputedStyle(e).animationName),'header-car-suspension');
   await p.clock.runFor(900);assert.equal(await p.locator('.header-search-brand').isVisible(),false);
   const firstTyped=await p.locator('.header-search-prompt').innerText();
   assert.ok(firstTyped.length>0&&firstTyped.length<'Cari Travel Shuttle'.length&&'Cari Travel Shuttle'.startsWith(firstTyped),'First prompt must type from the left after the car passes');
@@ -115,5 +124,6 @@ module.exports=async function testMobileHeader(browser,url){
   await p.close();console.log('PASS mobile header: opening/wipe, shortcuts, geometry, carousel, language, share, focus and reduced motion at '+width);
  }
 };
+
 
 
