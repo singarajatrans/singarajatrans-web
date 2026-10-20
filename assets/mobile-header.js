@@ -5,12 +5,12 @@ const search=document.querySelector('.mobile-header-search'),brand=search.queryS
 const share=document.querySelector('.mobile-header-share'),dialog=document.querySelector('#mobile-share-dialog'),status=document.querySelector('.mobile-share-status');
 const services=['shuttle','airport','charter','motor',null];
 const messages={id:['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'],en:['Find Travel Shuttle','Find Airport Transfer','Find Car Rental','Find Motorbike Rental','Search routes, cities, or destinations…']};
-let index=4,started=false,stopped=false,timer=0,frame=0,shareTimer=0,phase='opening';
+let index=4,started=false,stopped=false,timer=0,frame=0,shareTimer=0,introToken=0,phase='opening';
 const en=()=>document.documentElement.lang==='en';
 const text=(id,english)=>en()?english:id;
-function cancel(){clearTimeout(timer);cancelAnimationFrame(frame);}
+function cancel(){clearTimeout(timer);cancelAnimationFrame(frame);introToken++;}
 function renderPrompt(next=index){
- index=next;phase='prompt';search.classList.remove('is-wiping');brand.hidden=true;prompt.hidden=false;
+ index=next;phase='prompt';search.classList.remove('is-wiping','is-opening');brand.hidden=true;prompt.hidden=false;
  prompt.textContent=messages[en()?'en':'id'][index];search.setAttribute('aria-label',prompt.textContent);
 }
 function typePrompt(next){
@@ -35,7 +35,7 @@ function cycle(){
  erase();
 }
 function wipe(){
- phase='wipe';search.classList.add('is-wiping');const start=performance.now();
+ phase='wipe';search.classList.remove('is-opening');search.classList.add('is-wiping');const start=performance.now();
  function tick(now){
   if(stopped||!mobile.matches)return;
   const progress=Math.min(1,(now-start)/2300),ease=progress*progress*(3-2*progress),width=copy.clientWidth,x=width+20-(width+40)*ease;
@@ -55,6 +55,17 @@ function labels(){
  dialog.querySelector('[data-share-close]').setAttribute('aria-label',text('Tutup','Close'));
  if(phase==='prompt'){cancel();renderPrompt();if(!stopped)timer=setTimeout(cycle,1800);}
 }
+function openBrand(){
+ cancel();const token=introToken;phase='opening';
+ search.classList.remove('is-opening','is-wiping');brand.hidden=false;prompt.hidden=true;
+ search.style.setProperty('--brand-erased','0px');search.style.setProperty('--car-opacity','0');
+ search.setAttribute('aria-label',text('SINGARAJA TRANS — buka pencarian','SINGARAJA TRANS — open search'));
+ const ready=document.fonts?Promise.all([document.fonts.load('750 13px "ST Search Sans"','SINGARAJA'),document.fonts.load('italic 600 14px "ST Search Serif"','TRANS')]):Promise.resolve();
+ ready.catch(()=>{}).then(()=>{
+  if(token!==introToken||stopped||!mobile.matches||document.hidden||phase!=='opening')return;
+  search.classList.add('is-opening');timer=setTimeout(wipe,3000);
+ });
+}
 function start(){
  if(!mobile.matches||started&&!stopped)return;
  labels();
@@ -63,8 +74,7 @@ function start(){
  // Search motion is explicitly requested; keep typing and the opening car available in reduced-motion mode.
  // CSS still suppresses extra shaking, wheel/smoke effects and caret flashing in that mode.
  if(returning&&phase==='prompt'){typePrompt(index);return;}
- brand.hidden=false;prompt.hidden=true;search.setAttribute('aria-label',text('SINGARAJA TRANS — buka pencarian','SINGARAJA TRANS — open search'));
- timer=setTimeout(wipe,3000);
+ openBrand();
 }
 // These listeners are registered once; desktop handlers return without doing anything.
 document.addEventListener('pointerdown',event=>{
@@ -113,7 +123,7 @@ function resume(){
  stopped=false;cancel();search.classList.add('has-typewriter');
  if(phase==='prompt')typePrompt(index);
  else if(phase==='wipe')wipe();
- else timer=setTimeout(wipe,800);
+ else openBrand();
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden)cancel();else resume();});
 window.addEventListener('pageshow',event=>{if(event.persisted)resume();});

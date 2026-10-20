@@ -72,9 +72,9 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     await page.mouse.move(width/2,700);
     for(const distance of [350,450,500,600]){
      await page.mouse.wheel(0,distance);
-     await page.waitForFunction(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.body).borderTopLeftRadius==='24px');
+     await page.waitForFunction(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.documentElement,'::before').opacity==='1');
      assert.equal(await page.evaluate(()=>document.body.scrollTop>100),true);
-     assert.deepEqual(await page.locator('body').evaluate(el=>{const s=getComputedStyle(el);return [s.borderTopRightRadius,s.borderBottomLeftRadius,s.borderBottomRightRadius]}),['24px','0px','0px']);
+     assert.deepEqual(await page.locator('body').evaluate(el=>{const s=getComputedStyle(el);return [s.borderTopRightRadius,s.borderBottomLeftRadius,s.borderBottomRightRadius]}),['0px','0px','0px']);
      assert.equal(await page.evaluate(()=>getComputedStyle(document.querySelector('#main'),'::before').content),'none');
      assert.equal(await page.evaluate(()=>getComputedStyle(document.body,'::before').content),'none');
      assert.equal(await page.evaluate(()=>getComputedStyle(document.body,'::after').content),'none');
@@ -83,7 +83,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
      await page.screenshot({path:`qa-output/header-hidden-${width}-${distance}.png`});
     }
     await page.mouse.wheel(0,-80);
-    await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.body).borderTopLeftRadius==='0px');
+    await page.waitForFunction(()=>!document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.documentElement,'::before').opacity==='0');
     await page.screenshot({path:`qa-output/header-shown-${width}.png`});
     await page.mouse.wheel(0,-20000);
     await page.waitForFunction(()=>document.body.scrollTop===0);

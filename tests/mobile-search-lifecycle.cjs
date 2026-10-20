@@ -5,6 +5,7 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 (async()=>{
  const server=spawn('python3',['-m','http.server','4175','--bind','127.0.0.1'],{stdio:'ignore'});
  mkdirSync('qa-output',{recursive:true});
+ const brandReference={},cornerReference={pixels:null};
  try{
   for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4175/')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   for(const engine of ['chromium','webkit','firefox']){
@@ -22,7 +23,19 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       const search=p.locator('.mobile-header-search'),prompt=p.locator('.header-search-prompt');
       const active=()=>search.evaluate(e=>e.classList.contains('has-typewriter'));
       async function progress(message){const initial=await prompt.innerText();for(let i=0;i<12;i++){await p.clock.runFor(400);if(await prompt.innerText()!==initial)return;}assert.fail(message);}
-      await p.clock.runFor(3500);
+      await p.clock.runFor(900);
+      const brand=p.locator('.header-search-name');
+      assert.equal(await brand.evaluate(e=>getComputedStyle(e).animationName),'header-brand-reveal','Brand reveal must run after every refresh, including reduced motion');
+      assert.equal(await p.evaluate(()=>[...document.fonts].filter(f=>f.family.includes('ST Search')&&f.status==='loaded').length),2,'Both embedded wordmark faces must be loaded');
+      assert.equal(await p.evaluate(()=>document.fonts.check('750 13px "ST Search Sans"','SINGARAJA')&&document.fonts.check('italic 600 14px "ST Search Serif"','TRANS')),true,'Bundled wordmark fonts must load');
+      assert.match(await brand.evaluate(e=>getComputedStyle(e).fontFamily),/ST Search Sans/);
+      assert.match(await p.locator('.header-brand-accent').evaluate(e=>getComputedStyle(e).fontFamily),/ST Search Serif/);
+      const wordmark=await brand.boundingBox();
+      assert.ok(wordmark.width<=await p.locator('.header-search-copy').evaluate(e=>e.clientWidth),'Wordmark must fit its search area');
+      if(brandReference[width])assert.ok(Math.abs(wordmark.width-brandReference[width])<1,'Wordmark width differs across engines or motion settings');
+      else brandReference[width]=wordmark.width;
+      await p.screenshot({path:prefix+'-brand.png'});
+      await p.clock.runFor(2600);
       assert.equal(await p.locator('.header-search-car').isVisible(),true,'Opening car missing: '+engine+'/'+motion);
       const carX=await search.evaluate(e=>parseFloat(e.style.getPropertyValue('--car-x')));
       await p.clock.runFor(400);
@@ -70,7 +83,33 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
       assert.deepEqual(errors,[]);
       await p.screenshot({path:prefix+'-typing.png'});
-      console.log('PASS search lifecycle '+engine+' '+width+'px '+motion+': car, color, loop, booking, rotation, return, BFCache, preference change and refresh');
+      // Compare the rendered contour itself, rather than just a radius declaration.
+      await p.emulateMedia({reducedMotion:'reduce'});
+      await p.evaluate(()=>{const surface=document.documentElement.classList.contains('native-page-scroll')?document.scrollingElement:document.body;surface.scrollTo({top:0,behavior:'instant'});});
+      await p.clock.runFor(200);await new Promise(r=>setTimeout(r,30));
+      await p.evaluate(()=>{const surface=document.documentElement.classList.contains('native-page-scroll')?document.scrollingElement:document.body;surface.scrollTo({top:720,behavior:'instant'});});
+      for(let i=0;i<20;i++){
+       await p.clock.runFor(200);await new Promise(r=>setTimeout(r,30));
+       if(await p.evaluate(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.documentElement,'::before').opacity==='1'))break;
+      }
+      assert.equal(await p.evaluate(()=>getComputedStyle(document.body).borderTopLeftRadius),'0px','Scroll layer must stay unclipped on every engine');
+      assert.deepEqual(await p.evaluate(()=>{const s=getComputedStyle(document.documentElement,'::before');return [s.width,s.height,s.pointerEvents]}),['24px','24px','none']);
+      await p.screenshot({path:prefix+'-radius.png'});
+      await p.evaluate(()=>{const e=document.createElement('div');e.id='corner-qa-surface';e.style.cssText='position:fixed;inset:0;z-index:18;background:white;pointer-events:none';document.body.append(e);});
+      async function corner(x){
+       const png=await p.screenshot({clip:{x,y:0,width:24,height:24},scale:'css'});
+       return p.evaluate(async data=>{const image=new Image();image.src=data;await image.decode();const canvas=document.createElement('canvas');canvas.width=canvas.height=24;const c=canvas.getContext('2d');c.drawImage(image,0,0);const pixels=c.getImageData(0,0,24,24).data;return Array.from({length:576},(_,i)=>pixels[i*4+1]<180?1:0);},'data:image/png;base64,'+png.toString('base64'));
+      }
+      const left=await corner(0),right=await corner(width-24);
+      const painted=left.reduce((a,b)=>a+b,0);
+      assert.ok(painted>100&&painted<150,'Corner mask must render the 24px circular contour: '+painted);
+      assert.equal(left[0],1);assert.equal(left[575],0);
+      const mirrored=right.map((_,i)=>right[Math.floor(i/24)*24+23-i%24]);
+      assert.ok(left.filter((v,i)=>v!==mirrored[i]).length<=6,'Left and right corner contours differ');
+      if(cornerReference.pixels)assert.ok(left.filter((v,i)=>v!==cornerReference.pixels[i]).length<=12,'Rendered corner contour differs across mobile engines');
+      else cornerReference.pixels=left;
+
+      console.log('PASS search lifecycle '+engine+' '+width+'px '+motion+': car, color, loop, booking, rotation, return, BFCache, preference change, refresh, bundled wordmark and matching corner pixels');
      }catch(error){
       console.error('Search diagnostic',engine,width,motion,await p.evaluate(()=>({width:innerWidth,mobile:matchMedia('(max-width:767px)').matches,headerDisplay:getComputedStyle(document.querySelector('.mobile-header-search')).display,hidden:document.hidden,reduced:matchMedia('(prefers-reduced-motion:reduce)').matches,classes:document.querySelector('.mobile-header-search').className,prompt:document.querySelector('.header-search-prompt').textContent})));
       await p.screenshot({path:prefix+'-failure.png'});throw error;
