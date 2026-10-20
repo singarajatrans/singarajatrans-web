@@ -530,8 +530,8 @@ dialog{border-radius:12px}
  .nav-inner{height:60px;width:calc(100% - 32px);gap:10px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:36px;padding:0 10px;gap:6px;border:0;border-radius:18px;background:rgba(255,255,255,.92);color:#667085;overflow:hidden}
- .header-search-icon{width:18px;height:18px;stroke-width:1.9;color:#667085}
- .header-search-copy{position:relative;display:block;flex:1;min-width:0;height:100%;overflow:hidden}
+ .header-search-icon{pointer-events:none;width:18px;height:18px;stroke-width:1.9;color:#667085}
+ .header-search-copy{pointer-events:none;position:relative;display:block;flex:1;min-width:0;height:100%;overflow:hidden}
  .header-search-brand{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;gap:4px;clip-path:inset(0 var(--brand-erased,0px) 0 0)}
  .header-search-name{color:var(--mock-red);font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:750;letter-spacing:.35px;white-space:nowrap;animation:header-brand-reveal 1.8s linear both}
  .header-search-car{display:none;position:absolute;left:var(--car-x,110%);top:50%;width:42px;height:24px;transform:translate(-50%,-50%);color:var(--mock-red);opacity:0}
