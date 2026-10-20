@@ -327,8 +327,8 @@ dialog{border-radius:12px}
  .service-tabs button span{min-height:28px;display:flex;align-items:center;justify-content:center;text-align:center}
  .service-tabs #tab-shuttle .service-tab-icons{transform:scale(.84)}
  .service-tabs #tab-airport .service-tab-icons{transform:scale(1);-webkit-mask-image:url("images/service-airport-solid.svg?v=original-weight-3");mask-image:url("images/service-airport-solid.svg?v=original-weight-3")}
- .service-tabs #tab-charter .service-tab-icons{transform:scale(1);-webkit-mask-image:url("images/service-car-solid.svg?v=original-weight-3");mask-image:url("images/service-car-solid.svg?v=original-weight-3")}
- .service-tabs #tab-motor .service-tab-icons{transform:scale(1);-webkit-mask-image:url("images/service-motor-solid.svg?v=original-weight-3");mask-image:url("images/service-motor-solid.svg?v=original-weight-3")}
+ .service-tabs #tab-charter .service-tab-icons{transform:scale(1);-webkit-mask-image:url("images/service-car-solid.svg?v=detail-clarity-5");mask-image:url("images/service-car-solid.svg?v=detail-clarity-5")}
+ .service-tabs #tab-motor .service-tab-icons{transform:scale(1);-webkit-mask-image:url("images/service-motor-solid.svg?v=detail-clarity-5");mask-image:url("images/service-motor-solid.svg?v=detail-clarity-5")}
  .service-tabs button:not([aria-selected=true]){color:#fff;background:rgba(42,40,37,.48);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px)}
  .service-tabs button[aria-selected=true]{background:#fff;color:var(--mock-red-dark);border:1px solid var(--mock-red);box-shadow:0 2px 7px rgba(200,87,89,.14)}
  .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-8px;left:50%;width:26px;height:10px;background:url("images/service-notch.svg") center/100% 100% no-repeat;transform:translateX(-50%);pointer-events:none}
