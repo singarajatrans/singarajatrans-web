@@ -894,7 +894,16 @@ dialog{border-radius:12px}
  .mobile-home-flow>.route-section{order:1}
  .mobile-home-flow>.reviews-section{order:2}
  .mobile-home-flow>.destination-section{order:3}
- .mobile-home-flow>.service-section{display:none!important}
+ .mobile-home-flow>.service-section{
+  order:4;
+  height:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  visibility:hidden;
+  pointer-events:none;
+ }
  .mobile-copy{display:inline}
  .desktop-copy{display:none}
 
