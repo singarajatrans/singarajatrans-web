@@ -99,7 +99,12 @@ module.exports=async function testMobileHeader(browser,url){
    for(let step=0;step<220&&await prompt.innerText()!==promptLabels[index];step++)await p.clock.runFor(100);
    assert.equal(await prompt.innerText(),promptLabels[index]);
    const label=await search.getAttribute('aria-label');await search.click();await p.clock.runFor(600);
-   assert.equal(await p.locator('body').getAttribute('data-service'),serviceList[index]||'shuttle',label);
+   const selectedService=await p.locator('body').getAttribute('data-service');
+   if(selectedService!==(serviceList[index]||'shuttle')){
+    await p.screenshot({path:`qa-output/header-shortcut-failure-${width}-${index}.png`});
+    console.log('Header shortcut diagnostic',await search.evaluate(e=>({label:e.getAttribute('aria-label'),prompt:e.querySelector('.header-search-prompt').textContent,service:document.body.dataset.service,active:document.activeElement.id,header:document.querySelector('#header').className,url:location.href})));
+   }
+   assert.equal(selectedService,serviceList[index]||'shuttle',label);
    assert.equal(await p.evaluate(()=>document.activeElement.id||document.activeElement.closest('#motor-entry')?.id),index===3?'motor-entry':'origin');
    await p.clock.runFor(6000);assert.equal(await search.getAttribute('aria-label'),label,'Animation continued after interaction');
   }
