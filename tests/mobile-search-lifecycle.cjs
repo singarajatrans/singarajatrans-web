@@ -26,10 +26,9 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       await p.clock.runFor(900);
       const brand=p.locator('.header-search-name');
       assert.equal(await brand.evaluate(e=>getComputedStyle(e).animationName),'header-brand-reveal','Brand reveal must run after every refresh, including reduced motion');
-      assert.equal(await p.evaluate(()=>[...document.fonts].filter(f=>f.family.includes('ST Search')&&f.status==='loaded').length),2,'Both embedded wordmark faces must be loaded');
-      assert.equal(await p.evaluate(()=>document.fonts.check('750 13px "ST Search Sans"','SINGARAJA')&&document.fonts.check('italic 600 14px "ST Search Serif"','TRANS')),true,'Bundled wordmark fonts must load');
-      assert.match(await brand.evaluate(e=>getComputedStyle(e).fontFamily),/ST Search Sans/);
-      assert.match(await p.locator('.header-brand-accent').evaluate(e=>getComputedStyle(e).fontFamily),/ST Search Serif/);
+      assert.equal(await p.locator('.header-wordmark title').textContent(),'SINGARAJA TRANS');
+      assert.equal(await p.locator('.header-wordmark').getAttribute('viewBox'),'0 0 144 16');
+      assert.equal(await p.locator('.header-wordmark path').count(),2,'One shared glyph outline must render the wordmark');
       const wordmark=await brand.boundingBox();
       assert.ok(wordmark.width<=await p.locator('.header-search-copy').evaluate(e=>e.clientWidth),'Wordmark must fit its search area');
       if(brandReference[width])assert.ok(Math.abs(wordmark.width-brandReference[width])<1,'Wordmark width differs across engines or motion settings');
@@ -109,7 +108,7 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       if(cornerReference.pixels)assert.ok(left.filter((v,i)=>v!==cornerReference.pixels[i]).length<=12,'Rendered corner contour differs across mobile engines');
       else cornerReference.pixels=left;
 
-      console.log('PASS search lifecycle '+engine+' '+width+'px '+motion+': car, color, loop, booking, rotation, return, BFCache, preference change, refresh, bundled wordmark and matching corner pixels');
+      console.log('PASS search lifecycle '+engine+' '+width+'px '+motion+': car, color, loop, booking, rotation, return, BFCache, preference change, refresh, shared wordmark outlines and matching corner pixels');
      }catch(error){
       console.error('Search diagnostic',engine,width,motion,await p.evaluate(()=>({width:innerWidth,mobile:matchMedia('(max-width:767px)').matches,headerDisplay:getComputedStyle(document.querySelector('.mobile-header-search')).display,hidden:document.hidden,reduced:matchMedia('(prefers-reduced-motion:reduce)').matches,classes:document.querySelector('.mobile-header-search').className,prompt:document.querySelector('.header-search-prompt').textContent})));
       await p.screenshot({path:prefix+'-failure.png'});throw error;

@@ -5,10 +5,10 @@ const search=document.querySelector('.mobile-header-search'),brand=search.queryS
 const share=document.querySelector('.mobile-header-share'),dialog=document.querySelector('#mobile-share-dialog'),status=document.querySelector('.mobile-share-status');
 const services=['shuttle','airport','charter','motor',null];
 const messages={id:['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'],en:['Find Travel Shuttle','Find Airport Transfer','Find Car Rental','Find Motorbike Rental','Search routes, cities, or destinations…']};
-let index=4,started=false,stopped=false,timer=0,frame=0,shareTimer=0,introToken=0,phase='opening';
+let index=4,started=false,stopped=false,timer=0,frame=0,shareTimer=0,phase='opening';
 const en=()=>document.documentElement.lang==='en';
 const text=(id,english)=>en()?english:id;
-function cancel(){clearTimeout(timer);cancelAnimationFrame(frame);introToken++;}
+function cancel(){clearTimeout(timer);cancelAnimationFrame(frame);}
 function renderPrompt(next=index){
  index=next;phase='prompt';search.classList.remove('is-wiping','is-opening');brand.hidden=true;prompt.hidden=false;
  prompt.textContent=messages[en()?'en':'id'][index];search.setAttribute('aria-label',prompt.textContent);
@@ -56,15 +56,12 @@ function labels(){
  if(phase==='prompt'){cancel();renderPrompt();if(!stopped)timer=setTimeout(cycle,1800);}
 }
 function openBrand(){
- cancel();const token=introToken;phase='opening';
+ cancel();phase='opening';
  search.classList.remove('is-opening','is-wiping');brand.hidden=false;prompt.hidden=true;
  search.style.setProperty('--brand-erased','0px');search.style.setProperty('--car-opacity','0');
  search.setAttribute('aria-label',text('SINGARAJA TRANS — buka pencarian','SINGARAJA TRANS — open search'));
- const ready=document.fonts?Promise.all([document.fonts.load('750 13px "ST Search Sans"','SINGARAJA'),document.fonts.load('italic 600 14px "ST Search Serif"','TRANS')]):Promise.resolve();
- ready.catch(()=>{}).then(()=>{
-  if(token!==introToken||stopped||!mobile.matches||document.hidden||phase!=='opening')return;
-  search.classList.add('is-opening');timer=setTimeout(wipe,3000);
- });
+ void brand.offsetWidth; // Restart the same reveal timeline after returning to an interrupted opening.
+ search.classList.add('is-opening');timer=setTimeout(wipe,3000);
 }
 function start(){
  if(!mobile.matches||started&&!stopped)return;

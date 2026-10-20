@@ -1,6 +1,6 @@
-ST Search Sans / ST Search Serif
-Subset and renamed from DejaVu Sans Bold / DejaVu Serif Bold Italic for the search wordmark.
-Changes: uppercase-only character subsets; family names changed; WOFF packaging.
+SINGARAJA TRANS search wordmark outlines
+Derived from DejaVu Sans Bold / DejaVu Serif Bold Italic.
+Changes: uppercase glyph outlines positioned and scaled into an SVG wordmark. No font files are loaded by the website.
 
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: DejaVu fonts
