@@ -547,7 +547,7 @@ dialog{border-radius:12px}
  .header-search-brand{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;gap:4px;clip-path:inset(0 var(--brand-erased,0px) 0 0)}
  .header-search-name{color:var(--mock-red);display:block;width:144px;max-width:100%;height:16px;line-height:0;letter-spacing:.2px;white-space:nowrap;visibility:hidden}
  .header-search-name .header-wordmark{display:block;width:100%;height:100%;fill:currentColor;stroke:none}
- .mobile-header-search.is-opening .header-search-name{visibility:visible;animation:header-brand-reveal 1.8s linear both!important}
+ .mobile-header-search.is-opening .header-search-name{visibility:visible;clip-path:inset(0 var(--brand-unrevealed,100%) 0 0)}
  .mobile-header-search.is-wiping .header-search-name{visibility:visible}
  .header-search-car{display:none;position:absolute;left:var(--car-x,110%);top:50%;width:56px;height:24px;transform:translate(-50%,-50%);color:var(--mock-red);opacity:0}
  .mobile-header-search.is-wiping .header-search-car{display:block;opacity:var(--car-opacity,1)}
@@ -574,7 +574,7 @@ dialog{border-radius:12px}
 @media(max-width:359px){.header-search-name{width:132px}}
 @media(max-width:767px){.header-brand-accent{color:#b66c6f;fill:currentColor}.header-car-smoke{opacity:0;transform-box:fill-box;transform-origin:center;filter:blur(.25px)}.mobile-header-search.is-wiping .header-car-smoke{animation:header-car-exhaust 1.2s ease-out infinite}}
 @keyframes header-car-exhaust{0%{opacity:0;transform:translate(0,0) scale(.4)}20%{opacity:.3}100%{opacity:0;transform:translate(18px,-5px) scale(1.8)}}
-@keyframes header-brand-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
 @keyframes header-car-wheel{to{transform:rotate(-360deg)}}
 @keyframes header-car-suspension{0%,100%{transform:translateY(0)}50%{transform:translateY(-.45px)}}
 @media(max-width:767px){.mobile-header-search.is-wiping .header-car-wheel{transform-box:fill-box;transform-origin:center;animation:header-car-wheel .65s linear infinite}.mobile-header-search.is-wiping .header-car-chassis{animation:header-car-suspension .32s ease-in-out infinite}}

@@ -60,8 +60,15 @@ function openBrand(){
  search.classList.remove('is-opening','is-wiping');brand.hidden=false;prompt.hidden=true;
  search.style.setProperty('--brand-erased','0px');search.style.setProperty('--car-opacity','0');
  search.setAttribute('aria-label',text('SINGARAJA TRANS — buka pencarian','SINGARAJA TRANS — open search'));
- void brand.offsetWidth; // Restart the same reveal timeline after returning to an interrupted opening.
- search.classList.add('is-opening');timer=setTimeout(wipe,3000);
+ search.style.setProperty('--brand-unrevealed','100%');search.classList.add('is-opening');
+ const start=performance.now();
+ function reveal(now){
+  if(stopped||!mobile.matches||phase!=='opening')return;
+  const progress=Math.min(1,(now-start)/1800);
+  search.style.setProperty('--brand-unrevealed',((1-progress)*100)+'%');
+  if(progress<1)frame=requestAnimationFrame(reveal);
+ }
+ frame=requestAnimationFrame(reveal);timer=setTimeout(wipe,3000);
 }
 function start(){
  if(!mobile.matches||started&&!stopped)return;

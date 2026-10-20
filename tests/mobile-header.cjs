@@ -14,8 +14,8 @@ module.exports=async function testMobileHeader(browser,url){
   assert.equal(await p.locator('.header-search-prompt').evaluate(e=>getComputedStyle(e).fontWeight),'500');
   assert.equal(await p.locator('.header-search-brand').isVisible(),true);
   assert.equal(await p.locator('.brand').isVisible(),false);assert.equal(await p.locator('.mobile-menu').isVisible(),false);
-  await p.clock.runFor(900);assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).animationName),'header-brand-reveal');
-  assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).animationDuration),'1.8s');
+  await p.clock.runFor(900);assert.ok(await search.evaluate(e=>{const n=parseFloat(e.style.getPropertyValue('--brand-unrevealed'));return n>40&&n<60;}));
+  assert.notEqual(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).clipPath),'none');
   await p.screenshot({path:`qa-output/header-brand-reveal-${width}.png`});
   await p.clock.runFor(1900);
   assert.equal(await search.evaluate(e=>e.classList.contains('is-wiping')),false);
