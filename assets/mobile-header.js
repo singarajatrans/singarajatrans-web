@@ -19,7 +19,7 @@ function typePrompt(next){
  function type(){
   if(stopped||!mobile.matches)return;
   prompt.textContent=letters.slice(0,++count).join('');
-  timer=setTimeout(count<letters.length?type:cycle,count<letters.length?80:2200);
+  timer=setTimeout(count<letters.length?type:cycle,count<letters.length?110:1800);
  }
  type();
 }
@@ -29,7 +29,7 @@ function cycle(){
  function erase(){
   if(stopped||!mobile.matches)return;
   remaining.pop();prompt.textContent=remaining.join('');
-  if(remaining.length){timer=setTimeout(erase,25);return;}
+  if(remaining.length){timer=setTimeout(erase,35);return;}
   timer=setTimeout(()=>typePrompt((index+1)%messages.id.length),180);
  }
  erase();
@@ -43,7 +43,7 @@ function wipe(){
  phase='wipe';search.classList.add('is-wiping');const start=performance.now();
  function tick(now){
   if(stopped||!mobile.matches)return;
-  const progress=Math.min(1,(now-start)/1500),ease=progress*progress*(3-2*progress),width=copy.clientWidth,x=width+20-(width+40)*ease;
+  const progress=Math.min(1,(now-start)/2300),ease=progress*progress*(3-2*progress),width=copy.clientWidth,x=width+20-(width+40)*ease;
   search.style.setProperty('--car-opacity',Math.min(1,progress*8,(1-progress)*8));search.style.setProperty('--car-x',x+'px');search.style.setProperty('--brand-erased',Math.max(0,width-x)+'px');
   if(progress<1)frame=requestAnimationFrame(tick);
   else{search.classList.remove('is-wiping');typePrompt(0);}
@@ -58,7 +58,7 @@ function labels(){
  dialog.querySelector('label').textContent=text('Salin tautan halaman','Copy page link');
  document.querySelector('#mobile-share-help').textContent=text('Pilih tautan lalu salin melalui menu perangkat Anda.','Select the link and copy it using your device menu.');
  dialog.querySelector('[data-share-close]').setAttribute('aria-label',text('Tutup','Close'));
- if(phase==='prompt'){cancel();renderPrompt();if(!stopped)timer=setTimeout(cycle,2200);}
+ if(phase==='prompt'){cancel();renderPrompt();if(!stopped)timer=setTimeout(cycle,1800);}
 }
 function start(){
  if(!mobile.matches)return;
@@ -69,11 +69,11 @@ function start(){
  timer=setTimeout(wipe,3000);
 }
 // These listeners are registered once; desktop handlers return without doing anything.
-['pointerdown','keydown','wheel'].forEach(type=>document.addEventListener(type,event=>{
+['pointerdown','keydown'].forEach(type=>document.addEventListener(type,event=>{
  // A touch gesture in the page leaves header controls, so keyboard-focus protection must not pin the header.
  const header=document.querySelector('#header');
  if(type==='pointerdown'&&mobile.matches&&!header.contains(event.target)&&header.contains(document.activeElement))document.activeElement.blur();
- stop();
+ if(search.contains(event.target))stop();
 },{passive:true}));
 search.addEventListener('focus',stop);
 // Translation swaps the visible language button; retain keyboard focus on that button.
@@ -105,8 +105,15 @@ dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open'
 new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 mobile.addEventListener('change',()=>{if(mobile.matches)start();else{cancel();stopped=true;search.classList.remove('has-typewriter');if(started)renderPrompt(4);document.querySelectorAll('[data-language]').forEach(button=>button.removeAttribute('aria-label'));if(dialog.open)dialog.close();}});
 reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
-document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){cancel();return;}
+ if(!mobile.matches||stopped||!started||reduced.matches)return;
+ if(phase==='prompt')typePrompt(index);
+ else if(phase==='wipe')wipe();
+ else timer=setTimeout(wipe,800);
+});
 start();
 })();
+
 
 

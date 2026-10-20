@@ -530,13 +530,13 @@ dialog{border-radius:12px}
  .nav-inner{height:60px;width:calc(100% - 32px);gap:10px;padding:10px 0}
  .brand,.mobile-menu{display:none!important}
  .mobile-header-search{display:flex;align-items:center;min-width:0;flex:1;height:36px;padding:0 10px;gap:6px;border:0;border-radius:18px;background:rgba(255,255,255,.92);color:#667085;overflow:hidden}
- .header-search-icon{pointer-events:none;width:18px;height:18px;stroke-width:1.9;color:#667085}
+ .header-search-icon{pointer-events:none;width:20px;height:20px;stroke-width:1.9;color:#667085}
  .header-search-copy{pointer-events:none;position:relative;display:block;flex:1;min-width:0;height:100%;overflow:hidden}
  .header-search-brand{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;gap:4px;clip-path:inset(0 var(--brand-erased,0px) 0 0)}
- .header-search-name{color:var(--mock-red);font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:750;letter-spacing:.35px;white-space:nowrap;animation:header-brand-reveal 1.8s linear both}
- .header-search-car{display:none;position:absolute;left:var(--car-x,110%);top:50%;width:42px;height:24px;transform:translate(-50%,-50%);color:var(--mock-red);opacity:0}
+ .header-search-name{color:var(--mock-red);font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:750;letter-spacing:.2px;white-space:nowrap;animation:header-brand-reveal 1.8s linear both}
+ .header-search-car{display:none;position:absolute;left:var(--car-x,110%);top:50%;width:56px;height:24px;transform:translate(-50%,-50%);color:var(--mock-red);opacity:0}
  .mobile-header-search.is-wiping .header-search-car{display:block;opacity:var(--car-opacity,1)}
- .header-search-prompt{height:100%;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;font-weight:500;line-height:34px;color:#667085}
+ .header-search-prompt{height:100%;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px;font-weight:500;line-height:34px;color:#7a8491}
  .mobile-header-search.has-typewriter .header-search-prompt::after{content:"";display:inline-block;width:2px;height:1.15em;margin-left:2px;vertical-align:-.15em;background:var(--mock-red);animation:header-search-caret .85s steps(1,end) infinite}
  .nav-actions{flex:0 0 auto;gap:10px;margin-left:0}
  .languages{position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:0;border:0;border-radius:18px;background:transparent;overflow:visible}
@@ -556,14 +556,16 @@ dialog{border-radius:12px}
  #mobile-share-url{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:16px}
  #mobile-share-help{font-size:13px;margin:12px 0 0}
 }
-@media(max-width:359px){.header-search-name{font-size:11.5px}}
+@media(max-width:359px){.header-search-name{font-size:12px}}
+@media(max-width:767px){.header-brand-accent{font-family:Georgia,"Times New Roman",serif;font-size:14px;font-style:italic;font-weight:600;letter-spacing:.1px;color:#b66c6f}.header-car-smoke{opacity:0;transform-box:fill-box;transform-origin:center;filter:blur(.25px)}.mobile-header-search.is-wiping .header-car-smoke{animation:header-car-exhaust 1.2s ease-out infinite}}
+@keyframes header-car-exhaust{0%{opacity:0;transform:translate(0,0) scale(.4)}20%{opacity:.3}100%{opacity:0;transform:translate(18px,-5px) scale(1.8)}}
 @keyframes header-brand-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes header-car-wheel{to{transform:rotate(-360deg)}}
 @keyframes header-car-suspension{0%,100%{transform:translateY(0)}50%{transform:translateY(-.45px)}}
-@media(max-width:767px){.mobile-header-search.is-wiping .header-car-wheel{transform-box:fill-box;transform-origin:center;animation:header-car-wheel .42s linear infinite}.mobile-header-search.is-wiping .header-car-chassis{animation:header-car-suspension .24s ease-in-out infinite}}
+@media(max-width:767px){.mobile-header-search.is-wiping .header-car-wheel{transform-box:fill-box;transform-origin:center;animation:header-car-wheel .65s linear infinite}.mobile-header-search.is-wiping .header-car-chassis{animation:header-car-suspension .32s ease-in-out infinite}}
 @keyframes header-search-caret{0%,49%{opacity:1}50%,100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){
- .header-search-name,.header-car-wheel,.header-car-chassis,.header-search-prompt{animation:none!important}
+ .header-search-name,.header-car-wheel,.header-car-chassis,.header-car-smoke,.header-search-prompt{animation:none!important}
  .header-search-car{display:none}
  .service-tabs button{transition:none}
 }
@@ -790,6 +792,7 @@ dialog{border-radius:12px}
 @media(prefers-reduced-motion:reduce){
  .mobile-bottom-item.is-nav-live::before,.mobile-bottom-item.is-nav-live::after{animation:none!important;opacity:.5;transform:scale(1)}
 }
+
 
 
 

@@ -10,7 +10,7 @@ module.exports=async function testMobileHeader(browser,url){
   assert.equal(await search.evaluate(e=>e.offsetHeight),36);
   assert.equal(await p.locator('.header-search-mark').count(),0,'Search header must not contain the old logo');
   assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).color),await search.evaluate(e=>getComputedStyle(e).getPropertyValue('--mock-red').trim()).then(v=>v==='#c85759'?'rgb(200, 87, 89)':v));
-  assert.equal(await p.locator('.header-search-icon').evaluate(e=>getComputedStyle(e).width),'18px');
+  assert.equal(await p.locator('.header-search-icon').evaluate(e=>getComputedStyle(e).width),'20px');
   assert.equal(await p.locator('.header-search-prompt').evaluate(e=>getComputedStyle(e).fontWeight),'500');
   assert.equal(await p.locator('.header-search-brand').isVisible(),true);
   assert.equal(await p.locator('.brand').isVisible(),false);assert.equal(await p.locator('.mobile-menu').isVisible(),false);
@@ -26,16 +26,18 @@ module.exports=async function testMobileHeader(browser,url){
   assert.ok(mid[0]<start[0]&&mid[1]>start[1],'Wipe must follow car right to left');await p.screenshot({path:`qa-output/header-car-motion-${width}.png`});
   assert.equal(await p.locator('.header-car-wheel').first().evaluate(e=>getComputedStyle(e).animationName),'header-car-wheel');
   assert.equal(await p.locator('.header-car-chassis').evaluate(e=>getComputedStyle(e).animationName),'header-car-suspension');
-  await p.clock.runFor(900);assert.equal(await p.locator('.header-search-brand').isVisible(),false);
+  assert.equal(await p.locator('.header-car-smoke').count(),3);
+  assert.equal(await p.locator('.header-car-smoke').first().evaluate(e=>getComputedStyle(e).animationName),'header-car-exhaust');
+  await p.clock.runFor(1800);assert.equal(await p.locator('.header-search-brand').isVisible(),false);
   const firstTyped=await p.locator('.header-search-prompt').innerText();
   assert.ok(firstTyped.length>0&&firstTyped.length<'Cari Travel Shuttle'.length&&'Cari Travel Shuttle'.startsWith(firstTyped),'First prompt must type from the left after the car passes');
   assert.equal(await p.locator('.header-search-car').isVisible(),false);
   await p.screenshot({path:`qa-output/header-first-typing-${width}.png`});
-  await p.clock.runFor(2000);assert.equal(await p.locator('.header-search-prompt').innerText(),'Cari Travel Shuttle');
+  await p.clock.runFor(2600);assert.equal(await p.locator('.header-search-prompt').innerText(),'Cari Travel Shuttle');
   // Reference behavior: erase from the right, pause, then type the next phrase.
   const prompt=p.locator('.header-search-prompt'),full='Cari Travel Shuttle';
   const searchBox=await search.boundingBox();
-  await p.clock.runFor(1800);const deleting=await prompt.innerText();
+  await p.clock.runFor(1200);const deleting=await prompt.innerText();
   assert.ok(deleting.length>0&&deleting.length<full.length&&full.startsWith(deleting),'Prompt must erase letters from the right');
   assert.equal(await search.getAttribute('aria-label'),full,'Accessible label must remain a complete phrase');
   await p.screenshot({path:`qa-output/header-typewriter-delete-${width}.png`});
@@ -45,7 +47,7 @@ module.exports=async function testMobileHeader(browser,url){
   assert.deepEqual(await search.boundingBox(),searchBox,'Typing must not resize the search header');
   assert.equal(await prompt.evaluate(e=>getComputedStyle(e,'::after').width),'2px');
   await p.screenshot({path:`qa-output/header-typewriter-type-${width}.png`});
-  await p.clock.runFor(1200);assert.equal(await prompt.innerText(),next);
+  await p.clock.runFor(1800);assert.equal(await prompt.innerText(),next);
   const serviceList=['shuttle','airport','charter','motor'];
   const shape=await p.locator('.service-tabs button').evaluateAll(a=>a.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return [r.width,r.height,s.borderRadius,s.padding,s.gap]}));
   shape.forEach(s=>assert.deepEqual(s,shape[0]));assert.equal(shape[0][1],88);
@@ -88,15 +90,17 @@ module.exports=async function testMobileHeader(browser,url){
   const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.equal(actions.length,2,'Language toggle and mobile header action must both exist');assert.deepEqual(actions,[[36,36],[36,36]]);
   // Each animated prompt is clicked at its real index, then must stop cycling.
   const promptLabels=['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'];
-  await p.reload({waitUntil:'networkidle'});await p.clock.runFor(4600);
+  await p.reload({waitUntil:'networkidle'});await p.clock.runFor(5500);
+  await p.locator('#tab-shuttle').click();
+  assert.equal(await search.evaluate(e=>e.classList.contains('has-typewriter')),true,'Touching a service must not stop header typing');
   for(let step=0;step<300&&await prompt.innerText()!==promptLabels[4];step++)await p.clock.runFor(100);
   assert.equal(await prompt.innerText(),promptLabels[4]);
   for(let step=0;step<100&&await prompt.innerText()!==promptLabels[0];step++)await p.clock.runFor(100);
   assert.equal(await prompt.innerText(),promptLabels[0],'Final prompt must loop back to the first phrase');
 
   for(let index=0;index<5;index++){
-   await p.reload({waitUntil:'networkidle'});await p.clock.runFor(4600);
-   for(let step=0;step<220&&await prompt.innerText()!==promptLabels[index];step++)await p.clock.runFor(100);
+   await p.reload({waitUntil:'networkidle'});await p.clock.runFor(5500);
+   for(let step=0;step<400&&await prompt.innerText()!==promptLabels[index];step++)await p.clock.runFor(100);
    assert.equal(await prompt.innerText(),promptLabels[index]);
    const label=await search.getAttribute('aria-label');await search.click();await p.clock.runFor(600);
    const selectedService=await p.locator('body').getAttribute('data-service');
@@ -129,6 +133,7 @@ module.exports=async function testMobileHeader(browser,url){
   await p.close();console.log('PASS mobile header: opening/wipe, shortcuts, geometry, carousel, language, share, focus and reduced motion at '+width);
  }
 };
+
 
 
 
