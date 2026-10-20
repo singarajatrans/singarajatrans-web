@@ -1,5 +1,6 @@
 const assert=require('node:assert/strict');
 module.exports=async function testMobileHeader(browser,url){
+ require('node:fs').mkdirSync('qa-output',{recursive:true});
  for(const width of [360,390,412]){
   const p=await browser.newPage({viewport:{width,height:844},hasTouch:true,isMobile:true,ignoreHTTPSErrors:true}),errors=[];
   p.on('pageerror',e=>errors.push(e.message));
@@ -16,6 +17,20 @@ module.exports=async function testMobileHeader(browser,url){
   await p.clock.runFor(450);const mid=await search.evaluate(e=>[parseFloat(e.style.getPropertyValue('--car-x')),parseFloat(e.style.getPropertyValue('--brand-erased'))]);
   assert.ok(mid[0]<start[0]&&mid[1]>start[1],'Wipe must follow car right to left');await p.screenshot({path:`/tmp/header-wipe-${width}.png`});
   await p.clock.runFor(900);assert.equal(await p.locator('.header-search-brand').isVisible(),false);assert.equal(await p.locator('.header-search-prompt').innerText(),'Cari Travel Shuttle');
+  // Reference behavior: erase from the right, pause, then type the next phrase.
+  const prompt=p.locator('.header-search-prompt'),full='Cari Travel Shuttle';
+  const searchBox=await search.boundingBox();
+  await p.clock.runFor(2300);const deleting=await prompt.innerText();
+  assert.ok(deleting.length>0&&deleting.length<full.length&&full.startsWith(deleting),'Prompt must erase letters from the right');
+  assert.equal(await search.getAttribute('aria-label'),full,'Accessible label must remain a complete phrase');
+  await p.screenshot({path:`qa-output/header-typewriter-delete-${width}.png`});
+  await p.clock.runFor(1200);const typing=await prompt.innerText(),next='Cari Airport Transfer';
+  assert.ok(typing.length>0&&typing.length<next.length&&next.startsWith(typing),'Next prompt must type progressively');
+  assert.equal(await search.getAttribute('aria-label'),next);
+  assert.deepEqual(await search.boundingBox(),searchBox,'Typing must not resize the search header');
+  assert.equal(await prompt.evaluate(e=>getComputedStyle(e,'::after').width),'1px');
+  await p.screenshot({path:`qa-output/header-typewriter-type-${width}.png`});
+  await p.clock.runFor(700);assert.equal(await prompt.innerText(),next);
   const serviceList=['shuttle','airport','charter','motor'];
   const shape=await p.locator('.service-tabs button').evaluateAll(a=>a.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return [r.width,r.height,s.borderRadius,s.padding,s.gap]}));
   shape.forEach(s=>assert.deepEqual(s,shape[0]));assert.equal(shape[0][1],88);
@@ -57,8 +72,11 @@ module.exports=async function testMobileHeader(browser,url){
   await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'id');assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'id');await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true);
   const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.equal(actions.length,2,'Language toggle and mobile header action must both exist');assert.deepEqual(actions,[[36,36],[36,36]]);
   // Each animated prompt is clicked at its real index, then must stop cycling.
+  const promptLabels=['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'];
   for(let index=0;index<5;index++){
-   await p.reload({waitUntil:'networkidle'});await p.clock.runFor(4600+index*2800);
+   await p.reload({waitUntil:'networkidle'});await p.clock.runFor(4600);
+   for(let step=0;step<220&&await prompt.innerText()!==promptLabels[index];step++)await p.clock.runFor(100);
+   assert.equal(await prompt.innerText(),promptLabels[index]);
    const label=await search.getAttribute('aria-label');await search.click();await p.clock.runFor(600);
    assert.equal(await p.locator('body').getAttribute('data-service'),serviceList[index]||'shuttle',label);
    assert.equal(await p.evaluate(()=>document.activeElement.id||document.activeElement.closest('#motor-entry')?.id),index===3?'motor-entry':'origin');
@@ -85,3 +103,4 @@ module.exports=async function testMobileHeader(browser,url){
   await p.close();console.log('PASS mobile header: opening/wipe, shortcuts, geometry, carousel, language, share, focus and reduced motion at '+width);
  }
 };
+
