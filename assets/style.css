@@ -1059,6 +1059,12 @@ dialog{border-radius:12px}
   align-items:center;
   margin-bottom:12px;
  }
+ .mobile-home-flow .mockup-heading h2{
+  font-size:22px;
+  line-height:1.24;
+  letter-spacing:-.45px;
+  font-weight:750;
+ }
  .destination-section .mockup-heading p{display:none}
  .destination-section .section-action{
   font-size:12px;
