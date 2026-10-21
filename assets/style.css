@@ -534,7 +534,7 @@ dialog{border-radius:12px}
  html.native-page-scroll body{position:static;height:auto;min-height:100%;overflow:visible;-webkit-overflow-scrolling:auto;border-radius:0;transition:none}
  html.native-page-scroll:has(body.modal-open){overflow-y:hidden}
  /* Identical corner geometry on every mobile engine, independent of the scrolling surface. */
- html{--mobile-viewport-radius:28px}
+ html{--mobile-viewport-radius:26px}
  html::before,html::after{content:"";position:fixed;top:0;width:var(--mobile-viewport-radius);height:var(--mobile-viewport-radius);z-index:19;pointer-events:none;opacity:0;background:var(--mock-red);-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M0%200H24A24%2024%200%200%200%200%2024Z%22%2F%3E%3C%2Fsvg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M0%200H24A24%2024%200%200%200%200%2024Z%22%2F%3E%3C%2Fsvg%3E") 0 0/100% 100% no-repeat;transition:opacity .26s ease}
  html::before{left:0}
  html::after{right:0;transform:scaleX(-1)}
