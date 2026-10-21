@@ -96,18 +96,18 @@ const pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
        if(await p.evaluate(()=>document.querySelector('#header').classList.contains('is-hidden')&&getComputedStyle(document.documentElement,'::before').opacity==='1'))break;
       }
       assert.equal(await p.evaluate(()=>getComputedStyle(document.body).borderTopLeftRadius),'0px','Scroll layer must stay unclipped on every engine');
-      assert.deepEqual(await p.evaluate(()=>{const s=getComputedStyle(document.documentElement,'::before');return [s.width,s.height,s.pointerEvents]}),['26px','26px','none']);
+      assert.deepEqual(await p.evaluate(()=>{const s=getComputedStyle(document.documentElement,'::before');return [s.width,s.height,s.pointerEvents]}),['25px','25px','none']);
       await p.screenshot({path:prefix+'-radius.png'});
       await p.evaluate(()=>{const e=document.createElement('div');e.id='corner-qa-surface';e.style.cssText='position:fixed;inset:0;z-index:18;background:white;pointer-events:none';document.body.append(e);});
       async function corner(x){
-       const png=await p.screenshot({clip:{x,y:0,width:26,height:26},scale:'css'});
-       return p.evaluate(async data=>{const image=new Image();image.src=data;await image.decode();const canvas=document.createElement('canvas');canvas.width=canvas.height=26;const c=canvas.getContext('2d');c.drawImage(image,0,0);const pixels=c.getImageData(0,0,26,26).data;return Array.from({length:676},(_,i)=>pixels[i*4+1]<180?1:0);},'data:image/png;base64,'+png.toString('base64'));
+       const png=await p.screenshot({clip:{x,y:0,width:25,height:25},scale:'css'});
+       return p.evaluate(async data=>{const image=new Image();image.src=data;await image.decode();const canvas=document.createElement('canvas');canvas.width=canvas.height=25;const c=canvas.getContext('2d');c.drawImage(image,0,0);const pixels=c.getImageData(0,0,25,25).data;return Array.from({length:625},(_,i)=>pixels[i*4+1]<180?1:0);},'data:image/png;base64,'+png.toString('base64'));
       }
-      const left=await corner(0),right=await corner(width-26);
+      const left=await corner(0),right=await corner(width-25);
       const painted=left.reduce((a,b)=>a+b,0);
-      assert.ok(painted>125&&painted<175,'Corner mask must render the 26px circular contour: '+painted);
-      assert.equal(left[0],1);assert.equal(left[675],0);
-      const mirrored=right.map((_,i)=>right[Math.floor(i/26)*26+25-i%26]);
+      assert.ok(painted>125&&painted<175,'Corner mask must render the 25px circular contour: '+painted);
+      assert.equal(left[0],1);assert.equal(left[624],0);
+      const mirrored=right.map((_,i)=>right[Math.floor(i/25)*25+24-i%25]);
       assert.ok(left.filter((v,i)=>v!==mirrored[i]).length<=6,'Left and right corner contours differ');
       if(cornerReference.pixels)assert.ok(left.filter((v,i)=>v!==cornerReference.pixels[i]).length<=12,'Rendered corner contour differs across mobile engines');
       else cornerReference.pixels=left;
