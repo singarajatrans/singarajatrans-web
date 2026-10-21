@@ -167,7 +167,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    if(width<768){
     assert.equal(await page.locator('#faq').isVisible(),false,'FAQ should stay out of mobile Home');
     assert.equal(await page.locator('footer .footer-grid').isVisible(),false,'Full footer navigation should stay out of mobile Home');
-    assert.equal(await page.locator('footer .footer-bottom').isVisible(),true,'Compact mobile footer should remain visible');
+    assert.equal(await page.locator('footer .footer-bottom').isVisible(),false,'Mobile Home footer text should stay hidden');
     await page.locator('.mobile-bottom-nav [data-check-booking]').click();
    }else{
     await page.locator('#faq details').first().locator('summary').click();assert.equal(await page.locator('#faq details').first().getAttribute('open')!==null,true);
