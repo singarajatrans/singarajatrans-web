@@ -70,11 +70,6 @@ function initReviewCarousel(){
  },{passive:true});
  window.addEventListener('resize',update,{passive:true});
 
- const autoplay=window.setInterval(()=>{
-  if(document.hidden||!mobile.matches)return;
-  scrollToCard((active+1)%cards.length);
- },4000);
- window.addEventListener('pagehide',()=>window.clearInterval(autoplay),{once:true});
  update();
 }
 

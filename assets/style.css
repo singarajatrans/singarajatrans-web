@@ -883,6 +883,7 @@ dialog{border-radius:12px}
  .mobile-trust-item small{font-size:8px}
 }
 
+ .review-copy .mobile-copy{display:none}
 /* Mobile Home app-like flow: Trust → Routes → Reviews → Explore */
 .mobile-copy{display:none}
 .mobile-home-flow{display:contents}
@@ -981,29 +982,7 @@ dialog{border-radius:12px}
   margin-top:2px;
   font-size:10px;
  }
- .route-select{
-  position:static;
-  width:100%;
-  min-width:0;
-  min-height:44px;
-  margin-top:12px;
-  padding:9px 12px;
-  border-radius:10px;
-  font-size:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  background:var(--mock-red);
-  color:#fff;
-  border:1px solid var(--mock-red);
-  font-weight:700;
- }
- .route-select span{
-  display:block;
-  font-size:14px;
-  line-height:1;
- }
+ .route-select{display:none}
  .route-arrow{display:none!important}
 
  /* Customer reviews: bordered mobile cards with a next-card preview. */
@@ -1016,7 +995,6 @@ dialog{border-radius:12px}
  }
  .reviews-section .mockup-heading{align-items:center;margin-bottom:12px}
  .reviews-section .mockup-heading p{display:none}
- .mobile-review-action{font-size:12px;margin-top:0}
  .review-grid{
   grid-template-columns:none;
   grid-auto-flow:column;
@@ -1031,6 +1009,8 @@ dialog{border-radius:12px}
   -webkit-overflow-scrolling:touch;
  }
  .review-grid::-webkit-scrollbar{display:none}
+ .review-copy .desktop-copy{display:none}
+ .review-copy .mobile-copy{display:block}
  .review-card{
   position:relative;
   display:flex;
@@ -1039,13 +1019,14 @@ dialog{border-radius:12px}
   gap:0;
   min-height:160px;
   padding:16px;
-  border:1px solid #b9b9b9;
-  border-radius:20px;
+  border:1px solid #e7e9ed;
+  border-radius:14px;
   background:#fff;
-  box-shadow:none;
+  box-shadow:0 4px 16px rgba(20,29,44,.07);
   scroll-snap-align:start;
   scroll-snap-stop:always;
  }
+ .review-card:hover{box-shadow:0 5px 16px rgba(19,28,45,.10);border-color:#d3d7de}
  .review-card::before,.review-card::after{content:none}
  .reviews-section .quote-mark{
   position:absolute;
