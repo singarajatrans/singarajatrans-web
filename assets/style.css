@@ -1038,88 +1038,130 @@ dialog{border-radius:12px}
   position:relative;
   overflow:hidden;
   grid-template-columns:1fr;
-  min-height:136px;
-  padding:17px;
-  border:1px solid rgba(35,42,52,.10);
-  border-radius:18px;
-  background:linear-gradient(180deg,#fff 0%,#fdfdfd 100%);
-  box-shadow:0 10px 26px rgba(31,36,48,.075),0 2px 7px rgba(31,36,48,.035);
+  min-height:158px;
+  padding:15px;
+  border:1px solid rgba(200,87,89,.16);
+  border-radius:22px;
+  background:
+   linear-gradient(145deg,#f9e6e7 0%,#fbf0f0 48%,#fff 100%);
+  box-shadow:0 16px 38px rgba(31,36,48,.10),0 4px 12px rgba(31,36,48,.045);
   scroll-snap-align:start;
   scroll-snap-stop:always;
  }
  .review-card::before{
   content:"";
   position:absolute;
-  inset:0 auto 0 0;
-  width:3px;
-  background:linear-gradient(180deg,var(--mock-red),rgba(200,87,89,.42));
-  opacity:.92;
+  top:-34px;
+  right:-28px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(200,87,89,.18) 0%,rgba(200,87,89,0) 70%);
+  pointer-events:none;
  }
- .review-card::after{content:none}
+ .review-card::after{
+  content:"“";
+  position:absolute;
+  right:13px;
+  bottom:-22px;
+  color:rgba(174,73,75,.075);
+  font:800 96px/1 Georgia,serif;
+  pointer-events:none;
+ }
  .reviews-section .quote-mark{display:none}
  .review-card-inner{
+  position:relative;
+  z-index:1;
   display:grid;
-  grid-template-columns:44px minmax(0,1fr);
+  grid-template-columns:48px minmax(0,1fr);
   gap:12px;
   align-items:start;
  }
  .review-avatar{
   position:relative;
   display:block;
-  width:44px;
-  height:44px;
-  border:1px solid rgba(200,87,89,.15);
+  width:48px;
+  height:48px;
+  margin-top:2px;
+  border:3px solid rgba(255,255,255,.94);
   border-radius:50%;
-  background:linear-gradient(145deg,#f9ecec,#f2dfe0);
-  box-shadow:0 4px 12px rgba(31,36,48,.07);
+  background:linear-gradient(145deg,#d56b6d,#ad4a4c);
+  box-shadow:0 7px 17px rgba(104,39,41,.20);
  }
  .review-avatar::before{
   content:"";
   position:absolute;
-  top:10px;
+  top:9px;
   left:50%;
-  width:12px;
-  height:12px;
+  width:13px;
+  height:13px;
   border-radius:50%;
-  background:rgba(174,73,75,.72);
+  background:#fff;
   transform:translateX(-50%);
+  opacity:.96;
  }
  .review-avatar::after{
   content:"";
   position:absolute;
   left:50%;
-  bottom:8px;
-  width:23px;
-  height:12px;
-  border-radius:12px 12px 8px 8px;
-  background:rgba(174,73,75,.72);
+  bottom:7px;
+  width:25px;
+  height:13px;
+  border-radius:13px 13px 9px 9px;
+  background:#fff;
   transform:translateX(-50%);
+  opacity:.96;
  }
- .review-copy{min-width:0}
+ .review-copy{
+  position:relative;
+  min-width:0;
+  min-height:126px;
+  padding:14px 14px 13px;
+  border:1px solid rgba(31,36,48,.075);
+  border-radius:16px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 7px 18px rgba(31,36,48,.055),inset 0 1px 0 rgba(255,255,255,.96);
+ }
+ .review-copy::before{
+  content:"";
+  position:absolute;
+  top:17px;
+  left:-7px;
+  width:12px;
+  height:12px;
+  border-left:1px solid rgba(31,36,48,.075);
+  border-bottom:1px solid rgba(31,36,48,.075);
+  background:#fff;
+  transform:rotate(45deg);
+ }
  .review-card p{
+  position:relative;
+  z-index:1;
   max-width:none;
-  margin:1px 0 0;
-  color:#2d333d;
+  margin:0;
+  color:#272d36;
   font-size:14px;
-  line-height:1.52;
-  font-weight:620;
+  line-height:1.55;
+  font-weight:610;
   letter-spacing:-.08px;
  }
  .review-card small{
+  position:relative;
+  z-index:1;
   display:inline-flex;
   width:max-content;
   max-width:100%;
   align-items:center;
   min-height:24px;
-  margin-top:12px;
+  margin-top:14px;
   padding:4px 9px;
-  border:1px solid rgba(35,42,52,.055);
+  border:1px solid rgba(200,87,89,.10);
   border-radius:999px;
-  background:#f7f8f9;
-  color:#747c87;
+  background:#fbefef;
+  color:#9a5052;
   font-size:10.5px;
   line-height:1.35;
-  font-weight:560;
+  font-weight:650;
  }
  .review-indicator{
   display:flex;
