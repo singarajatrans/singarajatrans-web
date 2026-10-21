@@ -18,7 +18,8 @@ function bindTapHaptics(){
 
 function initReviewCarousel(){
  const grid=one('.review-grid');
- if(!grid)return;
+ const mobile=window.matchMedia('(max-width:767px)');
+ if(!grid||!mobile.matches)return;
  const cards=all('.review-card',grid);
  if(cards.length<2)return;
 
@@ -30,17 +31,22 @@ function initReviewCarousel(){
   grid.insertAdjacentElement('afterend',indicator);
  }
 
+ let active=0;
+ const scrollToCard=(index,behavior='smooth')=>{
+  const card=cards[index];
+  if(!card)return;
+  const gridRect=grid.getBoundingClientRect();
+  const cardRect=card.getBoundingClientRect();
+  const left=grid.scrollLeft+(cardRect.left-gridRect.left);
+  grid.scrollTo({left,behavior});
+ };
+
  indicator.replaceChildren(...cards.map((card,index)=>{
   const button=document.createElement('button');
   button.type='button';
   button.setAttribute('aria-label',`Tampilkan ulasan ${index+1} dari ${cards.length}`);
   button.setAttribute('aria-pressed',index===0?'true':'false');
-  button.addEventListener('click',()=>{
-   const gridRect=grid.getBoundingClientRect();
-   const cardRect=card.getBoundingClientRect();
-   const left=grid.scrollLeft+(cardRect.left-gridRect.left);
-   grid.scrollTo({left,behavior:'smooth'});
-  });
+  button.addEventListener('click',()=>scrollToCard(index));
   return button;
  }));
 
@@ -48,7 +54,6 @@ function initReviewCarousel(){
  const update=()=>{
   const gridRect=grid.getBoundingClientRect();
   const center=gridRect.left+gridRect.width/2;
-  let active=0;
   let nearest=Infinity;
   cards.forEach((card,index)=>{
    const rect=card.getBoundingClientRect();
@@ -64,6 +69,12 @@ function initReviewCarousel(){
   frame=requestAnimationFrame(()=>{frame=0;update();});
  },{passive:true});
  window.addEventListener('resize',update,{passive:true});
+
+ const autoplay=window.setInterval(()=>{
+  if(document.hidden||!mobile.matches)return;
+  scrollToCard((active+1)%cards.length);
+ },4000);
+ window.addEventListener('pagehide',()=>window.clearInterval(autoplay),{once:true});
  update();
 }
 
