@@ -1115,10 +1115,13 @@ dialog{border-radius:12px}
   display:block;
   grid-column:auto;
  }
- .destination-card>img{
+ .destination-card>img,
+ .destination-card:last-child>img{
   display:block;
   width:100%;
-  height:clamp(104px,29vw,118px);
+  height:112px;
+  min-height:112px;
+  max-height:112px;
   aspect-ratio:auto;
   object-fit:cover;
  }
@@ -1136,7 +1139,7 @@ dialog{border-radius:12px}
   margin-top:4px!important;
   font-size:11px!important;
  }
- .destination-card p svg{width:13px;height:13px}
+ .destination-card p svg{width:13px;height:13px;flex:0 0 13px}
 }
 @media(max-width:360px){
  .route-section,
