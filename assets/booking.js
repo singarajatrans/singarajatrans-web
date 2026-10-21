@@ -92,6 +92,9 @@ function setService(next,{focus=false,animate=true}={}){
  if(focus){$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#origin').focus({preventScroll:true});}
 }
 let routeFilter='all';
+let mobileRouteLabel='all';
+const routeMobileMedia=window.matchMedia('(max-width:767px)');
+routeMobileMedia.addEventListener('change',()=>renderRoutes());
 function renderRoutes(){
  const popular=[['Singaraja','Denpasar'],['Singaraja','Gilimanuk'],['Singaraja','Bandara Ngurah Rai'],['Denpasar','Karangasem'],['Denpasar','Gilimanuk']];
  const visuals={
@@ -101,11 +104,11 @@ function renderRoutes(){
   'Denpasar|Karangasem':'assets/images/jatiluwih.webp',
   'Denpasar|Gilimanuk':'assets/images/lovina.webp'
  };
- const cards=popular.filter(([from,to])=>routeFilter==='all'||from===routeFilter||to===routeFilter).map(([from,to])=>{
+ const cards=popular.filter(([from,to])=>routeMobileMedia.matches?(mobileRouteLabel==='all'||(mobileRouteLabel==='airport')===(to==='Bandara Ngurah Rai')):(routeFilter==='all'||from===routeFilter||to===routeFilter)).map(([from,to])=>{
   const r=C.routes.find(r=>r.from===from&&r.to===to);if(!r)return '';
   const key=from+'|'+to,img=visuals[key]||'assets/images/hero.webp',airport=to==='Bandara Ngurah Rai';
   const labelTo=airport?t('Bandara','Airport'):to;
-  return `<article class="route-card" data-from="${escape(from)}" data-to="${escape(to)}"><div class="route-photo-wrap"><img class="route-photo" src="${img}" alt="${escape(t('Ilustrasi rute ','Route illustration ')+from+' '+labelTo)}" width="600" height="400" loading="lazy"><span class="route-photo-label">${airport?'Airport Transfer':'Travel Shuttle'}</span><button type="button" class="route-favorite" data-route-favorite="${escape(key)}" aria-label="${escape(t('Favoritkan rute ','Favorite route ')+from+' → '+labelTo)}" aria-pressed="false" title="${t('Favorit disimpan di perangkat ini','Favorite saved on this device')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button></div><div class="route-card-body"><h3 class="route-path"><span>${escape(from)}</span>${icon('arrow')}<svg class="route-direction" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M7 8l-4 4 4 4m10-8 4 4-4 4"/></svg><span>${escape(labelTo)}</span></h3><p class="route-note">${icon(airport?'plane':'car')}<span>${airport?'Airport Transfer':'Travel Shuttle'}</span></p><div class="route-fare"><small>${t('Mulai dari','From')}</small>${Number.isFinite(r.oldPrice)&&r.oldPrice>r.price?`<del class="route-old-price mobile-copy">${money(r.oldPrice)}</del>`:`<del class="route-old-price mobile-copy" title="Placeholder harga lama, belum ditetapkan" aria-label="Contoh harga lama, belum ditetapkan">${money(r.price+10000)}</del>`}<div><strong>${money(r.price)}</strong><span>/ ${airport?t('mobil','vehicle'):t('orang','person')}</span></div></div><button type="button" class="button primary route-select" data-route="${escape(from)}|${escape(to)}">${t('Pilih Rute','Choose Route')} <span aria-hidden="true">→</span></button></div></article>`;
+  return `<article class="route-card" data-from="${escape(from)}" data-to="${escape(to)}"><div class="route-photo-wrap"><img class="route-photo" src="${img}" alt="${escape(t('Ilustrasi rute ','Route illustration ')+from+' '+labelTo)}" width="600" height="400" loading="lazy"><span class="route-photo-label" data-service-label="${airport?'airport':'shuttle'}">${airport?'Airport Transfer':'Travel Shuttle'}</span><button type="button" class="route-favorite" data-route-favorite="${escape(key)}" aria-label="${escape(t('Favoritkan rute ','Favorite route ')+from+' → '+labelTo)}" aria-pressed="false" title="${t('Favorit disimpan di perangkat ini','Favorite saved on this device')}"><span class="material-symbols-rounded" aria-hidden="true">bookmark_heart</span></button></div><div class="route-card-body"><h3 class="route-path"><span>${escape(from)}</span>${icon('arrow')}<svg class="route-direction" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M7 8l-4 4 4 4m10-8 4 4-4 4"/></svg><span>${escape(labelTo)}</span></h3><p class="route-note">${icon(airport?'plane':'car')}<span>${airport?'Airport Transfer':'Travel Shuttle'}</span></p><div class="route-fare"><small>${t('Mulai dari','From')}</small>${Number.isFinite(r.oldPrice)&&r.oldPrice>r.price?`<del class="route-old-price mobile-copy">${money(r.oldPrice)}</del>`:`<del class="route-old-price mobile-copy" title="Placeholder harga lama, belum ditetapkan" aria-label="Contoh harga lama, belum ditetapkan">${money(r.price+10000)}</del>`}<div><strong>${money(r.price)}</strong><span>/ ${airport?t('mobil','vehicle'):t('orang','person')}</span></div></div><button type="button" class="button primary route-select" data-route="${escape(from)}|${escape(to)}">${t('Pilih Rute','Choose Route')} <span aria-hidden="true">→</span></button></div></article>`;
  }).join('');
  $('#route-cards').innerHTML=cards;
  all('[data-route-favorite]').forEach(button=>{let saved=false;try{saved=localStorage.getItem('singarajatrans:route-favorite:'+button.dataset.routeFavorite)==='1';}catch{}button.setAttribute('aria-pressed',String(saved));});
@@ -186,6 +189,12 @@ $('#check-form').addEventListener('submit',e=>{
 });
 $('#check-form').addEventListener('input',()=>$('#check-link')?.remove());
 $('#route-cards').addEventListener('click',e=>{const b=e.target.closest('[data-route]');if(!b)return;setService('shuttle');const [from,to]=b.dataset.route.split('|');$('#origin').value=from;$('#destination').value=to;$('#pesan').scrollIntoView({behavior:'smooth',block:'start'});$('#date').focus({preventScroll:true});});
+$('.route-label-filters')?.addEventListener('click',e=>{
+ const button=e.target.closest('[data-route-label]');if(!button)return;
+ mobileRouteLabel=button.dataset.routeLabel;
+ all('[data-route-label]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+ renderRoutes();
+});
 $('.route-filters')?.addEventListener('click',e=>{const b=e.target.closest('[data-route-filter]');if(!b)return;routeFilter=b.dataset.routeFilter;all('[data-route-filter]').forEach(x=>x.classList.toggle('active',x===b));renderRoutes();});
 $('[data-results-back]')?.addEventListener('click',()=>$('#edit-search').click());
 $('#result-list').addEventListener('click',e=>{const b=e.target.closest('[data-select-trip]');if(b){openTrip(Number(b.dataset.selectTrip));return;}if(e.target.closest('[data-edit-empty]'))$('#edit-search').click();});

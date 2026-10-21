@@ -933,7 +933,7 @@ dialog{border-radius:12px}
   font-weight:700;
  }
  .route-carousel{
-  grid-auto-columns:72%;
+  grid-auto-columns:56%;
   gap:12px;
   margin:0;
   padding:0 16px 2px 0;
@@ -980,7 +980,7 @@ dialog{border-radius:12px}
  }
  .route-fare strong{
   display:inline;
-  font-size:20px;
+  font-size:16px;
   line-height:1.1;
  }
  .route-fare span{
@@ -1017,11 +1017,12 @@ dialog{border-radius:12px}
  }
  .review-grid::-webkit-scrollbar{display:none}
  .review-desktop{display:none}
- .review-mobile{display:flex;flex:1;flex-direction:column;min-width:0;position:relative;z-index:1}
+ .review-mobile{display:grid;grid-template-rows:auto 1fr auto;flex:1;min-width:0;position:relative;z-index:1}
+ .review-message{display:flex;flex-direction:column;justify-content:center;min-height:76px;padding-block:12px}
  .review-card{
   position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;
   min-height:0;padding:12px;border:1px solid #ededed;border-radius:14px;
-  background:#fff;box-shadow:0 2px 5px rgba(20,29,44,.10);
+  background:linear-gradient(135deg,#fafcfb,#f3f7f4);box-shadow:0 2px 5px rgba(20,29,44,.10);
   scroll-snap-align:start;scroll-snap-stop:always;
  }
  .review-card:hover{box-shadow:0 2px 5px rgba(20,29,44,.10);border-color:#ededed}
@@ -1037,7 +1038,7 @@ dialog{border-radius:12px}
  .reviewer-name{color:#192126;font-size:13px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
  .review-stars{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;border-radius:999px;padding:3px 6px;background:#edf8ef;color:#008c28;font-size:11px;line-height:1.25}
  .review-stars strong{font-size:11px;font-weight:650}
- .review-title{margin:8px 0 4px;color:#242424;font-size:13px;font-weight:650;line-height:1.4}
+ .review-title{margin:0 0 4px;color:#242424;font-size:13px;font-weight:650;line-height:1.4}
  .review-card .review-description{margin:0;color:#323638;font-size:13px;font-weight:400;line-height:1.6;overflow-wrap:anywhere}
  .review-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px;padding-top:0}
  .review-date{align-self:flex-end;font-size:11px;line-height:1.4;color:#737b80}
@@ -1192,11 +1193,11 @@ dialog{border-radius:12px}
  .route-section,
  .reviews-section,
  .destination-section>.container{width:calc(100% - 24px)}
- .route-carousel{grid-auto-columns:78%;gap:10px}
+ .route-carousel{grid-auto-columns:56%;gap:10px}
  .route-photo{height:104px}
  .route-card-body{padding:12px;min-height:168px}
  .route-path{font-size:14px}
- .route-fare strong{font-size:19px}
+ .route-fare strong{font-size:16px}
  .destination-grid{grid-auto-columns:74%;gap:10px}
 }
 
@@ -1237,7 +1238,8 @@ dialog{border-radius:12px}
  .route-card,.route-card:hover{box-shadow:0 2px 6px rgba(20,29,44,.08)}
  .route-photo-label{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.9);color:#38413e;font-size:11px;font-weight:600;max-width:calc(100% - 70px)}
  .route-favorite{position:absolute;top:6px;right:6px;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);color:#8f2932;box-shadow:0 1px 4px #0001}
- .route-favorite svg{width:21px;height:21px}.route-favorite[aria-pressed="true"] svg{fill:currentColor}
+ .route-favorite .material-symbols-rounded{font-size:23px;font-variation-settings:"FILL" 0,"wght" 400}
+ .route-favorite[aria-pressed="true"] .material-symbols-rounded{font-variation-settings:"FILL" 1,"wght" 400}
  .route-section .route-path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:0;line-height:1.4}
  .route-section .route-path svg{display:none;width:16px;height:16px;flex:0 0 16px}
  .route-section .route-path svg.route-direction{display:block}
@@ -1245,4 +1247,20 @@ dialog{border-radius:12px}
  .route-section .route-note{display:none}
  .route-section .route-fare{margin-top:12px}
  .route-old-price{display:block;color:#7a828c;font-size:11px;font-weight:600;margin-bottom:2px}
+}
+
+/* Mobile card headings and label filters. */
+.route-label-filters{display:none}
+@media(max-width:767px){
+ .mobile-home-flow .mockup-heading h2{display:flex;align-items:center;gap:9px}
+ .mobile-home-flow .mockup-heading h2::before{content:"";display:block;flex:0 0 4px;width:4px;height:1em;border-radius:2px;background:var(--mock-red)}
+ .route-label-filters{display:flex;gap:7px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
+ .route-label-filters button{flex:0 0 auto;min-height:36px;padding:7px 11px;border:1px solid #e4e8e5;border-radius:999px;background:#fff;color:#49534d;font-size:11px;font-weight:600}
+ .route-label-filters button[aria-pressed="true"]{background:#f9eaea;border-color:var(--mock-red);color:var(--mock-red-dark)}
+ .route-photo-label[data-service-label="shuttle"]{background:rgba(231,243,235,.94);color:#315d42}
+ .route-photo-label[data-service-label="airport"]{background:rgba(232,239,250,.94);color:#304e7b}
+ .route-photo-label{left:7px;top:9px;min-height:24px;padding:3px 6px;font-size:9px;max-width:calc(100% - 58px)}
+ .route-section .route-path{font-size:13px;gap:4px}
+ .route-section .route-fare>div{gap:3px;white-space:nowrap}
+ .route-section .route-fare span{font-size:9px}
 }
