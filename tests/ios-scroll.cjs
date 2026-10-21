@@ -28,7 +28,7 @@ const {webkit,devices}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
      assert.equal(await page.evaluate(()=>getComputedStyle(document.body).borderTopLeftRadius),'0px');
      await page.waitForFunction(()=>getComputedStyle(document.documentElement,'::before').opacity==='1');
      for(const side of ['::before','::after']){
-      assert.deepEqual(await page.evaluate(side=>{const s=getComputedStyle(document.documentElement,side);return [s.position,s.width,s.height,s.pointerEvents]},side),['fixed','24px','24px','none']);
+      assert.deepEqual(await page.evaluate(side=>{const s=getComputedStyle(document.documentElement,side);return [s.position,s.width,s.height,s.pointerEvents]},side),['fixed','26px','26px','none']);
      }
      if(turn===0)await page.screenshot({path:'qa-output/ios-rounded-scroll-'+width+'.png'});
      await page.evaluate(()=>window.scrollBy({top:-180,behavior:'instant'}));
