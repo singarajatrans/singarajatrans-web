@@ -1021,8 +1021,8 @@ dialog{border-radius:12px}
  }
  .review-grid::-webkit-scrollbar{display:none}
  .review-desktop{display:none}
- .review-mobile{display:grid;grid-template-rows:auto 1fr auto;flex:1;min-width:0;position:relative;z-index:1}
- .review-message{display:flex;flex-direction:column;justify-content:center;min-height:76px;padding-block:12px}
+ .review-mobile{display:grid;grid-template-rows:auto auto auto;flex:1;min-width:0;position:relative;z-index:1}
+ .review-message{display:flex;flex-direction:column;justify-content:flex-start;min-height:0;padding-block:14px 8px}
  .review-card{
   position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;
   min-height:0;padding:12px;border:1px solid #ededed;border-radius:14px;
@@ -1044,10 +1044,11 @@ dialog{border-radius:12px}
  .review-stars strong{font-size:11px;font-weight:650}
  .review-title{margin:0 0 4px;color:#242424;font-size:13px;font-weight:650;line-height:1.4}
  .review-card .review-description{margin:0;color:#323638;font-size:13px;font-weight:400;line-height:1.6;overflow-wrap:anywhere}
- .review-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px;padding-top:0}
- .review-date{align-self:flex-end;font-size:11px;line-height:1.4;color:#737b80}
+ .review-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:0;padding-top:0}
+ .review-date{align-self:center;font-size:11px;line-height:1.4;color:#737b80}
  .reviews-section .review-see-all{display:inline-flex;font-size:12px;margin-top:0;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
- .review-like{display:inline-flex;align-items:flex-end;justify-content:flex-end;gap:6px;min-width:44px;min-height:44px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:#757d7f;font-family:inherit;font-size:12px;font-weight:600;line-height:1.4;cursor:pointer}
+ .review-like{position:relative;display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;min-width:44px;min-height:32px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:#757d7f;font-family:inherit;font-size:12px;font-weight:600;line-height:1.4;cursor:pointer}
+ .review-like::before{content:"";position:absolute;inset:-6px 0}
  .review-like-count{display:block;min-width:1ch;line-height:19px;text-align:center;font-variant-numeric:tabular-nums}
  .review-like svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5}
  .review-like[aria-pressed="true"]{color:var(--mock-red);background:transparent}
@@ -1241,8 +1242,9 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  .route-card,.route-card:hover{box-shadow:0 2px 6px rgba(20,29,44,.08)}
  .route-photo-label{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.9);color:#38413e;font-size:11px;font-weight:600;max-width:calc(100% - 70px)}
- .route-favorite{position:absolute;top:-1px;right:3px;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:0;background:transparent;color:#8f2932;box-shadow:none}
- .route-favorite .material-symbols-rounded{font-size:24px;filter:drop-shadow(0 1px 1px #fff) drop-shadow(0 1px 2px #0006);font-variation-settings:"FILL" 0,"wght" 400}
+ .route-favorite{position:absolute;top:0;right:5px;display:inline-flex;align-items:flex-start;justify-content:center;width:44px;height:44px;border-radius:0;background:transparent;color:#fff;box-shadow:none}
+ .route-favorite .material-symbols-rounded{font-size:24px;line-height:24px;filter:drop-shadow(0 1px 2px #0008);font-variation-settings:"FILL" 0,"wght" 400}
+ .route-favorite[aria-pressed="true"]{color:var(--mock-red)}
  .route-favorite[aria-pressed="true"] .material-symbols-rounded{font-variation-settings:"FILL" 1,"wght" 400}
  .route-section .route-path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:0;line-height:1.4}
  .route-section .route-path svg{display:none;width:16px;height:16px;flex:0 0 16px}
@@ -1256,14 +1258,15 @@ dialog{border-radius:12px}
 /* Mobile card headings and label filters. */
 .route-label-filters{display:none}
 @media(max-width:767px){
- .mobile-home-flow .mockup-heading h2{display:flex;align-items:center;gap:9px}
- .mobile-home-flow .mockup-heading h2::before{content:"";display:block;flex:0 0 4px;width:4px;height:1em;border-radius:2px;background:var(--mock-red)}
- .route-label-filters{display:flex;gap:7px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
- .route-label-filters button{flex:0 0 auto;min-height:36px;padding:7px 11px;border:1px solid #e4e8e5;border-radius:999px;background:#fff;color:#49534d;font-size:11px;font-weight:600}
+ .mobile-home-flow .mockup-heading h2{display:flex;align-items:center}
+ .mobile-home-flow .mockup-heading h2::before{content:none}
+ .route-section .mockup-heading,.destination-section .mockup-heading,.reviews-section .mockup-heading{margin-bottom:16px}
+ .route-label-filters{display:flex;gap:7px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+ .route-label-filters button{flex:0 0 auto;min-height:30px;padding:5px 10px;border:1px solid #e4e8e5;border-radius:999px;background:#fff;color:#49534d;font-size:11px;font-weight:600}
  .route-label-filters button[aria-pressed="true"]{background:#f9eaea;border-color:var(--mock-red);color:var(--mock-red-dark)}
- .route-photo-label[data-service-label="shuttle"]{background:rgba(49,93,66,.92);color:#fff}
- .route-photo-label[data-service-label="airport"]{background:rgba(48,78,123,.92);color:#fff}
- .route-photo-label{left:0;top:9px;min-height:24px;padding:3px 7px;border:0;border-radius:0 999px 999px 0;font-size:9px;max-width:calc(100% - 58px)}
+ .route-photo-label[data-service-label="shuttle"]{background:rgba(69,108,82,.88);color:#fff}
+ .route-photo-label[data-service-label="airport"]{background:rgba(65,91,128,.88);color:#fff}
+ .route-photo-label{left:0;top:0;min-height:22px;padding:3px 6px;border:0;border-radius:0 999px 999px 0;font-size:9px;line-height:16px;max-width:calc(100% - 58px)}
  .route-section .route-path{font-size:13px;gap:4px}
  .route-section .route-fare>div{gap:3px;white-space:nowrap}
  .route-section .route-fare span{font-size:9px}
