@@ -998,7 +998,7 @@ dialog{border-radius:12px}
   padding-top:24px;
   padding-bottom:24px;
   margin:0 auto;
-  border-bottom:0;
+  border-bottom:1px solid #e5e5e5;
  }
  .reviews-section .mockup-heading{align-items:center;margin-bottom:12px}
  .reviews-section .mockup-heading p{display:none}
@@ -1020,7 +1020,7 @@ dialog{border-radius:12px}
  .review-mobile{display:flex;flex:1;flex-direction:column;min-width:0;position:relative;z-index:1}
  .review-card{
   position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;
-  min-height:0;padding:18px;border:1px solid #ededed;border-radius:22px;
+  min-height:0;padding:12px 18px;border:1px solid #ededed;border-radius:22px;
   background:#fff;box-shadow:0 2px 5px rgba(20,29,44,.10);
   scroll-snap-align:start;scroll-snap-stop:always;
  }
@@ -1037,15 +1037,15 @@ dialog{border-radius:12px}
  .reviewer-name{color:#192126;font-size:13px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
  .review-stars{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;border-radius:999px;padding:3px 6px;background:#edf8ef;color:#008c28;font-size:11px;line-height:1.25}
  .review-stars strong{font-size:11px;font-weight:650}
- .review-title{margin:12px 0 6px;color:#242424;font-size:13px;font-weight:650;line-height:1.4}
+ .review-title{margin:8px 0 4px;color:#242424;font-size:13px;font-weight:650;line-height:1.4}
  .review-card .review-description{margin:0;color:#323638;font-size:13px;font-weight:400;line-height:1.6;overflow-wrap:anywhere}
- .review-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;padding-top:0}
+ .review-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px;padding-top:0}
  .review-date{font-size:11px;line-height:1.4;color:#737b80}
  .reviews-section .review-see-all{display:inline-flex;font-size:12px;margin-top:0;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
  .review-like{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;margin:0;padding:8px;border:0;border-radius:10px;background:transparent;color:#757d7f;font-family:inherit;font-size:12px;font-weight:600;line-height:1.4;cursor:pointer}
- .review-like svg{width:19px;height:19px;fill:currentColor}
- .review-like:hover{background:#f4f5f6}
- .review-like[aria-pressed="true"]{color:var(--mock-red);background:#fff1f2}
+ .review-like svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5}
+ .review-like[aria-pressed="true"]{color:var(--mock-red);background:transparent}
+ .review-like[aria-pressed="true"] svg{fill:currentColor}
  .review-like:focus-visible{outline:2px solid var(--mock-red);outline-offset:2px}
  .review-indicator{
   display:flex;
@@ -1231,14 +1231,15 @@ dialog{border-radius:12px}
  .route-section a.section-action:focus-visible,.destination-section a.section-action:focus-visible,.reviews-section a.section-action:focus-visible{outline:2px solid #8f2932;outline-offset:3px}
 }
 
-.route-photo-wrap{position:relative}.route-photo-wrap>.route-photo{width:100%;object-fit:cover}.route-photo-label,.route-favorite{display:none}
+.route-direction{display:none}.route-photo-wrap{position:relative}.route-photo-wrap>.route-photo{width:100%;object-fit:cover}.route-photo-label,.route-favorite{display:none}
 @media(max-width:767px){
  .route-card,.route-card:hover{box-shadow:0 2px 6px rgba(20,29,44,.08)}
  .route-photo-label{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.9);color:#38413e;font-size:11px;font-weight:600;max-width:calc(100% - 70px)}
  .route-favorite{position:absolute;top:6px;right:6px;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94);color:#8f2932;box-shadow:0 1px 4px #0001}
  .route-favorite svg{width:21px;height:21px}.route-favorite[aria-pressed="true"] svg{fill:currentColor}
  .route-section .route-path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:0;line-height:1.4}
- .route-section .route-path svg{display:block;width:16px;height:16px;flex:0 0 16px}
+ .route-section .route-path svg{display:none;width:16px;height:16px;flex:0 0 16px}
+ .route-section .route-path svg.route-direction{display:block}
  .route-section .route-card-body{min-height:0;padding:12px}
  .route-section .route-note{display:none}
  .route-section .route-fare{margin-top:12px}

@@ -80,7 +80,8 @@ function initReviewLikes(){
   try{liked=localStorage.getItem(key)==='1';}catch{}
   const render=()=>{
    button.setAttribute('aria-pressed',String(liked));
-   one('.review-like-count',button).textContent=liked?'1':'0';
+   const count=one('.review-like-count',button);
+   if(count)count.textContent=liked?'1':'0';
   };
   render();
   button.addEventListener('click',()=>{
