@@ -1029,7 +1029,7 @@ dialog{border-radius:12px}
  .reviews-section .quote-mark{
   position:absolute;top:8px;right:16px;left:auto;display:block;width:auto;height:auto;
   border-radius:0;background:transparent;color:rgba(86,184,103,.25);
-  font:700 86px/1 Georgia,serif;pointer-events:none;
+  font:700 100px/1 Georgia,serif;pointer-events:none;
  }
  .review-person{display:flex;align-items:center;gap:12px;padding-right:20px;min-width:0}
  .review-initials{display:flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:#e7eee9;color:#496453;font-size:16px;font-weight:700}
@@ -1042,7 +1042,8 @@ dialog{border-radius:12px}
  .review-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px;padding-top:0}
  .review-date{align-self:flex-end;font-size:11px;line-height:1.4;color:#737b80}
  .reviews-section .review-see-all{display:inline-flex;font-size:12px;margin-top:0;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
- .review-like{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;margin:0;padding:8px;border:0;border-radius:10px;background:transparent;color:#757d7f;font-family:inherit;font-size:12px;font-weight:600;line-height:1.4;cursor:pointer}
+ .review-like{display:inline-flex;align-items:flex-end;justify-content:flex-end;gap:6px;min-width:44px;min-height:44px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:#757d7f;font-family:inherit;font-size:12px;font-weight:600;line-height:1.4;cursor:pointer}
+ .review-like-count{display:block;min-width:1ch;line-height:19px;text-align:center;font-variant-numeric:tabular-nums}
  .review-like svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5}
  .review-like[aria-pressed="true"]{color:var(--mock-red);background:transparent}
  .review-like[aria-pressed="true"] svg{fill:currentColor}
