@@ -1218,3 +1218,9 @@ dialog{border-radius:12px}
  footer .footer-grid,
  footer .footer-bottom{display:none!important}
 }
+
+/* Mobile section links: shared brand maroon. */
+@media(max-width:767px){
+ .route-section a.section-action,.destination-section a.section-action,.reviews-section a.section-action{color:#8f2932}
+ .route-section a.section-action:focus-visible,.destination-section a.section-action:focus-visible,.reviews-section a.section-action:focus-visible{outline:2px solid #8f2932;outline-offset:3px}
+}
