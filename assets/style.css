@@ -1070,6 +1070,8 @@ dialog{border-radius:12px}
   font-size:12px;
   margin-top:0;
  }
+ .route-section .section-chevron-action,
+ .reviews-section .section-chevron-action,
  .destination-section .destination-see-all{
   display:inline-flex;
   align-items:center;
@@ -1077,6 +1079,7 @@ dialog{border-radius:12px}
   width:36px;
   height:36px;
   padding:0;
+  margin-top:0;
   color:var(--mock-red);
   border:0;
   border-radius:50%;
@@ -1084,6 +1087,8 @@ dialog{border-radius:12px}
   text-decoration:none;
   flex:0 0 36px;
  }
+ .route-section .section-chevron-action svg,
+ .reviews-section .section-chevron-action svg,
  .destination-section .destination-see-all svg{
   width:18px;
   height:18px;
