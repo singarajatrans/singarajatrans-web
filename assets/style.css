@@ -1065,7 +1065,14 @@ dialog{border-radius:12px}
   letter-spacing:-.45px;
   font-weight:750;
  }
- .destination-section .mockup-heading p{display:none}
+ .destination-section .mockup-heading p{
+  display:block;
+  margin-top:5px;
+  max-width:240px;
+  font-size:11px;
+  line-height:1.45;
+  color:#7a828c;
+ }
  .destination-section .section-action{
   font-size:12px;
   margin-top:0;
