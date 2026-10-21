@@ -1132,9 +1132,9 @@ dialog{border-radius:12px}
  .destination-card:last-child>img{
   display:block;
   width:100%;
-  height:112px;
-  min-height:112px;
-  max-height:112px;
+  height:100px;
+  min-height:100px;
+  max-height:100px;
   aspect-ratio:auto;
   object-fit:cover;
  }
