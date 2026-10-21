@@ -942,7 +942,7 @@ dialog{border-radius:12px}
   width:calc(100% + 32px);
   max-width:none;
   margin:0 -16px;
-  padding:0 0 2px 16px;
+  padding:0 16px 2px;
   overflow-x:auto;
   scroll-snap-type:x proximity;
   scroll-padding-left:0;
@@ -1017,7 +1017,7 @@ dialog{border-radius:12px}
   gap:12px;
   width:calc(100% + 32px);
   margin-inline:-16px;
-  padding:4px 0 12px 16px;
+  padding:4px 16px 12px;
   overflow-x:auto;
   overscroll-behavior-inline:contain;
   scroll-snap-type:x mandatory;
@@ -1163,7 +1163,7 @@ dialog{border-radius:12px}
   overflow-x:auto;
   scroll-snap-type:x proximity;
   scrollbar-width:none;
-  padding:0 0 2px 16px;
+  padding:0 16px 2px;
  }
  .destination-grid::-webkit-scrollbar{display:none}
  .destination-card{
@@ -1206,7 +1206,7 @@ dialog{border-radius:12px}
  .route-section,
  .reviews-section,
  .destination-section>.container{width:calc(100% - 24px)}
- .route-carousel,.review-grid,.destination-grid{padding-left:12px}
+ .route-carousel,.review-grid,.destination-grid{padding-inline:12px}
  .route-card:first-child,.review-card:first-child,.destination-card:first-child{scroll-margin-left:12px}
  .route-carousel{grid-auto-columns:calc((100vw - 24px)*.56);width:calc(100% + 24px);margin-inline:-12px;gap:10px}
  .review-grid{grid-auto-columns:calc((100vw - 24px)*.88);width:calc(100% + 24px);margin-inline:-12px}
