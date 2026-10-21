@@ -157,4 +157,12 @@ root.SingarajaUI={
 bindTapHaptics();
 initReviewCarousel();
 initReviewLikes();
+document.addEventListener('click',event=>{
+ const button=event.target.closest('[data-route-favorite]');
+ if(!button)return;
+ event.preventDefault();
+ const saved=button.getAttribute('aria-pressed')!=='true';
+ button.setAttribute('aria-pressed',String(saved));
+ try{const key='singarajatrans:route-favorite:'+button.dataset.routeFavorite;if(saved)localStorage.setItem(key,'1');else localStorage.removeItem(key);}catch{}
+});
 })(typeof window!=='undefined'?window:globalThis);
