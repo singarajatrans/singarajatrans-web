@@ -1020,7 +1020,7 @@ dialog{border-radius:12px}
  .review-mobile{display:flex;flex:1;flex-direction:column;min-width:0;position:relative;z-index:1}
  .review-card{
   position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;
-  min-height:0;padding:12px 18px;border:1px solid #ededed;border-radius:22px;
+  min-height:0;padding:12px;border:1px solid #ededed;border-radius:22px;
   background:#fff;box-shadow:0 2px 5px rgba(20,29,44,.10);
   scroll-snap-align:start;scroll-snap-stop:always;
  }
@@ -1225,10 +1225,10 @@ dialog{border-radius:12px}
  footer .footer-bottom{display:none!important}
 }
 
-/* Mobile section links: shared brand maroon. */
+/* Mobile section links: shared blue. */
 @media(max-width:767px){
- .route-section a.section-action,.destination-section a.section-action,.reviews-section a.section-action{color:#8f2932}
- .route-section a.section-action:focus-visible,.destination-section a.section-action:focus-visible,.reviews-section a.section-action:focus-visible{outline:2px solid #8f2932;outline-offset:3px}
+ .route-section a.section-action,.destination-section a.section-action,.reviews-section a.section-action{color:#1d4ed8}
+ .route-section a.section-action:focus-visible,.destination-section a.section-action:focus-visible,.reviews-section a.section-action:focus-visible{outline:2px solid #1d4ed8;outline-offset:3px}
 }
 
 .route-direction{display:none}.route-photo-wrap{position:relative}.route-photo-wrap>.route-photo{width:100%;object-fit:cover}.route-photo-label,.route-favorite{display:none}
@@ -1243,5 +1243,5 @@ dialog{border-radius:12px}
  .route-section .route-card-body{min-height:0;padding:12px}
  .route-section .route-note{display:none}
  .route-section .route-fare{margin-top:12px}
- .route-old-price{display:block;color:#7a828c;font-size:11px;margin-bottom:2px}
+ .route-old-price{display:block;color:#7a828c;font-size:11px;font-weight:600;margin-bottom:2px}
 }
