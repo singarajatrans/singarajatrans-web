@@ -1027,8 +1027,8 @@ dialog{border-radius:12px}
   grid-template-columns:none;
   grid-auto-flow:column;
   grid-auto-columns:100%;
-  gap:10px;
-  padding:4px 0 10px;
+  gap:16px;
+  padding:24px 16px 10px 0;
   overflow-x:auto;
   overscroll-behavior-inline:contain;
   scroll-snap-type:x mandatory;
@@ -1039,8 +1039,8 @@ dialog{border-radius:12px}
  .review-card{
   position:relative;
   display:block;
-  min-height:196px;
-  padding:20px 18px 22px;
+  min-height:0;
+  padding:20px 18px;
   border:0;
   border-radius:24px;
   background:#fff;
@@ -1053,7 +1053,7 @@ dialog{border-radius:12px}
  .review-card-inner{
   position:relative;
   display:block;
-  min-height:154px;
+  min-height:0;
   padding-top:50px;
  }
  .review-label{
@@ -1075,8 +1075,8 @@ dialog{border-radius:12px}
  }
  .review-avatar{
   position:absolute;
-  top:-8px;
-  right:0;
+  top:-36px;
+  right:-34px;
   display:block;
   width:56px;
   height:56px;
