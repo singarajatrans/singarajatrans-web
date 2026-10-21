@@ -120,7 +120,7 @@ body[data-service="airport"] .search-fields,body[data-service="charter"] .search
 .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .review-card{display:grid;grid-template-columns:55px 1fr;gap:18px;align-items:center;border:1px solid #e2e5e9;border-radius:8px;padding:17px;background:#fff}
 .quote-mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#f9eaea;color:var(--mock-red);font-size:30px;font-weight:700;line-height:1}
-.review-card strong{font-size:13px}.review-card p{font-size:11px;margin-top:3px;color:#707887}
+.review-card strong{font-size:13px}.review-card p{font-size:11px;margin-top:3px;color:#707887}.review-card small{display:block;margin-top:6px;font-size:10px;line-height:1.35;color:#8a919b}
 .faq-section{display:block;padding-top:22px}
 .faq-intro{margin-bottom:12px}
 .faq-intro .eyebrow,.faq-intro>.text-button{display:none}
