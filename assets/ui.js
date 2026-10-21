@@ -73,6 +73,24 @@ function initReviewCarousel(){
  update();
 }
 
+function initReviewLikes(){
+ all('[data-review-like]').forEach(button=>{
+  const key='singarajatrans:review-like:'+button.dataset.reviewLike;
+  let liked=false;
+  try{liked=localStorage.getItem(key)==='1';}catch{}
+  const render=()=>{
+   button.setAttribute('aria-pressed',String(liked));
+   one('.review-like-count',button).textContent=liked?'1':'0';
+  };
+  render();
+  button.addEventListener('click',()=>{
+   liked=!liked;
+   try{if(liked)localStorage.setItem(key,'1');else localStorage.removeItem(key);}catch{}
+   render();
+  });
+ });
+}
+
 function fieldControl(field){
  if(!field)return null;
  return field.querySelector('select:not([hidden]),input:not([hidden]),textarea:not([hidden])');
@@ -138,4 +156,5 @@ root.SingarajaUI={
 };
 bindTapHaptics();
 initReviewCarousel();
+initReviewLikes();
 })(typeof window!=='undefined'?window:globalThis);
