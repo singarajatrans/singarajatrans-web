@@ -1005,13 +1005,13 @@ dialog{border-radius:12px}
  }
  .route-arrow{display:none!important}
 
- /* Customer reviews: one concise preview card */
+ /* Customer reviews: horizontal mobile carousel with segmented indicator */
  .reviews-section{
   width:calc(100% - 32px);
   padding-top:24px;
   padding-bottom:24px;
   margin:0 auto;
-  border-bottom:1px solid #f0f1f3;
+  border-bottom:0;
  }
  .reviews-section .mockup-heading{
   align-items:center;
@@ -1023,27 +1023,58 @@ dialog{border-radius:12px}
   margin-top:0;
  }
  .review-grid{
-  grid-template-columns:1fr;
+  grid-template-columns:none;
+  grid-auto-flow:column;
+  grid-auto-columns:100%;
   gap:10px;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
  }
+ .review-grid::-webkit-scrollbar{display:none}
  .review-card{
-  grid-template-columns:42px minmax(0,1fr);
-  gap:12px;
+  grid-template-columns:1fr;
+  gap:0;
   padding:15px;
   border-radius:14px;
   border:1px solid #e7e9ed;
   box-shadow:0 4px 16px rgba(20,29,44,.06);
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
  }
- .quote-mark{
-  width:40px;
-  height:40px;
-  font-size:26px;
- }
+ .reviews-section .quote-mark{display:none}
  .review-card strong{font-size:13.5px}
  .review-card p{
   font-size:12px;
   line-height:1.5;
   margin-top:3px;
+ }
+ .review-indicator{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:20px;
+  margin-top:10px;
+ }
+ .review-indicator button{
+  width:14px;
+  height:4px;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:#d9dde2;
+  transition:width .22s ease,background .22s ease;
+ }
+ .review-indicator button[aria-pressed="true"]{
+  width:30px;
+  background:var(--mock-red);
+ }
+ .review-indicator button:focus-visible{
+  outline:2px solid var(--mock-red);
+  outline-offset:3px;
  }
 
  /* Explore Bali: compact 2-up destination carousel */

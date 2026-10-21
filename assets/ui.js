@@ -16,6 +16,57 @@ function bindTapHaptics(){
  },{passive:true});
 }
 
+function initReviewCarousel(){
+ const grid=one('.review-grid');
+ if(!grid)return;
+ const cards=all('.review-card',grid);
+ if(cards.length<2)return;
+
+ let indicator=one('.review-indicator',grid.parentElement);
+ if(!indicator){
+  indicator=document.createElement('div');
+  indicator.className='review-indicator';
+  indicator.setAttribute('aria-label','Navigasi ulasan pelanggan');
+  grid.insertAdjacentElement('afterend',indicator);
+ }
+
+ indicator.replaceChildren(...cards.map((card,index)=>{
+  const button=document.createElement('button');
+  button.type='button';
+  button.setAttribute('aria-label',`Tampilkan ulasan ${index+1} dari ${cards.length}`);
+  button.setAttribute('aria-pressed',index===0?'true':'false');
+  button.addEventListener('click',()=>{
+   const gridRect=grid.getBoundingClientRect();
+   const cardRect=card.getBoundingClientRect();
+   const left=grid.scrollLeft+(cardRect.left-gridRect.left);
+   grid.scrollTo({left,behavior:'smooth'});
+  });
+  return button;
+ }));
+
+ const buttons=all('button',indicator);
+ const update=()=>{
+  const gridRect=grid.getBoundingClientRect();
+  const center=gridRect.left+gridRect.width/2;
+  let active=0;
+  let nearest=Infinity;
+  cards.forEach((card,index)=>{
+   const rect=card.getBoundingClientRect();
+   const distance=Math.abs((rect.left+rect.width/2)-center);
+   if(distance<nearest){nearest=distance;active=index;}
+  });
+  buttons.forEach((button,index)=>button.setAttribute('aria-pressed',index===active?'true':'false'));
+ };
+
+ let frame=0;
+ grid.addEventListener('scroll',()=>{
+  if(frame)return;
+  frame=requestAnimationFrame(()=>{frame=0;update();});
+ },{passive:true});
+ window.addEventListener('resize',update,{passive:true});
+ update();
+}
+
 function fieldControl(field){
  if(!field)return null;
  return field.querySelector('select:not([hidden]),input:not([hidden]),textarea:not([hidden])');
@@ -80,4 +131,5 @@ root.SingarajaUI={
  bindTapHaptics
 };
 bindTapHaptics();
+initReviewCarousel();
 })(typeof window!=='undefined'?window:globalThis);
