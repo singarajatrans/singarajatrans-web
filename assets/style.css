@@ -1253,7 +1253,7 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  .route-card,.route-card:hover{box-shadow:0 2px 6px rgba(20,29,44,.08)}
  .route-photo-label{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.9);color:#38413e;font-size:11px;font-weight:600;max-width:calc(100% - 70px)}
- .route-favorite{position:absolute;top:14px;right:12px;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:0;background:transparent;color:#fff;box-shadow:none}
+ .route-favorite{position:absolute;top:14px;right:16px;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:0;background:transparent;color:#fff;box-shadow:none}
  .route-favorite::before{content:"";position:absolute;inset:-12px}
  .route-favorite .route-heart{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;filter:drop-shadow(0 1px 2px #0008)}
  .route-favorite[aria-pressed="true"]{color:var(--mock-red)}
@@ -1278,6 +1278,13 @@ dialog{border-radius:12px}
  .route-label-filters button[aria-pressed="true"]{background:#f9eaea;border-color:var(--mock-red);color:var(--mock-red-dark)}
  .route-photo-label[data-service-label="shuttle"]{background:rgba(69,108,82,.88);color:#fff}
  .route-photo-label[data-service-label="airport"]{background:rgba(65,91,128,.88);color:#fff}
+ .route-photo-label[data-service-label="car"]{background:rgba(125,86,55,.88);color:#fff}
+ .route-photo-label[data-service-label="charter"]{background:rgba(122,65,72,.88);color:#fff}
+ .route-photo-label[data-service-label="motor"]{background:rgba(102,79,125,.88);color:#fff}
+ .route-photo-label[data-service-label="car"] .route-label-icon,.route-photo-label[data-service-label="charter"] .route-label-icon{-webkit-mask-image:url("images/car-rental.svg?v=vector-3");mask-image:url("images/car-rental.svg?v=vector-3")}
+ .route-photo-label[data-service-label="motor"] .route-label-icon{-webkit-mask-image:url("images/motorbike.png?v=mask-1");mask-image:url("images/motorbike.png?v=mask-1")}
+ .route-photo-wrap>.route-product-motor{object-fit:contain;padding:20px;background:#f6f4f8}
+ .route-product-contact{display:inline-flex;align-items:center;min-height:36px;font-size:12px;font-weight:650;color:#8f2932;text-decoration:underline;text-underline-offset:3px}
  .route-label-icon{display:inline-block;flex:0 0 12px;width:12px;height:12px;background:currentColor;-webkit-mask:center/contain no-repeat;mask:center/contain no-repeat}
  .route-photo-label[data-service-label="shuttle"] .route-label-icon{-webkit-mask-image:url("images/travel-shuttle.svg");mask-image:url("images/travel-shuttle.svg")}
  .route-photo-label[data-service-label="airport"] .route-label-icon{-webkit-mask-image:url("images/airport-transfer.svg?v=vector-5");mask-image:url("images/airport-transfer.svg?v=vector-5")}
