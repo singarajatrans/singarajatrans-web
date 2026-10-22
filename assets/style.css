@@ -1249,7 +1249,7 @@ dialog{border-radius:12px}
  .route-section a.section-action:focus-visible,.destination-section a.section-action:focus-visible,.reviews-section a.section-action:focus-visible{outline:2px solid #8f2932;outline-offset:3px}
 }
 
-.route-direction{display:none}.route-photo-wrap{position:relative}.route-photo-wrap>.route-photo{width:100%;object-fit:cover}.route-photo-label,.route-favorite{display:none}
+.route-direction{display:none}.route-photo-wrap{position:relative}.route-photo-wrap>.route-photo{width:100%;object-fit:cover}.route-photo-label,.route-favorite,.route-old-price-row{display:none}
 @media(max-width:767px){
  .route-card,.route-card:hover{box-shadow:0 2px 6px rgba(20,29,44,.08)}
  .route-photo-label{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.9);color:#38413e;font-size:11px;font-weight:600;max-width:calc(100% - 70px)}
@@ -1264,7 +1264,9 @@ dialog{border-radius:12px}
  .route-section .route-card-body{min-height:0;padding:12px}
  .route-section .route-note{display:none}
  .route-section .route-fare{margin-top:12px}
- .route-old-price{display:block;color:#7a828c;font-size:11px;font-weight:600;margin-bottom:2px}
+ .route-old-price-row{display:flex;align-items:center;gap:5px;margin-bottom:2px;white-space:nowrap}
+ .route-old-price{display:block;color:#7a828c;font-size:11px;font-weight:600;line-height:16px}
+ .route-section .route-fare .route-discount-badge{display:inline-flex;align-items:center;padding:1px 5px;border-radius:5px;background:#effbdc;color:#3c8a3b;font-size:10px;font-weight:700;line-height:14px}
 }
 
 /* Mobile card headings and label filters. */
