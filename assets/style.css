@@ -311,6 +311,7 @@ dialog{border-radius:12px}
 
 
 /* === Booking widget mobile refinement · 16 Oct 2026 === */
+.widget-help-bar{display:none}
 .service-tabs .mobile-service,#motor-entry{display:none}
 @media(min-width:768px){.service-tabs #tab-charter{border-right:0}}
 .field-stack{display:contents}
@@ -336,6 +337,11 @@ dialog{border-radius:12px}
  .service-tabs button[aria-selected=true]::after{content:"";position:absolute;bottom:-8px;left:50%;width:26px;height:10px;background:url("images/service-notch.svg") center/100% 100% no-repeat;transform:translateX(-50%);pointer-events:none}
  .service-tabs button:focus-visible{outline:2px solid #fff;outline-offset:2px}
  #search-panel{margin-top:0;padding:14px;border-radius:17px;background:#fff;box-shadow:0 -3px 14px #18212d0a,0 7px 20px #18212d14;min-height:0}
+ .widget-help-bar{display:flex;align-items:center;gap:12px;margin:14px -14px -14px;padding:10px 12px;border-radius:0 0 17px 17px;background:var(--mock-red);color:#fff;font-size:12.5px;line-height:1.5;text-decoration:none}
+ .widget-help-icon{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--mock-red)}
+ .widget-help-icon svg{width:29px;height:29px;stroke-width:1.7;transform:rotate(-12deg)}
+ .widget-help-bar>span:last-child{min-width:0}
+ .widget-help-bar:focus-visible{outline:2px solid var(--mock-red-dark);outline-offset:3px}
  #motor-entry{display:grid;align-content:center;justify-items:start;gap:12px;min-height:260px}
  #motor-entry .rental-icon{display:grid;place-items:center;width:48px;height:48px;background:var(--red-soft);color:var(--mock-red-dark);border-radius:12px}
  #motor-entry .rental-icon svg{width:30px;height:30px}
