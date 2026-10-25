@@ -1297,7 +1297,7 @@ dialog{border-radius:12px}
  .route-section .route-fare span{font-size:9px}
 }
 
-/* Mobile destination cards: compact promo carousel */
+/* Mobile destination cards: anchored promo carousel */
 .destination-promo-intro{display:none}
 @media (max-width:767px){
   .destination-section .destination-grid{
@@ -1305,31 +1305,36 @@ dialog{border-radius:12px}
     gap:10px;
     overflow-x:auto;
     overflow-y:hidden;
-    margin-inline:calc(-1 * var(--page-pad, 20px));
-    padding:0 var(--page-pad, 20px) 4px;
+    width:auto;
+    margin-left:calc((100vw - 100%) / -2);
+    margin-right:0;
+    padding:0 16px 4px 0;
     scroll-snap-type:x mandatory;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
   }
   .destination-section .destination-grid::-webkit-scrollbar{display:none}
   .destination-section .destination-promo-intro{
+    position:sticky;
+    left:0;
+    z-index:2;
     display:flex;
-    flex:0 0 158px;
+    flex:0 0 178px;
     min-height:282px;
     box-sizing:border-box;
     scroll-snap-align:start;
     flex-direction:column;
     justify-content:center;
     align-items:flex-start;
-    padding:18px;
-    border-radius:10px;
+    padding:20px 20px 20px 24px;
+    border-radius:0 12px 12px 0;
     color:#fff;
     background:#102f58;
-    box-shadow:0 2px 8px rgba(20,29,44,.08);
+    box-shadow:3px 0 10px rgba(20,29,44,.12);
     text-decoration:none;
   }
   .destination-section .destination-promo-intro span{
-    font-size:22px;
+    font-size:24px;
     font-weight:750;
     line-height:1.05;
     letter-spacing:-.5px;
@@ -1356,21 +1361,26 @@ dialog{border-radius:12px}
     position:relative;
     flex:0 0 138px;
     display:block;
-    height:248px;
+    height:220px;
     scroll-snap-align:start;
+    align-self:center;
     overflow:hidden;
     border:1px solid #e5e8ec;
-    border-radius:10px;
+    border-radius:12px;
     background:#fff;
-    box-shadow:0 2px 8px rgba(20,29,44,.08);
+    box-shadow:0 3px 10px rgba(20,29,44,.12);
+  }
+  .destination-section .destination-card:nth-child(2){
+    margin-left:-26px;
+    z-index:3;
   }
   .destination-section .destination-card>img,
   .destination-section .destination-card:last-child>img{
     display:block;
     width:100%;
-    height:248px;
-    min-height:248px;
-    max-height:248px;
+    height:220px;
+    min-height:220px;
+    max-height:220px;
     object-fit:cover;
   }
   .destination-section .destination-card>div{
