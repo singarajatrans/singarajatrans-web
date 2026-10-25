@@ -1547,3 +1547,27 @@ dialog{border-radius:12px}
  .route-section .route-photo-label,
  .route-section .route-favorite{z-index:1}
 }
+
+
+/* Mobile favorite routes: tighter fare rhythm with a soft floating UI layer. */
+@media(max-width:767px){
+ .route-section .route-fare{margin-top:7px}
+ .route-section .route-card{
+  position:relative;
+  background:#fff;
+  box-shadow:0 10px 24px rgba(20,29,44,.12),0 2px 6px rgba(20,29,44,.06);
+ }
+ .route-section .route-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,.45);
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.16),transparent 38%);
+ }
+ .route-section .route-photo-wrap,
+ .route-section .route-card-body{position:relative;z-index:1}
+ .route-section .route-card-body{background:linear-gradient(180deg,#fff 0%,#fcfcfd 100%)}
+}
