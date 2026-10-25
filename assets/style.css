@@ -1330,7 +1330,7 @@ dialog{border-radius:12px}
     justify-content:center;
     align-items:flex-start;
     padding:20px 20px 20px 24px;
-    border-radius:0 12px 12px 0;
+    border-radius:0 22px 22px 0;
     color:#fff;
     background:var(--mock-red,#c85759);
     box-shadow:3px 0 10px rgba(20,29,44,.12);
@@ -1387,20 +1387,20 @@ dialog{border-radius:12px}
   }
   .destination-section .destination-card{
     position:relative;
+    z-index:3;
     flex:0 0 138px;
     display:block;
     height:220px;
     scroll-snap-align:start;
     align-self:center;
     overflow:hidden;
-    border:1px solid #e5e8ec;
+    border:0;
     border-radius:12px;
     background:#fff;
     box-shadow:0 3px 10px rgba(20,29,44,.12);
   }
   .destination-section .destination-card:nth-child(2){
-    margin-left:-44px;
-    z-index:3;
+    margin-left:-62px;
   }
   .destination-section .destination-card>img,
   .destination-section .destination-card:last-child>img{
