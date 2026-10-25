@@ -1531,3 +1531,19 @@ dialog{border-radius:12px}
     padding-bottom:0;
   }
 }
+
+
+/* Mobile favorite routes: compact fare spacing and clean photo treatment. */
+@media(max-width:767px){
+ .route-section .route-card{align-self:start}
+ .route-section .route-card-body{padding:12px}
+ .route-section .route-photo-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,18,30,.015) 0%,rgba(11,18,30,.09) 100%);
+ }
+ .route-section .route-photo-label,
+ .route-section .route-favorite{z-index:1}
+}
