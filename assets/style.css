@@ -1479,3 +1479,22 @@ dialog{border-radius:12px}
   .review-card{height:218px}
   .review-indicator{margin-top:2px;min-height:18px}
 }
+
+/* Mobile review cards: reserve space for visible navigation dots */
+@media(max-width:767px){
+  .review-card{
+    box-sizing:border-box;
+    height:174px;
+  }
+  .review-message{padding-block:7px 3px}
+  .review-card .review-description{line-height:1.35}
+  .review-footer{min-height:26px}
+  .review-indicator{
+    position:relative;
+    z-index:5;
+    display:flex!important;
+    min-height:20px;
+    margin-top:4px;
+    padding-bottom:2px;
+  }
+}
