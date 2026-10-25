@@ -1297,7 +1297,7 @@ dialog{border-radius:12px}
  .route-section .route-fare span{font-size:9px}
 }
 
-/* Mobile destination cards: vertical photo carousel */
+/* Mobile destination cards: vertical promo-card treatment */
 @media (max-width:767px){
   .destination-section .destination-grid{
     display:flex;
@@ -1312,38 +1312,44 @@ dialog{border-radius:12px}
   }
   .destination-section .destination-grid::-webkit-scrollbar{display:none}
   .destination-section .destination-card{
-    flex:0 0 226px;
+    flex:0 0 188px;
+    display:block;
     scroll-snap-align:start;
-    border-radius:10px;
+    overflow:hidden;
+    border:1px solid #e5e8ec;
+    border-radius:9px;
+    background:#fff;
+    box-shadow:0 2px 8px rgba(20,29,44,.08);
   }
-  .destination-section .destination-card>img{
+  .destination-section .destination-card>img,
+  .destination-section .destination-card:last-child>img{
     display:block;
     width:100%;
-    height:294px;
-    min-height:294px;
-    max-height:294px;
+    height:232px;
+    min-height:232px;
+    max-height:232px;
     object-fit:cover;
   }
-  .destination-section .destination-card{
-    position:relative;
-    overflow:hidden;
-  }
   .destination-section .destination-card>div{
-    position:absolute;
-    inset:auto 0 0;
-    z-index:1;
-    padding:32px 12px 12px;
-    color:#fff;
+    position:static;
+    min-height:66px;
+    padding:10px 11px 12px;
+    color:#1f2937;
     border:0;
-    background:linear-gradient(180deg,transparent 0%,rgba(11,19,31,.84) 100%);
+    background:#fff;
   }
   .destination-section .destination-card h3{
-    color:#fff;
+    color:#1f2937;
+    font-size:14px;
+    line-height:1.25;
+    margin:0;
   }
   .destination-section .destination-card p{
-    color:rgba(255,255,255,.88);
+    margin-top:4px!important;
+    color:#6b7280;
+    font-size:11px!important;
   }
   .destination-section .destination-card p svg{
-    color:currentColor;
+    color:var(--mock-red);
   }
 }
