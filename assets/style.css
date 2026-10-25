@@ -1504,13 +1504,14 @@ dialog{border-radius:12px}
 @media (max-width:767px){
   .mobile-home-flow > .destination-section{
     padding-top:0 !important;
-    padding-bottom:23px !important;
+    padding-bottom:21px !important;
   }
   .destination-section .destination-grid{
     width:100vw;
+    box-sizing:border-box;
     margin-left:calc(50% - 50vw);
     margin-right:0;
-    padding-right:0;
+    padding-right:16px;
   }
   .destination-section .destination-card:last-child{
     margin-right:0;
