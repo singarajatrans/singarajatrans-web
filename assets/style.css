@@ -1588,3 +1588,17 @@ dialog{border-radius:12px}
   background:linear-gradient(180deg,#fff 0%,#fcfcfd 100%);
  }
 }
+
+
+/* Mobile favorite routes: clean overlay edges and carousel gap. */
+@media(max-width:767px){
+ .route-section .route-card{
+  box-shadow:0 6px 14px rgba(20,29,44,.10),0 1px 3px rgba(20,29,44,.05);
+ }
+ .route-section .route-card-body{
+  margin-top:-10px;
+  border-radius:14px 14px 0 0;
+  overflow:hidden;
+  box-shadow:0 -1px 0 rgba(20,29,44,.04);
+ }
+}
