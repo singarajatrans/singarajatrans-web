@@ -1400,7 +1400,7 @@ dialog{border-radius:12px}
     box-shadow:0 3px 10px rgba(20,29,44,.12);
   }
   .destination-section .destination-card:nth-child(2){
-    margin-left:-62px;
+    margin-left:-72px;
   }
   .destination-section .destination-card>img,
   .destination-section .destination-card:last-child>img{
@@ -1416,10 +1416,10 @@ dialog{border-radius:12px}
     inset:auto 0 0;
     z-index:1;
     min-height:0;
-    padding:32px 10px 10px;
+    padding:26px 10px 10px;
     color:#fff;
     border:0;
-    background:linear-gradient(180deg,transparent 0%,rgba(8,18,31,.86) 100%);
+    background:linear-gradient(180deg,transparent 0%,rgba(8,18,31,.58) 100%);
   }
   .destination-section .destination-card h3{
     color:#fff;
@@ -1441,4 +1441,10 @@ dialog{border-radius:12px}
     height:11px;
     color:currentColor;
   }
+}
+
+/* Explore-to-reviews rhythm after mobile section reorder */
+@media(max-width:767px){
+  .mobile-home-flow>.destination-section{padding-bottom:12px!important}
+  .mobile-home-flow>.reviews-section{padding-top:18px}
 }
