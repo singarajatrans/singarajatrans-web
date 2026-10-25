@@ -1300,6 +1300,8 @@ dialog{border-radius:12px}
 /* Mobile destination cards: anchored promo carousel */
 .destination-promo-intro{display:none}
 @media (max-width:767px){
+  .destination-section{padding-top:22px}
+  .destination-section .section-heading{display:none}
   .destination-section .destination-grid{
     display:flex;
     gap:10px;
@@ -1322,6 +1324,7 @@ dialog{border-radius:12px}
     flex:0 0 178px;
     min-height:282px;
     box-sizing:border-box;
+    overflow:hidden;
     scroll-snap-align:start;
     flex-direction:column;
     justify-content:center;
@@ -1329,10 +1332,35 @@ dialog{border-radius:12px}
     padding:20px 20px 20px 24px;
     border-radius:0 12px 12px 0;
     color:#fff;
-    background:#102f58;
+    background:var(--mock-red,#c85759);
     box-shadow:3px 0 10px rgba(20,29,44,.12);
     text-decoration:none;
   }
+  .destination-section .destination-promo-intro::before{
+    content:"";
+    position:absolute;
+    right:-61px;
+    bottom:-67px;
+    width:126px;
+    height:126px;
+    border:22px solid rgba(255,255,255,.14);
+    border-radius:50%;
+  }
+  .destination-section .destination-promo-intro::after{
+    content:"";
+    position:absolute;
+    right:-16px;
+    bottom:19px;
+    width:66px;
+    height:9px;
+    background:#f2be37;
+    transform:rotate(-42deg);
+    box-shadow:-18px 18px 0 #f2be37;
+    opacity:.95;
+  }
+  .destination-section .destination-promo-intro span,
+  .destination-section .destination-promo-intro small,
+  .destination-section .destination-promo-intro i{position:relative;z-index:1}
   .destination-section .destination-promo-intro span{
     font-size:24px;
     font-weight:750;
@@ -1342,7 +1370,7 @@ dialog{border-radius:12px}
   .destination-section .destination-promo-intro small{
     margin-top:9px;
     font-size:10px;
-    color:rgba(255,255,255,.75);
+    color:rgba(255,255,255,.78);
   }
   .destination-section .destination-promo-intro i{
     display:grid;
@@ -1352,7 +1380,7 @@ dialog{border-radius:12px}
     margin-top:19px;
     border-radius:6px;
     background:#f2be37;
-    color:#102f58;
+    color:var(--mock-red,#c85759);
     font-size:17px;
     font-style:normal;
     font-weight:700;
@@ -1371,7 +1399,7 @@ dialog{border-radius:12px}
     box-shadow:0 3px 10px rgba(20,29,44,.12);
   }
   .destination-section .destination-card:nth-child(2){
-    margin-left:-26px;
+    margin-left:-44px;
     z-index:3;
   }
   .destination-section .destination-card>img,
