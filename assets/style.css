@@ -1465,7 +1465,7 @@ dialog{border-radius:12px}
 /* Mobile feed rhythm: routes, explore, reviews */
 @media(max-width:767px){
   .destination-section .destination-grid{padding-right:0}
-  .mobile-home-flow>.route-section{padding-bottom:12px}
+  .mobile-home-flow>.route-section{padding-bottom:16px}
   .mobile-home-flow>.destination-section{
     padding-top:12px!important;
     padding-bottom:16px!important;
