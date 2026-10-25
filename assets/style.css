@@ -1448,3 +1448,16 @@ dialog{border-radius:12px}
   .mobile-home-flow>.destination-section{padding-bottom:12px!important}
   .mobile-home-flow>.reviews-section{padding-top:18px}
 }
+
+/* Mobile explore and review spacing refinement */
+@media(max-width:767px){
+  .mobile-home-flow>.route-section{border-bottom:0}
+  .mobile-home-flow>.reviews-section{
+    margin-top:-6px;
+    padding-top:8px!important;
+    padding-bottom:14px;
+  }
+  .reviews-section .mockup-heading{margin-bottom:8px}
+  .review-grid{padding-top:0;padding-bottom:4px}
+  .review-indicator{min-height:20px;margin-top:3px}
+}
