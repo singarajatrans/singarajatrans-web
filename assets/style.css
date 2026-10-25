@@ -901,8 +901,8 @@ dialog{border-radius:12px}
   width:100%;
  }
  .mobile-home-flow>.route-section{order:1}
- .mobile-home-flow>.reviews-section{order:2}
- .mobile-home-flow>.destination-section{order:3}
+ .mobile-home-flow>.destination-section{order:2}
+ .mobile-home-flow>.reviews-section{order:3}
  .mobile-home-flow>.service-section{
   order:4;
   height:0!important;
