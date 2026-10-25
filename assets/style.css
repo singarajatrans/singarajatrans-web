@@ -1298,6 +1298,7 @@ dialog{border-radius:12px}
 }
 
 /* Mobile destination cards: vertical promo-card treatment */
+.destination-promo-intro{display:none}
 @media (max-width:767px){
   .destination-section .destination-grid{
     display:flex;
@@ -1311,6 +1312,46 @@ dialog{border-radius:12px}
     -webkit-overflow-scrolling:touch;
   }
   .destination-section .destination-grid::-webkit-scrollbar{display:none}
+  .destination-section .destination-promo-intro{
+    display:flex;
+    flex:0 0 148px;
+    min-height:298px;
+    box-sizing:border-box;
+    scroll-snap-align:start;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    padding:18px;
+    border-radius:9px;
+    color:#fff;
+    background:#102f58;
+    box-shadow:0 2px 8px rgba(20,29,44,.08);
+    text-decoration:none;
+  }
+  .destination-section .destination-promo-intro span{
+    font-size:22px;
+    font-weight:750;
+    line-height:1.05;
+    letter-spacing:-.5px;
+  }
+  .destination-section .destination-promo-intro small{
+    margin-top:9px;
+    font-size:10px;
+    color:rgba(255,255,255,.75);
+  }
+  .destination-section .destination-promo-intro i{
+    display:grid;
+    place-items:center;
+    width:30px;
+    height:30px;
+    margin-top:19px;
+    border-radius:6px;
+    background:#f2be37;
+    color:#102f58;
+    font-size:17px;
+    font-style:normal;
+    font-weight:700;
+  }
   .destination-section .destination-card{
     flex:0 0 188px;
     display:block;
