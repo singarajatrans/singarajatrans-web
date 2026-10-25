@@ -1521,7 +1521,7 @@ dialog{border-radius:12px}
     padding-top:0 !important;
     padding-bottom:calc(var(--bottom-nav-height, 72px) + env(safe-area-inset-bottom) + 20px) !important;
   }
-  .reviews-section .mockup-heading{margin-bottom:8px}
+  .reviews-section .mockup-heading{margin-bottom:16px}
   .review-grid{padding-bottom:4px}
   .review-card{height:168px}
   .review-indicator{
