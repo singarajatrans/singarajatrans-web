@@ -1297,12 +1297,12 @@ dialog{border-radius:12px}
  .route-section .route-fare span{font-size:9px}
 }
 
-/* Mobile destination cards: vertical promo-card treatment */
+/* Mobile destination cards: compact promo carousel */
 .destination-promo-intro{display:none}
 @media (max-width:767px){
   .destination-section .destination-grid{
     display:flex;
-    gap:12px;
+    gap:10px;
     overflow-x:auto;
     overflow-y:hidden;
     margin-inline:calc(-1 * var(--page-pad, 20px));
@@ -1314,15 +1314,15 @@ dialog{border-radius:12px}
   .destination-section .destination-grid::-webkit-scrollbar{display:none}
   .destination-section .destination-promo-intro{
     display:flex;
-    flex:0 0 148px;
-    min-height:298px;
+    flex:0 0 158px;
+    min-height:282px;
     box-sizing:border-box;
     scroll-snap-align:start;
     flex-direction:column;
     justify-content:center;
     align-items:flex-start;
     padding:18px;
-    border-radius:9px;
+    border-radius:10px;
     color:#fff;
     background:#102f58;
     box-shadow:0 2px 8px rgba(20,29,44,.08);
@@ -1353,12 +1353,14 @@ dialog{border-radius:12px}
     font-weight:700;
   }
   .destination-section .destination-card{
-    flex:0 0 188px;
+    position:relative;
+    flex:0 0 138px;
     display:block;
+    height:248px;
     scroll-snap-align:start;
     overflow:hidden;
     border:1px solid #e5e8ec;
-    border-radius:9px;
+    border-radius:10px;
     background:#fff;
     box-shadow:0 2px 8px rgba(20,29,44,.08);
   }
@@ -1366,31 +1368,39 @@ dialog{border-radius:12px}
   .destination-section .destination-card:last-child>img{
     display:block;
     width:100%;
-    height:232px;
-    min-height:232px;
-    max-height:232px;
+    height:248px;
+    min-height:248px;
+    max-height:248px;
     object-fit:cover;
   }
   .destination-section .destination-card>div{
-    position:static;
-    min-height:66px;
-    padding:10px 11px 12px;
-    color:#1f2937;
+    position:absolute;
+    inset:auto 0 0;
+    z-index:1;
+    min-height:0;
+    padding:32px 10px 10px;
+    color:#fff;
     border:0;
-    background:#fff;
+    background:linear-gradient(180deg,transparent 0%,rgba(8,18,31,.86) 100%);
   }
   .destination-section .destination-card h3{
-    color:#1f2937;
-    font-size:14px;
-    line-height:1.25;
+    color:#fff;
+    font-size:13px;
+    line-height:1.2;
     margin:0;
   }
   .destination-section .destination-card p{
+    display:flex;
+    align-items:center;
+    gap:3px;
     margin-top:4px!important;
-    color:#6b7280;
-    font-size:11px!important;
+    color:rgba(255,255,255,.86);
+    font-size:10px!important;
+    line-height:1.2;
   }
   .destination-section .destination-card p svg{
-    color:var(--mock-red);
+    width:11px;
+    height:11px;
+    color:currentColor;
   }
 }
