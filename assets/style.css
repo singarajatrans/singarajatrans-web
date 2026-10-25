@@ -1465,7 +1465,7 @@ dialog{border-radius:12px}
 /* Mobile feed rhythm: routes, explore, reviews */
 @media(max-width:767px){
   .destination-section .destination-grid{padding-right:0}
-  .mobile-home-flow>.route-section{padding-bottom:16px}
+  .mobile-home-flow>.route-section{padding-bottom:28px}
   .mobile-home-flow>.destination-section{
     padding-top:12px!important;
     padding-bottom:16px!important;
@@ -1504,7 +1504,7 @@ dialog{border-radius:12px}
 @media (max-width:767px){
   .mobile-home-flow > .destination-section{
     padding-top:0 !important;
-    padding-bottom:16px !important;
+    padding-bottom:28px !important;
   }
   .destination-section .destination-grid{
     width:100vw;
