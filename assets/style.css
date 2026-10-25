@@ -1571,3 +1571,20 @@ dialog{border-radius:12px}
  .route-section .route-card-body{position:relative;z-index:1}
  .route-section .route-card-body{background:linear-gradient(180deg,#fff 0%,#fcfcfd 100%)}
 }
+
+
+/* Mobile favorite routes: elevated content panel over the photo. */
+@media(max-width:767px){
+ .route-section .route-card::after{content:none}
+ .route-section .route-photo-wrap::after{
+  background:linear-gradient(180deg,rgba(9,17,29,.02) 38%,rgba(9,17,29,.16) 100%);
+ }
+ .route-section .route-card-body{
+  z-index:2;
+  margin-top:-12px;
+  padding:14px 12px 12px;
+  border-radius:16px 16px 0 0;
+  box-shadow:0 -6px 18px rgba(20,29,44,.08);
+  background:linear-gradient(180deg,#fff 0%,#fcfcfd 100%);
+ }
+}
