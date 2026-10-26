@@ -2218,3 +2218,21 @@ dialog{border-radius:12px}
   font-weight:500!important;
  }
 }
+
+
+/* Match selected departure date to selected origin/destination on mobile. */
+@media(max-width:767px){
+ #search-form .date-field .date-display{
+  font-size:16px!important;
+  font-weight:600!important;
+  line-height:24px!important;
+  letter-spacing:normal!important;
+ }
+ #search-form .date-field>svg,
+ #search-form .date-field>svg.field-icon-mobile{
+  width:20px!important;
+  height:20px!important;
+  flex:0 0 20px!important;
+  align-self:center!important;
+ }
+}
