@@ -1615,7 +1615,7 @@ dialog{border-radius:12px}
 
 /* Premium Smooth Switch — design-only, no booking integration */
 #trip-mode.trip-mode{position:relative;display:grid!important;grid-template-columns:1fr 1fr;gap:3px!important;padding:4px!important;margin:6px 0 14px!important;border-radius:12px;background:#f3f4f6;max-width:390px;isolation:isolate}
-#trip-mode.trip-mode::before{content:"";position:absolute;z-index:-1;top:4px;bottom:4px;left:4px;width:calc((100% - 11px)/2);border-radius:9px;background:var(--mock-red);transform:translateX(0);transition:transform 250ms cubic-bezier(.22,1,.36,1)}
+#trip-mode.trip-mode::before{content:"";position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 11px)/2);border-radius:9px;background:var(--mock-red);transform:translateX(0);transition:transform 250ms cubic-bezier(.22,1,.36,1)}
 #trip-mode.trip-mode:has(input[value="roundtrip"]:checked)::before{transform:translateX(calc(100% + 3px))}
 #trip-mode.trip-mode label,#trip-mode.trip-mode label:has(input:checked){display:flex!important;width:100%!important;min-height:44px!important;justify-content:center!important;align-items:center!important;padding:8px 10px!important;border:0!important;border-radius:9px!important;background:transparent!important;box-shadow:none!important;color:#46505b!important;cursor:pointer!important;transition:color 200ms ease!important}
 #trip-mode.trip-mode label:has(input:checked){color:#fff!important}
@@ -1624,3 +1624,7 @@ dialog{border-radius:12px}
 #trip-mode.trip-mode label::before,#trip-mode.trip-mode label::after{display:none!important;content:none!important}
 .return-date-wrap[hidden]{display:none!important}.return-date-wrap{margin:0 0 12px;max-width:390px}.return-date-wrap label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:600;color:#384152}.return-date-wrap input{width:100%;min-height:44px;padding:9px 12px;border:1px solid #dfe2e8;border-radius:9px;background:#f5f5f5;color:#242933;font:inherit}
 @media(prefers-reduced-motion:reduce){#trip-mode.trip-mode::before,#trip-mode.trip-mode label{transition:none!important}}
+
+/* Keep switch labels above the animated selection surface. */
+#trip-mode.trip-mode label{position:relative!important;z-index:1!important}
+@media(max-width:767px){#trip-mode.trip-mode{width:100%;max-width:100%}}
