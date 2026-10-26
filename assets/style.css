@@ -2456,3 +2456,42 @@ dialog{border-radius:12px}
   stroke:currentColor!important;
  }
 }
+
+
+/* Mobile hero/widget continuity: keep the area behind service cards red and remove the black-looking band. */
+@media(max-width:767px){
+ .hero::after{
+  background:linear-gradient(
+   180deg,
+   rgba(200,87,89,0) 0%,
+   rgba(190,76,82,.04) 52%,
+   rgba(166,61,69,.10) 78%,
+   rgba(148,52,60,.16) 100%
+  )!important;
+ }
+
+ .booking-container::before{
+  background:linear-gradient(
+   180deg,
+   #c85759 0px,
+   #c85759 76px,
+   rgba(190,76,82,.98) 126px,
+   rgba(178,68,76,.90) 172px,
+   rgba(247,247,247,.95) 270px,
+   #fff 350px
+  )!important;
+ }
+
+ .service-tabs button:not([aria-selected=true]){
+  background:rgba(150,53,61,.46)!important;
+  border-color:rgba(255,255,255,.10)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(.6px)!important;
+  -webkit-backdrop-filter:blur(.6px)!important;
+ }
+
+ .service-tabs{
+  background:transparent!important;
+ }
+}
