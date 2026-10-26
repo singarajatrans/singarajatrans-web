@@ -2318,3 +2318,23 @@ dialog{border-radius:12px}
   padding:7px 14px!important;
  }
 }
+
+
+/* Mobile Cari Tiket CTA: reference yellow background with brand-red label/icon. */
+@media(max-width:767px){
+ #search-form .search-button{
+  background:#eac052!important;
+  border-color:#eac052!important;
+  color:#b95e5b!important;
+ }
+ #search-form .search-button svg{
+  color:#b95e5b!important;
+  stroke:currentColor!important;
+ }
+ #search-form .search-button:hover,
+ #search-form .search-button:active{
+  background:#eac052!important;
+  border-color:#eac052!important;
+  color:#b95e5b!important;
+ }
+}
