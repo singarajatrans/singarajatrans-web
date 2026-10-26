@@ -2385,3 +2385,58 @@ dialog{border-radius:12px}
   background:linear-gradient(180deg,rgba(147,46,54,.12) 0,rgba(28,27,31,.43) 100px,rgba(247,247,247,.96) 265px,#fff 350px)!important;
  }
 }
+\n
+/* Mobile hero refinement v2: lighter accents, softer maroon transition, tighter composition. */
+@media(max-width:767px){
+ .hero{
+  height:268px!important;
+  min-height:268px!important;
+  background:#c85759!important;
+ }
+ .hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+   linear-gradient(132deg,transparent 0 59%,rgba(103,29,36,.075) 59% 72%,transparent 72%),
+   linear-gradient(132deg,transparent 0 76%,rgba(255,255,255,.045) 76% 84%,transparent 84%)!important;
+ }
+ .hero::after{
+  background:linear-gradient(180deg,rgba(200,87,89,0) 0%,rgba(178,66,73,.08) 54%,rgba(115,43,49,.21) 78%,rgba(77,35,40,.30) 100%)!important;
+ }
+ .hero-content{
+  padding-top:24px!important;
+ }
+ .hero h1{
+  font-size:26px!important;
+  line-height:1.12!important;
+  font-weight:700!important;
+  letter-spacing:-.55px!important;
+  margin-bottom:6px!important;
+ }
+ .hero p{
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:400!important;
+  color:rgba(255,255,255,.92)!important;
+ }
+ .booking-container{
+  margin-top:-168px!important;
+ }
+ .booking-container::before{
+  background:linear-gradient(180deg,rgba(127,46,53,.10) 0,rgba(92,39,45,.25) 92px,rgba(247,247,247,.94) 252px,#fff 340px)!important;
+ }
+ .service-tabs button:not([aria-selected=true]){
+  background:rgba(91,37,43,.36)!important;
+  border-color:rgba(255,255,255,.08)!important;
+  color:#fff!important;
+  backdrop-filter:blur(.8px)!important;
+  -webkit-backdrop-filter:blur(.8px)!important;
+ }
+ .service-tabs button[aria-selected=true]{
+  background:#fff!important;
+  box-shadow:0 2px 8px rgba(85,32,37,.10)!important;
+ }
+}
