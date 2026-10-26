@@ -1956,3 +1956,11 @@ dialog{border-radius:12px}
   border-bottom-color:transparent!important;
  }
 }
+
+
+/* Shorten the inactive gray baseline slightly without changing the active red underline. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{
+  background:linear-gradient(#d9dde1,#d9dde1) left bottom/calc(100% - 12px) 2px no-repeat!important;
+ }
+}
