@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-label="Aksen siluet Candi Bentar Bali">
+  <g fill="#ffffff">
+    <path d="M18 250h82v-22H88v-34H76v-33H63v-28H48v-30H34v30H22v28H10v33H0v34h18z"/>
+    <path d="M222 250h-82v-22h12v-34h12v-33h13v-28h15v-30h14v30h12v28h12v33h10v34h-18z"/>
+    <path d="M26 101h66l-12-17H38z"/>
+    <path d="M214 101h-66l12-17h42z"/>
+    <path d="M38 74h42L69 58H49z"/>
+    <path d="M202 74h-42l11-16h20z"/>
+    <path d="M49 49h20L59 28z"/>
+    <path d="M191 49h-20l10-21z"/>
+  </g>
+</svg>
