@@ -1757,3 +1757,33 @@ dialog{border-radius:12px}
   height:2px!important;
  }
 }
+
+
+/* One shared baseline: red active segment replaces (covers) gray, not a second line. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{border-bottom:2px solid #d9dde1!important}
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  align-items:stretch!important;
+  padding:0!important;
+  min-height:34px!important;
+  border-bottom:0!important;
+  margin-bottom:-2px!important;
+ }
+ #search-form #trip-mode.trip-mode label>span:last-child{
+  display:inline-flex!important;
+  align-items:center!important;
+  align-self:stretch!important;
+  flex:0 0 auto!important;
+  border-bottom:2px solid transparent!important;
+  padding:4px 0 6px!important;
+  box-sizing:border-box!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input:checked)>span:last-child{
+  border-bottom-color:var(--mock-red)!important;
+ }
+ #search-form #trip-mode.trip-mode label>span:last-child::after{
+  content:none!important;
+  display:none!important;
+ }
+}
