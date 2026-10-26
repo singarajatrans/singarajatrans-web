@@ -1282,7 +1282,7 @@ dialog{border-radius:12px}
  .route-label-filters button{position:relative}
  .route-label-filters button[aria-pressed="true"]::after{content:"";position:absolute;left:50%;bottom:-8px;width:26px;height:10px;background:url("images/filter-notch-pink-075.svg") center/100% 100% no-repeat;transform:translateX(-50%);pointer-events:none}
  .route-photo-label[data-service-label]{color:var(--mock-red)}
- .route-photo-label[data-service-label="shuttle"]{background:#005f9e;color:#fff}
+ .route-photo-label[data-service-label="shuttle"]{background:#0077a8;color:#fff}
  .route-photo-label[data-service-label="airport"]{background:#f97316;color:#fff}
  .route-photo-label[data-service-label="car"]{background:var(--mock-red);color:#fff}
  .route-photo-label[data-service-label="charter"]{background:#6d28d9;color:#fff}
