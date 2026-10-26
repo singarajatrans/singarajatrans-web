@@ -1841,3 +1841,17 @@ dialog{border-radius:12px}
   transform:none!important;
  }
 }
+
+
+/* Mobile trip mode: emphasize selected label, soften inactive label. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  font-size:13px!important;
+  color:#858585!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  font-size:15px!important;
+  color:var(--mock-red-dark)!important;
+ }
+}
