@@ -1931,3 +1931,17 @@ dialog{border-radius:12px}
   display:none!important;
  }
 }
+
+
+/* Mobile trip tab labels: 20px spacing while retaining full-width gray baseline. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{
+  grid-template-columns:max-content max-content!important;
+  column-gap:20px!important;
+  justify-content:start!important;
+ }
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  width:max-content!important;
+ }
+}
