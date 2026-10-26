@@ -1285,8 +1285,8 @@ dialog{border-radius:12px}
  .route-photo-label[data-service-label="shuttle"]{background:#005f9e;color:#fff}
  .route-photo-label[data-service-label="airport"]{background:#f97316;color:#fff}
  .route-photo-label[data-service-label="car"]{background:var(--mock-red);color:#fff}
- .route-photo-label[data-service-label="charter"]{background:#ede9fe}
- .route-photo-label[data-service-label="motor"]{background:#fee2e2}
+ .route-photo-label[data-service-label="charter"]{background:#6d28d9;color:#fff}
+ .route-photo-label[data-service-label="motor"]{background:#0f766e;color:#fff}
  .route-photo-label[data-service-label="car"] .route-label-icon,.route-photo-label[data-service-label="charter"] .route-label-icon{-webkit-mask-image:url("images/car-rental.svg?v=vector-3");mask-image:url("images/car-rental.svg?v=vector-3")}
  .route-photo-label[data-service-label="motor"] .route-label-icon{-webkit-mask-image:url("images/motorbike.png?v=mask-1");mask-image:url("images/motorbike.png?v=mask-1")}
  .route-photo-wrap>.route-product-motor{object-fit:contain;padding:20px;background:#f6f4f8}
