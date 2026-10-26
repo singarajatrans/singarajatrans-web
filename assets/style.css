@@ -1693,3 +1693,31 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){justify-content:flex-start!important;text-align:left!important;padding-left:0!important}
 }
+
+
+/* Mobile trip tabs: active underline follows text width, inactive track stays gray. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  position:relative!important;
+  border-bottom:0!important;
+  margin-bottom:0!important;
+  padding-bottom:6px!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input:checked)::after{
+  content:""!important;
+  display:block!important;
+  visibility:visible!important;
+  position:absolute!important;
+  left:0!important;
+  bottom:-2px!important;
+  width:var(--trip-active-underline-width, 86px)!important;
+  height:3px!important;
+  background:var(--mock-red)!important;
+  border:0!important;
+  box-shadow:none!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input[value="roundtrip"]:checked)::after{
+  width:var(--trip-roundtrip-underline-width, 88px)!important;
+ }
+}
