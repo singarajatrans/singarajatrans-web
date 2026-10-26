@@ -1279,7 +1279,7 @@ dialog{border-radius:12px}
  .route-label-filters button{flex:0 0 auto;min-height:30px;padding:5px 10px;border:1px solid #e4e8e5;border-radius:999px;background:#fff;color:#49534d;font-size:11px;font-weight:600}
  .route-label-filters button[aria-pressed="true"]{background:#f9eaea;border-color:var(--mock-red);color:var(--mock-red-dark)}
  .route-photo-label[data-service-label]{color:var(--mock-red)}
- .route-photo-label[data-service-label="shuttle"]{background:#dbeafe}
+ .route-photo-label[data-service-label="shuttle"]{background:#05285d;color:#fff}
  .route-photo-label[data-service-label="airport"]{background:#ffedd5}
  .route-photo-label[data-service-label="car"]{background:#fce7f3}
  .route-photo-label[data-service-label="charter"]{background:#ede9fe}
