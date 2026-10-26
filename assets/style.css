@@ -2298,3 +2298,11 @@ dialog{border-radius:12px}
   border-color:transparent!important;
  }
 }
+
+
+/* Center dotted location connector precisely under 20px icons. */
+@media(max-width:767px){
+ #search-form .field-stack .location-pair::after{
+  left:21px!important;
+ }
+}
