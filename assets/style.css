@@ -2440,3 +2440,19 @@ dialog{border-radius:12px}
   box-shadow:0 2px 8px rgba(85,32,37,.10)!important;
  }
 }
+
+
+/* Mobile Cari Tiket CTA: restore primary Singaraja Trans red. */
+@media(max-width:767px){
+ #search-form .search-button,
+ #search-form .search-button:hover,
+ #search-form .search-button:active{
+  background:var(--mock-red,#c85759)!important;
+  border-color:var(--mock-red,#c85759)!important;
+  color:#fff!important;
+ }
+ #search-form .search-button svg{
+  color:#fff!important;
+  stroke:currentColor!important;
+ }
+}
