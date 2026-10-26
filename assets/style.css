@@ -2495,3 +2495,18 @@ dialog{border-radius:12px}
   background:transparent!important;
  }
 }
+
+
+/* Mobile: remove the visible lower overlay behind service cards; keep solid brand red through the card zone. */
+@media(max-width:767px){
+ .booking-container::before{
+  background:linear-gradient(
+   180deg,
+   #c85759 0px,
+   #c85759 182px,
+   rgba(200,87,89,.96) 214px,
+   rgba(247,247,247,.96) 286px,
+   #fff 350px
+  )!important;
+ }
+}
