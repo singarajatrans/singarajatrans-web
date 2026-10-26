@@ -1670,3 +1670,11 @@ dialog{border-radius:12px}
  #search-form .quick-date-actions button{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
  #search-form .quick-date-actions button[aria-pressed="true"]{color:var(--mock-red-dark)!important;text-decoration:underline;text-decoration-color:var(--mock-red);text-decoration-thickness:2px;text-underline-offset:5px}
 }
+
+
+/* Mobile trip tabs: full-width shared divider, gray inactive / red active. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:0!important;width:100%!important;border-bottom:2px solid #d9dde1!important}
+ #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){display:flex!important;width:100%!important;justify-content:center!important;text-align:center!important;border-bottom:3px solid transparent!important;margin-bottom:-2px!important}
+ #search-form #trip-mode.trip-mode label:has(input:checked){border-bottom-color:var(--mock-red)!important}
+}
