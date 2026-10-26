@@ -1793,3 +1793,23 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  #search-form #trip-mode.trip-mode{border-bottom:0!important}
 }
+
+
+/* Mobile trip tabs: only one red underline, remove duplicate lower stroke. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{border:0!important;border-bottom:0!important}
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  margin-bottom:0!important;
+  border-bottom:0!important;
+ }
+ #search-form #trip-mode.trip-mode label>span:last-child{
+  border-bottom:0!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input:checked)>span:last-child{
+  border-bottom:2px solid var(--mock-red)!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input:checked)>span:last-child::after{
+  content:none!important;display:none!important;
+ }
+}
