@@ -1255,7 +1255,7 @@ dialog{border-radius:12px}
  .route-photo-label{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.9);color:#38413e;font-size:11px;font-weight:600;max-width:calc(100% - 70px)}
  .route-favorite{position:absolute;top:14px;right:16px;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border:0;border-radius:0;background:transparent;color:#fff;box-shadow:none}
  .route-favorite::before{content:"";position:absolute;inset:-12px}
- .route-favorite .route-heart{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.1;filter:none}
+ .route-favorite .route-heart{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:0.9;filter:none}
  .route-favorite[aria-pressed="true"]{color:var(--mock-red)}
  .route-favorite[aria-pressed="true"] .route-heart{fill:currentColor}
  .route-section .route-path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:0;line-height:1.4}
