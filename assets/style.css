@@ -2542,3 +2542,228 @@ dialog{border-radius:12px}
   z-index:1!important;
  }
 }
+
+
+/* === Mobile top-area redesign from approved mockup: header + Bali hero + service cards === */
+@media(max-width:767px){
+  /* Two-level app header: wordmark above, search + actions below. */
+  #header{
+    background:var(--mock-red,#c85759)!important;
+  }
+  #header>.nav-wrap,
+  #header>.nav-wrap>.nav-inner{
+    background:transparent!important;
+  }
+  #header .nav-inner{
+    height:118px!important;
+    width:calc(100% - 32px)!important;
+    padding:12px 0 10px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-rows:30px 44px!important;
+    grid-template-areas:
+      "brand brand"
+      "search actions"!important;
+    column-gap:10px!important;
+    row-gap:10px!important;
+    align-items:center!important;
+  }
+  #header .brand{
+    grid-area:brand!important;
+    display:block!important;
+    position:relative!important;
+    width:max-content!important;
+    max-width:72vw!important;
+    height:30px!important;
+    margin:0!important;
+    overflow:visible!important;
+    color:#fff!important;
+    line-height:1!important;
+  }
+  #header .brand img{display:none!important}
+  #header .brand::before{
+    content:"SINGARAJA TRANS";
+    display:block;
+    color:#fff;
+    font-size:19px;
+    line-height:24px;
+    font-weight:780;
+    font-style:italic;
+    letter-spacing:.35px;
+    white-space:nowrap;
+  }
+  #header .brand::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-1px;
+    width:96px;
+    height:5px;
+    border-top:2px solid rgba(255,255,255,.96);
+    border-radius:50%;
+    transform:skewX(-26deg);
+    opacity:.9;
+  }
+  #header .mobile-header-search{
+    grid-area:search!important;
+    display:flex!important;
+    width:100%!important;
+    height:44px!important;
+    min-width:0!important;
+    padding:0 14px!important;
+    gap:9px!important;
+    border-radius:24px!important;
+    background:rgba(255,255,255,.94)!important;
+    box-shadow:0 5px 18px rgba(102,25,33,.08)!important;
+  }
+  #header .header-search-icon{
+    width:21px!important;
+    height:21px!important;
+    color:#667085!important;
+  }
+  #header .nav-actions{
+    grid-area:actions!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    margin:0!important;
+  }
+  #header .languages{
+    width:44px!important;
+    height:44px!important;
+    flex:0 0 44px!important;
+  }
+  #header .languages button[aria-pressed=true],
+  #header .mobile-header-action{
+    width:44px!important;
+    height:44px!important;
+    min-height:44px!important;
+    flex:0 0 44px!important;
+    border-radius:50%!important;
+    background:rgba(255,255,255,.94)!important;
+    box-shadow:0 4px 14px rgba(102,25,33,.08)!important;
+  }
+  #header .languages .language-globe,
+  #header .mobile-header-action svg{
+    width:20px!important;
+    height:20px!important;
+    color:var(--mock-red,#c85759)!important;
+    stroke:currentColor!important;
+  }
+  #header .mobile-menu{display:none!important}
+  html{scroll-padding-top:118px!important}
+
+  /* Hero from mockup: richer red scene, visible Candi Bentar accent, compact copy. */
+  .hero{
+    height:255px!important;
+    min-height:255px!important;
+    background:
+      radial-gradient(circle at 78% 18%,rgba(255,255,255,.08),transparent 34%),
+      linear-gradient(180deg,#cf5b5e 0%,#c85759 44%,#b74950 100%)!important;
+    overflow:hidden!important;
+  }
+  .hero-image,
+  .hero-service-visual{display:none!important}
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0!important;
+    z-index:0!important;
+    opacity:1!important;
+    pointer-events:none!important;
+    background:url("images/bali-hero-scene.svg?v=1") no-repeat right -28px top 0/430px 248px!important;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(90deg,rgba(129,34,43,.10) 0%,rgba(129,34,43,.02) 55%,rgba(103,24,32,.12) 100%),
+      linear-gradient(180deg,transparent 0 60%,rgba(105,28,37,.18) 100%)!important;
+  }
+  .hero .hero-content{
+    position:relative!important;
+    z-index:1!important;
+    padding:31px 0 0!important;
+  }
+  .hero h1{
+    max-width:330px!important;
+    margin:0 0 7px!important;
+    color:#fff!important;
+    font-size:27px!important;
+    line-height:1.10!important;
+    font-weight:760!important;
+    letter-spacing:-.65px!important;
+    text-shadow:0 1px 1px rgba(80,18,26,.08)!important;
+  }
+  .hero .hero-accent{color:#fff!important}
+  .hero p{
+    max-width:300px!important;
+    margin:0!important;
+    color:rgba(255,255,255,.94)!important;
+    font-size:13px!important;
+    line-height:1.35!important;
+    font-weight:480!important;
+  }
+
+  /* Service carousel sits in the red scene like the approved mockup. */
+  .booking-container{
+    margin-top:-150px!important;
+  }
+  .booking-container::before{
+    background:linear-gradient(
+      180deg,
+      #b94b52 0,
+      #b94b52 122px,
+      rgba(185,75,82,.96) 150px,
+      rgba(247,247,247,.96) 238px,
+      #fff 320px
+    )!important;
+  }
+  .service-tabs{
+    --service-card-width:round(down,calc((100vw - 32px)*.29),1px)!important;
+    gap:10px!important;
+    padding:4px 16px 16px!important;
+    background:transparent!important;
+  }
+  .service-tabs button,
+  .service-tabs .mobile-service{
+    height:98px!important;
+    min-height:98px!important;
+    padding:11px 7px 10px!important;
+    gap:5px!important;
+    border-radius:18px!important;
+    font-size:11.5px!important;
+    line-height:1.18!important;
+    font-weight:680!important;
+  }
+  .service-tabs button:not([aria-selected=true]){
+    background:rgba(112,31,40,.52)!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    color:#fff!important;
+    box-shadow:0 6px 18px rgba(89,23,31,.08)!important;
+    backdrop-filter:blur(.7px)!important;
+    -webkit-backdrop-filter:blur(.7px)!important;
+  }
+  .service-tabs button[aria-selected=true]{
+    background:#fff!important;
+    color:var(--mock-red,#c85759)!important;
+    border:1px solid rgba(255,255,255,.98)!important;
+    box-shadow:0 7px 18px rgba(103,28,36,.13)!important;
+  }
+  .service-tabs button[aria-selected=true]::after{
+    bottom:-9px!important;
+  }
+  .service-tabs .service-svg-icon{
+    width:34px!important;
+    height:34px!important;
+  }
+
+  /* Let the booking widget float cleanly out of the red hero. */
+  #search-panel{
+    border-radius:18px!important;
+    box-shadow:0 -2px 12px rgba(98,30,38,.05),0 8px 24px rgba(18,28,45,.12)!important;
+  }
+}
