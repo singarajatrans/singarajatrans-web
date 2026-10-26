@@ -2102,3 +2102,26 @@ dialog{border-radius:12px}
   border-color:#dedede!important;
  }
 }
+
+
+/* Mobile location fields: remove focus outline and use brand-red swap arrows. */
+@media(max-width:767px){
+ #search-form .field-stack .location-pair .origin-field:focus-within,
+ #search-form .field-stack .location-pair .destination-field:focus-within,
+ #search-form .field-stack .location-pair .field:focus-within{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+ }
+ #search-form .field-stack .location-pair .origin-field:focus,
+ #search-form .field-stack .location-pair .destination-field:focus{
+  outline:0!important;
+  box-shadow:none!important;
+ }
+ #search-form .location-swap,
+ #search-form .location-swap svg{
+  color:var(--mock-red)!important;
+  stroke:currentColor!important;
+ }
+}
