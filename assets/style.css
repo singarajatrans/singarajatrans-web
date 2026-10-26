@@ -2510,3 +2510,17 @@ dialog{border-radius:12px}
   )!important;
  }
 }
+
+
+/* Mobile hero Bali accent: subtle Candi Bentar watermark, replacing the stronger diagonal treatment. */
+@media(max-width:767px){
+ .hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:url("images/bali-candi-bentar-accent.svg") no-repeat right 18px center/142px auto!important;
+  opacity:.075!important;
+ }
+}
