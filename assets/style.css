@@ -2191,3 +2191,19 @@ dialog{border-radius:12px}
   flex:0 0 auto!important;
  }
 }
+
+
+/* Match departure-date placeholder to origin placeholder on mobile. */
+@media(max-width:767px){
+ #search-form .date-field:not(.has-value) .field-label{
+  font-size:14px!important;
+  line-height:20px!important;
+  transform:none!important;
+  margin:0!important;
+ }
+ #search-form .date-field:not(.has-value)>span{
+  display:flex!important;
+  align-items:center!important;
+  min-height:24px!important;
+ }
+}
