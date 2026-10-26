@@ -1277,7 +1277,7 @@ dialog{border-radius:12px}
  .route-section .mockup-heading,.destination-section .mockup-heading,.reviews-section .mockup-heading{margin-bottom:16px}
  .route-label-filters{display:flex;gap:7px;position:relative;left:50%;width:calc(100vw - 16px);margin:0 0 16px;transform:translateX(calc(-50vw + 16px));overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}.route-label-filters::after{content:"";flex:0 0 16px;scroll-snap-align:end}
  .route-label-filters button{flex:0 0 auto;scroll-snap-align:start;min-height:30px;padding:5px 10px;border:1px solid #e4e8e5;border-radius:999px;background:#fff;color:#49534d;font-size:11px;font-weight:600}
- .route-label-filters button[aria-pressed="true"]{background:#fff;border-color:var(--mock-red);color:var(--mock-red-dark)}
+ .route-label-filters button[aria-pressed="true"]{background:#fff;border:1px solid var(--mock-red);color:var(--mock-red-dark)}
  .route-label-filters{padding-bottom:14px}
  .route-label-filters button{position:relative}
  .route-label-filters button[aria-pressed="true"]::after{content:"";position:absolute;left:50%;bottom:-8px;width:26px;height:10px;background:url("images/service-notch.svg") center/100% 100% no-repeat;transform:translateX(-50%);pointer-events:none}
