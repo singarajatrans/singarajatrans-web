@@ -1787,3 +1787,9 @@ dialog{border-radius:12px}
   display:none!important;
  }
 }
+
+
+/* Mobile trip tabs: remove full-width bottom divider; keep only active text underline. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{border-bottom:0!important}
+}
