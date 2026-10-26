@@ -1733,3 +1733,8 @@ dialog{border-radius:12px}
   background:var(--mock-red)!important;border-radius:2px!important;
  }
 }
+
+/* Bring the second trip label 15px closer to the first, keeping the divider full width. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{grid-template-columns:minmax(0,calc(50% - 15px)) minmax(0,1fr)!important}
+}
