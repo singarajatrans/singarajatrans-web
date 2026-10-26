@@ -1738,3 +1738,13 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  #search-form #trip-mode.trip-mode{grid-template-columns:minmax(0,calc(50% - 15px)) minmax(0,1fr)!important}
 }
+
+
+/* Keep the active red underline exactly on the same baseline as the gray full-width divider. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{position:relative!important;border-bottom:2px solid #d9dde1!important}
+ #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){min-height:34px!important;align-items:center!important;border-bottom:0!important;margin-bottom:0!important;padding-top:4px!important;padding-bottom:6px!important}
+ #search-form #trip-mode.trip-mode label:has(input:checked)>span:last-child::after{
+  bottom:-9px!important;height:2px!important;border-radius:0!important;z-index:2!important;
+ }
+}
