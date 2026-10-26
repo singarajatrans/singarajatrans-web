@@ -2207,3 +2207,14 @@ dialog{border-radius:12px}
   min-height:24px!important;
  }
 }
+
+
+/* Keep departure-date placeholder weight identical to origin/destination. */
+@media(max-width:767px){
+ #search-form .date-field:not(.has-value) .field-label{
+  font-weight:500!important;
+ }
+ #search-form .location-pair .field:not(.has-value) .field-label{
+  font-weight:500!important;
+ }
+}
