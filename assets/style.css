@@ -1813,3 +1813,9 @@ dialog{border-radius:12px}
   content:none!important;display:none!important;
  }
 }
+
+
+/* Nudge only the Pulang Pergi label left without changing the underline style. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label:has(input[value="roundtrip"]){transform:translateX(-10px)!important}
+}
