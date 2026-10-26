@@ -1721,3 +1721,15 @@ dialog{border-radius:12px}
   width:var(--trip-roundtrip-underline-width, 88px)!important;
  }
 }
+
+
+/* Exact text-width underline (also adapts to ID/EN labels). */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label:has(input:checked)::after{content:none!important;display:none!important}
+ #search-form #trip-mode.trip-mode label>span:last-child{position:relative!important;display:inline-block!important;flex:0 0 auto!important}
+ #search-form #trip-mode.trip-mode label:has(input:checked)>span:last-child::after{
+  content:""!important;display:block!important;position:absolute!important;
+  left:0!important;right:0!important;bottom:-8px!important;height:3px!important;
+  background:var(--mock-red)!important;border-radius:2px!important;
+ }
+}
