@@ -1655,3 +1655,18 @@ dialog{border-radius:12px}
 #search-form #trip-mode.trip-mode label:has(input:checked){color:#fff!important}
 #search-form #trip-mode.trip-mode label::before,#search-form #trip-mode.trip-mode label::after,#search-form #trip-mode.trip-mode label:has(input:checked)::before,#search-form #trip-mode.trip-mode label:has(input:checked)::after{content:none!important;display:none!important;visibility:hidden!important;border:0!important;box-shadow:none!important}
 #search-form #trip-mode.trip-mode label .trip-mode-icon{display:none!important}
+
+
+/* Mobile search widget: minimal underlined trip tabs and soft reference fields. */
+@media (max-width:767px){
+ #search-form #trip-mode.trip-mode{display:flex!important;align-items:stretch!important;justify-content:flex-start!important;gap:26px!important;width:100%!important;max-width:none!important;margin:0 0 18px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important;box-shadow:none!important}
+ #search-form #trip-mode.trip-mode::before{display:none!important;content:none!important}
+ #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){flex:0 1 auto!important;width:auto!important;min-height:46px!important;margin:0!important;padding:8px 0 12px!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#303030!important;font-size:13px!important;font-weight:600!important;line-height:20px!important;transition:color .2s,border-color .2s!important}
+ #search-form #trip-mode.trip-mode label:has(input:checked){color:var(--mock-red-dark)!important;border-bottom-color:var(--mock-red)!important}
+ #search-form #trip-mode.trip-mode label:focus-within{outline:2px solid var(--mock-red)!important;outline-offset:2px!important;box-shadow:none!important}
+ #search-form .field-stack .field{background:#f5f5f5!important;border:1px solid transparent!important;border-radius:15px!important;box-shadow:none!important;transition:background .2s,border-color .2s!important}
+ #search-form .field-stack .field:focus-within{background:#f5f5f5!important;border-color:var(--mock-red)!important;box-shadow:0 0 0 2px rgba(200,87,89,.1)!important}
+ #search-form .field-stack .field-label{color:#858585!important}
+ #search-form .quick-date-actions button{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+ #search-form .quick-date-actions button[aria-pressed="true"]{color:var(--mock-red-dark)!important;text-decoration:underline;text-decoration-color:var(--mock-red);text-decoration-thickness:2px;text-underline-offset:5px}
+}
