@@ -2306,3 +2306,15 @@ dialog{border-radius:12px}
   left:21px!important;
  }
 }
+
+
+/* Slightly enlarge mobile quick-date pills without changing date field layout. */
+@media(max-width:767px){
+ #search-form .quick-date-actions button,
+ #search-form .quick-date-actions button[aria-pressed="false"],
+ #search-form .quick-date-actions button[aria-pressed="true"]{
+  min-height:36px!important;
+  min-width:72px!important;
+  padding:7px 14px!important;
+ }
+}
