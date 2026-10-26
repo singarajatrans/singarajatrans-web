@@ -2524,3 +2524,21 @@ dialog{border-radius:12px}
   opacity:.075!important;
  }
 }
+
+
+/* Mobile Bali hero accent visibility fix: keep watermark above hero background. */
+@media(max-width:767px){
+ .hero::before{
+  z-index:0!important;
+  background:url("images/bali-candi-bentar-accent.svg") no-repeat right -6px top 22px/172px auto!important;
+  opacity:.14!important;
+ }
+ .hero::after{
+  z-index:0!important;
+  pointer-events:none!important;
+ }
+ .hero-content{
+  position:relative!important;
+  z-index:1!important;
+ }
+}
