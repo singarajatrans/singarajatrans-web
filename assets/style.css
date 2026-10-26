@@ -2339,3 +2339,49 @@ dialog{border-radius:12px}
  }
 }
 
+
+
+/* Singaraja Trans mobile hero: continuous red header, restrained diagonal accents. */
+@media(max-width:767px){
+ .hero{
+  background:#c85759!important;
+  isolation:isolate;
+ }
+ .hero-image,
+ .hero-service-visual{
+  display:none!important;
+ }
+ .hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+   linear-gradient(132deg,transparent 0 52%,rgba(119,31,40,.15) 52% 67%,transparent 67%),
+   linear-gradient(132deg,transparent 0 72%,rgba(255,255,255,.08) 72% 82%,transparent 82%);
+ }
+ .hero::after{
+  background:linear-gradient(180deg,rgba(200,87,89,0) 0%,rgba(158,52,61,.13) 62%,rgba(27,26,31,.48) 100%)!important;
+ }
+ .hero-content{
+  position:relative;
+  z-index:1;
+  padding-top:28px!important;
+ }
+ .hero h1{
+  color:#fff!important;
+  font-size:27px!important;
+  line-height:1.14!important;
+  margin-bottom:7px!important;
+ }
+ .hero .hero-accent{color:#fff!important}
+ .hero p{
+  color:rgba(255,255,255,.92)!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+ }
+ .booking-container::before{
+  background:linear-gradient(180deg,rgba(147,46,54,.12) 0,rgba(28,27,31,.43) 100px,rgba(247,247,247,.96) 265px,#fff 350px)!important;
+ }
+}
