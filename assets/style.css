@@ -1945,3 +1945,14 @@ dialog{border-radius:12px}
   width:max-content!important;
  }
 }
+
+
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{
+  background:linear-gradient(#d9dde1,#d9dde1) left bottom/100% 2px no-repeat!important;
+ }
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  border-bottom-color:transparent!important;
+ }
+}
