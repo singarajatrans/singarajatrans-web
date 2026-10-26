@@ -1678,3 +1678,8 @@ dialog{border-radius:12px}
  #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){display:flex!important;width:100%!important;justify-content:center!important;text-align:center!important;border-bottom:3px solid transparent!important;margin-bottom:-2px!important}
  #search-form #trip-mode.trip-mode label:has(input:checked){border-bottom-color:var(--mock-red)!important}
 }
+
+/* Compact vertical spacing for mobile trip tab labels. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){min-height:34px!important;padding:4px 0 6px!important}
+}
