@@ -2767,3 +2767,131 @@ dialog{border-radius:12px}
     box-shadow:0 -2px 12px rgba(98,30,38,.05),0 8px 24px rgba(18,28,45,.12)!important;
   }
 }
+
+
+/* Mobile top-area cleanup after visual audit: compact header, unclipped hero, cleaner service overlap. */
+@media(max-width:767px){
+  /* Header: keep two rows, but remove the oversized vertical gaps. */
+  #header .nav-inner{
+    height:104px!important;
+    padding:8px 0!important;
+    grid-template-rows:24px 42px!important;
+    row-gap:8px!important;
+    column-gap:8px!important;
+  }
+  #header .brand{
+    height:24px!important;
+  }
+  #header .brand::before{
+    font-size:18px!important;
+    line-height:22px!important;
+    letter-spacing:.2px!important;
+  }
+  #header .brand::after{
+    width:88px!important;
+    bottom:-2px!important;
+  }
+  #header .mobile-header-search{
+    height:42px!important;
+    border-radius:22px!important;
+    padding-inline:13px!important;
+  }
+  #header .languages,
+  #header .languages button[aria-pressed=true],
+  #header .mobile-header-action{
+    width:42px!important;
+    height:42px!important;
+    min-height:42px!important;
+    flex-basis:42px!important;
+  }
+  html{scroll-padding-top:104px!important}
+
+  /* Hero: compact and stable; no pseudo-element from booking can cover the subtitle. */
+  .hero{
+    height:228px!important;
+    min-height:228px!important;
+    background:
+      radial-gradient(circle at 82% 22%,rgba(255,255,255,.06),transparent 30%),
+      linear-gradient(180deg,#cd595d 0%,#c85759 54%,#b94b52 100%)!important;
+  }
+  .hero::before{
+    inset:0!important;
+    z-index:0!important;
+    opacity:.20!important;
+    background:url("images/bali-candi-bentar-accent.svg?v=2") no-repeat right 4px top 18px/190px auto!important;
+  }
+  .hero::after{
+    z-index:0!important;
+    background:
+      linear-gradient(90deg,rgba(121,34,42,.06),transparent 54%,rgba(104,27,35,.08)),
+      linear-gradient(180deg,transparent 0 68%,rgba(105,28,37,.13) 100%)!important;
+  }
+  .hero .hero-content{
+    padding:22px 0 0!important;
+  }
+  .hero h1{
+    max-width:315px!important;
+    font-size:25px!important;
+    line-height:1.10!important;
+    margin-bottom:6px!important;
+    letter-spacing:-.5px!important;
+  }
+  .hero p{
+    max-width:285px!important;
+    font-size:12.5px!important;
+    line-height:1.35!important;
+  }
+
+  /* Service cards: tighter, calmer and aligned. */
+  .booking-container{
+    margin-top:-126px!important;
+  }
+  .service-tabs{
+    --service-card-width:round(down,calc((100vw - 32px)*.285),1px)!important;
+    gap:8px!important;
+    padding:4px 16px 14px!important;
+  }
+  .service-tabs button,
+  .service-tabs .mobile-service{
+    height:90px!important;
+    min-height:90px!important;
+    padding:9px 6px 8px!important;
+    gap:4px!important;
+    border-radius:16px!important;
+    font-size:11px!important;
+    line-height:1.16!important;
+  }
+  .service-tabs .service-svg-icon{
+    width:31px!important;
+    height:31px!important;
+  }
+  .service-tabs button:not([aria-selected=true]){
+    background:rgba(112,31,40,.42)!important;
+    border-color:rgba(255,255,255,.10)!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  .service-tabs button[aria-selected=true]{
+    box-shadow:0 5px 14px rgba(90,25,33,.11)!important;
+  }
+
+  /* Start the red-to-white transition below the service row, not over hero copy. */
+  .booking-container::before{
+    top:88px!important;
+    bottom:0!important;
+    background:linear-gradient(
+      180deg,
+      rgba(185,75,82,0) 0,
+      rgba(185,75,82,.88) 48px,
+      rgba(247,247,247,.96) 142px,
+      #fff 230px
+    )!important;
+  }
+
+  #search-panel{
+    margin-top:0!important;
+    border-radius:18px!important;
+    box-shadow:0 7px 22px rgba(18,28,45,.11)!important;
+  }
+}
