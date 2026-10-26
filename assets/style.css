@@ -2278,3 +2278,23 @@ dialog{border-radius:12px}
   box-shadow:none!important;
  }
 }
+
+
+/* Definitive mobile date focus reset: override #search-form .field-stack .field:focus-within. */
+@media(max-width:767px){
+ #search-form .field-stack .field.date-field,
+ #search-form .field-stack .field.date-field:hover,
+ #search-form .field-stack .field.date-field:focus,
+ #search-form .field-stack .field.date-field:focus-within,
+ #search-form .field-stack .field.date-field:has(input:focus){
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:#f5f5f5!important;
+ }
+ #search-form .field-stack .field.date-field::before,
+ #search-form .field-stack .field.date-field::after{
+  box-shadow:none!important;
+  border-color:transparent!important;
+ }
+}
