@@ -2125,3 +2125,15 @@ dialog{border-radius:12px}
   stroke:currentColor!important;
  }
 }
+
+
+/* Mobile location switch: smaller arrow and soft brand-red background. */
+@media(max-width:767px){
+ #search-form .location-swap{
+  background:#f9eaea!important;
+ }
+ #search-form .location-swap svg{
+  width:18px!important;
+  height:18px!important;
+ }
+}
