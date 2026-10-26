@@ -1545,7 +1545,7 @@ dialog{border-radius:12px}
  }
  .route-section .route-card,
  .route-section .route-card:hover{
-  box-shadow:0 8px 20px rgba(20,29,44,.08),0 2px 6px rgba(20,29,44,.05);
+  box-shadow:0 4px 10px rgba(20,29,44,.06),0 1px 3px rgba(20,29,44,.04);
  }
  .route-section .route-card::after{content:none}
  .route-section .route-photo-wrap,
