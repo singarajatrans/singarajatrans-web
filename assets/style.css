@@ -1397,7 +1397,7 @@ dialog{border-radius:12px}
     border:0;
     border-radius:14px;
     background:#fff;
-    box-shadow:0 2px 7px rgba(20,29,44,.16);
+    box-shadow:0 4px 10px rgba(20,29,44,.06),0 1px 3px rgba(20,29,44,.04);
   }
   .destination-section .destination-card:nth-child(2){
     margin-left:-72px;
