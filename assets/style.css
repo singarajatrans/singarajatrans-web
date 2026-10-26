@@ -1280,7 +1280,7 @@ dialog{border-radius:12px}
  .route-label-filters button[aria-pressed="true"]{background:#fff;border:1px solid var(--mock-red);color:var(--mock-red-dark)}
  .route-label-filters{padding-bottom:14px}
  .route-label-filters button{position:relative}
- .route-label-filters button[aria-pressed="true"]::after{content:"";position:absolute;left:50%;bottom:-8px;width:26px;height:10px;background:url("images/service-notch.svg") center/100% 100% no-repeat;transform:translateX(-50%);pointer-events:none}
+ .route-label-filters button[aria-pressed="true"]::after{content:"";position:absolute;left:50%;bottom:-8px;width:26px;height:10px;background:url("images/filter-notch-thin.svg") center/100% 100% no-repeat;transform:translateX(-50%);pointer-events:none}
  .route-photo-label[data-service-label]{color:var(--mock-red)}
  .route-photo-label[data-service-label="shuttle"]{background:#005f9e;color:#fff}
  .route-photo-label[data-service-label="airport"]{background:#ffedd5}
