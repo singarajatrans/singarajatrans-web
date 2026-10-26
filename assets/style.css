@@ -1819,3 +1819,25 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  #search-form #trip-mode.trip-mode label:has(input[value="roundtrip"]){transform:translateX(-10px)!important}
 }
+
+
+/* Place Pulang Pergi directly after Sekali Jalan, with a compact 16px gap. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode{
+  display:flex!important;
+  grid-template-columns:none!important;
+  justify-content:flex-start!important;
+  align-items:stretch!important;
+  gap:16px!important;
+ }
+ #search-form #trip-mode.trip-mode label,
+ #search-form #trip-mode.trip-mode label:has(input:checked){
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  transform:none!important;
+ }
+ #search-form #trip-mode.trip-mode label:has(input[value="roundtrip"]){
+  transform:none!important;
+ }
+}
