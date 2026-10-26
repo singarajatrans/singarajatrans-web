@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" aria-hidden="true">
+  <g fill="none" stroke="none">
+    <path fill="#7d2730" opacity=".22" d="M0 210 86 142l52 46 80-88 86 92 68-62 148 114v56H0z"/>
+    <path fill="#7d2730" opacity=".12" d="M0 246 102 190l61 36 79-58 70 44 71-48 137 91v45H0z"/>
+    <g fill="#ffffff" opacity=".18">
+      <ellipse cx="110" cy="62" rx="58" ry="15"/><ellipse cx="153" cy="54" rx="43" ry="13"/><ellipse cx="78" cy="55" rx="34" ry="11"/>
+      <ellipse cx="300" cy="74" rx="53" ry="14"/><ellipse cx="340" cy="66" rx="35" ry="11"/>
+    </g>
+    <g fill="#681d27" opacity=".74" transform="translate(292 22)">
+      <path d="M8 250h76v-20H74v-30H64v-28H53v-25H40v-27H29v27H18v25H8v28H0v30h8z"/>
+      <path d="M180 250h-76v-20h10v-30h10v-28h11v-25h13v-27h11v27h11v25h10v28h8v30h-8z"/>
+      <path d="M15 118h62L66 103H27zM173 118h-62l11-15h39z"/>
+      <path d="M26 94h40L56 80H36zM162 94h-40l10-14h20z"/>
+      <path d="M36 70h21L47 50zM152 70h-21l10-20z"/>
+      <path d="M17 145h57l-6 9H23zM171 145h-57l6 9h45z"/>
+      <path d="M24 178h44v8H24zM164 178h-44v8h44z"/>
+      <path d="M37 206h31v8H37zM151 206h-31v8h31z"/>
+    </g>
+    <path fill="#ffffff" opacity=".07" d="M0 276c74-22 155-24 240-7 95 19 185 16 280-8v39H0z"/>
+  </g>
+</svg>
