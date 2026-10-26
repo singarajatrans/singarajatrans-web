@@ -2260,3 +2260,21 @@ dialog{border-radius:12px}
   align-self:center!important;
  }
 }
+
+
+/* Mobile departure date: no focus border, ring, or shadow. */
+@media(max-width:767px){
+ #search-form .date-field:focus,
+ #search-form .date-field:focus-within,
+ #search-form .date-field:has(input:focus),
+ #search-form .date-field:has(input:focus-visible){
+  border-color:transparent!important;
+  outline:0!important;
+  box-shadow:none!important;
+ }
+ #search-form .date-field input:focus,
+ #search-form .date-field input:focus-visible{
+  outline:0!important;
+  box-shadow:none!important;
+ }
+}
