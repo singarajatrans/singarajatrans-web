@@ -1847,7 +1847,7 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  #search-form #trip-mode.trip-mode label,
  #search-form #trip-mode.trip-mode label:has(input:checked){
-  font-size:13px!important;
+  font-size:14px!important;
   color:#858585!important;
  }
  #search-form #trip-mode.trip-mode label:has(input:checked){
