@@ -2137,3 +2137,18 @@ dialog{border-radius:12px}
   height:18px!important;
  }
 }
+
+
+/* Compact location bullets and placeholder text (mobile only). */
+@media(max-width:767px){
+ #search-form .location-pair .field>svg.field-icon-mobile{
+  width:18px!important;
+  height:18px!important;
+ }
+ #search-form .location-pair .field:not(.has-value) .field-label{
+  font-size:14px!important;
+ }
+ #search-form .location-pair .field.has-value .field-label{
+  font-size:11px!important;
+ }
+}
