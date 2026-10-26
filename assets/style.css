@@ -2166,3 +2166,28 @@ dialog{border-radius:12px}
   align-items:center!important;
  }
 }
+
+
+/* Mobile origin/destination: icons 1px smaller; centered 14px placeholders. */
+@media(max-width:767px){
+ #search-form .location-pair .field>svg.field-icon-mobile{
+  width:20px!important;
+  height:20px!important;
+  flex:0 0 20px!important;
+  align-self:center!important;
+ }
+ #search-form .location-pair .field:not(.has-value) .field-label{
+  font-size:14px!important;
+  line-height:20px!important;
+  transform:none!important;
+  margin:0!important;
+ }
+ #search-form .location-pair .field:not(.has-value)>span{
+  display:flex!important;
+  align-items:center!important;
+  min-height:24px!important;
+ }
+ #search-form .location-pair .field:not(.has-value)>span .field-label{
+  flex:0 0 auto!important;
+ }
+}
