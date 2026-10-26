@@ -2090,3 +2090,15 @@ dialog{border-radius:12px}
   grid-template-areas:"origin" "date" "time"!important;
  }
 }
+
+
+/* Mobile location card refinements: shorter dotted connector and neutral swap border. */
+@media(max-width:767px){
+ #search-form .field-stack .location-pair::after{
+  top:calc(25% + 15px)!important;
+  height:calc(50% - 30px)!important;
+ }
+ #search-form .location-swap{
+  border-color:#dedede!important;
+ }
+}
