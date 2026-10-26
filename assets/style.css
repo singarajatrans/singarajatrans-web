@@ -1748,3 +1748,12 @@ dialog{border-radius:12px}
   bottom:-9px!important;height:2px!important;border-radius:0!important;z-index:2!important;
  }
 }
+
+
+/* Align red active underline precisely over the gray divider (mobile only). */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label:has(input:checked)>span:last-child::after{
+  bottom:-11px!important;
+  height:2px!important;
+ }
+}
