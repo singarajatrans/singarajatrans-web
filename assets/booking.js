@@ -205,7 +205,11 @@ $('#route-cards').addEventListener('click',e=>{const b=e.target.closest('[data-r
 $('.route-label-filters')?.addEventListener('click',e=>{
  const button=e.target.closest('[data-route-label]');if(!button)return;
  mobileRouteLabel=button.dataset.routeLabel;
- all('[data-route-label]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+ const filters=$('.route-label-filters'),items=all('[data-route-label]');
+ items.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+ const index=items.indexOf(button);
+ const target=(filters.scrollWidth-filters.clientWidth)*index/Math.max(1,items.length-1);
+ filters.scrollTo({left:target,behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});
  renderRoutes();
 });
 $('.route-filters')?.addEventListener('click',e=>{const b=e.target.closest('[data-route-filter]');if(!b)return;routeFilter=b.dataset.routeFilter;all('[data-route-filter]').forEach(x=>x.classList.toggle('active',x===b));renderRoutes();});
