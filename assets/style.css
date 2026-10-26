@@ -1688,3 +1688,8 @@ dialog{border-radius:12px}
 @media(max-width:767px){
  #search-form #trip-mode.trip-mode label:has(input[value="roundtrip"]){justify-content:flex-start!important;text-align:left!important;padding-left:0!important}
 }
+
+/* Both mobile trip mode labels align to the left edge of their own tabs. */
+@media(max-width:767px){
+ #search-form #trip-mode.trip-mode label,#search-form #trip-mode.trip-mode label:has(input:checked){justify-content:flex-start!important;text-align:left!important;padding-left:0!important}
+}
