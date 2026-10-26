@@ -2339,17 +2339,3 @@ dialog{border-radius:12px}
  }
 }
 
-
-/* Mobile-only compact hero: bring service cards and booking form up beneath header. */
-@media(max-width:767px){
- .hero{
-  height:170px!important;
-  min-height:170px!important;
- }
- .hero .hero-content{
-  display:none!important;
- }
- .booking-container{
-  margin-top:-140px!important;
- }
-}
