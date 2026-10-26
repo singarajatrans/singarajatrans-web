@@ -2080,3 +2080,13 @@ dialog{border-radius:12px}
 @media(prefers-reduced-motion:reduce){
  #search-form .location-swap.is-swapping svg{animation:none}
 }
+
+
+@media(max-width:767px){
+ #search-form .field-stack{
+  grid-template-areas:"origin" "date"!important;
+ }
+ body:not([data-service="shuttle"]) #search-form .field-stack{
+  grid-template-areas:"origin" "date" "time"!important;
+ }
+}
