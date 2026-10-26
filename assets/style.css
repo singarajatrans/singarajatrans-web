@@ -1828,7 +1828,7 @@ dialog{border-radius:12px}
   grid-template-columns:none!important;
   justify-content:flex-start!important;
   align-items:stretch!important;
-  gap:16px!important;
+  gap:20px!important;
  }
  #search-form #trip-mode.trip-mode label,
  #search-form #trip-mode.trip-mode label:has(input:checked){
