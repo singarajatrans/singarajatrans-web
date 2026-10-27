@@ -1335,7 +1335,7 @@ dialog{border-radius:12px}
     padding:20px 20px 20px 24px;
     border-radius:0 22px 22px 0;
     color:#fff;
-    background:var(--mock-red,#c85759);
+    background:var(--mock-red,#18beba);
     box-shadow:3px 0 10px rgba(20,29,44,.12);
     text-decoration:none;
   }
@@ -1383,7 +1383,7 @@ dialog{border-radius:12px}
     margin-top:19px;
     border-radius:6px;
     background:#f2be37;
-    color:var(--mock-red,#c85759);
+    color:var(--mock-red,#18beba);
     font-size:17px;
     font-style:normal;
     font-weight:700;
@@ -2344,7 +2344,7 @@ dialog{border-radius:12px}
 /* Singaraja Trans mobile hero: continuous red header, restrained diagonal accents. */
 @media(max-width:767px){
  .hero{
-  background:#c85759!important;
+  background:#18beba!important;
   isolation:isolate;
  }
  .hero-image,
@@ -2391,7 +2391,7 @@ dialog{border-radius:12px}
  .hero{
   height:268px!important;
   min-height:268px!important;
-  background:#c85759!important;
+  background:#18beba!important;
  }
  .hero::before{
   content:"";
@@ -2447,8 +2447,8 @@ dialog{border-radius:12px}
  #search-form .search-button,
  #search-form .search-button:hover,
  #search-form .search-button:active{
-  background:var(--mock-red,#c85759)!important;
-  border-color:var(--mock-red,#c85759)!important;
+  background:var(--mock-red,#18beba)!important;
+  border-color:var(--mock-red,#18beba)!important;
   color:#fff!important;
  }
  #search-form .search-button svg{
@@ -2473,8 +2473,8 @@ dialog{border-radius:12px}
  .booking-container::before{
   background:linear-gradient(
    180deg,
-   #c85759 0px,
-   #c85759 76px,
+   #18beba 0px,
+   #18beba 76px,
    rgba(190,76,82,.98) 126px,
    rgba(178,68,76,.90) 172px,
    rgba(247,247,247,.95) 270px,
@@ -2502,8 +2502,8 @@ dialog{border-radius:12px}
  .booking-container::before{
   background:linear-gradient(
    180deg,
-   #c85759 0px,
-   #c85759 182px,
+   #18beba 0px,
+   #18beba 182px,
    rgba(24,190,186,.96) 214px,
    rgba(247,247,247,.96) 286px,
    #fff 350px
@@ -2548,7 +2548,7 @@ dialog{border-radius:12px}
 @media(max-width:767px){
   /* Two-level app header: wordmark above, search + actions below. */
   #header{
-    background:var(--mock-red,#c85759)!important;
+    background:var(--mock-red,#18beba)!important;
   }
   #header>.nav-wrap,
   #header>.nav-wrap>.nav-inner{
@@ -2647,7 +2647,7 @@ dialog{border-radius:12px}
   #header .mobile-header-action svg{
     width:20px!important;
     height:20px!important;
-    color:var(--mock-red,#c85759)!important;
+    color:var(--mock-red,#18beba)!important;
     stroke:currentColor!important;
   }
   #header .mobile-menu{display:none!important}
@@ -2659,7 +2659,7 @@ dialog{border-radius:12px}
     min-height:255px!important;
     background:
       radial-gradient(circle at 78% 18%,rgba(255,255,255,.08),transparent 34%),
-      linear-gradient(180deg,#cf5b5e 0%,#c85759 44%,#b74950 100%)!important;
+      linear-gradient(180deg,#cf5b5e 0%,#18beba 44%,#b74950 100%)!important;
     overflow:hidden!important;
   }
   .hero-image,
@@ -2749,7 +2749,7 @@ dialog{border-radius:12px}
   }
   .service-tabs button[aria-selected=true]{
     background:#fff!important;
-    color:var(--mock-red,#c85759)!important;
+    color:var(--mock-red,#18beba)!important;
     border:1px solid rgba(255,255,255,.98)!important;
     box-shadow:0 7px 18px rgba(103,28,36,.13)!important;
   }
@@ -2812,7 +2812,7 @@ dialog{border-radius:12px}
     min-height:228px!important;
     background:
       radial-gradient(circle at 82% 22%,rgba(255,255,255,.06),transparent 30%),
-      linear-gradient(180deg,#cd595d 0%,#c85759 54%,#b94b52 100%)!important;
+      linear-gradient(180deg,#cd595d 0%,#18beba 54%,#b94b52 100%)!important;
   }
   .hero::before{
     inset:0!important;
