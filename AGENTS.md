@@ -54,6 +54,19 @@ Each agent owns only the output path specified in its role file under `docs/agen
 Do not overwrite another agent's report.
 Do not edit `index.html`, production CSS, JavaScript, manifest, tests, or workflows until the master design is approved.
 
+## Token efficiency
+Applies to all agents unless the active task explicitly requires broader inspection:
+- Do not scan or audit the entire repository.
+- Start from the files and components directly relevant to the agent's assigned scope.
+- Follow imports, dependencies, and related files only when needed to resolve the task.
+- Do not reread files already understood unless they changed or new evidence requires it.
+- Do not repeat another agent's audit or analysis unless checking a conflict, inconsistency, or regression.
+- Reuse existing components, types, services, utilities, assets, and patterns before creating new ones.
+- Stop repository exploration once the root cause, affected files, and acceptance criteria are clear.
+- Prefer the smallest safe change or report that satisfies the active scope.
+- Agent 1 should synthesize existing agent reports instead of re-performing Agents 2–5 discovery work.
+- Agents 2–5 must stay inside their assigned ownership and output paths.
+
 ## Final design gate
 Design is not FINAL/LOCKED until:
 - a single master mobile/PWA design exists,
