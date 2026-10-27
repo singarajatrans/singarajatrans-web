@@ -46,14 +46,14 @@ async function scroll(page,top){
      }
      await page.locator('.destination-grid').evaluate(el=>el.scrollLeft=0);
      const firstDestination=await page.locator('.destination-card').first().boundingBox();
-     assert.ok(firstDestination.x>=19,'First destination must not be clipped');
+     assert.ok(firstDestination.x>=15,'First destination must respect the 16px mobile gutter');
      const order=await page.locator('.route-section,.home-recommendation,.home-popular,.reviews-section,.destination-section').evaluateAll(els=>els.map(el=>({name:el.className,y:el.getBoundingClientRect().y})).sort((a,b)=>a.y-b.y).map(el=>el.name));
      assert.match(order[0],/route-section/);assert.match(order[1],/home-popular/);assert.match(order[2],/home-recommendation/);assert.match(order[3],/destination-section/);assert.match(order[4],/reviews-section/);
      for(const service of ['airport','charter','motor','shuttle']){
       await page.locator('#tab-'+service).click();
       assert.equal(await page.locator('#search-panel').getAttribute('aria-labelledby'),'tab-'+service);
       assert.equal(await page.locator('#motor-entry').isVisible(),service==='motor');
-      const card=await page.locator('#tab-'+service).boundingBox();assert.ok(card.x>=19&&card.x+card.width<=width-19);
+      const card=await page.locator('#tab-'+service).boundingBox();assert.ok(card.x>=15&&card.x+card.width<=width-15,'Service shortcut respects the 16px mobile gutter');
      }
      await page.locator('[data-route-favorite]').first().click();
      assert.equal(await page.locator('[data-route-favorite]').first().getAttribute('aria-pressed'),'true');
