@@ -26,7 +26,7 @@
  });
  document.querySelector('[data-reference-language]').addEventListener('click',()=>document.querySelector('[data-language="'+(document.documentElement.lang==='en'?'id':'en')+'"]').click());
  function syncPresentation(){
-  document.querySelector('meta[name="theme-color"]').content=mobile.matches?'#1bc3bd':'#c85759';
+  document.querySelector('meta[name="theme-color"]').content=mobile.matches?'#0b7285':'#c85759';
   if(mobile.matches&&(location.hash==='#pesan'||new URLSearchParams(location.search).has('from')))openBooking();
  }
  mobile.addEventListener('change',syncPresentation);syncPresentation();
