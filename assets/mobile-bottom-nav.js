@@ -45,6 +45,7 @@ function syncFromScroll(){
  scrollFrame=0;
  if(!mobile.matches||checkDialog?.open)return;
  const y=pageScrollTop();
+ if(document.querySelector('.reference-header')||y<80){setCurrent('home');return;}
  const marker=y+(innerHeight*.42);
  let next='home';
  for(const entry of tracked){

@@ -29,8 +29,12 @@ async function scroll(page,top){
       return {hero:box('.hero'),panel:box('#search-panel'),services:box('.service-tabs'),overflow:document.body.scrollWidth>innerWidth||document.documentElement.scrollWidth>innerWidth};
      });
      assert.equal(geometry.overflow,false);
-     assert.ok(geometry.panel.top<geometry.hero.bottom&&geometry.panel.top>geometry.hero.top,'Booking must overlap the hero');
-     assert.ok(geometry.services.top>geometry.panel.bottom,'Services must follow the booking widget');
+     assert.equal(await page.locator('#search-panel').isVisible(),false,'Booking starts collapsed to match the reference');
+     assert.ok(geometry.services.top>=160&&geometry.services.top<200,'Service shortcuts follow the turquoise header');
+     assert.equal(await page.locator('.reference-header').isVisible(),true);
+     assert.equal(await page.locator('.route-card:visible').count(),2);
+     const cards=await page.locator('.route-card:visible').all();
+     assert.equal((await cards[0].boundingBox()).y,(await cards[1].boundingBox()).y);
      assert.equal(await page.locator('h1').count(),1);
      assert.equal(await page.locator('[data-bottom-nav=home]').getAttribute('aria-current'),'page');
      assert.equal(await page.locator('.route-old-price-row').first().isVisible(),false,'Unverified savings must stay hidden');
@@ -44,7 +48,7 @@ async function scroll(page,top){
      const firstDestination=await page.locator('.destination-card').first().boundingBox();
      assert.ok(firstDestination.x>=19,'First destination must not be clipped');
      const order=await page.locator('.route-section,.home-recommendation,.home-popular,.reviews-section,.destination-section').evaluateAll(els=>els.map(el=>({name:el.className,y:el.getBoundingClientRect().y})).sort((a,b)=>a.y-b.y).map(el=>el.name));
-     assert.match(order[0],/route-section/);assert.match(order[1],/home-recommendation/);assert.match(order[2],/home-popular/);assert.match(order[3],/reviews-section/);assert.match(order[4],/destination-section/);
+     assert.match(order[0],/route-section/);assert.match(order[1],/home-popular/);assert.match(order[2],/home-recommendation/);assert.match(order[3],/destination-section/);assert.match(order[4],/reviews-section/);
      for(const service of ['airport','charter','motor','shuttle']){
       await page.locator('#tab-'+service).click();
       assert.equal(await page.locator('#search-panel').getAttribute('aria-labelledby'),'tab-'+service);
@@ -55,14 +59,15 @@ async function scroll(page,top){
      assert.equal(await page.locator('[data-route-favorite]').first().getAttribute('aria-pressed'),'true');
      await page.reload({waitUntil:'networkidle'});
      assert.equal(await page.locator('[data-route-favorite]').first().getAttribute('aria-pressed'),'true');
-     await page.locator('[data-route-label=airport]').click();
-     assert.equal(await page.locator('#route-cards .route-card').count(),1);
-     await page.locator('[data-route-label=all]').click();
-     await page.locator('.languages button[aria-pressed=true]').click();
+     await page.locator('[data-reference-all]').click();
+     assert.ok(await page.locator('#route-cards .route-card:visible').count()>2);
+     await page.locator('[data-reference-all]').click();
+     assert.equal(await page.locator('#route-cards .route-card:visible').count(),2);
+     await page.locator('[data-reference-language]').click();
      assert.equal(await page.locator('html').getAttribute('lang'),'en');
      assert.equal(await page.locator('#popular-heading').innerText(),'Popular routes');
      assert.match(await page.locator('.home-popular-price').first().innerText(),/^From Rp120.000/);
-     await page.locator('.languages button[aria-pressed=true]').click();
+     await page.locator('[data-reference-language]').click();
      await page.locator('[data-home-route="Singaraja|Denpasar"]').click();
      assert.equal(await page.locator('#origin').inputValue(),'Singaraja');
      assert.equal(await page.locator('#destination').inputValue(),'Denpasar');

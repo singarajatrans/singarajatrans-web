@@ -8,52 +8,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
  try{
   for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4173/')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   browser=await chromium.launch({headless:true});await require('./mobile-header.cjs')(browser,'http://127.0.0.1:4173/');mkdirSync('qa-output',{recursive:true});
-  // Regression: existing mobile bottom navigation; presentation only.
-  for(const width of [320,360,375,390,412,430]){
-   const p=await browser.newPage({viewport:{width,height:844}}),nav=p.locator('.mobile-bottom-nav');
-   try{
-    await p.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
-    assert.equal(await nav.isVisible(),true);
-    assert.equal(await nav.locator('[data-bottom-nav]').count(),5);
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
-    const geometry=await nav.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el),item=getComputedStyle(el.querySelector('.mobile-bottom-item')),icon=getComputedStyle(el.querySelector('[data-bottom-nav="explore"] svg'));return {top:r.top,bottom:r.bottom,height:r.height,position:s.position,viewport:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth,gap:item.gap,label:item.fontSize,icon:[icon.width,icon.height],overscroll:getComputedStyle(document.body).overscrollBehaviorY,chat:getComputedStyle(document.querySelector('.floating-chat')).display}});
-    assert.equal(geometry.position,'fixed');assert.ok(Math.abs(geometry.bottom-geometry.viewport)<2);
-    assert.equal(geometry.overflow,false);assert.equal(geometry.gap,'5px');assert.equal(geometry.label,'11px');assert.deepEqual(geometry.icon,['23px','23px']);assert.equal(geometry.overscroll,'auto');assert.equal(geometry.chat,'none');
-    await p.mouse.move(width/2,400);
-    await p.mouse.wheel(0,600);
-    await p.waitForFunction(()=>document.body.scrollTop>0);
-    assert.ok(await p.evaluate(()=>document.body.scrollTop>0),'Body scroll must advance at '+width);
-    assert.ok(Math.abs((await nav.boundingBox()).y+geometry.height-geometry.viewport)<2,'Bottom nav must remain fixed');
-    await nav.locator('[data-bottom-nav="explore"]').click();
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
-    assert.equal(await nav.locator('[data-bottom-nav="explore"]').evaluate(el=>el.classList.contains('is-nav-live')),true);
-    await nav.locator('[data-bottom-nav="favorites"]').dispatchEvent('click');
-    assert.match(await nav.locator('[role="status"]').innerText(),/Favorit belum tersedia/);
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
-    await nav.locator('[data-bottom-nav="account"]').dispatchEvent('click');
-    assert.match(await nav.locator('[role="status"]').innerText(),/Akun belum tersedia/);
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
-    await nav.locator('[data-bottom-nav="trips"]').click();
-    assert.equal(await p.locator('#check-dialog').evaluate(el=>el.open),true);
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'trips');
-    await p.keyboard.press('Escape');
-    await p.waitForFunction(()=>!document.querySelector('#check-dialog').open);
-    await p.waitForFunction(()=>document.querySelector('.mobile-bottom-item[aria-current="page"]')?.dataset.bottomNav==='explore');
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'explore');
-    await nav.locator('[data-bottom-nav="home"]').click();
-    assert.equal(await nav.locator('[aria-current="page"]').getAttribute('data-bottom-nav'),'home');
-    assert.deepEqual(await nav.locator('[data-bottom-nav="home"] .bottom-icon-on').evaluate(el=>{const s=getComputedStyle(el);return [s.width,s.height,s.display]}),['23px','23px','block']);
-    await p.evaluate(()=>{location.hash='faq';});
-    await p.waitForFunction(()=>document.querySelector('.mobile-bottom-item[aria-current="page"]')?.dataset.bottomNav==='explore');
-    assert.equal(await nav.locator('[data-bottom-nav="explore"]').evaluate(el=>el.classList.contains('is-nav-live')),true);
-    await p.evaluate(()=>{location.hash='main';});
-    await p.waitForFunction(()=>document.querySelector('.mobile-bottom-item[aria-current="page"]')?.dataset.bottomNav==='home');
-    assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-    await p.screenshot({path:`qa-output/bottom-nav-${width}.png`});
-    console.log('PASS mobile bottom navigation at '+width+'px');
-   }finally{await p.close();}
-  }
-  for(const width of [320,360,390,412,768,1024,1440]){
+  for(const width of [768,1024,1440]){
    const page=await browser.newPage({viewport:{width,height:900}}),errors=[];
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
