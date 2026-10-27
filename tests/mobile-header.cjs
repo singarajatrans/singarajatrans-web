@@ -7,13 +7,13 @@ module.exports=async function testMobileHeader(browser,url){
   await p.clock.install();await p.clock.pauseAt(new Date(Date.now()+1000));
   await p.goto(url,{waitUntil:'networkidle'});
   const search=p.locator('.mobile-header-search');
-  assert.equal(await search.evaluate(e=>e.offsetHeight),36);
+  assert.equal(await search.evaluate(e=>e.offsetHeight),42);
   assert.equal(await p.locator('.header-search-mark').count(),0,'Search header must not contain the old logo');
   assert.equal(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).color),await search.evaluate(e=>getComputedStyle(e).getPropertyValue('--mock-red').trim()).then(v=>v==='#c85759'?'rgb(200, 87, 89)':v));
-  assert.equal(await p.locator('.header-search-icon').evaluate(e=>getComputedStyle(e).width),'20px');
+  assert.equal(await p.locator('.header-search-icon').evaluate(e=>getComputedStyle(e).width),'21px');
   assert.equal(await p.locator('.header-search-prompt').evaluate(e=>getComputedStyle(e).fontWeight),'500');
   assert.equal(await p.locator('.header-search-brand').isVisible(),true);
-  assert.equal(await p.locator('.brand').isVisible(),false);assert.equal(await p.locator('.mobile-menu').isVisible(),false);
+  assert.equal(await p.locator('.brand').isVisible(),true);assert.equal(await p.locator('.mobile-menu').isVisible(),false);
   await p.clock.runFor(900);assert.ok(await search.evaluate(e=>{const n=parseFloat(e.style.getPropertyValue('--brand-unrevealed'));return n>40&&n<60;}));
   assert.notEqual(await p.locator('.header-search-name').evaluate(e=>getComputedStyle(e).clipPath),'none');
   await p.screenshot({path:`qa-output/header-brand-reveal-${width}.png`});
@@ -51,23 +51,17 @@ module.exports=async function testMobileHeader(browser,url){
   await p.clock.runFor(1800);assert.equal(await prompt.innerText(),next);
   const serviceList=['shuttle','airport','charter','motor'];
   const shape=await p.locator('.service-tabs button').evaluateAll(a=>a.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return [r.width,r.height,s.borderRadius,s.padding,s.gap]}));
-  shape.forEach(s=>assert.deepEqual(s,shape[0]));assert.equal(shape[0][1],88);
-  const row=p.locator('.service-tabs');assert.equal(Math.round((await row.boundingBox()).x),0);const firstEdge=(await p.locator('#tab-shuttle').boundingBox()).x;assert.ok(firstEdge>=16&&firstEdge<=17);
+  shape.forEach(s=>assert.deepEqual(s,shape[0]));assert.equal(shape[0][1],104);
+  const row=p.locator('.service-tabs');
+  const firstEdge=(await p.locator('#tab-shuttle').boundingBox()).x;
+  assert.equal(firstEdge,20);
   assert.equal(await row.evaluate(e=>getComputedStyle(e).columnGap),'8px');
-  const peek=await p.locator('#tab-motor').boundingBox();assert.ok(peek.x<width&&peek.x+peek.width>width,'Next service must peek into the rail');
-  assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').width),'26px');assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').height),'10px');
-  assert.equal((await p.locator('#search-panel').boundingBox()).y-(await p.locator('#tab-shuttle').boundingBox()).y-88,14);
-  // Inspect the rendered junction: white across the seam and red along the pointer curve.
-  const activeBox=await p.locator('#tab-shuttle').boundingBox();
-  const notchPng=await p.screenshot({clip:{x:Math.floor(activeBox.x+activeBox.width/2-16),y:Math.floor(activeBox.y+activeBox.height-4),width:32,height:14}});
-  const junction=await p.evaluate(async data=>{
-   const image=new Image();image.src=data;await image.decode();const canvas=document.createElement('canvas');canvas.width=32;canvas.height=14;const context=canvas.getContext('2d');context.drawImage(image,0,0,32,14);const pixels=context.getImageData(0,0,32,14).data;
-   const pixel=(x,y)=>Array.from(pixels.slice((y*32+x)*4,(y*32+x)*4+3));
-   const seamWhite=[3,4,5].every(y=>[13,14,15,16,17,18,19].every(x=>pixel(x,y).every(c=>c>245)));
-   const borderedCurve=Array.from({length:13},(_,i)=>i+10).every(x=>Array.from({length:8},(_,i)=>i+5).some(y=>{const [r,g,b]=pixel(x,y);return r-g>25&&g<175&&b<185;}));
-   return {seamWhite,borderedCurve};
-  },'data:image/png;base64,'+notchPng.toString('base64'));
-  assert.deepEqual(junction,{seamWhite:true,borderedCurve:true},'Notch must join without a seam and carry the active border');
+  for(const tab of await row.locator('button').all()){
+   const box=await tab.boundingBox();assert.ok(box.x>=20&&box.x+box.width<=width-19);
+  }
+  assert.equal(await p.locator('#tab-shuttle').evaluate(e=>getComputedStyle(e,'::after').content),'none');
+  const panel=await p.locator('#search-panel').boundingBox();
+  assert.ok(panel.y+panel.height<(await row.boundingBox()).y,'Services follow the floating booking widget');
 
   await p.locator('#tab-airport').click();await p.clock.runFor(500);await new Promise(r=>setTimeout(r,450));
   // Selecting a service uses its existing state and preserves every card's geometry.
@@ -82,13 +76,12 @@ module.exports=async function testMobileHeader(browser,url){
    await p.screenshot({path:`/tmp/header-card-${width}-${service}.png`});
   }
   await p.locator('#tab-motor').evaluate(e=>e.click());await p.clock.runFor(500);await new Promise(r=>setTimeout(r,450));const last=await p.locator('#tab-motor').boundingBox();assert.ok(Math.abs(width-firstEdge-last.x-last.width)<1);
-  const previous=await p.locator('#tab-shuttle').boundingBox();assert.ok(previous.x<0&&previous.x+previous.width>0,'Previous service must peek at the opposite end');assert.ok(last.x+last.width/2>width*.6,'Last service must not be forced to center');
-  assert.equal(Math.round(await row.evaluate(e=>e.scrollLeft)),await row.evaluate(e=>e.scrollWidth-e.clientWidth));
+  assert.equal(await row.evaluate(e=>e.scrollLeft),0,'All four service choices fit without scrolling');
   // Existing language buttons toggle directly, without a new route or a dropdown.
   const originalURL=p.url();await p.locator('.languages button[aria-pressed=true]').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'en');assert.equal(p.url(),originalURL);assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'en');
   assert.equal(await p.locator('.language-code:visible').count(),0);assert.equal(await p.locator('.language-chevron:visible').count(),0);
   await p.keyboard.press('Enter');assert.equal(await p.locator('html').getAttribute('lang'),'id');assert.equal(await p.evaluate(()=>document.activeElement.dataset.language),'id');await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.activeElement.classList.contains('mobile-header-share')),true);
-  const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.equal(actions.length,2,'Language toggle and mobile header action must both exist');assert.deepEqual(actions,[[36,36],[36,36]]);
+  const actions=await p.locator('.languages,.mobile-header-action').evaluateAll(a=>a.map(e=>[e.offsetWidth,e.offsetHeight]));assert.equal(actions.length,2,'Language toggle and mobile header action must both exist');assert.deepEqual(actions,[[42,42],[42,42]]);
   // Each animated prompt is clicked at its real index, then must keep cycling while booking receives focus.
   const promptLabels=['Cari Travel Shuttle','Cari Airport Transfer','Cari Sewa Mobil','Cari Sewa Motor','Cari rute, kota, atau tujuan…'];
   await p.reload({waitUntil:'networkidle'});await p.clock.runFor(5500);
@@ -126,12 +119,12 @@ module.exports=async function testMobileHeader(browser,url){
   const beforeShareTyping=await p.locator('.header-search-prompt').innerText();await p.clock.runFor(6000);assert.notEqual(await p.locator('.header-search-prompt').innerText(),beforeShareTyping,'Share feedback must not cancel the typewriter timer');
   assert.equal(await p.evaluate(()=>document.body.scrollWidth<=innerWidth&&document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
   await p.emulateMedia({reducedMotion:'reduce'});await p.reload({waitUntil:'networkidle'});await p.clock.runFor(3500);assert.equal(await p.locator('.header-search-car').isVisible(),true,'Opening car must still be available with reduced motion');await p.clock.runFor(4000);assert.equal(await p.locator('.header-search-brand').isVisible(),false);assert.equal(await search.evaluate(e=>e.classList.contains('has-typewriter')),true);assert.equal(await prompt.evaluate(e=>getComputedStyle(e,'::after').animationName),'none');
-  // Reduced motion also keeps distinct landing points, including Motor → Mobil.
+  // Reduced motion keeps all four service choices visible.
   await p.locator('#tab-motor').evaluate(e=>e.click());
   let previousScroll=await row.evaluate(e=>e.scrollLeft);
   for(const service of ['charter','airport','shuttle','airport','charter','motor']){
    await p.locator('#tab-'+service).evaluate(e=>e.click());
-   const scroll=await row.evaluate(e=>e.scrollLeft);assert.ok(Math.abs(scroll-previousScroll)>5,'Carousel did not move to '+service);previousScroll=scroll;
+   const scroll=await row.evaluate(e=>e.scrollLeft);assert.equal(scroll,0,'Service grid must fit without horizontal scrolling');previousScroll=scroll;
    assert.equal(await p.locator('#search-panel').getAttribute('aria-labelledby'),'tab-'+service);
   }
   await p.close();console.log('PASS mobile header: opening/wipe, shortcuts, geometry, carousel, language, share, focus and reduced motion at '+width);

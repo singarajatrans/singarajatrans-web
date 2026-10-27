@@ -6,6 +6,8 @@ Website pelanggan desktop dan mobile; tablet adaptif. Repository resmi `singaraj
 
 ## Arah visual yang disepakati
 
+Pembaruan 27 Oktober 2026: khusus Home di lebar maksimal 767 px mengikuti [Home Mobile V2](docs/home-mobile-v2.md), berdasarkan referensi terakhir. Desktop tetap memakai desain yang ada. Urutan dan styling mobile terbaru pada dokumen V2 menggantikan arahan mobile lama di bawah.
+
 - Merah #D84E55, putih #FFFFFF, latar abu muda #F7F7F7, teks #303030.
 - Tombol utama merah gelap #B8323B untuk keterbacaan teks putih; merah utama menjadi aksen.
 - Identitas logo resmi dipertahankan sesuai aset; bukan diwarnai ulang.

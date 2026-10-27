@@ -23,6 +23,7 @@ jobs:
           node --check assets/booking.js
           node --check assets/mobile-bottom-nav.js
           node --check assets/mobile-header.js
+          node --check assets/mobile-home-v2.js
           node tests/core.test.cjs
       - name: Prepare browser checks
         run: |
@@ -35,6 +36,7 @@ jobs:
         run: |
           node tests/mobile-search-lifecycle.cjs
           node tests/ios-scroll.cjs
+          node tests/home-mobile-v2.cjs
           node tests/browser.cjs
       - name: Save visual review screenshots
         if: always()

@@ -7,10 +7,11 @@
   <meta name="description" content="Rencanakan perjalanan Bali bersama SINGARAJA TRANS. Travel shuttle, airport transfer, dan charter drop dengan informasi rute dan tarif yang jelas.">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
-  <link rel="stylesheet" href="assets/style.css?v=mobile-top-cleanup-audit-1"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=cards-local-favorites-4" defer></script><script src="assets/booking.js?v=mobile-product-contact-removed-1" defer></script><script src="assets/mobile-header.js?v=mobile-exact-parity-11" defer></script><script src="assets/mobile-bottom-nav.js?v=ios-native-scroll-1" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=mobile-top-cleanup-audit-1"><script src="assets/core.js?v=core-ui-2" defer></script><script src="assets/ui.js?v=cards-local-favorites-4" defer></script><script src="assets/booking.js?v=mobile-home-v2-1" defer></script><script src="assets/mobile-header.js?v=mobile-exact-parity-11" defer></script><script src="assets/mobile-bottom-nav.js?v=ios-native-scroll-1" defer></script>
+<link rel="stylesheet" href="assets/mobile-home-v2.css?v=1">
+<script src="assets/mobile-home-v2.js?v=1" defer></script>
 <style media="(max-width:767px)">/* Preserve mobile page colors when Chrome applies Auto Dark Theme. Browser chrome remains OS-controlled. */:root{color-scheme:only light}#trip-mode label::before,#trip-mode label::after,#trip-mode label:has(input:checked)::before,#trip-mode label:has(input:checked)::after{content:none!important;display:none!important}#trip-mode label{gap:0!important}</style></head>
-<body>
+<body class="home-mobile-v2">
 <a class="skip-link" href="#main" data-en="Skip to content">Langsung ke konten</a>
 <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
 <symbol id="bus-clean" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="17" rx="3"/><path d="M5 11h14M8 15h2m4 0h2M8 20v2m8-2v2M8 6h8"/></symbol>
@@ -103,12 +104,14 @@
 <main id="main">
  <section class="hero" aria-labelledby="hero-title">
   <div class="container hero-content">
+    <span class="home-v2-only hero-kicker" data-en="EXPLORE BALI WITH US">JELAJAHI BALI BERSAMA KAMI</span>
     <h1 id="hero-title" data-en="Bali journeys,<br><span class=&quot;hero-accent&quot;>made easier.</span>">Pesan perjalanan Bali<br><span class="hero-accent">lebih mudah</span></h1>
     <p id="hero-subtitle">Perjalanan shuttle antarkota di Bali dengan jadwal teratur.</p>
   </div>
 </section>
  <div class="container booking-container" id="pesan">
  <section class="booking-widget" aria-label="Pencarian perjalanan">
+ <h2 class="home-v2-only home-services-title" data-en="Your journey, your way">Layanan perjalanan</h2>
  <div class="service-tabs" role="tablist" aria-label="Layanan perjalanan"><button role="tab" id="tab-shuttle" aria-controls="search-panel" aria-selected="true" tabindex="0" data-service="shuttle"><span class="service-tab-icons service-svg-icon service-shuttle-svg" aria-hidden="true"></span><span>Travel Shuttle</span></button><button role="tab" id="tab-airport" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="airport"><span class="service-tab-icons service-svg-icon service-airport-svg" aria-hidden="true"></span><span data-en="Airport Transfer">Antar Jemput Bandara</span></button><button role="tab" id="tab-charter" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="charter"><span class="service-tab-icons service-svg-icon service-car-svg" aria-hidden="true"></span><span data-en="Car Rental & Charter Drop">Sewa Mobil & Carter Drop</span></button><button class="mobile-service" role="tab" id="tab-motor" aria-controls="search-panel" aria-selected="false" tabindex="-1" data-service="motor"><span class="service-tab-icons service-svg-icon service-motor-svg" aria-hidden="true"></span><span data-en="Motorbike Rental">Sewa Motor</span></button></div>
  <div id="search-panel" role="tabpanel" aria-labelledby="tab-shuttle"><form id="search-form" novalidate>
  <div class="trip-mode" id="trip-mode" aria-label="Jenis perjalanan" >
@@ -170,7 +173,7 @@
  </section>
  <div class="mobile-home-flow">
  <section id="rute" class="section container route-section" aria-labelledby="routes-heading">
-   <div class="section-heading mockup-heading"><div><h2 id="routes-heading"><span class="desktop-copy" data-en="Popular routes">Rute populer</span><span class="mobile-copy" data-en="Customer Favorites">Favorit Pelanggan</span></h2><p><span class="desktop-copy" data-en="Choose a favorite route, then set your travel date.">Pilih rute favorit, lalu tentukan tanggal perjalanan.</span><span class="mobile-copy" data-en="Recommended services for your journey.">Rekomendasi layanan untuk perjalanan Anda.</span></p></div><a class="section-action desktop-copy" href="#pesan" data-en="See all routes →">Lihat semua rute →</a><a class="section-action mobile-copy section-chevron-action route-see-all" href="#pesan" aria-label="Lihat semua rute"><svg aria-hidden="true"><use href="#chevron"/></svg></a></div>
+   <div class="section-heading mockup-heading"><div><h2 id="routes-heading"><span class="desktop-copy" data-en="Popular routes">Rute populer</span><span class="mobile-copy" data-en="Favorite picks">Pilihan Favorit</span></h2><p><span class="desktop-copy" data-en="Choose a favorite route, then set your travel date.">Pilih rute favorit, lalu tentukan tanggal perjalanan.</span><span class="mobile-copy" data-en="Recommended services for your journey.">Rekomendasi layanan untuk perjalanan Anda.</span></p></div><a class="section-action desktop-copy" href="#pesan" data-en="See all routes →">Lihat semua rute →</a><a class="section-action mobile-copy section-chevron-action route-see-all" href="#pesan" aria-label="Lihat semua rute"><svg aria-hidden="true"><use href="#chevron"/></svg></a></div>
    <div class="route-filters" aria-label="Filter rute">
      <button type="button" class="active" data-route-filter="all" data-en="All">Semua</button>
      <button type="button" data-route-filter="Singaraja">Singaraja</button>
@@ -192,6 +195,21 @@
    </div>
    <div class="route-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
    <p class="caption" data-en="Final fares follow the selected trip details.">Tarif akhir mengikuti detail perjalanan.</p>
+ </section>
+
+ <section class="home-v2-only home-recommendation section container" aria-labelledby="recommendation-heading">
+   <a class="home-recommendation-card" href="#wisata">
+     <div><span class="home-eyebrow" data-en="A LITTLE INSPIRATION">INSPIRASI PERJALANAN</span><h2 id="recommendation-heading" data-en="Take a little break.<br>Discover more of Bali.">Jeda sejenak.<br>Jelajahi sisi lain Bali.</h2><span class="home-recommendation-link" data-en="Explore destinations →">Jelajahi destinasi →</span></div>
+     <img src="assets/images/lovina.webp" width="600" height="400" alt="Pantai Lovina" loading="lazy">
+   </a>
+ </section>
+ <section class="home-v2-only home-popular section container" aria-labelledby="popular-heading">
+   <div class="section-heading"><div><h2 id="popular-heading" data-en="Popular routes">Rute Populer</h2><p data-en="Start planning your next journey.">Temukan perjalanan Anda berikutnya.</p></div><a href="#pesan" class="home-all-link" data-en="See all">Lihat semua</a></div>
+   <div class="home-popular-rail" aria-label="Rute populer">
+     <button type="button" data-home-route="Singaraja|Denpasar"><span class="home-route-icon" aria-hidden="true"><svg><use href="#bus"/></svg></span><strong>Singaraja <span aria-hidden="true">→</span> Denpasar</strong><span class="home-popular-price"></span><span class="home-route-link" data-en="Choose route →">Pilih rute →</span></button>
+     <button type="button" data-home-route="Singaraja|Gilimanuk"><span class="home-route-icon" aria-hidden="true"><svg><use href="#bus"/></svg></span><strong>Singaraja <span aria-hidden="true">→</span> Gilimanuk</strong><span class="home-popular-price"></span><span class="home-route-link" data-en="Choose route →">Pilih rute →</span></button>
+     <button type="button" data-home-route="Denpasar|Karangasem"><span class="home-route-icon" aria-hidden="true"><svg><use href="#bus"/></svg></span><strong>Denpasar <span aria-hidden="true">→</span> Karangasem</strong><span class="home-popular-price"></span><span class="home-route-link" data-en="Choose route →">Pilih rute →</span></button>
+   </div>
  </section>
  <section id="layanan" class="section container service-section" aria-labelledby="services-heading">
    <div class="section-heading mockup-heading"><div><h2 id="services-heading" data-en="Service options">Pilihan layanan</h2><p data-en="Transport services to match your journey.">Layanan transportasi sesuai kebutuhan perjalanan Anda.</p></div></div>
@@ -251,7 +269,7 @@
   </button>
   <button class="mobile-bottom-item" type="button" data-bottom-nav="favorites" aria-disabled="true">
     <span class="mobile-bottom-favorite-icons" aria-hidden="true">
-      <span class="material-symbols-rounded">bookmark_heart</span>
+      <svg aria-hidden="true"><use href="#bottom-book-heart-icon"/></svg>
     </span>
     <span class="mobile-bottom-label" data-en="Favorites">Favorit</span>
   </button>

@@ -55,7 +55,7 @@ function updateServiceCopy(){
   charter:[t('Charter Drop Bali<br>lebih mudah','Charter Drop Bali<br>made easier'),t('Mobil privat sekali jalan untuk perjalanan Anda di Bali.','Private one-way transport for your journey across Bali.')]
  };
  const mobileHero={
-  shuttle:[t('Travel Shuttle Bali','Travel Shuttle Bali'),t('Travel shuttle antarkota.','Intercity travel shuttle.')],
+  shuttle:[t('Perjalanan Bali<br>jadi lebih mudah.','Bali journeys,<br>made easier.'),t('Travel shuttle dan transportasi pilihan untuk menjelajahi Bali.','Shuttle and private transport to explore more of Bali.')],
   airport:[t('Airport Transfer Bali','Airport Transfer Bali'),t('Antar jemput privat Bandara Ngurah Rai.','Private Ngurah Rai Airport transfers.')],
   charter:[t('Sewa Mobil Bali','Bali Car Rental'),t('Mobil privat langsung ke tujuan.','Private cars direct to your destination.')],
   motor:[t('Sewa Motor Bali','Bali Motorbike Rental'),t('Informasi layanan rental motor.','Motorbike rental service information.')]
