@@ -2895,3 +2895,11 @@ dialog{border-radius:12px}
     box-shadow:0 7px 22px rgba(18,28,45,.11)!important;
   }
 }
+
+
+/* Brand update: header is navy; hero retains sea-blue primary. */
+#header,
+#header > .nav-wrap,
+#header > .nav-wrap > .nav-inner{
+  background:#05285d!important;
+}
