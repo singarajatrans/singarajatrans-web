@@ -5,8 +5,9 @@ module.exports=async function testMobileHeader(browser,url){
   await page.goto(url,{waitUntil:'networkidle'});
   assert.equal(await page.locator('.reference-header').isVisible(),true);
   assert.equal(await page.locator('#search-panel').isVisible(),false);
-  assert.equal(await page.locator('.reference-header').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(27, 195, 189)');
-  assert.equal(await page.locator('.reference-filter').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 150, 89)');
+  const headerBackground=await page.locator('#header').evaluate(el=>getComputedStyle(el).backgroundImage);
+  assert.match(headerBackground,/rgb\(11, 114, 133\)/,'Mobile header uses the sea-blue design token');
+  assert.equal(await page.locator('.reference-filter').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 138, 76)');
   assert.equal(await page.locator('.service-tabs button:visible').count(),4);
   assert.equal(await page.locator('.mobile-bottom-item:visible').count(),4);
   await page.locator('.reference-search').click();
